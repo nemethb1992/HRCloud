@@ -1,0 +1,117 @@
+﻿<Window x:Class="HRCloud.View.Windows.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HRCloud.View.Windows"
+        mc:Ignorable="d"
+        Title="Main" Height="820" Width="1300"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStyle="None" 
+        MouseDown="Window_MouseDown">
+    <!--ResizeMode="NoResize"-->
+    <Border>
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="0"
+                              BlurRadius="8"
+                              ShadowDepth="1"
+                              Opacity="0.5"/>
+        </Border.Effect>
+        <Grid Height="800" Width="1280" Background="White"  HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="1.1*" />
+                <ColumnDefinition Width="1050" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="header_grid" Grid.Row="0" Grid.Column="1"  >
+                <Label Content="HR Cloud" Style="{StaticResource title_header_label}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60"  Width="110" FontSize="23" Margin="65,0,0,0" />
+                <Image Height="28" HorizontalAlignment="Left"  Source="/HRCloud;component/Public/imgs/pm_logo_mini.png" Margin="20,0,0,0"/>
+
+            </Grid>
+            <Grid x:Name="Left_Navigation_Grid" Style="{StaticResource gridShadow}" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFB827A" Offset="0.753"/>
+                        <GradientStop Color="#FFF93A65"/>
+                        <GradientStop Color="#FFF99F7D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="220" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="profile_grid" Grid.Row="0"  Panel.ZIndex="3" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="Profil_name_tbl" Padding="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" Height="50" Style="{StaticResource minor_title_style}" Foreground="{StaticResource NavFontColor}" TextAlignment="Center"  TextWrapping="Wrap" Text="" FontFamily="/HRCloud;component/Public/fonts/#Raleway Medium"/>
+                    <Ellipse Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"  Height="110" Stroke="White" StrokeThickness="2" Width="110">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/HRCloud;component/Public/imgs/profileDefault.png" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Button x:Name="profil_settBtn" Grid.Row="2" Grid.Column="0"  Panel.ZIndex="2" Style="{StaticResource profilBtn}" MouseEnter="profil_settBtn_MouseEnter" MouseLeave="profil_settBtn_MouseLeave"/>
+                    <Image Margin="8" Grid.Row="2" Grid.Column="0"  Panel.ZIndex="1" Source="/HRCloud;component/Public/imgs/settings.png"/>
+                    <Rectangle x:Name="profil_settRec" Grid.Row="2" Grid.Column="0" Panel.ZIndex="0" Fill="Transparent" />
+                    <Button x:Name="profil_notiBtn" Grid.Row="2" Grid.Column="1"    Panel.ZIndex="2" Style="{StaticResource profilBtn}" MouseEnter="profil_notiBtn_MouseEnter" MouseLeave="profil_notiBtn_MouseLeave"/>
+                    <Image Margin="8" Grid.Row="2" Grid.Column="1" Panel.ZIndex="1" Source="/HRCloud;component/Public/imgs/noti.png"/>
+                    <Rectangle x:Name="profil_notiRec" Grid.Row="2" Grid.Column="1" Panel.ZIndex="0" Fill="Transparent" />
+
+                </Grid>
+                
+                <!--HR Gombsor-->
+                
+                <Grid x:Name="HR_navigation_Grid" Visibility="Hidden" Grid.Row="1"  Panel.ZIndex="2"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" x:Name="mw_btn1" Content="Projektek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn1_Click"/>
+                    <Button Grid.Row="1" x:Name="mw_btn2" Content="Jelöltek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn2_Click"/>
+                    <Button Grid.Row="2" x:Name="mw_btn3" Content="Listák" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn3_Click"/>
+                    <Button Grid.Row="5" x:Name="logout_btn" Content="Kijelentkezés" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click"/>
+                </Grid>
+
+                <!--Szakmai Gombsor-->
+                
+                <Grid x:Name="Szakmai_navigation_Grid" Visibility="Hidden" Grid.Row="1"  Panel.ZIndex="2"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" x:Name="szakmai_mainpage_btn" Content="Kezdőlap" Style="{StaticResource mw_navbtn_stlye}" Click="szakmai_mainpage_btn_Click"/>
+                    <Button Grid.Row="5" x:Name="logout2_btn" Content="Kijelentkezés" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click"/>
+                </Grid>
+
+            </Grid>
+                 
+              <ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+                <Grid x:Name="sgrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"  Style="{StaticResource switch_grid_style}"  Panel.ZIndex="1"/>
+            </ScrollViewer>
+           
+
+                <Button x:Name="exit_btn" Content="X" Style="{StaticResource exit_btn}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="25" Click="exit_btn_Click" />
+            <Button x:Name="minimize_btn" Content="__" Style="{StaticResource exit_btn}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="25"  Margin="0,0,30,0" Click="minimize_btn_Click"/>
+        </Grid>
+    </Border>
+</Window>

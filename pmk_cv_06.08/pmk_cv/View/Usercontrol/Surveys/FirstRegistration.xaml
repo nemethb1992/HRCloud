@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="HRCloud.View.Usercontrol.Surveys.FirstRegistration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HRCloud.View.Usercontrol.Surveys"
+             mc:Ignorable="d" 
+             d:DesignHeight="615" d:DesignWidth="500">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="65" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource big_title_style}" Margin="15" Grid.Column="0" Grid.Row="0" Text="Regisztráció"/>
+        <TextBlock x:Name="InfoBlock" Style="{StaticResource big_title_style}" Margin="15" VerticalAlignment="Center" Grid.Column="1" TextAlignment="Right" FontSize="18" Foreground="{StaticResource FontColor_Light}" Grid.Row="0" Text=""/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Teljes név:"/>
+        <TextBox x:Name="teljesnev" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="e-mail:"/>
+        <TextBox x:Name="email" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="Felhasználó típus:"/>
+
+        <ComboBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Margin="30,5" x:Name="kategoria_cbx" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource Standard_Textblock}" Grid.Column="1" Padding="7" Text="{Binding nev}"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="Back_btn" Style="{StaticResource StandardButton}" Grid.Column="0" Grid.Row="11" Content="Vissza" Margin="10" Click="Back_Click_btn"/>
+        <Button x:Name="Registration_btn" Style="{StaticResource StandardButton}" Grid.Column="1" Grid.Row="11" Content="Regisztráció" Margin="10" Click="Registration_Click_btn"/>
+    </Grid>
+</UserControl>
