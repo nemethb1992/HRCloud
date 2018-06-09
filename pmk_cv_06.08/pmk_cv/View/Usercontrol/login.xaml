@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="HRCloud.View.Usercontrol.login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HRCloud.View.Usercontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="410" d:DesignWidth="390">
+    <Grid x:Name="l_Grid" Style="{StaticResource l_grid_style}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.4*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="LoginSign" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource big_title_style}"   Text="Bejelentkezés" />
+
+        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Height="25"  Width="25" Source="/HRCloud;component/Public/imgs/user.png"/>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="Luser_tbx" Text=""  Style="{StaticResource Login_User_tbx}" KeyUp="Luser_tbx_KeyUp"/>
+
+        <Image Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="25" Width="25" Source="/HRCloud;component/Public/imgs/key.png" />
+        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="Lpass_pwd" Password="" Style="{StaticResource Login_Pass_pwd}" KeyUp="Lpass_pwd_KeyUp"/>
+
+        <CheckBox Grid.Row="3" Grid.Column="2" x:Name="login_cbx" Content="Megjegyez" Style="{StaticResource login_check}" HorizontalAlignment="Left"/>
+
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="btn_login" Content="Belépés" Style="{StaticResource StandardButton}" Height="50" Click="btn_login_Click" />
+         
+        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Phoenix Mecano Kecskemét kft" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFAEAEAE"/>
+
+
+
+
+
+
+    </Grid>
+</UserControl>

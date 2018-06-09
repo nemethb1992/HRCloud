@@ -1,0 +1,691 @@
+﻿<Application x:Class="pmk_cv.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:pmk_cv"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="FontColor" Color="#333333"/>
+        <SolidColorBrush x:Key="FontColor_Light" Color="#808080"/>
+        <SolidColorBrush x:Key="GrayGridColor" Color="#FFF9F9F9"/>
+        <SolidColorBrush x:Key="LightGrayGridColor" Color="#FFF9F9F9"/>
+        <SolidColorBrush x:Key="SearchPanelColor" Color="#FFF3F3F3"/>
+        <SolidColorBrush x:Key="NavGridColor" Color="#ff4d4d"/>
+        <SolidColorBrush x:Key="tbxBorderColor" Color="#cccccc"/>
+        <SolidColorBrush x:Key="racs_color" Color="#737373"/>
+        <SolidColorBrush x:Key="NavFontColor" Color="white"/>
+        <SolidColorBrush x:Key="greenColor" Color="#4cb71a"/>
+        <SolidColorBrush x:Key="ThemeColor" Color="#fa6478"/>
+        <SolidColorBrush x:Key="Listbox_light" Color="#f7f4f4"/>
+        <SolidColorBrush x:Key="racs_light" Color="#808080"/>
+        <SolidColorBrush x:Key="itemBackground" Color="white"/>
+        <SolidColorBrush x:Key="itemBackground_hover" Color="#FFF9F9F9"/>
+        <SolidColorBrush x:Key="telefonos_kek_color" Color="#0099ff"/>
+        <SolidColorBrush x:Key="softRed" Color="#f9616d"/> 
+        <SolidColorBrush x:Key="standard_button_hover_bg" Color="#e6e6e6"/>
+        <SolidColorBrush x:Key="SD_Element_Background" Color="#f4f4f4"/>
+        <SolidColorBrush x:Key="SD_Element_Hover_Background" Color="White"/>
+        <SolidColorBrush x:Key="SD_Element_Borderbrush" Color="#808080"/>
+        <SolidColorBrush x:Key="SD_Element_Foreground" Color="#333333"/>
+
+        
+        <Style TargetType="TextBox" x:Key="Standard_Textbox">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="AcceptsReturn" Value="True"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="8,4,0,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Standard_Textblock">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="0,4,0,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+        </Style>
+        
+
+        <Style TargetType="Button" x:Key="StandardButton">
+            <Setter Property="Background" Value="{StaticResource SD_Element_Background}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderBrush="{StaticResource SD_Element_Borderbrush}" 
+                            BorderThickness ="1"
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource SD_Element_Hover_Background}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="StandardButton_Interju" BasedOn="{StaticResource StandardButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderBrush="{StaticResource SD_Element_Borderbrush}" 
+                            BorderThickness ="1"
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#197A4F4F"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DatePicker" x:Key="Standard_DatePicker">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Padding" Value="8,4,0,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+        </Style>
+
+
+        <Style TargetType="Rectangle" x:Key="rect_style">
+            <!--<Setter Property="Foreground" Value="#FF757D81"></Setter>-->
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="90" ShadowDepth="5" Softness="0.7" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ProgressBar" x:Key="progressStyle">
+            <!--<Setter Property="Foreground" Value="#FF757D81"></Setter>-->
+            <Setter Property="Foreground" Value="{StaticResource ThemeColor}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Listbox_light}"></Setter>
+            <Setter Property="Background"  Value="{StaticResource Listbox_light}"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="normal_title_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="interju_tbl" BasedOn="{StaticResource normal_title_style}">
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Padding" Value="10,0"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor_Light}"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="interju_label">
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Padding" Value="5,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="checkbox_item_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Padding" Value="5,3"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+
+        </Style>
+        <Style TargetType="TextBlock" x:Key="big_title_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="28"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+
+        </Style>
+        <Style TargetType="TextBlock" x:Key="minor_title_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="19"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="telefonos_form_tbl">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="Padding" Value="0,13,0,0"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="formTbx_label_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="AcceptsReturn" Value="True"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="10,5,10,5"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor_Light}"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="small_form_tbx_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource racs_color}"></Setter>
+            <Setter Property="Background" Value="#f5f5f5"></Setter>
+            <Setter Property="Padding" Value="10,5,10,5"></Setter>
+            <Setter Property="Margin" Value="0,0,100,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BigText_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="AcceptsReturn" Value="True"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="BorderBrush" Value ="{StaticResource SD_Element_Borderbrush}"/>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="project_label_style">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="Login_User_tbx">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource racs_light}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ThemeColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="Login_Pass_pwd">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="FontSize" Value="19"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource racs_light}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ThemeColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label" x:Key="title_header_label">
+            <!--<Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Julius Sans One"></Setter>-->
+            <Setter Property="FontSize" Value="29"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style TargetType="CheckBox" x:Key="login_check">
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Key="Standard_Checkbox">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Borderbrush}"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+        </Style>
+        
+        <Style TargetType="Rectangle" x:Key="nav_background">
+
+            <Setter Property="Fill" Value="#fb5755"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="0" ShadowDepth="5" Softness="0.5" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="gridShadow">
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="310" ShadowDepth="2" Softness="0.5" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="gridShadow_down">
+        <Setter Property = "BitmapEffect" >
+            <Setter.Value>
+                <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="3" Softness="0.3" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="mw_navbtn_stlye">
+            <!--<Setter Property="Background" Value="{StaticResource NavGridColor}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource NavGridColor}"></Setter>-->
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource NavFontColor}"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="3,0,0,0"
+                            Padding="4,2" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                                <Setter  Property="Background" Value="#4CFFFFFF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.100" Storyboard.TargetProperty="FontSize" To="17" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="16" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+
+        </Style>
+       
+        <Style TargetType="Button" x:Key="exit_btn">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Julius Sans One"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <!--<Setter Property="Foreground" Value="#FF757D81"></Setter>-->
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#333333"/>
+                    <Setter Property="BorderBrush" Value="#333333"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="switch_grid_style">
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="sgrid_style">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="#808080" Direction="135" ShadowDepth="5" Softness="0.4" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="l_grid_style">
+            <!--<Setter Property="Background" Value="#FFF9F9F9"></Setter>-->
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="navigation_Grid">
+
+            <!--<Setter Property="Background"  Value="{StaticResource NavGridColor}"></Setter>-->
+            <Setter Property="Background"  Value="Transparent"></Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="#808080" Direction="330" ShadowDepth="0" Softness="0.2" Opacity="1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Grid" x:Key="navigation_Left_Grid">
+
+            <!--<Setter Property="Background"  Value="{StaticResource NavGridColor}"></Setter>-->
+            <Setter Property="Background"  Value="Transparent"></Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="#808080" Direction="330" ShadowDepth="0" Softness="0.3" Opacity="0.6"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+        <Style TargetType="ComboBox" x:Key="cbx_style">
+
+            <Setter Property = "Background" Value="Blue"/>
+            <Setter Property = "FontSize" Value="16"/>
+            <Setter Property = "Height" Value="25"/>
+            <Setter Property = "Width" Value="160"/>
+            <Setter Property = "HorizontalAlignment" Value="Center"/>
+            <Setter Property = "VerticalAlignment" Value="Center"/>
+            <Setter Property = "Padding" Value="5,0,0,0"/>
+            <!--<Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Julius Sans One"></Setter>-->
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/fonts/#Montserrat"></Setter>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key="telefonos_btn_style" BasedOn="{StaticResource StandardButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness ="1"
+                            BorderBrush ="White"
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFF592A0"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="next_panelBtn_style" BasedOn="{StaticResource StandardButton}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderBrush="White" 
+                            BorderThickness ="1.1"
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource standard_button_hover_bg}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource standard_button_hover_bg}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+
+        <Style TargetType="TextBox" x:Key="panelTbx_style">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource racs_light}"/>
+            <Setter Property="Foreground" Value="{StaticResource FontColor_Light}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Margin" Value="15,0,15,0"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ThemeColor}"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource FontColor_Light}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="search_placeholder_style">
+            <Setter Property="Foreground" Value="{StaticResource FontColor_Light}"/>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Raleway"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="panelTbl_style">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Padding" Value="10,5"></Setter>
+            <Setter Property="TextAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+        </Style>
+        <Style TargetType="ListBox" x:Key="listBox_style">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+        <Style TargetType="ListBox" x:Key="small_listBox_style">
+            <Setter Property="Background" Value="{StaticResource Listbox_light}"></Setter>
+            <Setter Property="BorderBrush" Value ="{StaticResource Listbox_light}"/>
+            <Setter Property="BorderThickness" Value="1,1,1,1"/>
+            <!--<Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="#808080" Direction="330" ShadowDepth="0" Softness="0.2" Opacity="1"/>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+
+
+        <Style TargetType="ListBoxItem" x:Key="listBoxItem_style">
+            <!--<Setter Property="OverridesDefaultStyle" Value="true"/>-->
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource itemBackground}"/>
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource racs_light}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid x:Name="Grid">
+                            <Border x:Name="Border" CornerRadius="3" Background="{StaticResource itemBackground}" BorderBrush="{StaticResource racs_light}" BorderThickness="{TemplateBinding BorderThickness}" Padding="0"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource itemBackground}"  TargetName="Border"/>
+                                <!--<Setter Property="BorderBrush" Value="{StaticResource ThemeColor}" TargetName="Border"/>-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ListBoxItem" x:Key="thin_listBoxItem_style" BasedOn="{StaticResource listBoxItem_style}">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+
+            <Style TargetType="ListBoxItem" x:Key="listBoxItem_style_big" BasedOn="{StaticResource listBoxItem_style}">
+            <Setter Property="Margin" Value="0,0,0,3"/>
+        </Style>
+
+        
+        <Style TargetType="Button" x:Key="profilBtn">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="Ellipse" x:Key="preogress_ellipse">
+            <Setter Property="Fill" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="StrokeThickness" Value="0"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="42"></Setter>
+            <Setter Property="Width" Value="42"></Setter>
+            <!--<Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="330" ShadowDepth="1" Softness="0.2" Opacity="11.9"/>
+                </Setter.Value>
+            </Setter>-->
+
+        </Style>
+        <Style TargetType="Rectangle" x:Key="preogress_rectangle">
+            <Setter Property="Fill" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="StrokeThickness" Value="0"></Setter>
+            <Setter Property="Height" Value="4"></Setter>
+            <Setter Property="Margin" Value="10,0"></Setter>
+            <!--<Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="330" ShadowDepth="1" Softness="0.2" Opacity="0.9"/>
+                </Setter.Value>
+            </Setter>-->
+
+        </Style>
+        <Style TargetType="Border" x:Key="preogress_border">
+            <Setter Property="Background" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource greenColor}"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="CornerRadius" Value="25"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <!--<Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="330" ShadowDepth="1" Softness="0.2" Opacity="0.9"/>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+
+
+        <Style TargetType="TextBlock" x:Key="progress_tbl">
+            <Setter Property="FontSize" Value="19"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="#999999"></Setter>
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+        </Style>
+
+        <Style TargetType="ListBox" x:Key="settings_listbox_style">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Padding" Value="4"></Setter>
+            <Setter Property="Height" Value="165"></Setter>
+            <Setter Property="BorderBrush" Value ="{StaticResource racs_color}"/>
+            <Setter Property="BorderThickness" Value="1,1,1,1"/>
+            <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <Border Name="border" 
+                            BorderBrush="{StaticResource racs_color}"
+                            BorderThickness ="1,1,1,1"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+        <Style TargetType="Border" x:Key="listCorner">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style TargetType="Border" x:Key="listCorner_square">
+            <Setter Property="CornerRadius" Value="5,0,5,5"/>
+        </Style>
+    </Application.Resources>
+</Application>
