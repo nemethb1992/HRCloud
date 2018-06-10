@@ -95,7 +95,8 @@ namespace HRCloud.View.Usercontrol
             {
                 UserRemember();
                 session.UserData = lcontrol.UserSessionDataList(Luser_tbx.Text);
-                session.tartomanyi = Luser_tbx.Text; Main mw = new Main();
+                session.tartomanyi = Luser_tbx.Text;
+                Main mw = new Main();
                 mw.Show();
                 var window = Window.GetWindow(this);
                 window.Close();

@@ -73,7 +73,7 @@
                 
                 <!--HR Gombsor-->
                 
-                <Grid x:Name="HR_navigation_Grid" Visibility="Hidden" Grid.Row="1"  Panel.ZIndex="2"  >
+                <Grid x:Name="HR_navigation_Grid" Visibility="Visible" Grid.Row="1"  Panel.ZIndex="2"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
