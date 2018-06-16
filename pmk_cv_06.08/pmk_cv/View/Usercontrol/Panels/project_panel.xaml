@@ -106,8 +106,8 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />
-                <ColumnDefinition Width="140.335" />
-                <ColumnDefinition Width="329.665"/>
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="130" />
@@ -117,7 +117,7 @@
             <Label x:Name="project_label_2" VerticalAlignment="Bottom" Content="Projektnév" Grid.Column="1" Style="{StaticResource project_label_style}" Grid.ColumnSpan="2"/>
             <Label x:Name="project_label_3" VerticalAlignment="Bottom" Content="Terület" Grid.Column="3" Style="{StaticResource project_label_style}"/>
             <Label x:Name="project_label_4" VerticalAlignment="Bottom" Content="Jelölt" Grid.Column="4" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_5" VerticalAlignment="Bottom" Content="Publikálva" Grid.Column="5" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}"/>
         </Grid>
         <ListBox x:Name="project_listBox" Style="{StaticResource listBox_style}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.Resources>
