@@ -33,7 +33,7 @@
                 <Label Content="HR Cloud" Style="{StaticResource title_header_label}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="60"  Width="110" FontSize="23" Margin="65,0,0,0"/>
                 <Image HorizontalAlignment="Left" Height="28" Margin="20,0,0,0" Source="/Public/imgs/pm_logo_mini.png"/>
             </Grid>
-            <Grid Background="red" x:Name="SwitchGrid" Grid.Row="1">
+            <Grid  x:Name="SwitchGrid" Grid.Row="1">
 
             </Grid>
 
