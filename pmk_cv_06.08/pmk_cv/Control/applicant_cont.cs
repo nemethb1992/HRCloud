@@ -23,7 +23,18 @@ namespace HRCloud.Control
         public List<JeloltListItems> JeloltListSource(List<string> list)
         {
 
-            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, jeloltek.id,jeloltek.nev,munkakor.megnevezes_munka,szuldatum,reg_date FROM jeloltek LEFT JOIN munkakor on jeloltek.munkakor = munkakor.id LEFT JOIN megjegyzesek ON jeloltek.id = megjegyzesek.jelolt_id LEFT JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id WHERE jeloltek.id LIKE '%%'";
+            string query = "SELECT " +
+                "coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, " +
+                "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor) as munkakor, " +
+                "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor2) as munkakor2, " +
+                "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor3) as munkakor3, " +
+                "jeloltek.id,jeloltek.nev,szuldatum,reg_date " +
+                "FROM jeloltek " +
+                "LEFT JOIN megjegyzesek ON jeloltek.id = megjegyzesek.jelolt_id " +
+                "LEFT JOIN munkakor on jeloltek.munkakor = munkakor.id " +
+                "LEFT JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id " +
+                "WHERE jeloltek.id LIKE '%%'";
+            
             if (list[0] != "")
             {
                 query += " AND jeloltek.nev LIKE '%" + list[0] + "%' ";

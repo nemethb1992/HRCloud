@@ -12,6 +12,8 @@ namespace HRCloud.Model
         public int id { get; set; }
         public string nev { get; set; }
         public string munkakor { get; set; }
+        public string munkakor2 { get; set; }
+        public string munkakor3 { get; set; }
         public int szuldatum { get; set; }
         public int interjuk_db { get; set; }
         public string telefonos_szures { get; set; }
@@ -38,10 +40,14 @@ namespace HRCloud.Model
         public int neme { get; set; }
         public int tapasztalat_ev { get; set; }
         public string munkakor { get; set; }
+        public string munkakor2 { get; set; }
+        public string munkakor3 { get; set; }
         public int vegz_terulet { get; set; }
         public string nyelvtudas { get; set; }
         public int berigeny { get; set; }
         public string reg_date { get; set; }
+        public string megjegyzes { get; set; }
+        public string folderUrl { get; set; }
     }
     public class JeloltSearchItems
     {

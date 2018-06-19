@@ -411,7 +411,9 @@ namespace HRCloud.Model
                     {
                         id = Convert.ToInt32(sdr["id"]),
                         nev = sdr["nev"].ToString(),
-                        munkakor = sdr["megnevezes_munka"].ToString(),
+                        munkakor = sdr["munkakor"].ToString(),
+                        munkakor2 = sdr["munkakor2"].ToString(),
+                        munkakor3 = sdr["munkakor3"].ToString(),
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
                         telefonos_szures = tel_szurt,
                         interjuk_db = Convert.ToInt32(sdr["interjuk_db"]),
@@ -465,11 +467,15 @@ namespace HRCloud.Model
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
                         neme = Convert.ToInt32(sdr["neme"]),
                         tapasztalat_ev = Convert.ToInt32(sdr["tapasztalat_ev"]),
-                        munkakor = sdr["megnevezes_munka"].ToString(),
+                        munkakor = sdr["munkakor"].ToString(),
+                        munkakor2 = sdr["munkakor2"].ToString(),
+                        munkakor3 = sdr["munkakor3"].ToString(),
                         vegz_terulet = Convert.ToInt32(sdr["vegz_terulet"]),
                         nyelvtudas = sdr["megnevezes_nyelv"].ToString(),
                         berigeny = Convert.ToInt32(sdr["berigeny"]),
                         reg_date = sdr["reg_date"].ToString(),
+                        megjegyzes = sdr["megjegyzes"].ToString(),
+                        folderUrl = sdr["folderUrl"].ToString(),
                     });
                 }
                 sdr.Close();
