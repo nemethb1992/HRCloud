@@ -14,7 +14,7 @@ namespace HRCloud.Model
     class dbEntities
     {
         //public static string dataSourceURL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
-        //public static string dataSourceURL = "Data Source = 192.168.144.189; Port=3306 Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+        //public static string dataSourceURL = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
         //public static string dataSourceURL = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018"; 
         public static string innerDataSourceURL = "Data Source = innerDatabase.db";
 
@@ -29,7 +29,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+            string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
