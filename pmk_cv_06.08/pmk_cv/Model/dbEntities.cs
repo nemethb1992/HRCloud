@@ -13,9 +13,9 @@ namespace HRCloud.Model
 {
     class dbEntities
     {
-        //public static string dataSourceURL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
-        //public static string dataSourceURL = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
-        //public static string dataSourceURL = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018"; 
+        //string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+        //string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+        //string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
         public static string innerDataSourceURL = "Data Source = innerDatabase.db";
 
         private MySqlConnection conn;
@@ -29,7 +29,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -379,6 +379,7 @@ namespace HRCloud.Model
                         feladatok = sdr["feladatok"].ToString(),
                         elvarasok = sdr["elvarasok"].ToString(),
                         kinalunk = sdr["kinalunk"].ToString(),
+                        elonyok = sdr["elonyok"].ToString(),
                     });
 
                 }
@@ -462,17 +463,16 @@ namespace HRCloud.Model
                         email = sdr["email"].ToString(),
                         telefon = sdr["telefon"].ToString(),
                         lakhely = sdr["lakhely"].ToString(),
-                        cim = sdr["cim"].ToString(),
                         ertesult = sdr["ertesules_megnevezes"].ToString(),
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
-                        neme = Convert.ToInt32(sdr["neme"]),
+                        neme = sdr["neme"].ToString(),
                         tapasztalat_ev = Convert.ToInt32(sdr["tapasztalat_ev"]),
                         munkakor = sdr["munkakor"].ToString(),
                         munkakor2 = sdr["munkakor2"].ToString(),
                         munkakor3 = sdr["munkakor3"].ToString(),
-                        vegz_terulet = Convert.ToInt32(sdr["vegz_terulet"]),
-                        nyelvtudas = sdr["megnevezes_nyelv"].ToString(),
-                        berigeny = Convert.ToInt32(sdr["berigeny"]),
+                        vegz_terulet = sdr["vegz_terulet"].ToString(),
+                        nyelvtudas = sdr["nyelvtudas"].ToString(),
+                        nyelvtudas2 = sdr["nyelvtudas2"].ToString(),
                         reg_date = sdr["reg_date"].ToString(),
                         megjegyzes = sdr["megjegyzes"].ToString(),
                         folderUrl = sdr["folderUrl"].ToString(),

@@ -72,7 +72,7 @@
                     <TextBox x:Name="interju_srcinp" Tag="interju_label" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
                     <TextBox x:Name="interju_label" Visibility="Visible" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Interjúk száma"/>
                     <TextBox x:Name="cimke_srcinp" Tag="cimke_label" Grid.Column="1" Grid.Row="2" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
-                    <TextBox x:Name="cimke_label" Visibility="Visible" Grid.Column="1" Grid.Row="2" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Cimke"/>
+                    <TextBox x:Name="cimke_label" Visibility="Visible" Grid.Column="1" Grid.Row="2" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Kulcsszó"/>
                     <Label x:Name="Nyelv_label" Grid.Column="3" Grid.Row="0" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Nyelvek:"/>
                     <Label x:Name="Vegzettsegek_label" Grid.Column="3" Grid.Row="1" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Végzettségek:"/>
                     <!--<Label x:Name="Nemek_label" Grid.Column="3" Grid.Row="2" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Nemek:"/>-->

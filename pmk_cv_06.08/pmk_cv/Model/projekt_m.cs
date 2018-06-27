@@ -64,6 +64,7 @@ namespace HRCloud.Model
         public string feladatok { get; set; }
         public string elvarasok { get; set; }
         public string kinalunk { get; set; }
+        public string elonyok { get; set; }
     }
     public class ProjectInsertListItems
     {

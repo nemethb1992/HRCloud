@@ -35,20 +35,28 @@ namespace HRCloud.View.Usercontrol.Panels
         private void checkbox_loader()
         {
             munkakor_cbx.ItemsSource = acontrol.MunkakorDataSource();
+            munkakor2_cbx.ItemsSource = acontrol.MunkakorDataSource();
+            munkakor3_cbx.ItemsSource = acontrol.MunkakorDataSource();
             vegzettseg_cbx.ItemsSource = acontrol.VegzettsegDataSource();
             nyelv_cbx.ItemsSource = acontrol.NyelvDataSource();
+            nyelv2_cbx.ItemsSource = acontrol.NyelvDataSource();
             ertesules_cbx.ItemsSource = acontrol.ErtesulesekDataSource();
             neme_cbx.ItemsSource = acontrol.NemekDatasource();
         }
         private List<JeloltExtendedList> get_data_from_form()
         {
-
             ComboBox ertesulesCBX = ertesules_cbx as ComboBox;
             ertesulesek ertesules_items = ertesulesCBX.SelectedItem as ertesulesek;
             ComboBox munkakorCBX = munkakor_cbx as ComboBox;
             munkakor_struct munkakor_items = munkakorCBX.SelectedItem as munkakor_struct;
+            ComboBox munkakorCBX2 = munkakor2_cbx as ComboBox;
+            munkakor_struct munkakor2_items = munkakorCBX2.SelectedItem as munkakor_struct;
+            ComboBox munkakorCBX3 = munkakor3_cbx as ComboBox;
+            munkakor_struct munkakor3_items = munkakorCBX3.SelectedItem as munkakor_struct;
             ComboBox nyelvCBX = nyelv_cbx as ComboBox;
             nyelv_struct nyelv_items = nyelvCBX.SelectedItem as nyelv_struct;
+            ComboBox nyelvCBX2 = nyelv2_cbx as ComboBox;
+            nyelv_struct nyelv2_items = nyelvCBX2.SelectedItem as nyelv_struct;
             ComboBox vegzettsegCBX = vegzettseg_cbx as ComboBox;
             vegzettseg_struct vegzettseg_items = vegzettsegCBX.SelectedItem as vegzettseg_struct;
             ComboBox nemeCBX = neme_cbx as ComboBox;
@@ -62,34 +70,29 @@ namespace HRCloud.View.Usercontrol.Panels
                 nev = nev_tbx.Text,
                 email = email_tbx.Text,
                 telefon = telefon_tbx.Text,
-                cim = cim_tbx.Text,
+                //cim = cim_tbx.Text,
                 lakhely = lakhely_tbx.Text,
                 ertesult = ertesules_items.id.ToString(),
                 szuldatum = Convert.ToInt32(eletkor_tbx.Text),
-                neme = neme_items.id,
+                neme = neme_items.id.ToString(),
                 tapasztalat_ev = Convert.ToInt32(tapasztalat_tbx.Text),
                 munkakor = munkakor_items.id.ToString(),
-                vegz_terulet = Convert.ToInt32(vegzettseg_items.id),
+                munkakor2 = munkakor2_items.id.ToString(),
+                munkakor3 = munkakor3_items.id.ToString(),
+                vegz_terulet = vegzettseg_items.id.ToString(),
                 nyelvtudas = nyelv_items.id.ToString(),
-                berigeny = Convert.ToInt32(ber_tbx.Text),
+                nyelvtudas2 = nyelv2_items.id.ToString(),
+                //berigeny = Convert.ToInt32(ber_tbx.Text),
                 reg_date = localDate.ToString("yyyy.MM.dd."),
             });
             return items;
-
         }
         private void applicant_INSERT_btn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 acontrol.Jelolt_list_INSERT(get_data_from_form());
                 grid.Children.Clear();
                 grid.Children.Add(applicant_DataView = new applicant_DataView(grid));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nem lehet kitöltetlen mező!");
-            }
-}
+        }
 
         private void numericTextBox(object sender, TextCompositionEventArgs e)
         {

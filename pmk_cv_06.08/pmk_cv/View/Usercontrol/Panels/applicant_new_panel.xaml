@@ -51,27 +51,30 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Teljes név" />
             <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="E-mail" />
-            <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Munkakör" />
-            <TextBlock Grid.Column="2" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Végzettség" />
+            <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Munkaterület ( 1 )" />
+            <TextBlock Grid.Column="2" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Munkaterület ( 2 )" />
+            <TextBlock Grid.Column="2" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Munkaterület ( 3 )" />
+            <TextBlock Grid.Column="2" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Végzettség" />
             <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Lakhely" />
-            <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Cím" />
-            <TextBlock Grid.Column="2" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Értesülés módja" />
-            <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Telefon" />
-            <TextBlock Grid.Column="2" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
-            <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Életkor" />
-            <TextBlock Grid.Column="2" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Neme" />
-            <TextBlock Grid.Column="0" Grid.Row="12" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" />
-            <TextBlock Grid.Column="0" Grid.Row="14" Style="{StaticResource Standard_Textblock}" Text="Bérigeny" />
+            <TextBlock Grid.Column="2" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Értesülés módja" />
+            <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Telefon" />
+            <TextBlock Grid.Column="2" Grid.Row="12" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
+            <TextBlock Grid.Column="2" Grid.Row="14" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv (másodlagos)" />
+            <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Életkor" />
+            <TextBlock Grid.Column="2" Grid.Row="16" Style="{StaticResource Standard_Textblock}" Text="Neme" />
+            <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" />
+            <!--<TextBlock Grid.Column="0" Grid.Row="14" Style="{StaticResource Standard_Textblock}" Text="Bérigeny" />-->
+            <!--<TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Cím" />-->
             
  
             <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Text="" Style="{StaticResource Standard_Textbox}" x:Name="nev_tbx" />
             <TextBox Grid.Column="0" Grid.Row="3" Text="" Style="{StaticResource Standard_Textbox}" x:Name="email_tbx" />
             <TextBox Grid.Column="0" Grid.Row="5" Text="" Style="{StaticResource Standard_Textbox}" x:Name="lakhely_tbx" />
-            <TextBox Grid.Column="0" Grid.Row="7" Text="" Style="{StaticResource Standard_Textbox}" x:Name="cim_tbx" />
-            <TextBox Grid.Column="0" Grid.Row="9" Text="" Style="{StaticResource Standard_Textbox}" x:Name="telefon_tbx" PreviewTextInput="numericTextBox"/>
-            <TextBox Grid.Column="0" Grid.Row="11" Text="" Style="{StaticResource Standard_Textbox}" x:Name="eletkor_tbx" PreviewTextInput="numericTextBox"/>
-            <TextBox Grid.Column="0" Grid.Row="13" Text="" Style="{StaticResource Standard_Textbox}" x:Name="tapasztalat_tbx" PreviewTextInput="numericTextBox"/>
-            <TextBox Grid.Column="0" Grid.Row="15" Text="" Style="{StaticResource Standard_Textbox}" x:Name="ber_tbx" PreviewTextInput="numericTextBox"/>
+            <TextBox Grid.Column="0" Grid.Row="7" Text="" Style="{StaticResource Standard_Textbox}" x:Name="telefon_tbx" PreviewTextInput="numericTextBox"/>
+            <TextBox Grid.Column="0" Grid.Row="9" Text="" Style="{StaticResource Standard_Textbox}" x:Name="eletkor_tbx" PreviewTextInput="numericTextBox"/>
+            <TextBox Grid.Column="0" Grid.Row="11" Text="" Style="{StaticResource Standard_Textbox}" x:Name="tapasztalat_tbx" PreviewTextInput="numericTextBox"/>
+            <!--<TextBox Grid.Column="0" Grid.Row="15" Text="" Style="{StaticResource Standard_Textbox}" x:Name="ber_tbx" PreviewTextInput="numericTextBox"/>-->
+            <!--<TextBox Grid.Column="0" Grid.Row="7" Text="" Style="{StaticResource Standard_Textbox}" x:Name="cim_tbx" />-->
 
             <ComboBox Grid.Column="2" Grid.Row="3" Text=""  x:Name="munkakor_cbx" >
                 <ComboBox.ItemTemplate>
@@ -82,7 +85,25 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ComboBox Grid.Column="2" Grid.Row="5" Text="" x:Name="vegzettseg_cbx" >
+            <ComboBox Grid.Column="2" Grid.Row="5" Text=""  x:Name="munkakor2_cbx" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <TextBlock Style="{StaticResource checkbox_item_style}" Grid.Column="1" Text="{Binding munkakor}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="7" Text=""  x:Name="munkakor3_cbx" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <TextBlock Style="{StaticResource checkbox_item_style}" Grid.Column="1" Text="{Binding munkakor}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="9" Text="" x:Name="vegzettseg_cbx" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Grid >
@@ -91,7 +112,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ComboBox Grid.Column="2" Grid.Row="7" Text="" x:Name="ertesules_cbx" >
+            <ComboBox Grid.Column="2" Grid.Row="11" Text="" x:Name="ertesules_cbx" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Grid >
@@ -100,7 +121,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ComboBox Grid.Column="2" Grid.Row="9" Text="" x:Name="nyelv_cbx" >
+            <ComboBox Grid.Column="2" Grid.Row="13" Text="" x:Name="nyelv_cbx" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Grid >
@@ -109,7 +130,16 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ComboBox Grid.Column="2" Grid.Row="11" Text="" x:Name="neme_cbx" >
+            <ComboBox Grid.Column="2" Grid.Row="15" Text="" x:Name="nyelv2_cbx" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <TextBlock Style="{StaticResource checkbox_item_style}" Grid.Column="1" Text="{Binding nyelv}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="17" Text="" x:Name="neme_cbx" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Grid >

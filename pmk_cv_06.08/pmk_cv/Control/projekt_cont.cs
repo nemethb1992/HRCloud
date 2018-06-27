@@ -73,12 +73,12 @@ namespace HRCloud.Control
         }
         public List<ProjectExtendedListItems> ProjektFullDataSource()
         {
-            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id) as jeloltek_db, projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, publikalt  FROM projektek INNER JOIN munkakor on munkakor.id = projektek.munkakor INNER JOIN nyelv ON nyelv.id = projektek.nyelvtudas INNER JOIN vegzettsegek ON vegzettsegek.id = projektek.vegzettseg INNER JOIN users ON users.id = projektek.hr_id INNER JOIN pc ON pc.id = projektek.pc INNER JOIN statusz ON projektek.statusz = statusz.id WHERE projektek.id = " + ProjektID + " GROUP BY projektek.id";
+            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id) as jeloltek_db, projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, elonyok, publikalt  FROM projektek INNER JOIN munkakor on munkakor.id = projektek.munkakor INNER JOIN nyelv ON nyelv.id = projektek.nyelvtudas INNER JOIN vegzettsegek ON vegzettsegek.id = projektek.vegzettseg INNER JOIN users ON users.id = projektek.hr_id INNER JOIN pc ON pc.id = projektek.pc INNER JOIN statusz ON projektek.statusz = statusz.id WHERE projektek.id = " + ProjektID + " GROUP BY projektek.id";
             return dbE.Projekt_Extended_MySql_listQuery(query);
         }
         public List<JeloltListItems> JeloltListSourceForListBox()
         {
-            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, telefonos_szures, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5 FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
+            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, telefonos_szures, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5, jeloltek.munkakor, jeloltek.munkakor2, jeloltek.munkakor3 FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
             return dbE.Jelolt_MySql_listQuery(query);
         }
         public List<vegzettseg_struct> VegzettsegDataSource()
@@ -231,7 +231,6 @@ namespace HRCloud.Control
         }
         public void Projekt_Leiras_Update(string type, string content)
         {
-
             string query = "";
             switch (type)
             {
@@ -243,6 +242,9 @@ namespace HRCloud.Control
                     break;
                 case "kinalunk":
                     query = "UPDATE projektek SET kinalunk='" + content + "' WHERE projektek.id = " + ProjektID + " AND hr_id = " + sess.UserData[0].id + "";
+                    break;
+                case "elonyok":
+                    query = "UPDATE projektek SET elonyok='" + content + "' WHERE projektek.id = " + ProjektID + " AND hr_id = " + sess.UserData[0].id + "";
                     break;
                 default:
                     break;
