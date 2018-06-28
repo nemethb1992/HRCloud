@@ -68,6 +68,10 @@ namespace HRCloud.Control
                 {
                     query += " AND jeloltek.nev LIKE '%" + list[8] + "%' ";
                 }
+            if (list[9] != "")
+            {
+                query += " AND projektek.publikalt LIKE '%" + list[9] + "%' ";
+            }
             query += " GROUP BY projektek.id";
             return dbE.Projekt_MySql_listQuery(query);
         }
@@ -132,7 +136,7 @@ namespace HRCloud.Control
             string query = "SELECT jeloltek.id, nev FROM jeloltek LEFT JOIN projekt_jelolt_kapcs ON projekt_jelolt_kapcs.jelolt_id = jeloltek.id WHERE projekt_jelolt_kapcs.projekt_id != "+ProjektID+" OR projekt_jelolt_kapcs.projekt_id IS NULL GROUP BY jeloltek.id";
             return dbE.Jelolt_Short_DataSource(query);
         }
-        public void Jelolt_write_to_project(int jelolt_index)
+        public void Jelolt_write_to_project(int jelolt_index, int projekt_index)
         {
             string query1 = "SELECT * FROM projekt_jelolt_kapcs";
             DateTime dateTime = DateTime.Now;
@@ -140,14 +144,14 @@ namespace HRCloud.Control
             bool notexist = true;
             foreach (var i in list)
             {
-                if (i.projekt_id == ProjektID && i.jelolt_id == jelolt_index)
+                if (i.projekt_id == projekt_index && i.jelolt_id == jelolt_index)
                 {
                     notexist = false;
                 }
             }
             if(notexist)
             {
-                string query2 = "INSERT INTO projekt_jelolt_kapcs (id, projekt_id, jelolt_id, hr_id, datum) VALUES (NULL, " + ProjektID + ", " + jelolt_index + ", " + sess.UserData[0].id + ", '" + dateTime.ToString("yyyy.MM.dd.") + "' );";
+                string query2 = "INSERT INTO projekt_jelolt_kapcs (id, projekt_id, jelolt_id, hr_id, datum) VALUES (NULL, " + projekt_index + ", " + jelolt_index + ", " + sess.UserData[0].id + ", '" + dateTime.ToString("yyyy.MM.dd.") + "' );";
                 dbE.MysqlQueryExecute(query2);
             }
         }

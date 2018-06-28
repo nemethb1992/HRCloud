@@ -118,7 +118,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         private void numericTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

@@ -156,6 +156,7 @@
         <Grid x:Name="grid_1_4" Grid.Column="3" Grid.Row="1"  Margin="0,0,0,30" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
@@ -166,7 +167,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock x:Name="projektek_label" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Projektek" />
-            <ListBox x:Name="kapcsolodo_projekt_list" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+            <ListBox x:Name="kapcsolodo_projekt_list" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
@@ -190,6 +191,19 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <ComboBox x:Name="projekt_cbx" Grid.Row="5">
+                <ComboBox.Resources>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner_square}"/>
+                </ComboBox.Resources>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <TextBlock Grid.Column="1"  Style="{StaticResource checkbox_item_style}" Text="{Binding megnevezes_projekt}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button x:Name="projekt_csat" Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardButton}" Content="Hozzáad" Click="projekt_csat_Click"/>
         </Grid>
 
         <Grid x:Name="grid_2_3" Grid.Column="3"  Grid.Row="2">
@@ -224,7 +238,7 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Letöltés"/>
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

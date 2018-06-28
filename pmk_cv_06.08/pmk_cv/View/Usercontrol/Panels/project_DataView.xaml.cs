@@ -277,7 +277,7 @@ namespace HRCloud.View.Usercontrol.Panels
             {
                 SubJelolt items;
                 items = btn.DataContext as SubJelolt;
-                pcontrol.Jelolt_write_to_project(items.id);
+                pcontrol.Jelolt_write_to_project(items.id, pcontrol.ProjektID);
                 Ember_Search_Listbox.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
             }
             if (kod == 2)

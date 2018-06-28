@@ -66,16 +66,16 @@
             <TextBlock x:Name="prop_4" Grid.Column="0" Grid.Row="16" Style="{StaticResource Standard_Textblock}" Text="Készség-4" />
             <TextBlock x:Name="prop_5" Grid.Column="0" Grid.Row="18" Style="{StaticResource Standard_Textblock}" Text="Készség-5" />-->
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_2" />
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" />
-            <TextBlock Grid.Column="1" Grid.Row="3" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_4" />
-            <TextBlock Grid.Column="0" Grid.Row="5" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_5" />
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_6" />
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" />
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
-            <TextBlock Grid.Column="0" Grid.Row="9" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
-            <TextBlock Grid.Column="1" Grid.Row="9" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" />
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_2" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_4" />
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_5" />
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_6" />
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" />
+            <TextBlock Grid.Column="1" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
+            <TextBlock Grid.Column="0" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
+            <TextBlock Grid.Column="1" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" />
 
 
             <!--<ProgressBar x:Name="kepesseg1" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2" Margin="0,0,100,0" Minimum="0" Maximum="10" Style="{StaticResource progressStyle}"/>
@@ -383,7 +383,29 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <CheckBox x:Name="publikalt_check" Grid.Column="1" Content="Publikálva" Style="{StaticResource login_check}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Checked="publikalt_check_Checked" Unchecked="publikalt_check_Unchecked"/>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <CheckBox x:Name="check_1" Grid.Column="0" Grid.Row="0" Margin="8,0" Background="White" Content="Céges Honlap" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_2" Grid.Column="1" Grid.Row="0" Margin="8,0" Background="White" Content="Facebook" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_3" Grid.Column="0" Grid.Row="1" Margin="8,0" Background="White" Content="Profession" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_4" Grid.Column="1" Grid.Row="1" Margin="8,0" Background="White" Content="allasstart.hu" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_5" Grid.Column="0" Grid.Row="2" Margin="8,0" Background="White" Content="keol.hu" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_6" Grid.Column="1" Grid.Row="2" Margin="8,0" Background="White" Content="hiros.hu" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_7" Grid.Column="0" Grid.Row="3" Margin="8,0" Background="White" Content="Kecskeméti Lapok" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <CheckBox x:Name="check_8" Grid.Column="1" Grid.Row="3" Margin="8,0" Background="White" Content="Egyéb" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
+                <Border Background="{StaticResource Listbox_light}" Grid.ColumnSpan="2" Grid.RowSpan="4" Panel.ZIndex="-1" CornerRadius="5"/>
+
+            </Grid>
+            <CheckBox x:Name="publikalt_check" Grid.Column="1" Grid.Row="1" Content="Publikálva" Style="{StaticResource login_check}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Checked="publikalt_check_Checked" Unchecked="publikalt_check_Unchecked"/>
             <TextBlock x:Name="hirdetes_text_1" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Text="Feladatok:" />
             <TextBox x:Name="feladatok_tbx" Tag="feladatok" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"  TextWrapping="Wrap"  Style="{StaticResource BigText_style}" LostFocus="Projekt_Leiras_LostFocus">
                 <TextBox.Resources>
@@ -442,7 +464,7 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Letöltés" />
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

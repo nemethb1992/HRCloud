@@ -168,6 +168,11 @@ namespace HRCloud.Control
             string query = "SELECT projektek.id, megnevezes_projekt FROM projektek INNER JOIN projekt_jelolt_kapcs ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN jeloltek ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id WHERE jeloltek.id = "+ApplicantID+" GROUP BY projektek.id";
             return dbE.Small_Projekt_MySql_listQuery(query);
         }
+        public List<SmallProjectListItems> Small_Projekt_list()
+        {
+            string query = "SELECT projektek.id, megnevezes_projekt FROM projektek WHERE statusz = 1";
+            return dbE.Small_Projekt_MySql_listQuery(query);
+        }
         public void projekt_list_delete(int id)
         {
             string query = "DELETE FROM projekt_jelolt_kapcs WHERE projekt_id = " + id + " AND jelolt_id = " + ApplicantID + ";";

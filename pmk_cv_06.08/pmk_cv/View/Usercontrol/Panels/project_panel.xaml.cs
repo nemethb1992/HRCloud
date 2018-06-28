@@ -59,7 +59,9 @@ namespace HRCloud.View.Usercontrol.Panels
             string interjuk = interju_srcinp.Text;
             if (interju_srcinp.Text == "")
                 interjuk = "0";
-
+            string publikalt = "0";
+            if (publikalt_check.IsChecked == true)
+                publikalt = "1";
             List<string> list = new List<string>();
             list.Add(projektnev_srcinp.Text);
             list.Add(jeloltszam);
@@ -70,6 +72,7 @@ namespace HRCloud.View.Usercontrol.Panels
             list.Add(vegzettsegStr);
             list.Add(cimke_srcinp.Text);
             list.Add(jeloltnev_srcinp.Text);
+            list.Add(publikalt);
             return list;
         }
         void Project_lister()
@@ -218,6 +221,15 @@ namespace HRCloud.View.Usercontrol.Panels
             Project_lister();
         }
 
+        private void publikalt_check_Checked(object sender, RoutedEventArgs e)
+        {
+            Project_lister();
+        }
+
+        private void publikalt_check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Project_lister();
+        }
     }
 }
 

@@ -49,6 +49,7 @@ namespace HRCloud.View.Usercontrol.Panels
             app_input_9.Text = li[0].ertesult.ToString();
             app_input_10.Text = li[0].szuldatum.ToString();
 
+            projekt_cbx.ItemsSource = acontrol.Small_Projekt_list();
             csatolmany_listBox.ItemsSource = f_control.Applicant_FolderReadOut(acontrol.ApplicantID);
             megjegyzes_listBox_loadUp(megjegyzes_listBox);
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
@@ -110,6 +111,14 @@ namespace HRCloud.View.Usercontrol.Panels
             {
                 tbx.Text = "Új megjegyzés";
             }
+        }
+
+        private void projekt_csat_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbx = projekt_cbx as ComboBox;
+            SmallProjectListItems item = cbx.SelectedItem as SmallProjectListItems;
+            pcontrol.Jelolt_write_to_project(acontrol.ApplicantID , item.id);
+            kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
         }
 
         //private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
