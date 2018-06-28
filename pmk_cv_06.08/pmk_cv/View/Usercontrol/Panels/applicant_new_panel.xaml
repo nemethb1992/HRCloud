@@ -60,7 +60,7 @@
             <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Telefon" />
             <TextBlock Grid.Column="2" Grid.Row="12" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
             <TextBlock Grid.Column="2" Grid.Row="14" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv (másodlagos)" />
-            <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Életkor" />
+            <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Születési év" />
             <TextBlock Grid.Column="2" Grid.Row="16" Style="{StaticResource Standard_Textblock}" Text="Neme" />
             <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" />
             <!--<TextBlock Grid.Column="0" Grid.Row="14" Style="{StaticResource Standard_Textblock}" Text="Bérigeny" />-->

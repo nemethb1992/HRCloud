@@ -26,7 +26,11 @@ namespace HRCloud.Model
         public string nev { get; set; }
         public int interjuk_db { get; set; }
     }
-
+    public class SubJelolt
+    {
+        public int id { get; set; }
+        public string nev { get; set; }
+    }
     public class JeloltExtendedList
     {
         public int id { get; set; }
@@ -131,12 +135,16 @@ namespace HRCloud.Model
 
     public class csatolmany_struct
     {
-        public int id { get; set; }
         public int kapcs_id { get; set; }
         public int tipus { get; set; }
         public string fajlnev { get; set; }
         public string kiterjesztes { get; set; }
         public string kep { get; set; }
+    }
+    public class Jelolt_File_Struct
+    {
+        public string fajlnev { get; set; }
+        public string path { get; set; }
     }
 
     public class activity_struct

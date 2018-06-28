@@ -49,24 +49,24 @@
             <TextBlock x:Name="app_1" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="E-mail" />
             <TextBlock x:Name="app_2" Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Telefon" />
             <TextBlock x:Name="app_3" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Lakhely" />
-            <TextBlock x:Name="app_4" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Cím" />
-            <TextBlock x:Name="app_5" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
-            <TextBlock x:Name="app_6" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Szintje" />
-            <TextBlock x:Name="app_7" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Bérigény" />
-            <TextBlock x:Name="app_8" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Munkakör" />
-            <TextBlock x:Name="app_9" Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Értesülés forrása" />
-            <TextBlock x:Name="app_10" Grid.Column="1" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Születési dátum" />
+            <TextBlock x:Name="app_5" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
+            <TextBlock x:Name="app_6" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Második idegennyelv" />
+            <TextBlock x:Name="app_8" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Munkaterület" />
+            <TextBlock x:Name="app_9" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" ><Run Text="Értesül"/><Run Text="t"/></TextBlock>
+            <TextBlock x:Name="app_10" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Születési év" />
+            <!--<TextBlock x:Name="app_7" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Bérigény" />-->
+            <!--<TextBlock x:Name="app_4" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Cím" />-->
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_1" />
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_2" />
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_3" />
-            <TextBlock Grid.Column="1" Grid.Row="3" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_4" />
-            <TextBlock Grid.Column="0" Grid.Row="5" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_5" />
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_6" />
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_7" />
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_8" />
-            <TextBlock Grid.Column="0" Grid.Row="9" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_9" />
-            <TextBlock Grid.Column="1" Grid.Row="9" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_10" />
+            <TextBlock Grid.Column="0" Grid.Row="1"   Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_1" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_2" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_3" />
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_5" />
+            <TextBlock Grid.Column="1" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_6" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_8" />
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_9" />
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_10" />
+            <!--<TextBlock Grid.Column="1" Grid.Row="3" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_4" />-->
+            <!--<TextBlock Grid.Column="0" Grid.Row="7" Text="Teszt szöveg" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_7" />-->
             <!--<TextBlock x:Name="" Grid.Column="" Grid.Row="" Style="{StaticResource}" />-->
         </Grid>
         <Grid x:Name="grid_2_1" Grid.Column="2" Visibility="Hidden" Margin="0,10,0,15" Grid.Row="1">

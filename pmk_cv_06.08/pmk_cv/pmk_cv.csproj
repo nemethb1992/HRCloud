@@ -153,6 +153,8 @@
     </ApplicationDefinition>
     <Compile Include="Control\activity_log.cs" />
     <Compile Include="Control\applicant_cont.cs" />
+    <Compile Include="Control\email_cont.cs" />
+    <Compile Include="Control\file_cont.cs" />
     <Compile Include="Control\ftpEntities.cs" />
     <Compile Include="Control\login_cont.cs" />
     <Compile Include="Control\megjegyzes_cs.cs" />

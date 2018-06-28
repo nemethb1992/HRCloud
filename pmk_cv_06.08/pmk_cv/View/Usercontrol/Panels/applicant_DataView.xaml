@@ -52,11 +52,11 @@
             <TextBlock x:Name="app_6" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Második idegennyelv" />
             <TextBlock x:Name="app_8" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Munkaterület" />
             <TextBlock x:Name="app_9" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" ><Run Text="Értesül"/><Run Text="t"/></TextBlock>
-            <TextBlock x:Name="app_10" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Születési dátum" />
+            <TextBlock x:Name="app_10" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Születési év" />
             <!--<TextBlock x:Name="app_7" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Bérigény" />-->
             <!--<TextBlock x:Name="app_4" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Cím" />-->
 
-            <TextBox Grid.Column="0" Grid.Row="1"   Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textbox}" x:Name="app_input_1" />
+            <TextBlock Grid.Column="0" Grid.Row="1"   Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_1" />
             <TextBlock Grid.Column="1" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_2" />
             <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_3" />
             <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="app_input_5" />
@@ -163,9 +163,10 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock x:Name="projektek_label" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Projektek" />
-            <ListBox x:Name="kapcsolodo_projekt_list" Grid.Column="0" Grid.Row="1" Grid.RowSpan="5"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+            <ListBox x:Name="kapcsolodo_projekt_list" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
@@ -205,7 +206,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="csatolmanyok_label" Grid.Column="0" Grid.Row="0"  Style="{StaticResource Standard_Textblock}" Text="Csatolmányok" />
 
-            <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" x:Name="csatolmany_listBox" AllowDrop="True" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended" Drop="csatolmany_listBox_Drop" >
+            <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" x:Name="csatolmany_listBox" AllowDrop="True" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
@@ -223,12 +224,12 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Letöltés" Click="projekt_upload_btn_Click"/>
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Letöltés"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="projekt_open_btn" Background="White" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új" Click="projekt_upload_btn_Click" />
+            <Button x:Name="projekt_open_btn" Background="White" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új"/>
         </Grid>
     </Grid>
 

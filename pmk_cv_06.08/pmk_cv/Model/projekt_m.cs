@@ -18,10 +18,10 @@ namespace HRCloud.Model
         public string megnevezes_projekt { get; set; }
         public int jeloltek_db { get; set; }
     }
-    public class SubJelolt
+    public class SubProjekt
     {
         public int id { get; set; }
-        public string nev { get; set; }
+        public string megnevezes_projekt { get; set; }
     }
     public class ProjectListItems
     {

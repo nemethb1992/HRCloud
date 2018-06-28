@@ -28,6 +28,7 @@ namespace HRCloud.View.Usercontrol.Panels
         megjegyzes_cs comment = new megjegyzes_cs();
         applicant_cont acontrol = new applicant_cont();
         projekt_cont pcontrol = new projekt_cont();
+        file_cont f_control = new file_cont();
         Session sess = new Session();
         private project_DataView project_DataView;
         public applicant_DataView(Grid grid)
@@ -43,42 +44,17 @@ namespace HRCloud.View.Usercontrol.Panels
             app_input_1.Text = li[0].email;
             app_input_2.Text = li[0].telefon.ToString();
             app_input_3.Text = li[0].lakhely;
-            //app_input_4.Text = li[0].cim;
             app_input_5.Text = li[0].nyelvtudas.ToString();
-            app_input_6.Text = li[0].nyelvtudas2.ToString();
-            //app_input_7.Text = li[0].berigeny.ToString();
             app_input_8.Text = li[0].munkakor;
-            app_input_9.Text = li[0].ertesult.ToString(); 
+            app_input_9.Text = li[0].ertesult.ToString();
             app_input_10.Text = li[0].szuldatum.ToString();
-            csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
+
+            csatolmany_listBox.ItemsSource = f_control.Applicant_FolderReadOut(acontrol.ApplicantID);
             megjegyzes_listBox_loadUp(megjegyzes_listBox);
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
         }
 
 
-        private void csatolmany_download_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            csatolmany_struct items = btn.DataContext as csatolmany_struct;
-            if (!acontrol.CvDownload(items.kapcs_id.ToString(), items.fajlnev, items.kiterjesztes))
-                MessageBox.Show("Letöltés megszakadt!");
-        }
-
-        private void projekt_upload_btn_Click(object sender, RoutedEventArgs e)
-        {
-            string path = "";
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == true)
-            {
-                path = ofd.FileName;
-            }
-            MessageBox.Show(path);
-            if (!acontrol.CvUpload(path))
-                MessageBox.Show("Feltöltés megszakadt!");
-            acti.Activity_write();
-            csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
-
-        }
         private void megjegyzes_listBox_loadUp(ListBox lb)
         {
             lb.ItemsSource = acontrol.megjegyzes_datasource();
@@ -135,23 +111,38 @@ namespace HRCloud.View.Usercontrol.Panels
                 tbx.Text = "Új megjegyzés";
             }
         }
-        
-        private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] path = (string[])e.Data.GetData(DataFormats.FileDrop);
-                int i = 0;
-                foreach (var item in path)
-                {
-                    acontrol.CvUpload(path[i]);
-                    i++;
-                }
-                MessageBox.Show(path[0]);
-                csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
-                // docPath[0] tartalmazza az URL-t
 
-            }
-        }
+        //private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        string[] path = (string[])e.Data.GetData(DataFormats.FileDrop);
+        //        int i = 0;
+        //        foreach (var item in path)
+        //        {
+        //            acontrol.CvUpload(path[i]);
+        //            i++;
+        //        }
+        //        MessageBox.Show(path[0]);
+        //        csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
+        //        // docPath[0] tartalmazza az URL-t
+
+        //    }
+        //}
+        //private void projekt_upload_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string path = "";
+        //    OpenFileDialog ofd = new OpenFileDialog();
+        //    if (ofd.ShowDialog() == true)
+        //    {
+        //        path = ofd.FileName;
+        //    }
+        //    MessageBox.Show(path);
+        //    if (!acontrol.CvUpload(path))
+        //        MessageBox.Show("Feltöltés megszakadt!");
+        //    acti.Activity_write();
+        //    csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
+
+        //}
     }
 }

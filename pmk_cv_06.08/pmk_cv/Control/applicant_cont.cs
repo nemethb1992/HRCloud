@@ -128,11 +128,11 @@ namespace HRCloud.Control
             string query = "SELECT * FROM nemek";
             return dbE.Nem_MySql_listQuery(query);
         }
-        public List<csatolmany_struct> CsatolmanyDataSource()
-        {
-            string query = "SELECT jeloltek.id, jeloltek.nev, tipus, fajlnev,kapcs_id, kiterjesztes FROM csatolmanyok INNER JOIN jeloltek ON csatolmanyok.kapcs_id = jeloltek.id WHERE jeloltek.id = " + ApplicantID + " AND tipus=0";
-            return dbE.Csatolmany_MySql_listQuery(query);
-        }
+        //public List<csatolmany_struct> CsatolmanyDataSource()
+        //{
+        //    string query = "SELECT jeloltek.id, jeloltek.nev, tipus, fajlnev,kapcs_id, kiterjesztes FROM csatolmanyok INNER JOIN jeloltek ON csatolmanyok.kapcs_id = jeloltek.id WHERE jeloltek.id = " + ApplicantID + " AND tipus=0";
+        //    return dbE.Csatolmany_MySql_listQuery(query);
+        //}
         public bool CvDownload(string nev, string fajlnev, string kiterjesztes)
         {
             string url = "applicant_cv";

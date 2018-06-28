@@ -101,11 +101,11 @@ namespace HRCloud.Control
             string query = "SELECT id, jelolt_id, projekt_id, hr_id, hr_nev, megjegyzes, datum, ertekeles FROM megjegyzesek WHERE projekt_id=" + ProjektID +" AND jelolt_id="+acontrol.ApplicantID+"";
             return dbE.Megjegyzesek_MySql_listQuery(query);
         }
-        public List<csatolmany_struct> CsatolmanyDataSource()
-        {
-            string query = "SELECT projektek.id, kapcs_id, megnevezes_projekt, tipus, fajlnev, kiterjesztes FROM csatolmanyok INNER JOIN projektek ON csatolmanyok.kapcs_id = projektek.id WHERE projektek.id = " + ProjektID + " AND tipus=1";
-            return dbE.Csatolmany_MySql_listQuery(query);
-        }
+        //public List<csatolmany_struct> CsatolmanyDataSource()
+        //{
+        //    string query = "SELECT projektek.id, kapcs_id, megnevezes_projekt, tipus, fajlnev, kiterjesztes FROM csatolmanyok INNER JOIN projektek ON csatolmanyok.kapcs_id = projektek.id WHERE projektek.id = " + ProjektID + " AND tipus=1";
+        //    return dbE.Csatolmany_MySql_listQuery(query);
+        //}
         public List<ertesitendok_struct> ErtesitendokDataSource_cbx(string ertesitendok_src)
         {
             string query = "SELECT id, name FROM users WHERE name LIKE '%"+ertesitendok_src+"%' AND kategoria = 0";

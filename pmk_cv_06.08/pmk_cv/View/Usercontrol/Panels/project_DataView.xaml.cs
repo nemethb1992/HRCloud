@@ -82,7 +82,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
             KisListaTolto();
 
-            csatolmany_listBox.ItemsSource = pcontrol.CsatolmanyDataSource();
+            //csatolmany_listBox.ItemsSource = pcontrol.CsatolmanyDataSource();
 
         }
         private void KisListaTolto()

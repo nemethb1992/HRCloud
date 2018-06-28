@@ -28,7 +28,8 @@ namespace HRCloud.View.Windows
         private applicant_panel applicant_p;
         private project_panel project_p;
         private settings_panel settings_p;
-        private Szakmai_Kezdolap szakmai_Kezdolap; 
+        private Szakmai_Kezdolap szakmai_Kezdolap;
+        file_cont f_control = new file_cont();
         Session session = new Session();
         //private applicant_DataView applicant_dv;
         //private project_DataView project_dv;
@@ -46,6 +47,8 @@ namespace HRCloud.View.Windows
                 Szakmai_navigation_Grid.Visibility = Visibility.Visible;
             }
             Profil_name_tbl.Text = session.UserData[0].name;
+            f_control.Applicant_Folder_Structure_Creator();
+            f_control.Projekt_Folder_Structure_Creator();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

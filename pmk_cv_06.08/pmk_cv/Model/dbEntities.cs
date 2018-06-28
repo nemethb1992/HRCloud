@@ -212,6 +212,28 @@ namespace HRCloud.Model
             dbClose();
             return items;
         }
+        public List<SubProjekt> Sub_Projekt_MySql_listQuery(string query)
+        {
+            List<SubProjekt> items = new List<SubProjekt>();
+            if (this.dbOpen() == true)
+            {
+                cmd = new MySqlCommand(query, conn);
+                sdr = cmd.ExecuteReader();
+                int j = 0;
+                while (sdr.Read())
+                {
+                    items.Add(new SubProjekt
+                    {
+                        id = Convert.ToInt32(sdr["id"]),
+                        megnevezes_projekt = sdr["megnevezes_projekt"].ToString()
+                    });
+                    j++;
+                }
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
         public List<ProjectListItems> Projekt_MySql_listQuery  (string query)
         {
         List<ProjectListItems> items = new List<ProjectListItems>();
@@ -382,6 +404,26 @@ namespace HRCloud.Model
                         elonyok = sdr["elonyok"].ToString(),
                     });
 
+                }
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
+        public List<SubJelolt> Jelolt_Short_MySql_listQuery(string query)
+        {
+            List<SubJelolt> items = new List<SubJelolt>();
+            if (this.dbOpen() == true)
+            {
+                cmd = new MySqlCommand(query, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    items.Add(new SubJelolt
+                    {
+                        id = Convert.ToInt32(sdr["id"]),
+                        nev = sdr["nev"].ToString()
+                    });
                 }
                 sdr.Close();
             }
@@ -570,30 +612,30 @@ namespace HRCloud.Model
             return items;
         }
 
-        public List<csatolmany_struct> Csatolmany_MySql_listQuery(string query)
-        {
-            List<csatolmany_struct> items = new List<csatolmany_struct>();
-            if (this.dbOpen() == true)
-            {
-                cmd = new MySqlCommand(query, conn);
-                sdr = cmd.ExecuteReader();
-                while (sdr.Read())
-                {
-                    items.Add(new csatolmany_struct
-                    {
-                        id = Convert.ToInt32(sdr["id"]),
-                        kapcs_id = Convert.ToInt32(sdr["kapcs_id"]),
-                        tipus = Convert.ToInt32(sdr["tipus"]),
-                        fajlnev = sdr["fajlnev"].ToString().Split('.')[0],
-                        kiterjesztes = sdr["fajlnev"].ToString().Split('.')[1],
-                        kep = "/HRCloud;component/Public/imgs/" + sdr["kiterjesztes"].ToString() + ".png",
-                    });
-                }
-                sdr.Close();
-            }
-            dbClose();
-            return items;
-        }
+        //public List<csatolmany_struct> Csatolmany_MySql_listQuery(string query)
+        //{
+        //    List<csatolmany_struct> items = new List<csatolmany_struct>();
+        //    if (this.dbOpen() == true)
+        //    {
+        //        cmd = new MySqlCommand(query, conn);
+        //        sdr = cmd.ExecuteReader();
+        //        while (sdr.Read())
+        //        {
+        //            items.Add(new csatolmany_struct
+        //            {
+        //                id = Convert.ToInt32(sdr["id"]),
+        //                kapcs_id = Convert.ToInt32(sdr["kapcs_id"]),
+        //                tipus = Convert.ToInt32(sdr["tipus"]),
+        //                fajlnev = sdr["fajlnev"].ToString().Split('.')[0],
+        //                kiterjesztes = sdr["fajlnev"].ToString().Split('.')[1],
+        //                kep = "/HRCloud;component/Public/imgs/" + sdr["kiterjesztes"].ToString() + ".png",
+        //            });
+        //        }
+        //        sdr.Close();
+        //    }
+        //    dbClose();
+        //    return items;
+        //}
         public List<megjegyzes_struct> Megjegyzesek_MySql_listQuery(string query)
         {
             List<megjegyzes_struct> items = new List<megjegyzes_struct>();

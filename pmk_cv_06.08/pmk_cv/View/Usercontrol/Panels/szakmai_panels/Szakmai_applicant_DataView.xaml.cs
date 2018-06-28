@@ -46,7 +46,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
             app_input_8.Text = li[0].munkakor;
             app_input_9.Text = li[0].ertesult.ToString();
             app_input_10.Text = li[0].szuldatum.ToString();
-            csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
+            //csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
             megjegyzes_listBox_loadUp(megjegyzes_listBox);
         }
         private void megjegyzes_listBox_loadUp(ListBox lb)
