@@ -29,7 +29,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
