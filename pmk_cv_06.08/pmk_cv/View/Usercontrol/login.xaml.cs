@@ -27,6 +27,7 @@ namespace HRCloud.View.Usercontrol
         login_cont lcontrol = new login_cont();
         Session session = new Session();
         dbEntities dbE = new dbEntities();
+        email_cont e_control = new email_cont();
         private Grid grid;
         public login(Grid sgrid)
         {
@@ -45,7 +46,8 @@ namespace HRCloud.View.Usercontrol
         }
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            enterApplication();
+            e_control.ReadImap();
+            //enterApplication();
         }
 
         private void Luser_tbx_KeyUp(object sender, KeyEventArgs e)
