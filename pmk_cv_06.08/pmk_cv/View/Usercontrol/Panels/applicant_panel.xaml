@@ -120,7 +120,7 @@
             </Grid.ColumnDefinitions>
             <Label x:Name="project_label_1" VerticalAlignment="Bottom" Content="id" Grid.Column="0" Style="{StaticResource project_label_style}"/>
             <Label x:Name="project_label_2" VerticalAlignment="Bottom" Content="Név" Grid.Column="1" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_3" VerticalAlignment="Bottom" Content="Munkakör" Grid.Column="2" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_3" VerticalAlignment="Bottom" Content="Munkaterület" Grid.Column="2" Style="{StaticResource project_label_style}"/>
             <Label x:Name="project_label_4" VerticalAlignment="Bottom" Content="Interjúk" Grid.Column="3" Style="{StaticResource project_label_style}"/>
             <Label x:Name="project_label_5" VerticalAlignment="Bottom" Content="Született" Grid.Column="4" Style="{StaticResource project_label_style}"/>
             <Label x:Name="project_label_6" VerticalAlignment="Bottom" Content="Regisztrált" Grid.Column="5" Style="{StaticResource project_label_style}"/>

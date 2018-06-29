@@ -177,7 +177,7 @@
                                 <ColumnDefinition Width="50" />
                                 <!--<ColumnDefinition Width="18" />-->
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Margin="15,15,0,0" Style="{StaticResource panelTbl_style}" Text="{Binding nev}"/>
+                            <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Margin="15,10,0,0" Style="{StaticResource panelTbl_style}" Text="{Binding nev}"/>
                             <Button x:Name="tovabb_jeloltre_btn" Grid.Column="4" Grid.RowSpan="2" FontSize="12"  Style="{StaticResource next_panelBtn_style}" Click="tovabb_jeloltre_btn_Click">
                                 <Image Source="/HRCloud;component/Public/imgs/next.png" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>

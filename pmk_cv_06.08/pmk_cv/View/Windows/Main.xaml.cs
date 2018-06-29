@@ -45,6 +45,7 @@ namespace HRCloud.View.Windows
             {
                 sgrid.Children.Add(szakmai_Kezdolap = new Szakmai_Kezdolap(sgrid));
                 Szakmai_navigation_Grid.Visibility = Visibility.Visible;
+                HR_navigation_Grid.Visibility = Visibility.Hidden;
             }
             Profil_name_tbl.Text = session.UserData[0].name;
             f_control.Applicant_Folder_Structure_Creator();

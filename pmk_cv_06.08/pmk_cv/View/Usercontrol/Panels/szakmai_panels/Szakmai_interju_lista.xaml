@@ -26,14 +26,14 @@
         <Button Grid.Column="1" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="szakmai_mainpage_btn_Click"/>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="330" />
+                <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
-            <Label x:Name="project_label_1" Content="Interjú megnevezése" Grid.Column="0" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_2" Content="Projekt" Grid.Column="1" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_3" Content="Jelölt" Grid.Column="2" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_1" Content="Projekt" Grid.Column="0" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_2" Content="Jelölt" Grid.Column="1" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_3" Content="Helyszín" Grid.Column="2" Style="{StaticResource project_label_style}"/>
         </Grid>
         <ListBox x:Name="bevont_interjuk_listbox" Style="{StaticResource small_listBox_style}" Grid.Column="1" Padding="5" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.Resources>

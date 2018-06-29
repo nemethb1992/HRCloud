@@ -27,13 +27,15 @@
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource big_title_style}" Margin="15" Grid.Column="0" Grid.Row="0" Text="Regisztráció"/>
         <TextBlock x:Name="InfoBlock" Style="{StaticResource big_title_style}" Margin="15" VerticalAlignment="Center" Grid.Column="1" TextAlignment="Right" FontSize="18" Foreground="{StaticResource FontColor_Light}" Grid.Row="0" Text=""/>
-        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Teljes név:"/>
-        <TextBox x:Name="teljesnev" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="e-mail:"/>
-        <TextBox x:Name="email" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="Felhasználó típus:"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Tartományi felhasználónév"/>
+        <TextBox x:Name="tartomanyi" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Teljes név:"/>
+        <TextBox x:Name="teljesnev" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="e-mail:"/>
+        <TextBox x:Name="email" Style="{StaticResource Standard_Textbox}" Padding="10,10,10,0" Margin="30,5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Text="Felhasználó típus:"/>
 
-        <ComboBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Margin="30,5" x:Name="kategoria_cbx" >
+        <ComboBox Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Margin="30,5" x:Name="kategoria_cbx" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Grid >
