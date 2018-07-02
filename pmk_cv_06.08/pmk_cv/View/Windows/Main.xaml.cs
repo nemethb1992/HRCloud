@@ -48,8 +48,8 @@ namespace HRCloud.View.Windows
                 HR_navigation_Grid.Visibility = Visibility.Hidden;
             }
             Profil_name_tbl.Text = session.UserData[0].name;
-            f_control.Applicant_Folder_Structure_Creator();
-            f_control.Projekt_Folder_Structure_Creator();
+            //f_control.Applicant_Folder_Structure_Creator();
+            //f_control.Projekt_Folder_Structure_Creator();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

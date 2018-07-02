@@ -238,7 +238,7 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás"/>
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás" Click="csatolmany_download_Click"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -3,6 +3,7 @@ using HRCloud.Model;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,6 +120,11 @@ namespace HRCloud.View.Usercontrol.Panels
             SmallProjectListItems item = cbx.SelectedItem as SmallProjectListItems;
             pcontrol.Jelolt_write_to_project(acontrol.ApplicantID , item.id);
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
+        }
+
+        private void csatolmany_download_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(f_control.Applicant_FolderReadOut(acontrol.ApplicantID)[0].path);
         }
 
         //private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
