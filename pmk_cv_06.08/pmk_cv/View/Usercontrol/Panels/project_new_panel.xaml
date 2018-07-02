@@ -151,7 +151,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock x:Name="hirdetes_text_1" Grid.Column="2" Grid.Row="9" Style="{StaticResource Standard_Textblock}" Text="Feladatok:" />
+            <!--<TextBlock x:Name="hirdetes_text_1" Grid.Column="2" Grid.Row="9" Style="{StaticResource Standard_Textblock}" Text="Feladatok:" />
             <TextBox x:Name="feladatok_tbx" Grid.Column="2" Grid.Row="10"  Grid.RowSpan="3" TextWrapping="Wrap"  Style="{StaticResource BigText_style}">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
@@ -168,7 +168,7 @@
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                 </TextBox.Resources>
-            </TextBox>
+            </TextBox>-->
             <!--<TextBlock x:Name="" Grid.Column="" Grid.Row="" Style="{StaticResource}" />-->
         </Grid>
     </Grid>

@@ -517,25 +517,25 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <Button x:Name="koltseg_open_btn" Grid.Column="0" Grid.Row="4" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource StandardButton}"  Content="Új" Click="koltseg_open_btn_Click" />
-            <Grid x:Name="Koltseg_insert_grid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Visibility="Hidden" Background="White" Margin="15" Style="{StaticResource gridShadow}">
+            <Grid x:Name="Koltseg_insert_grid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Visibility="Hidden" Background="White" Margin="15" Style="{StaticResource gridShadow}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource big_title_style}" FontSize="22" VerticalAlignment="Center" Text="Új költség felvétele"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center" Text="Megnevezés:"/>
-                <TextBox x:Name="k_megnevezes_tbx" Grid.Column="1" Grid.Row="2" Margin="0,9" Style="{StaticResource Standard_Textbox}" />
+                <TextBox x:Name="k_megnevezes_tbx" Grid.Column="1" Grid.Row="2" Margin="0,3" Style="{StaticResource Standard_Textbox}" />
                 <TextBlock Grid.Column="1" Grid.Row="3"  Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center" Text="Összeg:"/>
-                <TextBox x:Name="k_osszeg_tbx"  Grid.Column="1" Grid.Row="4" Margin="0,9" Style="{StaticResource Standard_Textbox}" PreviewTextInput="numericTextBox"/>
+                <TextBox x:Name="k_osszeg_tbx"  Grid.Column="1" Grid.Row="4" Margin="0,3" Style="{StaticResource Standard_Textbox}" PreviewTextInput="numericTextBox"/>
                 <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource StandardButton}" Width="150" Height="40" Content="Mentés" HorizontalAlignment="Right" Click="Koltseg_mentes" />
                 <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource StandardButton}" Width="150" Height="40" Content="Mégsem" HorizontalAlignment="Left" Click="Koltse_megsem"/>
             </Grid>

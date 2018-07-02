@@ -50,6 +50,7 @@ namespace HRCloud.View.Usercontrol.Panels
             jelolt_telefon.Text = "( " + a_li[0].telefon + " )";
             megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
             kapcs_jeloltek_listBox.ItemsSource = pa_control.Interju_DataSource();
+            Tamogatas_Writer();
             try
             {
                 k_1.Value = li_kvalue[0].k1_val;
@@ -241,7 +242,22 @@ namespace HRCloud.View.Usercontrol.Panels
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        private void Tamogatas_Writer()
+        {
+            List<kompetencia_tamogatas> list = new List<kompetencia_tamogatas>();
+            list = pa_control.kompetencia_tamogatas_DataSource();
+            int igen = 0, ossz = 0 ;
+            foreach (var item in list)
+            {
+                ossz++;
+                if (item.tamogatom == 1)
+                {
+                    igen++;
+                }
 
+            }
+            tamogatasok_input_tbx.Text = igen.ToString() + "/" + ossz.ToString();
+        }
 
 
 

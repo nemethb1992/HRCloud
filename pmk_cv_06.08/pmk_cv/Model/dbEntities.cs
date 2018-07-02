@@ -29,7 +29,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -921,25 +921,58 @@ namespace HRCloud.Model
             List<kompetencia_summary_struct> items = new List<kompetencia_summary_struct>();
             if (this.dbOpen() == true)
             {
-                cmd = new MySqlCommand(query, conn);
-                sdr = cmd.ExecuteReader();
-                while (sdr.Read())
+                try
                 {
-                    items.Add(new kompetencia_summary_struct
+                    cmd = new MySqlCommand(query, conn);
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
                     {
-                        k1_val = Convert.ToInt32(sdr["k1_val"]),
-                        k2_val = Convert.ToInt32(sdr["k2_val"]),
-                        k3_val = Convert.ToInt32(sdr["k3_val"]),
-                        k4_val = Convert.ToInt32(sdr["k4_val"]),
-                        k5_val = Convert.ToInt32(sdr["k5_val"]),
-                    });
+                        items.Add(new kompetencia_summary_struct
+                        {
+                            k1_val = Convert.ToInt32(sdr["k1_val"]),
+                            k2_val = Convert.ToInt32(sdr["k2_val"]),
+                            k3_val = Convert.ToInt32(sdr["k3_val"]),
+                            k4_val = Convert.ToInt32(sdr["k4_val"]),
+                            k5_val = Convert.ToInt32(sdr["k5_val"]),
+                            tamogatom = Convert.ToInt32(sdr["tamogatom"]),
+                        });
+                    }
                 }
+                catch (Exception)
+                {
+                }
+
                 sdr.Close();
             }
             dbClose();
             return items;
         }
+        public List<kompetencia_tamogatas> Kompetencia_tamogatas_MySql_listQuery(string query)
+        {
+            List<kompetencia_tamogatas> items = new List<kompetencia_tamogatas>();
+            if (this.dbOpen() == true)
+            {
+                try
+                {
+                    cmd = new MySqlCommand(query, conn);
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        items.Add(new kompetencia_tamogatas
+                        {
+                            tamogatom = Convert.ToInt32(sdr["tamogatom"]),
+                        });
+                    }
+                }
+                catch (Exception)
+                {
+                }
 
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
         //SqLite entities
 
         public void SqliteQueryExecute(string query)

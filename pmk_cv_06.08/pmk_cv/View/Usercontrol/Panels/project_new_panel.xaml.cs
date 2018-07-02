@@ -94,10 +94,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 kepesseg2 = Convert.ToInt32(k2item.id),
                 kepesseg3 = Convert.ToInt32(k3item.id),
                 kepesseg4 = Convert.ToInt32(k4item.id),
-                kepesseg5 = Convert.ToInt32(k5item.id),
-                feladatok = feladatok_tbx.Text,
-                elvarasok = elvarasok_tbx.Text,
-                kinalunk = kinalunk_tbx.Text
+                kepesseg5 = Convert.ToInt32(k5item.id)
 
             });
             return items;

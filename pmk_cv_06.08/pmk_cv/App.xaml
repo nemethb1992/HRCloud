@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="racs_color" Color="#737373"/>
         <SolidColorBrush x:Key="NavFontColor" Color="white"/>
         <SolidColorBrush x:Key="greenColor" Color="#4cb71a"/>
-        <SolidColorBrush x:Key="ThemeColor" Color="#fa6478"/>
+        <SolidColorBrush x:Key="ThemeColor" Color="#FFFF4141"/>
         <SolidColorBrush x:Key="Listbox_light" Color="#f7f4f4"/>
         <SolidColorBrush x:Key="racs_light" Color="#808080"/>
         <SolidColorBrush x:Key="itemBackground" Color="white"/>

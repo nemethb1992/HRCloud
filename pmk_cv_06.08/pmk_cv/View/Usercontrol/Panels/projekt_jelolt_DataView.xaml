@@ -24,15 +24,8 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="projekt_jelolt_title_tbl" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource big_title_style}" Text="" ></TextBlock>
         <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="Back_To_projekt_btn"/>
-     
-        <Grid x:Name="grid_telefonosszuro" Style="{StaticResource gridShadow_down}" Height="100" Grid.Column="1" Grid.RowSpan="4" Grid.Row="1" Panel.ZIndex="1"  VerticalAlignment="Top">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFB827A" Offset="0.753"/>
-                    <GradientStop Color="#FFF93A65"/>
-                    <GradientStop Color="#FFF99F7D" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+
+        <Grid x:Name="grid_telefonosszuro" Style="{StaticResource gridShadow_down}" Height="100" Grid.Column="1" Grid.RowSpan="4" Grid.Row="1" Panel.ZIndex="1" Background="{StaticResource ThemeColor}"  VerticalAlignment="Top">
             <Grid.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -128,6 +121,10 @@
             </ListBox>
         </Grid>
         <Grid Grid.Column="3" Grid.RowSpan="3"  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="172*"/>
+                <ColumnDefinition Width="263*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="20" />
@@ -141,56 +138,63 @@
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="kompetencia_1" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 1" />
-            <TextBlock x:Name="kompetencia_2" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 2" />
-            <TextBlock x:Name="kompetencia_3" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 3" />
-            <TextBlock x:Name="kompetencia_4" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 4" />
-            <TextBlock x:Name="kompetencia_5" Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 5" />
-            <ProgressBar  x:Name="k_1" Grid.Column="0" Maximum="10" Grid.Row="1" Style="{StaticResource progressStyle}"/>
-            <ProgressBar  x:Name="k_2" Grid.Column="0" Maximum="10" Grid.Row="3" Style="{StaticResource progressStyle}"/>
-            <ProgressBar  x:Name="k_3" Grid.Column="0" Maximum="10" Grid.Row="5" Style="{StaticResource progressStyle}"/>
-            <ProgressBar  x:Name="k_4" Grid.Column="0" Maximum="10" Grid.Row="7" Style="{StaticResource progressStyle}"/>
-            <ProgressBar  x:Name="k_5" Grid.Column="0" Maximum="10" Grid.Row="9" Style="{StaticResource progressStyle}"/>
+            <TextBlock x:Name="kompetencia_1" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 1" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="kompetencia_2" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 2" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="kompetencia_3" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 3" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="kompetencia_4" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 4" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="kompetencia_5" Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Kompetencia 5" Grid.ColumnSpan="2" />
+            <ProgressBar  x:Name="k_1" Grid.Column="0" Maximum="10" Grid.Row="1" Style="{StaticResource progressStyle}" Grid.ColumnSpan="2"/>
+            <ProgressBar  x:Name="k_2" Grid.Column="0" Maximum="10" Grid.Row="3" Style="{StaticResource progressStyle}" Grid.ColumnSpan="2"/>
+            <ProgressBar  x:Name="k_3" Grid.Column="0" Maximum="10" Grid.Row="5" Style="{StaticResource progressStyle}" Grid.ColumnSpan="2"/>
+            <ProgressBar  x:Name="k_4" Grid.Column="0" Maximum="10" Grid.Row="7" Style="{StaticResource progressStyle}" Grid.ColumnSpan="2"/>
+            <ProgressBar  x:Name="k_5" Grid.Column="0" Maximum="10" Grid.Row="9" Style="{StaticResource progressStyle}" Grid.ColumnSpan="2"/>
         </Grid>
         <Grid x:Name="kapcs_megjegyzes" Grid.Column="3" Grid.RowSpan="1"  Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="122*"/>
+                <ColumnDefinition Width="263*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="megjegyzes_label" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Megjegyzések" />
+            <TextBlock x:Name="tamogatasok_tbx" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" FontSize="22" Text="Támogatás: " />
+            <TextBlock x:Name="tamogatasok_input_tbx" Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" FontSize="22" Text="2/7" />
+            <TextBlock x:Name="megjegyzes_label" Grid.Column="0" Grid.Row="1" Style="{StaticResource Standard_Textblock}" Text="Megjegyzések" />
 
-                <ListBox x:Name="megjegyzes_listBox" Style="{StaticResource small_listBox_style}" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                    <ListBox.Resources>
-                        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
-                            <Setter Property="CornerRadius" Value="5,5,0,0"/>
-                        </Style>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
-                    </ListBox.Resources>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0.2" Width="425">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.5*" />
-                                    <ColumnDefinition Width="100" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="4*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Törlés" Click="MenuItem_Click" />
-                                    </ContextMenu>
-                                </Grid.ContextMenu>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Margin="10,5,0,0" Text="{Binding hr_nev}"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" TextAlignment="Right" FontSize="12" Margin="10,0" Text="{Binding datum}"/>
-                                <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" TextWrapping="Wrap" Cursor="Arrow" HorizontalAlignment="Left" MaxWidth="445"  IsReadOnly="True" Style="{StaticResource formTbx_label_style}" Text="{Binding megjegyzes}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="13,13,0,0" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
+            <ListBox x:Name="megjegyzes_listBox" Style="{StaticResource small_listBox_style}" Grid.ColumnSpan="2"  Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
+                        <Setter Property="CornerRadius" Value="5,5,0,0"/>
+                    </Style>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0.2" Width="425">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="4*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Törlés" Click="MenuItem_Click" />
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Margin="10,5,0,0" Text="{Binding hr_nev}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" TextAlignment="Right" FontSize="12" Margin="10,0" Text="{Binding datum}"/>
+                            <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" TextWrapping="Wrap" Cursor="Arrow" HorizontalAlignment="Left" MaxWidth="445"  IsReadOnly="True" Style="{StaticResource formTbx_label_style}" Text="{Binding megjegyzes}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBox x:Name="comment_tartalom" Grid.Row="4" Grid.ColumnSpan="2"  BorderBrush="{StaticResource racs_light}" Background="White" Padding="13,13,0,0" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="0,0,5,5"/>
@@ -264,9 +268,9 @@
                 <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource Standard_Textblock}" Foreground="White" Text="Leírás" />
                 <TextBox x:Name="inter_leiras" Grid.Column="1"   Grid.ColumnSpan="3" Grid.Row="8" Grid.RowSpan="4" Style="{StaticResource BigText_style}" Margin="0,5" Background="White" />
 
-        <Button x:Name="uj_interju_megsem_btn" Grid.Column="1" Grid.Row="13" Content="Mégsem"  Style="{StaticResource StandardButton}" Margin="0,0,10,10" Click="uj_interju_megsem_btn_Click" />
+                <Button x:Name="uj_interju_megsem_btn" Grid.Column="1" Grid.Row="13" Content="Mégsem"  Style="{StaticResource StandardButton}" Margin="0,0,10,10" Click="uj_interju_megsem_btn_Click" />
                 <Button x:Name="uj_interju_mentes_btn" Grid.Column="3" Grid.Row="13" Content="Mentés"  Style="{StaticResource StandardButton}" Margin="10,0,0,10" Click="uj_interju_mentes_btn_Click" />
-               
+
             </Grid>
         </Grid>
     </Grid>
