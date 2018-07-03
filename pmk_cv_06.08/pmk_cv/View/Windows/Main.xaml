@@ -19,10 +19,10 @@
                               ShadowDepth="1"
                               Opacity="0.5"/>
         </Border.Effect>
-        <Grid Height="800" Width="1280" Background="White"  HorizontalAlignment="Center">
+        <Grid Height="800" Width="1280" Background="White"  HorizontalAlignment="Center" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="740" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0" />
@@ -78,13 +78,15 @@
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
-                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="5*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
 
                     <Button Grid.Row="0" x:Name="mw_btn1" Content="Projektek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn1_Click"/>
                     <Button Grid.Row="1" x:Name="mw_btn2" Content="Jelöltek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn2_Click"/>
                     <Button Grid.Row="2" x:Name="mw_btn3" Content="Listák" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn3_Click"/>
+                    <Button Grid.Row="3" x:Name="mw_btn4" Content="Kedvencek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn4_Click"/>
                     <Button Grid.Row="5" x:Name="logout_btn" Content="Kijelentkezés" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click"/>
                 </Grid>
 

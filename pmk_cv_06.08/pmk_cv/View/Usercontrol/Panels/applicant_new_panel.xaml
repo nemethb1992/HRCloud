@@ -47,9 +47,6 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Teljes név" />
             <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="E-mail" />

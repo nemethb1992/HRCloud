@@ -111,7 +111,8 @@ namespace HRCloud.View.Usercontrol.Panels
             var bc = new BrushConverter();
             if (pcontrol.projekt_search_memory[0].statusz == 1)
             {
-                projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#FFFF4141");
+                projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#bfbfbf");
+                projekt_aktiv_btn.BorderBrush = (Brush)bc.ConvertFrom("#bfbfbf");
                 projekt_aktiv_btn.Foreground = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_passziv_btn.Foreground = (Brush)bc.ConvertFrom("#404040");
@@ -120,7 +121,8 @@ namespace HRCloud.View.Usercontrol.Panels
             {
                 projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_aktiv_btn.Foreground = (Brush)bc.ConvertFrom("#404040");
-                projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#FFFF4141");
+                projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#bfbfbf");
+                projekt_passziv_btn.BorderBrush = (Brush)bc.ConvertFrom("#bfbfbf");
                 projekt_passziv_btn.Foreground = (Brush)bc.ConvertFrom("#ffffff");
             }
         }

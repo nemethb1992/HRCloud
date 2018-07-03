@@ -228,6 +228,9 @@
     <Compile Include="View\Usercontrol\Panels\settings_panel.xaml.cs">
       <DependentUpon>settings_panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Usercontrol\Panels\favourites_panel.xaml.cs">
+      <DependentUpon>favourites_panel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjekt_DataView.xaml.cs">
       <DependentUpon>SzakmaiProjekt_DataView.xaml</DependentUpon>
     </Compile>
@@ -304,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Usercontrol\Panels\favourites_panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjekt_DataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -369,6 +376,8 @@
     <None Include="Public\innerDatabase.db" />
     <Resource Include="Public\imgs\appointment.png" />
     <Resource Include="Public\imgs\coin.png" />
+    <Resource Include="Public\imgs\interview.png" />
+    <Resource Include="Public\imgs\job.png" />
     <Resource Include="Public\imgs\phone_gray.png" />
     <Resource Include="Public\imgs\x_mark_2.png" />
   </ItemGroup>
@@ -435,10 +444,7 @@
     <Resource Include="Public\imgs\employees.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Public\imgs\interview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Public\imgs\job.png" />
+    <Resource Include="Public\imgs\interview2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

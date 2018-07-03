@@ -47,9 +47,6 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Projekt megnevezése" />

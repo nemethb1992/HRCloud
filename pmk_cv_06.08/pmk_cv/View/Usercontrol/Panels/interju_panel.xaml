@@ -51,7 +51,7 @@
             <TextBlock x:Name="interju_liras_tbl" Grid.Row="9" Padding="10,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" Cursor="Arrow" TextWrapping="Wrap"/>
         </Grid>
         <Grid x:Name="image_grid" Grid.Column="2" Grid.Row="1"  Margin="0,0,0,30" >
-            <Image Source="/HRCloud;component/Public/imgs/interview.png" VerticalAlignment="Bottom" Height="256"/>
+            <Image Source="/Public/imgs/interview2.png" VerticalAlignment="Center" Height="256"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
