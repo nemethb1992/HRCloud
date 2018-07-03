@@ -138,8 +138,9 @@
                         </Grid.ColumnDefinitions>
                         <Grid.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="torles" Header="Törlés" Click="Projekt_Torles_Click"/>
+                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
                                 <MenuItem x:Name="archivalas" Header="Archiválás / Aktiválás" Click="Projekt_Archivalas_Click"/>
+                                <MenuItem x:Name="torles" Header="Törlés" Click="Projekt_Torles_Click"/>
                             </ContextMenu>
                         </Grid.ContextMenu>
                         <!--<Rectangle Panel.ZIndex="0" Grid.Column="0" Grid.ColumnSpan="6" Fill="#f8f8f8" Stroke="{StaticResource racs_color}"/>-->

@@ -145,6 +145,7 @@
 
                         <Grid.ContextMenu>
                             <ContextMenu>
+                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
                                 <MenuItem x:Name="asd" Header="Törlés" Click="applicant_delete_context_Click"/>
                             </ContextMenu>
                         </Grid.ContextMenu>

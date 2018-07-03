@@ -369,6 +369,7 @@
     <None Include="Public\innerDatabase.db" />
     <Resource Include="Public\imgs\appointment.png" />
     <Resource Include="Public\imgs\coin.png" />
+    <Resource Include="Public\imgs\phone_gray.png" />
     <Resource Include="Public\imgs\x_mark_2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -420,9 +421,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Public\imgs\phone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Public\imgs\phone_gray.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Public\imgs\x-mark.png" />

@@ -46,6 +46,7 @@ namespace HRCloud.View.Usercontrol.Panels
             app_input_2.Text = li[0].telefon.ToString();
             app_input_3.Text = li[0].lakhely;
             app_input_5.Text = li[0].nyelvtudas.ToString();
+            app_input_6.Text = li[0].nyelvtudas2.ToString();
             app_input_8.Text = li[0].munkakor;
             app_input_9.Text = li[0].ertesult.ToString();
             app_input_10.Text = li[0].szuldatum.ToString();

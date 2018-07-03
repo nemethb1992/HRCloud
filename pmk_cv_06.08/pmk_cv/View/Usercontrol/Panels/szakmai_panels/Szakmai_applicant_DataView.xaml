@@ -113,7 +113,6 @@
             <ListBox x:Name="megjegyzes_listBox" Style="{StaticResource small_listBox_style}" Grid.Row="1" Grid.RowSpan="5"  HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
-                        <Setter Property="CornerRadius" Value="5,5,0,0"/>
                     </Style>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
                 </ListBox.Resources>

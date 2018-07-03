@@ -46,9 +46,46 @@ namespace HRCloud.View.Usercontrol.Panels
             k3_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
             k4_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
             k5_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
+            if (pcontrol.Change == true)
+            {
+                uj_cim.Visibility = Visibility.Hidden;
+                projekt_INSERT_btn.Visibility = Visibility.Hidden;
+                modositas_cim.Visibility = Visibility.Visible;
+                projekt_UPDATE_btn.Visibility = Visibility.Visible;
+                LoadUp();
+            }
         }
-        
+        public void LoadUp()
+        {
+            List<ProjectExtendedListItems> li = pcontrol.ProjektFullDataSource();
+            nev_tbx.Text = li[0].megnevezes_projekt;
+            tapasztalat_tbx.Text = li[0].tapasztalat_ev.ToString();
+            ber_tbx.Text = li[0].ber.ToString();
+            pc_cbx.SelectedIndex = cbx_counter(acontrol.PCataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.pc, }));
+            vegzettseg_cbx.SelectedIndex = cbx_counter(acontrol.VegzettsegDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.vegzettseg, }));
+            nyelv_cbx.SelectedIndex = cbx_counter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.nyelvtudas, }));
+            munkakor_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.munkakor, }));
+            k1_cbx.SelectedIndex = cbx_counter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg1, }));
+            k2_cbx.SelectedIndex = cbx_counter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg2, }));
+            k3_cbx.SelectedIndex = cbx_counter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg3, }));
+            k4_cbx.SelectedIndex = cbx_counter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg4, }));
+            k5_cbx.SelectedIndex = cbx_counter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg5, }));
 
+        }
+
+        int cbx_counter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
+        {
+            int i = 0;
+            foreach (var item in ossz_li)
+            {
+                if (item.id == projekt_li[0].id)
+                {
+                    break;
+                }
+                i++;
+            }
+            return i;
+        }
         private List<ProjectInsertListItems> get_data_from_form()
         {
             
@@ -101,22 +138,38 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         private void projekt_INSERT_btn_Click(object sender, RoutedEventArgs e)
         {
+            pcontrol.Change = false;
             try
             {
                 pcontrol.Projekt_list_INSERT(get_data_from_form());
                 grid.Children.Clear();
                 grid.Children.Add(project_DataView = new project_DataView(grid));
-            }
+        }
             catch (Exception)
             {
                 MessageBox.Show("Nem lehet kitöltetlen mező!");
             }
+}
+        private void projekt_UPDATE_btn_Click(object sender, RoutedEventArgs e)
+        {
+            pcontrol.Change = false;
+            //try
+            //{
+                pcontrol.Projekt_list_UPDATE(get_data_from_form());
+                grid.Children.Clear();
+                grid.Children.Add(project_DataView = new project_DataView(grid));
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Nem lehet kitöltetlen mező!");
+            //}
         }
-
         private void numericTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+
     }
 }

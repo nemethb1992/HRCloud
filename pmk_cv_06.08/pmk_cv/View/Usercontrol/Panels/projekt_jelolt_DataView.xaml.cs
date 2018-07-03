@@ -165,7 +165,7 @@ namespace HRCloud.View.Usercontrol.Panels
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    pa_control.Telefon_Szures_Elutasit();
+                    pcontrol.Jelolt_list_allpot_UPDATE(acontrol.ApplicantID, 3);
                     grid.Children.Clear();
                     grid.Children.Add(project_DataView = new project_DataView(grid));
                     break;

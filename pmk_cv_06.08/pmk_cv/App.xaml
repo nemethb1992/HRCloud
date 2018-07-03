@@ -35,7 +35,7 @@
             <Setter Property="TextWrapping" Value="Wrap"></Setter>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
-            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
             <Setter Property="Padding" Value="8,4,0,0"></Setter>
             <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
         </Style>
@@ -172,7 +172,7 @@
             <Setter Property="FontSize" Value="21"></Setter>
             <Setter Property="Padding" Value="0,13,0,0"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
         </Style>
 
         <Style TargetType="TextBox" x:Key="formTbx_label_style">
@@ -322,6 +322,13 @@
                 <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="3" Softness="0.3" Opacity="0.2"/>
             </Setter.Value>
         </Setter>
+        </Style>
+        <Style TargetType="Border" x:Key="borderShadow_down">
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="310" ShadowDepth="2" Softness="0.5" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style TargetType="Button" x:Key="mw_navbtn_stlye">
             <!--<Setter Property="Background" Value="{StaticResource NavGridColor}"></Setter>
@@ -682,10 +689,10 @@
             </Setter>-->
         </Style>
         <Style TargetType="Border" x:Key="listCorner">
-            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
         <Style TargetType="Border" x:Key="listCorner_square">
-            <Setter Property="CornerRadius" Value="5,0,5,5"/>
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
     </Application.Resources>
 </Application>

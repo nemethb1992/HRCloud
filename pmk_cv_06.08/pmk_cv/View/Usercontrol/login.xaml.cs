@@ -120,6 +120,12 @@ namespace HRCloud.View.Usercontrol
 
         }
 
-
+        private void Registration_Click(object sender, MouseButtonEventArgs e)
+        {
+            Survey_Window popup = new Survey_Window();
+            popup.Show();
+            var window = Window.GetWindow(this);
+            window.Close();
+        }
     }
 }

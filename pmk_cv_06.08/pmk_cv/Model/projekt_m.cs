@@ -23,6 +23,10 @@ namespace HRCloud.Model
         public int id { get; set; }
         public string megnevezes_projekt { get; set; }
     }
+    public class ComboBox_Seged_Struct
+    {
+        public int id { get; set; }
+    }
     public class ProjectListItems
     {
         public int id { get; set; }

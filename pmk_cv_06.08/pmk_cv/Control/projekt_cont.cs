@@ -9,6 +9,9 @@ namespace HRCloud.Control
 {
     class projekt_cont
     {
+        private static bool Changes;
+        public bool Change { get { return Changes; } set { Changes = value; } }
+
         private static int ProjektIDs;
         public int ProjektID { get { return ProjektIDs; } set { ProjektIDs = value; } }
 
@@ -77,12 +80,21 @@ namespace HRCloud.Control
         }
         public List<ProjectExtendedListItems> ProjektFullDataSource()
         {
-            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id) as jeloltek_db, projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, elonyok, publikalt  FROM projektek INNER JOIN munkakor on munkakor.id = projektek.munkakor INNER JOIN nyelv ON nyelv.id = projektek.nyelvtudas INNER JOIN vegzettsegek ON vegzettsegek.id = projektek.vegzettseg INNER JOIN users ON users.id = projektek.hr_id INNER JOIN pc ON pc.id = projektek.pc INNER JOIN statusz ON projektek.statusz = statusz.id WHERE projektek.id = " + ProjektID + " GROUP BY projektek.id";
+            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id) as jeloltek_db, " +
+                "projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, elonyok, publikalt  " +
+                "FROM projektek " +
+                "LEFT JOIN munkakor on munkakor.id = projektek.munkakor " +
+                "LEFT JOIN nyelv ON nyelv.id = projektek.nyelvtudas " +
+                "LEFT JOIN vegzettsegek ON vegzettsegek.id = projektek.vegzettseg " +
+                "LEFT JOIN users ON users.id = projektek.hr_id " +
+                "LEFT JOIN pc ON pc.id = projektek.pc " +
+                "LEFT JOIN statusz ON projektek.statusz = statusz.id " +
+                "WHERE projektek.id = " + ProjektID + " GROUP BY projektek.id";
             return dbE.Projekt_Extended_MySql_listQuery(query);
         }
         public List<JeloltListItems> JeloltListSourceForListBox()
         {
-            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, telefonos_szures, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5, jeloltek.munkakor, jeloltek.munkakor2, jeloltek.munkakor3 FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
+            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5, jeloltek.munkakor, jeloltek.munkakor2, jeloltek.munkakor3, allapota, kolcsonzott FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
             return dbE.Jelolt_MySql_listQuery(query);
         }
         public List<vegzettseg_struct> VegzettsegDataSource()
@@ -170,6 +182,11 @@ namespace HRCloud.Control
             string query = "DELETE FROM projekt_jelolt_kapcs WHERE jelolt_id = "+id+" AND projekt_id = " + ProjektID + ";";
             dbE.MysqlQueryExecute(query);
         }
+        public void Jelolt_list_allpot_UPDATE(int id, int allapota)
+        {
+            string query = "UPDATE projekt_jelolt_kapcs SET allapota = "+allapota+" WHERE jelolt_id = " + id + " AND projekt_id = " + ProjektID + ";";
+            dbE.MysqlQueryExecute(query);
+        }
         public void Ertesitendok_list_delete(int id)
         {
             string query = "DELETE FROM projekt_ertesitendok_kapcs WHERE ertesitendok_id = " + id + " AND projekt_id = " + ProjektID + ";";
@@ -221,6 +238,28 @@ namespace HRCloud.Control
         {
             string query = "INSERT INTO projektek (`id`, `hr_id`, `megnevezes_projekt`, `pc`, `vegzettseg`, `tapasztalat_ev`, `statusz`, `fel_datum`, `le_datum`, `nyelvtudas`, `munkakor`, `szuldatum`, `ber`,  `kepesseg1`, `kepesseg2`, `kepesseg3`, `kepesseg4`, `kepesseg5`, `feladatok`, `elvarasok`, `kinalunk`)" +
                 " VALUES (NULL, "+items[0].hr_id+ ", '" + items[0].megnevezes_projekt+ "'," + items[0].pc+ "," + items[0].vegzettseg+ "," + items[0].tapasztalat_ev+ "," + items[0].statusz+ ",'" + items[0].fel_datum+ "','" + items[0].le_datum+ "'," + items[0].nyelvtudas+ "," + items[0].munkakor+ "," + items[0].szuldatum + "," + items[0].ber+ "," + items[0].kepesseg1+ "," + items[0].kepesseg2+ "," + items[0].kepesseg3+ "," + items[0].kepesseg4+ "," + items[0].kepesseg5+ ",'" + items[0].feladatok+ "','" + items[0].elvarasok+ "','" + items[0].kinalunk+ "');";
+            dbE.MysqlQueryExecute(query);
+            int proID = Convert.ToInt16(dbE.MysqlReaderExecute_List("SELECT projektek.id FROM projektek WHERE projektek.megnevezes_projekt = '" + items[0].megnevezes_projekt + "' AND projektek.pc = " + items[0].pc + " AND projektek.munkakor = '" + items[0].munkakor + "'", "projektek", 1)[0]);
+            ProjektID = proID;
+        }
+        public void Projekt_list_UPDATE(List<ProjectInsertListItems> items)
+        {
+            string query = "UPDATE projektek SET " +
+                " `hr_id` =  " + items[0].hr_id + ", " +
+                "`megnevezes_projekt` =  '" + items[0].megnevezes_projekt + "', " +
+                " `pc` =  " + items[0].pc + ", " +
+                "`vegzettseg` =  " + items[0].vegzettseg + ", " +
+                "`tapasztalat_ev` =  " + items[0].tapasztalat_ev + ", " +
+                "`statusz` =  " + items[0].statusz + ", " +
+                "`nyelvtudas` =  " + items[0].nyelvtudas + ", " +
+                "`munkakor` =  " + items[0].munkakor + ", " +
+                "`szuldatum` =  " + items[0].szuldatum + ", " +
+                "`ber` =  " + items[0].ber + ", " +
+                "`kepesseg1` =  " + items[0].kepesseg1 + ", " +
+                "`kepesseg2` =  " + items[0].kepesseg2 + ", " +
+                "`kepesseg3` =  " + items[0].kepesseg3 + ", " +
+                "`kepesseg4` =  " + items[0].kepesseg4 + ", " +
+                "`kepesseg5` =  " + items[0].kepesseg5 + " WHERE id = "+ ProjektID + "";
             dbE.MysqlQueryExecute(query);
             int proID = Convert.ToInt16(dbE.MysqlReaderExecute_List("SELECT projektek.id FROM projektek WHERE projektek.megnevezes_projekt = '" + items[0].megnevezes_projekt + "' AND projektek.pc = " + items[0].pc + " AND projektek.munkakor = '" + items[0].munkakor + "'", "projektek", 1)[0]);
             ProjektID = proID;

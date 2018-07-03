@@ -17,8 +17,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource big_title_style}" Text="Új Projekt Felvitele" ></TextBlock>
+        <TextBlock x:Name="uj_cim" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource big_title_style}" Text="Új Projekt Felvitele" ></TextBlock>
+        <TextBlock x:Name="modositas_cim" Visibility="Hidden" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource big_title_style}" Text="Projekt Módosítás" ></TextBlock>
         <Button x:Name="projekt_INSERT_btn" Style="{StaticResource StandardButton}" Grid.Column="1" Grid.Row="0" Width="200" HorizontalAlignment="Right" Content="Mentés" Click="projekt_INSERT_btn_Click" />
+        <Button x:Name="projekt_UPDATE_btn" Visibility="Hidden" Style="{StaticResource StandardButton}" Grid.Column="1" Grid.Row="0" Width="200" HorizontalAlignment="Right" Content="Módosítás" Click="projekt_UPDATE_btn_Click" />
 
         <Grid x:Name="grid_1_1" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1">
             <Grid.ColumnDefinitions>

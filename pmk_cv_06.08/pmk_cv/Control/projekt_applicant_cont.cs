@@ -31,7 +31,7 @@ namespace HRCloud.Control
         }
         public void Telefon_Szures_Elfogad(int ismerte,int muszakok,string utazas)
         {
-            string query1 = "UPDATE projekt_jelolt_kapcs SET telefonos_szures = 1  WHERE projekt_id = " + pcontrol.ProjektID + " AND jelolt_id = " + acontrol.ApplicantID + "";
+            string query1 = "UPDATE projekt_jelolt_kapcs SET allapota = 1 WHERE projekt_id = " + pcontrol.ProjektID + " AND jelolt_id = " + acontrol.ApplicantID + "";
             string query2 = "UPDATE jeloltek SET pmk_ismerte = "+ismerte+"  WHERE id = " + acontrol.ApplicantID + "";
             string query3 = "INSERT INTO jelolt_statisztika (id, jelolt_id, utazas, muszakok) VALUES(null, "+acontrol.ApplicantID+", '"+utazas+"', "+muszakok+")";
             dbE.MysqlQueryExecute(query1);
@@ -116,6 +116,11 @@ namespace HRCloud.Control
         public void Write_User_To_Inerju(int id)
         {
             string query = "INSERT INTO `interju_resztvevo_kapcs` (`id`, `interju_id`, `user_id`) VALUES (NULL, "+InterjuID+", "+id+");";
+            dbE.MysqlQueryExecute(query);
+        }
+        public void Delete_User_To_Inerju(int id)
+        {
+            string query = "DELETE FROM `interju_resztvevo_kapcs` WHERE user_id = " + id + "";
             dbE.MysqlQueryExecute(query);
         }
 
