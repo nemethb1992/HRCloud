@@ -46,8 +46,8 @@ namespace HRCloud.View.Usercontrol
         }
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            e_control.ReadImap();
-            //enterApplication();
+            //e_control.ReadImap();
+            enterApplication();
         }
 
         private void Luser_tbx_KeyUp(object sender, KeyEventArgs e)
