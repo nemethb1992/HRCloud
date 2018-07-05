@@ -117,9 +117,10 @@
                 <!--<Button x:Name="jeloltek_savebtn" Grid.Column="1" Grid.Row="0" Visibility="Hidden" Margin="8" Style="{StaticResource StandardButton}" Content="Jelöltek hozzáadása" />
                 <Button x:Name="ertesitendok_savebtn"  Grid.Column="1" Grid.Row="0" Visibility="Hidden" Margin="8" Style="{StaticResource StandardButton}" Content="Értesítendők hozzáadása" />
                 <Button x:Name="hr_savebtn" Grid.Column="1" Grid.Row="0" Visibility="Hidden" Margin="8" Style="{StaticResource StandardButton}" Content="HR hozzáadása" />-->
-                <Button x:Name="jeloltek_megse_btn" Grid.Column="0" Grid.Row="0" Margin="8" Style="{StaticResource StandardButton}" Content="Mégsem" Click="Ember_Hozzaadas_Megse"/>
+                <Button x:Name="jeloltek_megse_btn" Grid.Column="0" Grid.Row="0" Margin="8" Style="{StaticResource StandardButton}" Content="Vissza" Click="Ember_Hozzaadas_Megse"/>
+                <Button x:Name="jeloltek_felvesz_btn" Grid.Column="1" Grid.Row="0" Margin="8" Style="{StaticResource StandardButton}" Content="Felvesz" Click="Ember_Hozzaadas_Megse"/>
                 <TextBox x:Name="Ember_Search_tbx"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="8,0,8,8" Padding="8,7,0,0" Style="{StaticResource Standard_Textbox}" TextChanged="Ember_Search_tbx_TextChanged"/>
-                <ListBox x:Name="Ember_Search_Listbox" Tag="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible" Margin="8,0,8,8" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+                <ListBox x:Name="Ember_Search_Listbox" Tag="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Visibility="Visible" Margin="8,0,8,8" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                     <ListBox.Resources>
                         <!--<Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>-->
                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
@@ -156,16 +157,17 @@
             <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1" Margin="5,0,0,5" Style="{StaticResource StandardButton}" Content="HR" Click="hr_tabbtn_Click"/>
             <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
-                    <!--<Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>-->
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="50" Margin="0,2">
+                        <Grid Height="50" Margin="0,2" MouseDown="Grid_MouseDown">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="33" />
+                                <ColumnDefinition Width="130" />
                                 <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="50" />
                                 <!--<ColumnDefinition Width="18" />-->
@@ -176,17 +178,22 @@
                             </Grid.RowDefinitions>
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Törlés" Click="MenuItem_Click_1"/>
+                                    <MenuItem Tag="1" Header="Telefonon szűrt" Click="Jelolt_Context"/>
+                                    <MenuItem Tag="2" Header="Felvétel" Click="Jelolt_Context"/>
+                                    <MenuItem Tag="3" Header="Elutasítás" Click="Jelolt_Context"/>
+                                    <MenuItem Tag="delete" Header="Törlés a listából" Click="Jelolt_Context"/>
                                 </ContextMenu>
+
                             </Grid.ContextMenu>
-                            <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Margin="10,2" Style="{StaticResource panelTbl_style}" Text="{Binding nev}"/>
-                            <Button x:Name="tovabb_jeloltre_btn" Grid.Column="4" Grid.RowSpan="2" FontSize="12"  Style="{StaticResource next_panelBtn_style}" Click="tovabb_jeloltre_btn_Click">
+                            <CheckBox Grid.Column="0" HorizontalAlignment="Right" Margin="0,8,4,0" IsChecked="{Binding Checked}"/>
+                            <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2,0,0" Style="{StaticResource Standard_Textblock}" Text="{Binding nev}"/>
+                            <TextBlock Grid.Column="3" Grid.ColumnSpan="2" Margin="0,2,0,0" FontSize="14"  Style="{StaticResource Standard_Textblock}" Text="{Binding kolcsonzott}"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0" FontSize="13" Text="{Binding allapot_megnevezes}" Style="{StaticResource Standard_Textblock}"/>
+                            <TextBlock Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Text="Interjúk:" FontSize="13" Style="{StaticResource Standard_Textblock}"/>
+                            <TextBlock Grid.Column="4"  Grid.Row="1" Text="{Binding interjuk_db}" FontSize="13" Style="{StaticResource Standard_Textblock}"/>
+                            <Button    Grid.Column="6" Grid.RowSpan="2" x:Name="tovabb_jeloltre_btn" FontSize="12"  Style="{StaticResource next_panelBtn_style}" Click="tovabb_jeloltre_btn_Click">
                                 <Image Source="/HRCloud;component/Public/imgs/next.png" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
-                            <Image Height="15" VerticalAlignment="Top" Margin="14,2,0,0" Grid.Column="0" Grid.Row="1" Source="/HRCloud;component/Public/imgs/phone_gray.png"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding telefonos_szures}" Style="{StaticResource interju_tbl}"/>
-                            <TextBlock Grid.Column="2" Grid.Row="1" Text="Interjúk:" Style="{StaticResource interju_tbl}"/>
-                            <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding interjuk_db}" Style="{StaticResource interju_tbl}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -248,7 +255,7 @@
             <ListBox x:Name="megjegyzes_listBox" Grid.Row="1" Grid.RowSpan="5" Style="{StaticResource small_listBox_style}"  HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                     <ListBox.Resources>
                         <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
-                            <Setter Property="CornerRadius" Value="5,5,0,0"/>
+                            <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
                     </ListBox.Resources>
@@ -304,7 +311,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Column="1" Grid.RowSpan="6" Background="{StaticResource Listbox_light}" CornerRadius="5"/>
+            <Border Grid.Column="1" Grid.RowSpan="6" Background="{StaticResource Listbox_light}" CornerRadius="15"/>
             <TextBlock x:Name="kompetencia_title" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Padding="10,0" Text="Kompetenciák:" />
             <TextBlock x:Name="kompetencia1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Padding="15,0" Foreground="{StaticResource FontColor_Light}" Text="-" />
             <TextBlock x:Name="kompetencia2" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Padding="15,0" Foreground="{StaticResource FontColor_Light}" Text="-" />
@@ -402,7 +409,7 @@
                 <CheckBox x:Name="check_6" Grid.Column="1" Grid.Row="2" Margin="8,0" Background="White" Content="hiros.hu" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
                 <CheckBox x:Name="check_7" Grid.Column="0" Grid.Row="3" Margin="8,0" Background="White" Content="Kecskeméti Lapok" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
                 <CheckBox x:Name="check_8" Grid.Column="1" Grid.Row="3" Margin="8,0" Background="White" Content="Egyéb" Style="{StaticResource login_check}" VerticalAlignment="Center"/>
-                <Border Background="{StaticResource Listbox_light}" Grid.ColumnSpan="2" Grid.RowSpan="4" Panel.ZIndex="-1" CornerRadius="5"/>
+                <Border Background="{StaticResource Listbox_light}" Grid.ColumnSpan="2" Grid.RowSpan="4" Panel.ZIndex="-1" CornerRadius="10"/>
 
             </Grid>
             <CheckBox x:Name="publikalt_check" Grid.Column="1" Grid.Row="1" Content="Publikálva" Style="{StaticResource login_check}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Checked="publikalt_check_Checked" Unchecked="publikalt_check_Unchecked"/>
@@ -469,7 +476,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="projekt_open_btn" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új"/>
+            <!--<Button x:Name="projekt_open_btn" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új"/>-->
         </Grid>
         <Grid x:Name="Koltsegek_Grid" Grid.Column="3"  Grid.Row="4" Grid.RowSpan="1" Margin="0,0,0,30" >
             <Grid.ColumnDefinitions>
@@ -517,25 +524,25 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <Button x:Name="koltseg_open_btn" Grid.Column="0" Grid.Row="4" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource StandardButton}"  Content="Új" Click="koltseg_open_btn_Click" />
-            <Grid x:Name="Koltseg_insert_grid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Visibility="Hidden" Background="White" Margin="15" Style="{StaticResource gridShadow}">
+            <Grid x:Name="Koltseg_insert_grid" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Visibility="Hidden" Background="White" Margin="15" Style="{StaticResource gridShadow}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource big_title_style}" FontSize="22" VerticalAlignment="Center" Text="Új költség felvétele"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center" Text="Megnevezés:"/>
-                <TextBox x:Name="k_megnevezes_tbx" Grid.Column="1" Grid.Row="2" Margin="0,9" Style="{StaticResource Standard_Textbox}" />
+                <TextBox x:Name="k_megnevezes_tbx" Grid.Column="1" Grid.Row="2" Margin="0,3" Style="{StaticResource Standard_Textbox}" />
                 <TextBlock Grid.Column="1" Grid.Row="3"  Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center" Text="Összeg:"/>
-                <TextBox x:Name="k_osszeg_tbx"  Grid.Column="1" Grid.Row="4" Margin="0,9" Style="{StaticResource Standard_Textbox}" PreviewTextInput="numericTextBox"/>
+                <TextBox x:Name="k_osszeg_tbx"  Grid.Column="1" Grid.Row="4" Margin="0,3" Style="{StaticResource Standard_Textbox}" PreviewTextInput="numericTextBox"/>
                 <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource StandardButton}" Width="150" Height="40" Content="Mentés" HorizontalAlignment="Right" Click="Koltseg_mentes" />
                 <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource StandardButton}" Width="150" Height="40" Content="Mégsem" HorizontalAlignment="Left" Click="Koltse_megsem"/>
             </Grid>

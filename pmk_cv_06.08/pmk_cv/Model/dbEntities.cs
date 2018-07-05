@@ -29,7 +29,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -430,6 +430,7 @@ namespace HRCloud.Model
             dbClose();
             return items;
         }
+
         public List<JeloltListItems> Jelolt_MySql_listQuery(string query)
         {
             List<JeloltListItems> items = new List<JeloltListItems>();
@@ -439,17 +440,35 @@ namespace HRCloud.Model
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
-                    string tel_szurt = "nem";
+                    string allapot_megnev = "Beérkezett", kolcsonzott = "";
+                    int allapot = 0;
                     try
                     {
-                        if (Convert.ToInt32(sdr["telefonos_szures"]) == 1)
-                            tel_szurt = "igen";
+                        allapot = Convert.ToInt32(sdr["allapota"]);
                     }
                     catch (Exception)
                     {
-
                     }
 
+                    switch (allapot)
+                    {
+                        case 1:
+                            allapot_megnev = "Telefonon szűrt";
+                            break;
+                        case 2:
+                            allapot_megnev = "Felvett";
+                            break;
+                        case 3:
+                            allapot_megnev = "Elutasított";
+                            break;
+
+                        default:
+                            allapot_megnev = "Beérkezett";
+                            break;
+                    }
+
+                    if (Convert.ToInt32(sdr["kolcsonzott"]) == 1)
+                        kolcsonzott = "Kölcsönzött";
                     items.Add(new JeloltListItems
                     {
                         id = Convert.ToInt32(sdr["id"]),
@@ -458,8 +477,10 @@ namespace HRCloud.Model
                         munkakor2 = sdr["munkakor2"].ToString(),
                         munkakor3 = sdr["munkakor3"].ToString(),
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
-                        telefonos_szures = tel_szurt,
                         interjuk_db = Convert.ToInt32(sdr["interjuk_db"]),
+                        allapota = allapot,
+                        kolcsonzott = kolcsonzott,
+                        allapot_megnevezes = allapot_megnev,
                         reg_datum = sdr["reg_date"].ToString(),
                     });
                 }
@@ -506,15 +527,23 @@ namespace HRCloud.Model
                         telefon = sdr["telefon"].ToString(),
                         lakhely = sdr["lakhely"].ToString(),
                         ertesult = sdr["ertesules_megnevezes"].ToString(),
+                        id_ertesult = Convert.ToInt32(sdr["id_ertesult"]),
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
                         neme = sdr["neme"].ToString(),
+                        id_neme = Convert.ToInt32(sdr["id_neme"]),
                         tapasztalat_ev = Convert.ToInt32(sdr["tapasztalat_ev"]),
                         munkakor = sdr["munkakor"].ToString(),
                         munkakor2 = sdr["munkakor2"].ToString(),
                         munkakor3 = sdr["munkakor3"].ToString(),
+                        id_munkakor = Convert.ToInt32(sdr["id_munkakor"]),
+                        id_munkakor2 = Convert.ToInt32(sdr["id_munkakor2"]),
+                        id_munkakor3 = Convert.ToInt32(sdr["id_munkakor3"]),
                         vegz_terulet = sdr["vegz_terulet"].ToString(),
+                        id_vegz_terulet = Convert.ToInt32(sdr["id_vegz_terulet"]),
                         nyelvtudas = sdr["nyelvtudas"].ToString(),
                         nyelvtudas2 = sdr["nyelvtudas2"].ToString(),
+                        id_nyelvtudas = Convert.ToInt32(sdr["id_nyelvtudas"]),
+                        id_nyelvtudas2 = Convert.ToInt32(sdr["id_nyelvtudas2"]),
                         reg_date = sdr["reg_date"].ToString(),
                         megjegyzes = sdr["megjegyzes"].ToString(),
                         folderUrl = sdr["folderUrl"].ToString(),
@@ -921,25 +950,58 @@ namespace HRCloud.Model
             List<kompetencia_summary_struct> items = new List<kompetencia_summary_struct>();
             if (this.dbOpen() == true)
             {
-                cmd = new MySqlCommand(query, conn);
-                sdr = cmd.ExecuteReader();
-                while (sdr.Read())
+                try
                 {
-                    items.Add(new kompetencia_summary_struct
+                    cmd = new MySqlCommand(query, conn);
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
                     {
-                        k1_val = Convert.ToInt32(sdr["k1_val"]),
-                        k2_val = Convert.ToInt32(sdr["k2_val"]),
-                        k3_val = Convert.ToInt32(sdr["k3_val"]),
-                        k4_val = Convert.ToInt32(sdr["k4_val"]),
-                        k5_val = Convert.ToInt32(sdr["k5_val"]),
-                    });
+                        items.Add(new kompetencia_summary_struct
+                        {
+                            k1_val = Convert.ToInt32(sdr["k1_val"]),
+                            k2_val = Convert.ToInt32(sdr["k2_val"]),
+                            k3_val = Convert.ToInt32(sdr["k3_val"]),
+                            k4_val = Convert.ToInt32(sdr["k4_val"]),
+                            k5_val = Convert.ToInt32(sdr["k5_val"]),
+                            tamogatom = Convert.ToInt32(sdr["tamogatom"]),
+                        });
+                    }
                 }
+                catch (Exception)
+                {
+                }
+
                 sdr.Close();
             }
             dbClose();
             return items;
         }
+        public List<kompetencia_tamogatas> Kompetencia_tamogatas_MySql_listQuery(string query)
+        {
+            List<kompetencia_tamogatas> items = new List<kompetencia_tamogatas>();
+            if (this.dbOpen() == true)
+            {
+                try
+                {
+                    cmd = new MySqlCommand(query, conn);
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        items.Add(new kompetencia_tamogatas
+                        {
+                            tamogatom = Convert.ToInt32(sdr["tamogatom"]),
+                        });
+                    }
+                }
+                catch (Exception)
+                {
+                }
 
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
         //SqLite entities
 
         public void SqliteQueryExecute(string query)

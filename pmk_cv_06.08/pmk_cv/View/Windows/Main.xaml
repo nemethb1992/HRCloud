@@ -19,10 +19,10 @@
                               ShadowDepth="1"
                               Opacity="0.5"/>
         </Border.Effect>
-        <Grid Height="800" Width="1280" Background="White"  HorizontalAlignment="Center">
+        <Grid Height="800" Width="1280" Background="White"  HorizontalAlignment="Center" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="740" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0" />
@@ -34,7 +34,7 @@
                 <Image Height="28" HorizontalAlignment="Left"  Source="/HRCloud;component/Public/imgs/pm_logo_mini.png" Margin="20,0,0,0"/>
 
             </Grid>
-            <Grid x:Name="Left_Navigation_Grid" Style="{StaticResource gridShadow}" Grid.Column="1" Grid.Row="1" Background="Red" Panel.ZIndex="2">
+            <Grid x:Name="Left_Navigation_Grid" Style="{StaticResource gridShadow}" Background="{StaticResource ThemeColor}" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2">
                 <!--<Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFFB827A" Offset="0.753"/>
@@ -70,26 +70,28 @@
                     <Rectangle x:Name="profil_notiRec" Grid.Row="2" Grid.Column="1" Panel.ZIndex="0" Fill="Transparent" />
 
                 </Grid>
-                
+
                 <!--HR Gombsor-->
-                
+
                 <Grid x:Name="HR_navigation_Grid" Visibility="Visible" Grid.Row="1"  Panel.ZIndex="2"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
-                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="5*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
 
                     <Button Grid.Row="0" x:Name="mw_btn1" Content="Projektek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn1_Click"/>
                     <Button Grid.Row="1" x:Name="mw_btn2" Content="Jelöltek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn2_Click"/>
                     <Button Grid.Row="2" x:Name="mw_btn3" Content="Listák" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn3_Click"/>
+                    <Button Grid.Row="3" x:Name="mw_btn4" Content="Kedvencek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn4_Click"/>
                     <Button Grid.Row="5" x:Name="logout_btn" Content="Kijelentkezés" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click"/>
                 </Grid>
 
                 <!--Szakmai Gombsor-->
-                
+
                 <Grid x:Name="Szakmai_navigation_Grid" Visibility="Hidden" Grid.Row="1"  Panel.ZIndex="2"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
@@ -104,13 +106,13 @@
                 </Grid>
 
             </Grid>
-                 
-              <ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+
+            <ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" VerticalScrollBarVisibility="Auto">
                 <Grid x:Name="sgrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"  Style="{StaticResource switch_grid_style}"  Panel.ZIndex="1"/>
             </ScrollViewer>
-           
 
-                <Button x:Name="exit_btn" Content="X" Style="{StaticResource exit_btn}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="25" Click="exit_btn_Click" />
+
+            <Button x:Name="exit_btn" Content="X" Style="{StaticResource exit_btn}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="25" Click="exit_btn_Click" />
             <Button x:Name="minimize_btn" Content="__" Style="{StaticResource exit_btn}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="25"  Margin="0,0,30,0" Click="minimize_btn_Click"/>
         </Grid>
     </Border>

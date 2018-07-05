@@ -30,6 +30,12 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
         {
             InitializeComponent();
             this.grid = grid;
+            StartUp();
+        }
+        void StartUp()
+        {
+            interju_no.Text = sz_control.bevont_interju_DataSource().Count.ToString() + " db";
+            projekt_no.Text = sz_control.bevont_projekt_DataSource().Count.ToString() + " db";
         }
 
         private void Szakmai_panel_Button(object sender, RoutedEventArgs e)

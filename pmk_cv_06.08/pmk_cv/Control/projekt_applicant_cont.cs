@@ -31,7 +31,7 @@ namespace HRCloud.Control
         }
         public void Telefon_Szures_Elfogad(int ismerte,int muszakok,string utazas)
         {
-            string query1 = "UPDATE projekt_jelolt_kapcs SET telefonos_szures = 1  WHERE projekt_id = " + pcontrol.ProjektID + " AND jelolt_id = " + acontrol.ApplicantID + "";
+            string query1 = "UPDATE projekt_jelolt_kapcs SET allapota = 1 WHERE projekt_id = " + pcontrol.ProjektID + " AND jelolt_id = " + acontrol.ApplicantID + "";
             string query2 = "UPDATE jeloltek SET pmk_ismerte = "+ismerte+"  WHERE id = " + acontrol.ApplicantID + "";
             string query3 = "INSERT INTO jelolt_statisztika (id, jelolt_id, utazas, muszakok) VALUES(null, "+acontrol.ApplicantID+", '"+utazas+"', "+muszakok+")";
             dbE.MysqlQueryExecute(query1);
@@ -83,9 +83,16 @@ namespace HRCloud.Control
         }
         public List<kompetencia_summary_struct> kompetencia_jelolt_kapcs_DataSource()
         {
-            string query = "SELECT coalesce(AVG(k1_val),0) as k1_val,coalesce(AVG(k2_val),0) as k2_val,coalesce(AVG(k3_val),0) as k3_val,coalesce(AVG(k4_val),0) as k4_val,coalesce(AVG(k5_val),0) as k5_val FROM kompetencia_jelolt_kapcs WHERE jelolt_id = " + acontrol.ApplicantID+" AND projekt_id = "+pcontrol.ProjektID+"";
+            string query = "SELECT coalesce(AVG(k1_val),0) as k1_val,coalesce(AVG(k2_val),0) as k2_val,coalesce(AVG(k3_val),0) as k3_val,coalesce(AVG(k4_val),0) as k4_val,coalesce(AVG(k5_val),0) as k5_val, tamogatom FROM kompetencia_jelolt_kapcs WHERE jelolt_id = " + acontrol.ApplicantID+" AND projekt_id = "+pcontrol.ProjektID+"";
             return dbE.Kompetencia_summary_MySql_listQuery(query);
         }
+        
+        public List<kompetencia_tamogatas> kompetencia_tamogatas_DataSource()
+        {
+            string query = "SELECT tamogatom FROM kompetencia_jelolt_kapcs WHERE jelolt_id = " + acontrol.ApplicantID + " AND projekt_id = " + pcontrol.ProjektID + "";
+            return dbE.Kompetencia_tamogatas_MySql_listQuery(query);
+        }
+
         public void Kopmetencia_ertekeles_INSERT(List<int> list)
         {
             string query = "INSERT INTO `kompetencia_jelolt_kapcs` (`id`, `interju_id`, `projekt_id`, `jelolt_id`, `hr_id`, `k1_id`, `k1_val`, `k2_id`, `k2_val`, `k3_id`, `k3_val`, `k4_id`, `k4_val`, `k5_id`, `k5_val`, tamogatom) VALUES (null, " + InterjuID + ", " + pcontrol.ProjektID + ", " + acontrol.ApplicantID + ", " + sess.UserData[0].id + ", "+list[0]+ ", " + list[1] + ", " + list[2] + ", " + list[3] + ", " + list[4] + ", " + list[5] + ", " + list[6] + ", " + list[7] + ", " + list[8] + ", " + list[9] + ", " + list[10] + ");";
@@ -109,6 +116,11 @@ namespace HRCloud.Control
         public void Write_User_To_Inerju(int id)
         {
             string query = "INSERT INTO `interju_resztvevo_kapcs` (`id`, `interju_id`, `user_id`) VALUES (NULL, "+InterjuID+", "+id+");";
+            dbE.MysqlQueryExecute(query);
+        }
+        public void Delete_User_To_Inerju(int id)
+        {
+            string query = "DELETE FROM `interju_resztvevo_kapcs` WHERE user_id = " + id + "";
             dbE.MysqlQueryExecute(query);
         }
 

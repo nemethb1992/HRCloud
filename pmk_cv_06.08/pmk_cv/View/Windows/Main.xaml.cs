@@ -29,6 +29,7 @@ namespace HRCloud.View.Windows
         private project_panel project_p;
         private settings_panel settings_p;
         private Szakmai_Kezdolap szakmai_Kezdolap;
+        private favourites_panel favourites_Panel;
         file_cont f_control = new file_cont();
         Session session = new Session();
         //private applicant_DataView applicant_dv;
@@ -48,8 +49,8 @@ namespace HRCloud.View.Windows
                 HR_navigation_Grid.Visibility = Visibility.Hidden;
             }
             Profil_name_tbl.Text = session.UserData[0].name;
-            f_control.Applicant_Folder_Structure_Creator();
-            f_control.Projekt_Folder_Structure_Creator();
+            //f_control.Applicant_Folder_Structure_Creator();
+            //f_control.Projekt_Folder_Structure_Creator();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -83,6 +84,12 @@ namespace HRCloud.View.Windows
             sgrid.Children.Clear();
             sgrid.Children.Add(szakmai_Kezdolap = new Szakmai_Kezdolap(sgrid));
         }
+
+        private void mw_btn4_Click(object sender, RoutedEventArgs e)
+        {
+            sgrid.Children.Clear();
+            sgrid.Children.Add(favourites_Panel = new favourites_panel(sgrid));
+        }
         private void exit_btn_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
@@ -108,7 +115,6 @@ namespace HRCloud.View.Windows
         {
             profil_notiRec.Fill = new SolidColorBrush(Colors.Transparent);
         }
-
 
     }
 }

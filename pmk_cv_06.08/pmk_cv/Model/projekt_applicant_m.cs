@@ -63,6 +63,11 @@ namespace HRCloud.Model
         public int k3_val { get; set; }
         public int k4_val { get; set; }
         public int k5_val { get; set; }
+        public int tamogatom { get; set; }
 
+    }
+    public class kompetencia_tamogatas
+    {
+        public int tamogatom { get; set; }
     }
 }

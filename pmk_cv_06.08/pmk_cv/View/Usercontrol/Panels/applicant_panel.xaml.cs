@@ -224,6 +224,15 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             Applicant_lister();
         }
+        private void modositas_Click(object sender, RoutedEventArgs e)
+        {
+            acontrol.Change = true;
+            MenuItem item = sender as MenuItem;
+            JeloltListItems itemSource = item.DataContext as JeloltListItems;
+            acontrol.ApplicantID = itemSource.id;
+            sgrid.Children.Clear();
+            sgrid.Children.Add(applicant_new_panel = new applicant_new_panel(sgrid));
+        }
     }
 
 }

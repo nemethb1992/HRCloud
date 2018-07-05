@@ -14,13 +14,14 @@
         <SolidColorBrush x:Key="racs_color" Color="#737373"/>
         <SolidColorBrush x:Key="NavFontColor" Color="white"/>
         <SolidColorBrush x:Key="greenColor" Color="#4cb71a"/>
-        <SolidColorBrush x:Key="ThemeColor" Color="#fa6478"/>
+        <SolidColorBrush x:Key="ThemeColor" Color="#FFFF4141"/>
         <SolidColorBrush x:Key="Listbox_light" Color="#f7f4f4"/>
         <SolidColorBrush x:Key="racs_light" Color="#808080"/>
         <SolidColorBrush x:Key="itemBackground" Color="white"/>
         <SolidColorBrush x:Key="itemBackground_hover" Color="#FFF9F9F9"/>
         <SolidColorBrush x:Key="telefonos_kek_color" Color="#0099ff"/>
-        <SolidColorBrush x:Key="softRed" Color="#f9616d"/> 
+        <SolidColorBrush x:Key="softRed" Color="#f9616d"/>
+        <SolidColorBrush x:Key="MidGray" Color="#d9d9d9"/>
         <SolidColorBrush x:Key="standard_button_hover_bg" Color="#e6e6e6"/>
         <SolidColorBrush x:Key="SD_Element_Background" Color="#f4f4f4"/>
         <SolidColorBrush x:Key="SD_Element_Hover_Background" Color="White"/>
@@ -35,7 +36,7 @@
             <Setter Property="TextWrapping" Value="Wrap"></Setter>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
-            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
             <Setter Property="Padding" Value="8,4,0,0"></Setter>
             <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
         </Style>
@@ -73,6 +74,33 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="Switch_Button" BasedOn="{StaticResource StandardButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderBrush="{StaticResource SD_Element_Borderbrush}" 
+                            BorderThickness ="0"
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource SD_Element_Hover_Background}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource SD_Element_Borderbrush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="310" ShadowDepth="1.1" Softness="0.2" Opacity="0.2"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -172,7 +200,7 @@
             <Setter Property="FontSize" Value="21"></Setter>
             <Setter Property="Padding" Value="0,13,0,0"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"></Setter>
         </Style>
 
         <Style TargetType="TextBox" x:Key="formTbx_label_style">
@@ -323,13 +351,20 @@
             </Setter.Value>
         </Setter>
         </Style>
+        <Style TargetType="Border" x:Key="borderShadow_down">
+            <Setter Property = "BitmapEffect" >
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="310" ShadowDepth="2" Softness="0.5" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="Button" x:Key="mw_navbtn_stlye">
             <!--<Setter Property="Background" Value="{StaticResource NavGridColor}"></Setter>
             <Setter Property="BorderBrush" Value="{StaticResource NavGridColor}"></Setter>-->
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
             <Setter Property="Foreground" Value="{StaticResource NavFontColor}"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
             <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
@@ -356,7 +391,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.100" Storyboard.TargetProperty="FontSize" To="17" />
+                                <DoubleAnimation Duration="0:0:0.100" Storyboard.TargetProperty="FontSize" To="18" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -365,7 +400,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="16" />
+                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="17" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -682,10 +717,10 @@
             </Setter>-->
         </Style>
         <Style TargetType="Border" x:Key="listCorner">
-            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
         <Style TargetType="Border" x:Key="listCorner_square">
-            <Setter Property="CornerRadius" Value="5,0,5,5"/>
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
     </Application.Resources>
 </Application>

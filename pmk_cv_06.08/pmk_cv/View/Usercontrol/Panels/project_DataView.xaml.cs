@@ -23,6 +23,7 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class project_DataView : UserControl
     {
+
         projekt_cont pcontrol = new projekt_cont();
         megjegyzes_cs comment = new megjegyzes_cs();
         applicant_cont acontrol = new applicant_cont();
@@ -30,11 +31,20 @@ namespace HRCloud.View.Usercontrol.Panels
         Session sess = new Session();
         private Grid grid;
         private projekt_jelolt_DataView projekt_jelolt_DataView;
+        private project_panel projekt_Panel;
         public project_DataView(Grid grid)
         {
             this.grid = grid;
             InitializeComponent();
-            FormLoader();
+            try
+            {
+                FormLoader();
+            }
+            catch (Exception)
+            {
+                grid.Children.Clear();
+                grid.Children.Add(projekt_Panel = new project_panel(grid));
+            }
         }
         void FormLoader()
         {
@@ -69,6 +79,7 @@ namespace HRCloud.View.Usercontrol.Panels
             feladatok_tbx.Text = li[0].feladatok;
             elvarasok_tbx.Text = li[0].elvarasok;
             kinalunk_tbx.Text = li[0].kinalunk;
+            elonyok_tbx.Text = li[0].elonyok;
             Sum_koltsegek();
 
             if(li[0].publikalt == 1)
@@ -99,7 +110,7 @@ namespace HRCloud.View.Usercontrol.Panels
             Button button = sender as Button;
             JeloltListItems items = button.DataContext as JeloltListItems;
             acontrol.ApplicantID = items.id;
-            if(items.telefonos_szures == "igen")
+            if(items.allapota >= 1)
             {
                 pa_control.TelefonSzurt = 1;
             }
@@ -206,11 +217,19 @@ namespace HRCloud.View.Usercontrol.Panels
             KisListaTolto();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Jelolt_Context(object sender, RoutedEventArgs e)
         {
-            MenuItem delete = sender as MenuItem;
-            JeloltListItems items = delete.DataContext as JeloltListItems;
-            pcontrol.Jelolt_list_delete(items.id);
+            MenuItem mitem = sender as MenuItem;
+            JeloltListItems items = mitem.DataContext as JeloltListItems;
+            if (mitem.Tag.ToString() == "delete")
+            {
+                pcontrol.Jelolt_list_delete(items.id);
+            }
+            else
+            {
+                pcontrol.Jelolt_list_allpot_UPDATE(items.id, Convert.ToInt32(mitem.Tag));
+            }
+
             KisListaTolto();
             FormLoader();
         }
@@ -361,6 +380,21 @@ namespace HRCloud.View.Usercontrol.Panels
         private void publikalt_check_Unchecked(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_publikal(0);
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+                Grid grid = sender as Grid;
+            JeloltListItems item = grid.DataContext as JeloltListItems;
+                if (item.Checked == false)
+                {
+                    item.Checked = true;
+                }
+                else
+                {
+                    item.Checked = false;
+                }
+                kapcs_jeloltek_listBox.Items.Refresh();
         }
     }
 }

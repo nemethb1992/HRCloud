@@ -16,8 +16,11 @@ namespace HRCloud.Model
         public string munkakor3 { get; set; }
         public int szuldatum { get; set; }
         public int interjuk_db { get; set; }
-        public string telefonos_szures { get; set; }
+        public int allapota { get; set; }
+        public string kolcsonzott { get; set; }
+        public string allapot_megnevezes { get; set; }
         public string reg_datum { get; set; }
+        public bool Checked { get; set; }
     }
 
     public class JeloltListBox
@@ -39,15 +42,23 @@ namespace HRCloud.Model
         public string telefon { get; set; }
         public string lakhely { get; set; }
         public string ertesult { get; set; }
+        public int id_ertesult { get; set; }
         public int szuldatum { get; set; }
         public string neme { get; set; }
+        public int id_neme { get; set; }
         public int tapasztalat_ev { get; set; }
         public string munkakor { get; set; }
         public string munkakor2 { get; set; }
         public string munkakor3 { get; set; }
+        public int id_munkakor { get; set; }
+        public int id_munkakor2 { get; set; }
+        public int id_munkakor3 { get; set; }
         public string vegz_terulet { get; set; }
+        public int id_vegz_terulet { get; set; }
         public string nyelvtudas { get; set; }
         public string nyelvtudas2 { get; set; }
+        public int id_nyelvtudas { get; set; }
+        public int id_nyelvtudas2 { get; set; }
         public string reg_date { get; set; }
         public string megjegyzes { get; set; }
         public string folderUrl { get; set; }

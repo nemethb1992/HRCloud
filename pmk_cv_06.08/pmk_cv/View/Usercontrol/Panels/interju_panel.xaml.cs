@@ -36,11 +36,10 @@ namespace HRCloud.View.Usercontrol.Panels
             this.grid = grid;
             InitializeComponent();
             FormLoadUp();
-            if (sess.UserData[0].kategoria == 1)
+            if (sess.UserData[0].kategoria == 0)
             {
-                resztvevok_list_grid.Visibility = Visibility.Visible;
+                add_meghivott.Visibility = Visibility.Hidden;
             }
-            image_grid.SetValue(Grid.ColumnProperty, 3);
         }
 
         private void Back_To_pj_button(object sender, RoutedEventArgs e)
@@ -144,6 +143,18 @@ namespace HRCloud.View.Usercontrol.Panels
 
             choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
             ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+        }
+
+        private void remove_Click(object sender, RoutedEventArgs e)
+        {
+            if(sess.UserData[0].kategoria == 1)
+            {
+                MenuItem menu = sender as MenuItem;
+                ertesitendok_struct items = menu.DataContext as ertesitendok_struct;
+                pa_control.Delete_User_To_Inerju(items.id);
+                choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
+                ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            }
         }
     }
 }

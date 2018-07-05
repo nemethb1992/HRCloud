@@ -26,6 +26,7 @@ namespace HRCloud.View.Usercontrol.Panels
         private Grid grid;
         private applicant_DataView applicant_DataView;
         applicant_cont acontrol = new applicant_cont();
+        projekt_cont pcontrol = new projekt_cont();
         public applicant_new_panel(Grid grid)
         {
             this.grid = grid;
@@ -42,6 +43,50 @@ namespace HRCloud.View.Usercontrol.Panels
             nyelv2_cbx.ItemsSource = acontrol.NyelvDataSource();
             ertesules_cbx.ItemsSource = acontrol.ErtesulesekDataSource();
             neme_cbx.ItemsSource = acontrol.NemekDatasource();
+            if (acontrol.Change == true)
+            {
+                uj_cim.Visibility = Visibility.Hidden;
+                applicant_INSERT_btn.Visibility = Visibility.Hidden;
+                modositas_cim.Visibility = Visibility.Visible;
+                applicant_UPDATE_btn.Visibility = Visibility.Visible;
+                LoadUp();
+            }
+
+        }
+        public void LoadUp()
+        {
+            List<JeloltExtendedList> li = acontrol.JeloltFullDataSource();
+            nev_tbx.Text = li[0].nev;
+            email_tbx.Text = li[0].email;
+            lakhely_tbx.Text = li[0].lakhely;
+            telefon_tbx.Text = li[0].telefon;
+            eletkor_tbx.Text = li[0].szuldatum.ToString();
+            tapasztalat_tbx.Text = li[0].tapasztalat_ev.ToString();
+
+            munkakor_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor, }));
+            munkakor2_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor2, }));
+            munkakor3_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor3, }));
+            nyelv_cbx.SelectedIndex = cbx_counter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas, }));
+            nyelv2_cbx.SelectedIndex = cbx_counter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas2, }));
+            ertesules_cbx.SelectedIndex = cbx_counter(acontrol.ErtesulesekDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_ertesult, }));
+            vegzettseg_cbx.SelectedIndex = cbx_counter(acontrol.VegzettsegDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_vegz_terulet, }));
+            neme_cbx.SelectedIndex = cbx_counter(acontrol.NemekDatasource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_neme, }));
+
+
+        }
+
+        int cbx_counter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
+        {
+            int i = 0;
+            foreach (var item in ossz_li)
+            {
+                if (item.id == projekt_li[0].id)
+                {
+                    break;
+                }
+                i++;
+            }
+            return i;
         }
         private List<JeloltExtendedList> get_data_from_form()
         {
@@ -93,7 +138,12 @@ namespace HRCloud.View.Usercontrol.Panels
                 grid.Children.Clear();
                 grid.Children.Add(applicant_DataView = new applicant_DataView(grid));
         }
-
+        private void applicant_UPDATE_btn_Click(object sender, RoutedEventArgs e)
+        {
+            acontrol.Jelolt_list_UPDATE(get_data_from_form());
+            grid.Children.Clear();
+            grid.Children.Add(applicant_DataView = new applicant_DataView(grid));
+        }
         private void numericTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

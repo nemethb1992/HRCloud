@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HRCloud.View.Usercontrol.Panels"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="1000">
+             d:DesignHeight="740" d:DesignWidth="1000">
     <Grid Style="{StaticResource switch_grid_style}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="70" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -36,8 +36,8 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" x:Name="projekt_aktiv_btn" Width="90" Height="30" Style="{StaticResource StandardButton}" Click="projekt_aktiv_btn_Click">Aktív</Button>
-                <Button Grid.Column="1" x:Name="projekt_passziv_btn"  Width="90" Height="30" Style="{StaticResource StandardButton}" Click="projekt_passziv_btn_Click" >Archív</Button>
+                <Button Grid.Column="0" x:Name="projekt_aktiv_btn" Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projekt_aktiv_btn_Click">Aktív</Button>
+                <Button Grid.Column="1" x:Name="projekt_passziv_btn"  Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projekt_passziv_btn_Click" >Archív</Button>
             </Grid>
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource big_title_style}" Text="Projektek" ></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource minor_title_style}" Text="Kereső:" TextAlignment="Left" VerticalAlignment="Top" ></TextBlock>
@@ -138,8 +138,9 @@
                         </Grid.ColumnDefinitions>
                         <Grid.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="torles" Header="Törlés" Click="Projekt_Torles_Click"/>
+                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
                                 <MenuItem x:Name="archivalas" Header="Archiválás / Aktiválás" Click="Projekt_Archivalas_Click"/>
+                                <MenuItem x:Name="torles" Header="Törlés" Click="Projekt_Torles_Click"/>
                             </ContextMenu>
                         </Grid.ContextMenu>
                         <!--<Rectangle Panel.ZIndex="0" Grid.Column="0" Grid.ColumnSpan="6" Fill="#f8f8f8" Stroke="{StaticResource racs_color}"/>-->

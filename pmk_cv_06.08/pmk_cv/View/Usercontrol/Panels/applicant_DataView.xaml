@@ -164,7 +164,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.7*" />
             </Grid.RowDefinitions>
             <TextBlock x:Name="projektek_label" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Projektek" />
             <ListBox x:Name="kapcsolodo_projekt_list" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
@@ -220,7 +220,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="csatolmanyok_label" Grid.Column="0" Grid.Row="0"  Style="{StaticResource Standard_Textblock}" Text="Csatolmányok" />
 
-            <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" x:Name="csatolmany_listBox" AllowDrop="True" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+            <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" x:Name="csatolmany_listBox" AllowDrop="True" Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
@@ -238,12 +238,12 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás"/>
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás" Click="csatolmany_download_Click"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="projekt_open_btn" Background="White" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új"/>
+            <!--<Button x:Name="projekt_open_btn" Background="White" Grid.Row="5" Grid.RowSpan="3" Style="{StaticResource StandardButton}" Content="Új"/>-->
         </Grid>
     </Grid>
 

@@ -41,8 +41,10 @@
             <Button Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource StandardButton_Interju}" Panel.ZIndex="1" Click="Szakmai_interjuk_Button" />
             <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource big_title_style}" Panel.ZIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bevont projektek"/>
             <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource big_title_style}" Panel.ZIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Interjúk"/>
-            <Image Grid.Column="1" Grid.Row="2" Margin="50,25,50,75" Source="/HRCloud;component/Public/imgs/job.png" />
-            <Image Grid.Column="3" Grid.Row="2" Margin="50,25,50,75" Source="/HRCloud;component/Public/imgs/interview.png" />
+            <TextBlock x:Name="projekt_no" Grid.Column="1" Grid.Row="1" Style="{StaticResource Standard_Textblock}" Panel.ZIndex="0" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="6 db"/>
+            <TextBlock x:Name="interju_no" Grid.Column="3" Grid.Row="1" Style="{StaticResource Standard_Textblock}" Panel.ZIndex="0" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="3 db"/>
+            <Image Grid.Column="1" Grid.Row="2" Margin="50,50,50,75" Source="/Public/imgs/job.png" />
+            <Image Grid.Column="3" Grid.Row="2" Margin="50,10,50,75" Source="/Public/imgs/interview.png" />
         </Grid>
     </Grid>
 </UserControl>

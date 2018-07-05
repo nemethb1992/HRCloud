@@ -23,6 +23,7 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class project_panel : UserControl
     {
+
         private Grid sgrid;
         projekt_cont pcontrol = new projekt_cont();
         pageControl pageCont = new pageControl();
@@ -59,7 +60,7 @@ namespace HRCloud.View.Usercontrol.Panels
             string interjuk = interju_srcinp.Text;
             if (interju_srcinp.Text == "")
                 interjuk = "0";
-            string publikalt = "0";
+            string publikalt = "";
             if (publikalt_check.IsChecked == true)
                 publikalt = "1";
             List<string> list = new List<string>();
@@ -77,11 +78,14 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         void Project_lister()
         {
+
                 List<Projekt_Search_Memory> list = new List<Projekt_Search_Memory>();
                 list.Add(new Projekt_Search_Memory() { statusz = 1 });
                 pcontrol.projekt_search_memory = list;
                 Button_color_changer();
                 Button_color_changer();
+            
+
             try
             {
                 List<ProjectListItems> lista = pcontrol.ProjektListSource(searchbar_datalist());
@@ -107,7 +111,8 @@ namespace HRCloud.View.Usercontrol.Panels
             var bc = new BrushConverter();
             if (pcontrol.projekt_search_memory[0].statusz == 1)
             {
-                projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#fa6478");
+                projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#bfbfbf");
+                projekt_aktiv_btn.BorderBrush = (Brush)bc.ConvertFrom("#bfbfbf");
                 projekt_aktiv_btn.Foreground = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_passziv_btn.Foreground = (Brush)bc.ConvertFrom("#404040");
@@ -116,7 +121,8 @@ namespace HRCloud.View.Usercontrol.Panels
             {
                 projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#ffffff");
                 projekt_aktiv_btn.Foreground = (Brush)bc.ConvertFrom("#404040");
-                projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#fa6478");
+                projekt_passziv_btn.Background = (Brush)bc.ConvertFrom("#bfbfbf");
+                projekt_passziv_btn.BorderBrush = (Brush)bc.ConvertFrom("#bfbfbf");
                 projekt_passziv_btn.Foreground = (Brush)bc.ConvertFrom("#ffffff");
             }
         }
@@ -229,6 +235,16 @@ namespace HRCloud.View.Usercontrol.Panels
         private void publikalt_check_Unchecked(object sender, RoutedEventArgs e)
         {
             Project_lister();
+        }
+        
+        private void modositas_Click(object sender, RoutedEventArgs e)
+        {
+            pcontrol.Change = true;
+            MenuItem item = sender as MenuItem;
+            ProjectListItems itemSource = item.DataContext as ProjectListItems;
+            pcontrol.ProjektID = itemSource.id;
+            sgrid.Children.Clear();
+            sgrid.Children.Add(project_new_panel = new project_new_panel(sgrid));
         }
     }
 }
