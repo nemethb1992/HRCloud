@@ -413,25 +413,25 @@
 
             </Grid>
             <CheckBox x:Name="publikalt_check" Grid.Column="1" Grid.Row="1" Content="Publikálva" Style="{StaticResource login_check}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Checked="publikalt_check_Checked" Unchecked="publikalt_check_Unchecked"/>
-            <TextBlock x:Name="hirdetes_text_1" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Text="Feladatok:" />
+            <TextBlock x:Name="hirdetes_text_1" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Text="Mivel bíznánk meg?" />
             <TextBox x:Name="feladatok_tbx" Tag="feladatok" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"  TextWrapping="Wrap"  Style="{StaticResource BigText_style}" LostFocus="Projekt_Leiras_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                 </TextBox.Resources>
             </TextBox>
-            <TextBlock x:Name="hirdetes_text_2" Grid.Row="3" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Elvárások:" />
+            <TextBlock x:Name="hirdetes_text_2" Grid.Row="3" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Mit kínálunk?" />
             <TextBox x:Name="elvarasok_tbx" Tag="elvarasok" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"  TextWrapping="Wrap"  Style="{StaticResource BigText_style}" LostFocus="Projekt_Leiras_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                 </TextBox.Resources>
             </TextBox>
-            <TextBlock x:Name="hirdetes_text_3"  Grid.Row="5" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Amit kínálunk" />
+            <TextBlock x:Name="hirdetes_text_3"  Grid.Row="5" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Rád gondoltunk, ha:" />
             <TextBox x:Name="kinalunk_tbx" Tag="kinalunk" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  TextWrapping="Wrap"  Style="{StaticResource BigText_style}" LostFocus="Projekt_Leiras_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                 </TextBox.Resources>
             </TextBox>
-            <TextBlock x:Name="hirdetes_text_4"  Grid.Row="7" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Előnyök" />
+            <TextBlock x:Name="hirdetes_text_4"  Grid.Row="7" VerticalAlignment="Center"  Style="{StaticResource Standard_Textblock}" Text="Előnyt élvezel, ha:" />
             <TextBox x:Name="elonyok_tbx" Tag="elonyok" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8"  TextWrapping="Wrap"  Style="{StaticResource BigText_style}" LostFocus="Projekt_Leiras_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
