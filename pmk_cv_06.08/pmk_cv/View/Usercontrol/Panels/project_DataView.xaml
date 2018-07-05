@@ -49,16 +49,16 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="projekt_1" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Státusz" />
+            <TextBlock x:Name="projekt_1" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Státusz" />
             <TextBlock x:Name="projekt_2" Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Munkaterület" />
-            <TextBlock x:Name="projekt_3" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="PC" />
+            <TextBlock x:Name="projekt_3" Style="{StaticResource Standard_Textblock}" Text="PC" />
             <TextBlock x:Name="projekt_4" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Végzettség" />
             <TextBlock x:Name="projekt_5" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
             <TextBlock x:Name="projekt_6" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Jelöltek száma" />
-            <TextBlock x:Name="projekt_7" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Közzétette" />
-            <TextBlock x:Name="projekt_8" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Közzététel dátuma" />
-            <TextBlock x:Name="projekt_2_1" Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Bér" />
-            <TextBlock x:Name="projekt_2_2" Grid.Column="1" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" />
+            <TextBlock x:Name="projekt_7" Style="{StaticResource Standard_Textblock}" Text="Közzétette" Grid.Row="8" />
+            <TextBlock x:Name="projekt_8" Grid.Column="1" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Közzététel dátuma" />
+            <TextBlock x:Name="projekt_2_1" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Bér" />
+            <TextBlock x:Name="projekt_2_2" Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" Grid.Row="6" />
 
             <!--<TextBlock x:Name="prop_1" Grid.Column="0" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Készség-1" />
             <TextBlock x:Name="prop_2" Grid.Column="0" Grid.Row="12" Style="{StaticResource Standard_Textblock}" Text="Készség-2" />
@@ -66,16 +66,16 @@
             <TextBlock x:Name="prop_4" Grid.Column="0" Grid.Row="16" Style="{StaticResource Standard_Textblock}" Text="Készség-4" />
             <TextBlock x:Name="prop_5" Grid.Column="0" Grid.Row="18" Style="{StaticResource Standard_Textblock}" Text="Készség-5" />-->
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
             <TextBlock Grid.Column="1" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_2" />
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" />
+            <TextBlock Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" Grid.Row="1" />
             <TextBlock Grid.Column="1" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_4" />
             <TextBlock Grid.Column="0" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_5" />
             <TextBlock Grid.Column="1" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_6" />
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" />
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
-            <TextBlock Grid.Column="0" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
-            <TextBlock Grid.Column="1" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" />
+            <TextBlock Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" Grid.Row="9" />
+            <TextBlock Grid.Column="1" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
+            <TextBlock Grid.Column="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" Grid.Row="7" />
 
 
             <!--<ProgressBar x:Name="kepesseg1" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2" Margin="0,0,100,0" Minimum="0" Maximum="10" Style="{StaticResource progressStyle}"/>
@@ -145,9 +145,9 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
-            
-            
-            
+
+
+
             <Button x:Name="jeloltek_addbtn" Tag="jelolt" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Visible" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Jelöltek hozzáadása" Click="jeloltek_addbtn_Click"/>
             <Button x:Name="ertesitendok_addbtn" Tag="ertesitendo" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Értesítendők hozzáadása" Click="ertesitendok_addbtn_Click"/>
             <Button x:Name="hr_addbtn" Tag="hr" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="HR hozzáadása" Click="hr_addbtn_Click"/>
@@ -162,7 +162,7 @@
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="50" Margin="0,2" MouseDown="Grid_MouseDown">
+                        <Grid Height="50" Margin="0,2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="33" />
                                 <ColumnDefinition Width="130" />
@@ -253,34 +253,34 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="megjegyzes_label" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Padding="0,5" Text="Megjegyzések" />
             <ListBox x:Name="megjegyzes_listBox" Grid.Row="1" Grid.RowSpan="5" Style="{StaticResource small_listBox_style}"  HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                    <ListBox.Resources>
-                        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
-                    </ListBox.Resources>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0.2" Width="400">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.5*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="4*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Törlés" Click="MenuItem_Click" />
-                                    </ContextMenu>
-                                </Grid.ContextMenu>
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0.2" Width="400">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="4*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Törlés" Click="MenuItem_Click" />
+                                </ContextMenu>
+                            </Grid.ContextMenu>
                             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="{Binding hr_nev}"/>
                             <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" TextAlignment="Right" Margin="10,5,0,0" FontSize="12" Text="{Binding datum}"/>
                             <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Cursor="Arrow" TextWrapping="Wrap" Width="400" Margin="0,0,0,10" Foreground="{StaticResource FontColor_Light}"  Style="{StaticResource Standard_Textblock}" Text="{Binding megjegyzes}"/>
                         </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="5,7" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -320,7 +320,7 @@
             <TextBlock x:Name="kompetencia5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource Standard_Textblock}" Padding="15,0" Foreground="{StaticResource FontColor_Light}" Text="-" />
 
 
-             <!--<Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="1*" />
@@ -372,9 +372,9 @@
             </ComboBox>
             <Button x:Name="add_hr_btn" Style="{StaticResource StandardButton}"  Grid.Column="1" Grid.Row="5" Content="Felvesz" Click="add_hr_btn_Click" />
         </Grid>-->
-    </Grid>
+        </Grid>
 
-    <Grid x:Name="Hirdetes_Szovegek_Grid" Grid.Column="1" Grid.Row="3"  Grid.RowSpan="3" Margin="0,0,0,30">
+        <Grid x:Name="Hirdetes_Szovegek_Grid" Grid.Column="1" Grid.Row="3"  Grid.RowSpan="3" Margin="0,0,0,30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

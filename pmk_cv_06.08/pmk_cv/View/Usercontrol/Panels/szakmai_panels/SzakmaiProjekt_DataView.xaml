@@ -43,16 +43,16 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="projekt_1" Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Státusz" />
+            <TextBlock x:Name="projekt_1" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Státusz" />
             <TextBlock x:Name="projekt_2" Grid.Column="1" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="Munkaterület" />
-            <TextBlock x:Name="projekt_3" Grid.Column="0" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="PC" />
+            <TextBlock x:Name="projekt_3" Style="{StaticResource Standard_Textblock}" Text="PC" />
             <TextBlock x:Name="projekt_4" Grid.Column="1" Grid.Row="2" Style="{StaticResource Standard_Textblock}" Text="Végzettség" />
             <TextBlock x:Name="projekt_5" Grid.Column="0" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Idegennyelv" />
             <TextBlock x:Name="projekt_6" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textblock}" Text="Jelöltek száma" />
-            <TextBlock x:Name="projekt_7" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Közzétette" />
-            <TextBlock x:Name="projekt_8" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Közzététel dátuma" />
-            <TextBlock x:Name="projekt_2_1" Grid.Column="0" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Bér" />
-            <TextBlock x:Name="projekt_2_2" Grid.Column="1" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" />
+            <TextBlock x:Name="projekt_7" Style="{StaticResource Standard_Textblock}" Text="Közzétette" Grid.Row="8" />
+            <TextBlock x:Name="projekt_8" Grid.Column="1" Grid.Row="8" Style="{StaticResource Standard_Textblock}" Text="Közzététel dátuma" />
+            <TextBlock x:Name="projekt_2_1" Grid.Column="0" Grid.Row="6" Style="{StaticResource Standard_Textblock}" Text="Bér" />
+            <TextBlock x:Name="projekt_2_2" Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="Tapasztalat (év)" Grid.Row="6" />
 
             <!--<TextBlock x:Name="prop_1" Grid.Column="0" Grid.Row="10" Style="{StaticResource Standard_Textblock}" Text="Készség-1" />
             <TextBlock x:Name="prop_2" Grid.Column="0" Grid.Row="12" Style="{StaticResource Standard_Textblock}" Text="Készség-2" />
@@ -60,18 +60,16 @@
             <TextBlock x:Name="prop_4" Grid.Column="0" Grid.Row="16" Style="{StaticResource Standard_Textblock}" Text="Készség-4" />
             <TextBlock x:Name="prop_5" Grid.Column="0" Grid.Row="18" Style="{StaticResource Standard_Textblock}" Text="Készség-5" />-->
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_1" />
             <TextBlock Grid.Column="1" Grid.Row="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_2" />
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" />
+            <TextBlock Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_3" Grid.Row="1" />
             <TextBlock Grid.Column="1" Grid.Row="3" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_4" />
             <TextBlock Grid.Column="0" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_5" />
             <TextBlock Grid.Column="1" Grid.Row="5" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_6" />
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" />
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
-            <TextBlock Grid.Column="0" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
-            <TextBlock Grid.Column="1" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" />
-
-
+            <TextBlock Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_7" Grid.Row="9" />
+            <TextBlock Grid.Column="1" Grid.Row="9" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_8" />
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_9" />
+            <TextBlock Grid.Column="1" Text="-" Padding="10,0,0,0" Foreground="{StaticResource FontColor_Light}" Style="{StaticResource Standard_Textblock}" x:Name="projekt_input_10" Grid.Row="7" />
             <!--<ProgressBar x:Name="kepesseg1" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2" Margin="0,0,100,0" Minimum="0" Maximum="10" Style="{StaticResource progressStyle}"/>
             <ProgressBar x:Name="kepesseg2" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" Margin="0,0,100,0" Minimum="0" Maximum="10" Style="{StaticResource progressStyle}" />
             <ProgressBar x:Name="kepesseg3" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2" Margin="0,0,100,0" Minimum="0" Maximum="10" Style="{StaticResource progressStyle}" />

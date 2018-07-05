@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HRCloud.Control;
 using HRCloud.Model;
 using MySql.Data.MySqlClient;
+using static HRCloud.Model.Email_m;
 using static HRCloud.Model.szakmai_m;
 
 namespace HRCloud.Model
@@ -997,6 +998,33 @@ namespace HRCloud.Model
                 {
                 }
 
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
+        public List<MailServer_m> ConnectionSMTP_DataSource(string query)
+        {
+            List<MailServer_m> items = new List<MailServer_m>();
+            if (this.dbOpen() == true)
+            {
+                cmd = new MySqlCommand(query, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    bool ssl = true;
+                    if (Convert.ToInt32(sdr["ssl"]) == 0)
+                    {
+                        ssl = false;
+                    }
+                    items.Add(new MailServer_m
+                    {
+                        mailserver = sdr["mailserver"].ToString(),
+                        port = Convert.ToInt32(sdr["port"]),
+                        ssl = ssl,
+                        login = sdr["login"].ToString()
+                    });
+                }
                 sdr.Close();
             }
             dbClose();
