@@ -8,9 +8,74 @@ namespace HRCloud.Public.templates
 {
     class email_template
     {
-        public string test_mail()
+
+        public string Udvozlo_Email(string name)
         {
-            string mailBody = @"<html>
+            string content = @"
+                                            <h2>Tisztelt "+ name + @"!</h2>
+                                            <p Style='margin-bottom: 30px;' class=''>
+                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
+
+                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
+
+                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
+                                            </p>
+                                            <p>Üdvözlettel,</p>
+                                            <p>Phoenix Mecano Kecskemét Kft.</p>
+                                            <p>Személyügyi Osztály</p>";
+            return front + content + bottom;
+        }
+        public string Elutasito_Email()
+        {
+            string content = @"
+                                            <h2>Tisztelt Pályázó!</h2>
+                                            <p Style='margin-bottom: 30px;' class=''>
+                                            Köszönjük jelentkezését a Phoenix Mecano Kecskemét Kft-hez.
+                                            Sajnálattal közöljük, hogy a megpályázott pozícióra nem került kiválasztásra.
+                                            Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
+                                            </p>
+                                            <p>További pályafutásához sok sikert kívánunk!</p>
+                                            <p>Üdvözlettel,</p>
+                                            <p>Phoenix Mecano Kecskemét Kft.</p>
+                                            <p>Személyügyi Osztály</p>";
+            return front + content + bottom;
+        }
+        public string Jelolt_Meghivo_Email(string name)
+        {
+            string content = @"
+                                            <h2>Tisztelt " + name + @"!</h2>
+                                            <p Style='margin-bottom: 30px;' class=''>
+                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
+
+                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
+
+                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
+                                            </p>
+                                            <p>Üdvözlettel,</p>
+                                            <p>Phoenix Mecano Kecskemét Kft.</p>
+                                            <p>Személyügyi Osztály</p>";
+            return front + content + bottom;
+        }
+        public string Szakmai_Meghivo_Email(string name)
+        {
+            string content = @"
+                                            <h2>Tisztelt " + name + @"!</h2>
+                                            <p Style='margin-bottom: 30px;' class=''>
+                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
+
+                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
+
+                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
+                                            </p>
+                                            <p>Üdvözlettel,</p>
+                                            <p>Phoenix Mecano Kecskemét Kft.</p>
+                                            <p>Személyügyi Osztály</p>";
+            return front + content + bottom;
+        }
+
+
+
+        string front = @"<html>
 <head>
     <meta name='viewport' content='width=device-width' />
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -336,32 +401,19 @@ namespace HRCloud.Public.templates
 
                     <span class='preheader'>This is preheader text. Some clients will show this text as a preview.</span>
                     <table class='main'>
-
                         <tr>
                             <td class='wrapper'>
                                 <table border='0' cellpadding='0' cellspacing='0' Style='padding: 10px;'>
                                     <img src='https://www.phoenix-mecano.hu/wp-content/uploads/2017/02/PMK1_CMYK-300x70.png' width='215' alt='Smiley face' height='50'>
                                     <tr>
                                         <td>
-                                            <p></p>
-                                            <h2>Tisztelt Név!</h2>
-                                            <p Style='margin-bottom: 30px;' class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
-                                            </p>
-
-                                            <p>Üdvözlettel,</p>
-                                            <p>Phoenix Mecano Kecskemét Kft.</p>
-                                            <p>Személyügyi Osztály</p>
+                                            <p></p>";
+        string bottom = @"
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-
                     </table>
 
                     <div class='footer'>
@@ -385,7 +437,5 @@ namespace HRCloud.Public.templates
     </table>
 </body>
 </html>";
-            return mailBody;
-        }
     }
 }

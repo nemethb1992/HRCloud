@@ -129,7 +129,8 @@ namespace HRCloud.View.Usercontrol
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             email_template etemp = new email_template();
-            e_control.Mail_Send("fzbalu92@gmail.com", etemp.test_mail());
+            e_control.Mail_Send("fzbalu92@gmail.com", etemp.Udvozlo_Email("Németh Balázs"));
+            e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email());
         }
     }
 }
