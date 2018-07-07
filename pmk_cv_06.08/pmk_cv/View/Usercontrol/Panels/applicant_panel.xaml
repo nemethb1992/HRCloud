@@ -14,9 +14,9 @@
             <ColumnDefinition Width="50" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="500" />
+            <RowDefinition Height="160" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
@@ -77,7 +77,7 @@
                             <ImageBrush ImageSource="/HRCloud;component/Public/imgs/refresh.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
-                    <ComboBox x:Name="munkakor_srccbx"  Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="SearchCbx_SelectionChanged">
+                    <ComboBox x:Name="munkakor_srccbx" Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="SearchCbx_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Grid >

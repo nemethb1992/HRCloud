@@ -202,6 +202,7 @@
     <Compile Include="Model\projekt_applicant_m.cs" />
     <Compile Include="Model\projekt_m.cs" />
     <Compile Include="Model\szakmai_m.cs" />
+    <Compile Include="Public\templates\email_template.cs" />
     <Compile Include="View\Usercontrol\login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>

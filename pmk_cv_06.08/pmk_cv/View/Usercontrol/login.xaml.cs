@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HRCloud.Control;
 using HRCloud.Model;
+using HRCloud.Public.templates;
 using HRCloud.View;
 using HRCloud.View.Windows;
 
@@ -123,6 +124,12 @@ namespace HRCloud.View.Usercontrol
             popup.Show();
             var window = Window.GetWindow(this);
             window.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            email_template etemp = new email_template();
+            e_control.Mail_Send("fzbalu92@gmail.com", etemp.test_mail());
         }
     }
 }
