@@ -10,6 +10,7 @@ namespace HRCloud.Model
     {
         public class MailServer_m
         {
+            public string type { get; set; }
             public string mailserver { get; set; }
             public int port { get; set; }
             public bool ssl { get; set; }

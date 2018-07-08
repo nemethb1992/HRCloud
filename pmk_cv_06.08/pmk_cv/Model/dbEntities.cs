@@ -1019,6 +1019,7 @@ namespace HRCloud.Model
                     }
                     items.Add(new MailServer_m
                     {
+                        type = sdr["type"].ToString(),
                         mailserver = sdr["mailserver"].ToString(),
                         port = Convert.ToInt32(sdr["port"]),
                         ssl = ssl,
