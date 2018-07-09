@@ -127,7 +127,7 @@
             </ListBox.Resources>
             <ListBox.ItemTemplate>
                 <DataTemplate  DataType="ProjectListItems">
-                    <Grid Height="40" MaxWidth="1005">
+                    <Grid Height="40" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="35" />
                             <ColumnDefinition Width="*" />
