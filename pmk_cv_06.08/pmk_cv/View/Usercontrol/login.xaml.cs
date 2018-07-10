@@ -92,30 +92,31 @@ namespace HRCloud.View.Usercontrol
         {
 
 
-            //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            //{
-            if(lcontrol.UserValider_MySql(Luser_tbx.Text))
+            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
             {
-                UserRemember();
-                session.UserData = lcontrol.UserSessionDataList(Luser_tbx.Text);
-                session.tartomanyi = Luser_tbx.Text;
-                Main mw = new Main();
-                mw.Show();
-                var window = Window.GetWindow(this);
-                window.Close();
-            }
+                if (lcontrol.UserValider_MySql(Luser_tbx.Text))
+                {
+                    UserRemember();
+                    session.UserData = lcontrol.UserSessionDataList(Luser_tbx.Text);
+                    session.tartomanyi = Luser_tbx.Text;
+                    Main mw = new Main();
+                    mw.Show();
+                    var window = Window.GetWindow(this);
+                    window.Close();
+                }
 
+                else
+                {
+                    LoginSign.Text = "Hibás bejelentkezés!";
+                }
+            }
             else
             {
-                LoginSign.Text = "Hibás bejelentkezés!";
+                MessageBox.Show("Tartományi hitelesítés sikertelen!");
+
+                //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
+
             }
-
-            //else
-            //{
-            //    MessageBox.Show("Tartományi hitelesítés sikertelen!");
-            //}
-            //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
-
         }
 
         private void Registration_Click(object sender, MouseButtonEventArgs e)

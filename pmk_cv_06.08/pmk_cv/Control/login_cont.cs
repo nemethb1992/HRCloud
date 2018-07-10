@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.DirectoryServices;
+using System.Net;
+using System.DirectoryServices.Protocols;
+
 
 namespace HRCloud.Control
 {
@@ -11,17 +15,58 @@ namespace HRCloud.Control
     {
         Session session = new Session();
         dbEntities dbE = new dbEntities();
+        public bool ActiveDirectoryValidation(string name, string pass)
+        {
+            bool authenticated = false;
+
+            //try
+            //{
+            //    DirectoryEntry entry = new DirectoryEntry("ldap://192.168.144.21:389", name + "@pmhu.local", pass);
+            //    object nativeObject = entry.NativeObject;
+            //    authenticated = true;
+            //}
+            //catch (DirectoryServicesCOMException cex)
+            //{
+            //    //not authenticated; reason why is in cex
+            //}
+            //catch (Exception ex)
+            //{
+            //    //not authenticated due to some other exception [this is optional]
+            //}
+
+            //return authenticated;
+            try
+            {
+                LdapConnection connection = new LdapConnection("ldap://192.168.144.21:389");
+                NetworkCredential credential = new NetworkCredential(name + "@pmhu.local", pass);
+                connection.Credential = credential;
+                connection.Bind();
+                Console.WriteLine("logged in");
+                authenticated = true;
+            }
+            catch (LdapException lexc)
+            {
+                String error = lexc.ServerErrorMessage;
+                Console.WriteLine(lexc);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return authenticated;
+        }
+
         public bool userValidation(string name, string pass)
         {
-
             DateTime dateTime = DateTime.Now;
             bool valider = false;
-            int found = dbE.MysqlReaderRowCount("SELECT count(id) FROM users WHERE username='" + name + "'");
-            if (found == 1)
-            {
-                valider = true;
-                dbE.SqliteQueryExecute("UPDATE users SET belepve = '"+ dateTime.ToString("yyyy. MM. dd.") + "' WHERE username = '" + name + "';");
-            }
+                int found = dbE.MysqlReaderRowCount("SELECT count(id) FROM users WHERE username='" + name + "'");
+                if (found == 1)
+                {
+                    valider = true;
+                    dbE.SqliteQueryExecute("UPDATE users SET belepve = '" + dateTime.ToString("yyyy. MM. dd.") + "' WHERE username = '" + name + "';");
+                }
+
             return valider;
         }
         public string GetRememberedUser()
