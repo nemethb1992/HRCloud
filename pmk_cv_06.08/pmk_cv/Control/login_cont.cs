@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.DirectoryServices;
 using System.Net;
 using System.DirectoryServices.Protocols;
-
+using System.DirectoryServices.AccountManagement;
 
 namespace HRCloud.Control
 {
@@ -35,23 +35,35 @@ namespace HRCloud.Control
             //}
 
             //return authenticated;
+            //try
+            //{
+            //    LdapConnection connection = new LdapConnection("ldap://192.168.144.21:389");
+            //    NetworkCredential credential = new NetworkCredential(name + "@pmhu.local", pass);
+            //    connection.Credential = credential;
+            //    connection.Bind();
+            //    Console.WriteLine("logged in");
+            //    authenticated = true;
+            //}
+            //catch (LdapException lexc)
+            //{
+            //    String error = lexc.ServerErrorMessage;
+            //    Console.WriteLine(lexc);
+            //}
+            //catch (Exception exc)
+            //{
+            //    Console.WriteLine(exc);
+            //}
             try
             {
-                LdapConnection connection = new LdapConnection("ldap://192.168.144.21:389");
-                NetworkCredential credential = new NetworkCredential(name + "@pmhu.local", pass);
-                connection.Credential = credential;
-                connection.Bind();
-                Console.WriteLine("logged in");
-                authenticated = true;
+                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "ldap://192.168.144.21:389"))
+                {
+                    // validate the credentials
+                    authenticated = pc.ValidateCredentials(name, pass);
+                }
             }
-            catch (LdapException lexc)
+            catch (Exception)
             {
-                String error = lexc.ServerErrorMessage;
-                Console.WriteLine(lexc);
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc);
+                throw;
             }
             return authenticated;
         }
