@@ -30,7 +30,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -279,7 +279,6 @@ namespace HRCloud.Model
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
-                int j = 0;
                 while (sdr.Read())
                 {
                     items.Add(new ertesulesek
@@ -287,7 +286,25 @@ namespace HRCloud.Model
                         id = Convert.ToInt32(sdr["id"]),
                         ertesules_megnevezes = sdr["ertesules_megnevezes"].ToString(),
                     });
-                    j++;
+                }
+                sdr.Close();
+            }
+            dbClose();
+            return items;
+        }
+        public List<file_url> file_url_ROOT_MySql_listQuery(string query)
+        {
+            List<file_url> items = new List<file_url>();
+            if (this.dbOpen() == true)
+            {
+                cmd = new MySqlCommand(query, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    items.Add(new file_url
+                    {
+                        url = sdr["url"].ToString(),
+                    });
                 }
                 sdr.Close();
             }
