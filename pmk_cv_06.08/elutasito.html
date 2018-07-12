@@ -1,88 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HRCloud.Public.templates
-{
-    class email_template
-    {
-
-        public string Udvozlo_Email(string name)
-        {
-            string content = @"
-                                            <h2>Tisztelt "+ name + @"!</h2>
-                                                   <p class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-                                            </p>
-                                            <p>
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban.
-                                            </p>
-                                            <p Style='margin-bottom: 30px'>
-                                                Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
-                                            </p>
-                                            <p>Üdvözlettel,</p>
-                                            <p>Phoenix Mecano Kecskemét Kft.</p>
-                                            <p>Személyügyi Osztály</p></td>";
-            return front + content + bottom;
-        }
-        public string Elutasito_Email(string name)
-        {
-            string content = @"
-                                            <h2>Tisztelt " + name + @"!</h2>
-                                                 <p  class=''>
-                                                Köszönjük jelentkezését a Phoenix Mecano Kecskemét Kft-hez.
-                                                Sajnálattal közöljük, hogy a megpályázott pozícióra nem került kiválasztásra.
-                                                </p>
-                                                <p>
-                                                    Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban.
-                                                </p>
-                                                <p> Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.</p>
-                                                <p Style='margin-bottom: 30px;'>További pályafutásához sok sikert kívánunk!</p>
-                                                <p>Üdvözlettel,</p>
-                                                <p>Phoenix Mecano Kecskemét Kft.</p>
-                                                <p>Személyügyi Osztály</p>";
-            return front + content + bottom;
-        }
-        public string Jelolt_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
-        {
-            string content = @"
-                                            <h2>Tisztelt " + name + @"!</h2>
-                                            <p Style='margin-bottom: 30px;' class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
-                                            </p>
-                                            <p>Üdvözlettel,</p>
-                                            <p>Phoenix Mecano Kecskemét Kft.</p>
-                                            <p>Személyügyi Osztály</p>";
-            return front + content + bottom;
-        }
-        public string Szakmai_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
-        {
-            string content = @"
-                                            <h2>Tisztelt " + name + @"!</h2>
-                                            <p Style='margin-bottom: 30px;' class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
-                                            </p>
-                                            <p>Üdvözlettel,</p>
-                                            <p>Phoenix Mecano Kecskemét Kft.</p>
-                                            <p>Személyügyi Osztály</p>";
-            return front + content + bottom;
-        }
-
-
-
-        string front = @"<html>
+<html>
 <head>
     <meta name='viewport' content='width=device-width' />
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -200,7 +116,7 @@ namespace HRCloud.Public.templates
             font-weight: normal;
             line-height: 170%;
             margin: 0;
-            Margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
             p li,
@@ -414,35 +330,44 @@ namespace HRCloud.Public.templates
                                     <img src='https://www.phoenix-mecano.hu/wp-content/uploads/2017/02/PMK1_CMYK-300x70.png' width='215' alt='Smiley face' height='50'>
                                     <tr>
                                         <td>
-                                            <p></p>";
-        string bottom = @"
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <div class='footer'>
-                        <table border='0' cellpadding='0' cellspacing='0'>
-                            <tr>
-                                <td class='content-block'>
-                                    <span class='apple-link'>Phoenix Mecano Kecskemét kft.</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class='content-block powered-by'>
-                                    Szent István krt. 24, 6000
+                                            <p></p>
+                                            <h2>Tisztelt Név!</h2>
+                                            <p  class=''>
+                                                Köszönjük jelentkezését a Phoenix Mecano Kecskemét Kft-hez.
+                                                Sajnálattal közöljük, hogy a megpályázott pozícióra nem került kiválasztásra.
+                                                </p>
+                                                <p>
+                                                    Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban.
+                                                </p>
+                                                <p> Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.</p>
+                                                <p Style='margin-bottom: 30px;'>További pályafutásához sok sikert kívánunk!</p>
+                                                <p>Üdvözlettel,</p>
+                                                <p>Phoenix Mecano Kecskemét Kft.</p>
+                                                <p>Személyügyi Osztály</p>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
+    
+                        <div class='footer'>
+                            <table border='0' cellpadding='0' cellspacing='0'>
+                                <tr>
+                                    <td class='content-block'>
+                                        <span class='apple-link'>Phoenix Mecano Kecskemét kft.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class='content-block powered-by'>
+                                        Szent István krt. 24, 6000
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-</body>
-</html>";
-    }
-}
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </body>
+    </html>
