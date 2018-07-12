@@ -57,7 +57,7 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         private void FormLoadUp()
         {
-            List<interju_struct> list = pa_control.Interju_DataSource();
+            List<interju_struct> list = pa_control.Interju_DataSource_ByID();
             List<ProjectExtendedListItems> li = p_control.ProjektFullDataSource();
             List<kompetenciak> li_k = pa_control.kompetencia_DataSource();
             foreach (var item in li_k)
@@ -77,6 +77,7 @@ namespace HRCloud.View.Usercontrol.Panels
             interju_projekt_tbl.Text = list[0].projekt_megnevezes;
             interju_cim_tbl.Text = list[0].interju_cim;
             interju_helye_tbl.Text = list[0].helyszin;
+            interju_idopont_tbl.Text = list[0].interju_datum +" - "+ list[0].idopont;
             interju_liras_tbl.Text = list[0].interju_leiras;
 
             choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();

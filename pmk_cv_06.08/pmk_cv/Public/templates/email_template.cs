@@ -25,10 +25,10 @@ namespace HRCloud.Public.templates
                                             <p>Személyügyi Osztály</p>";
             return front + content + bottom;
         }
-        public string Elutasito_Email()
+        public string Elutasito_Email(string name)
         {
             string content = @"
-                                            <h2>Tisztelt Pályázó!</h2>
+                                            <h2>Tisztelt " + name + @"!</h2>
                                             <p Style='margin-bottom: 30px;' class=''>
                                             Köszönjük jelentkezését a Phoenix Mecano Kecskemét Kft-hez.
                                             Sajnálattal közöljük, hogy a megpályázott pozícióra nem került kiválasztásra.

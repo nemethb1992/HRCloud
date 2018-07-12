@@ -30,7 +30,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -820,7 +820,8 @@ namespace HRCloud.Model
                         interju_datum = sdr["interju_datum"].ToString(),
                         interju_cim = sdr["interju_cim"].ToString(),
                         interju_leiras = sdr["interju_leiras"].ToString(),
-                        helyszin = sdr["helyszin"].ToString()
+                        helyszin = sdr["helyszin"].ToString(),
+                        idopont = sdr["idopont"].ToString()
                     });
                 }
                 sdr.Close();

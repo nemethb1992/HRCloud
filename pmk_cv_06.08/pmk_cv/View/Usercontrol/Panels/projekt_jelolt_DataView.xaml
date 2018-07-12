@@ -72,7 +72,12 @@
             </Grid>
             <Button x:Name="telefon_back_btn" Grid.Column="1" Grid.Row="7" Content="Mégsem" Height="40" Style="{StaticResource StandardButton}" Margin="0,10,10,10" Click="Telefon_Osszecsukas_btn_Click"/>
             <Button x:Name="telefon_save_btn" Grid.Column="2" Grid.Row="7" Content="Elfogadás"  Height="40" Style="{StaticResource StandardButton}" Margin="10,10,0,10" Click="Telefon_Elfogadas_btn_Click" />
-            <ComboBox x:Name="ismerte_cbx" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="17" Margin="0,3"/>
+
+            <ComboBox x:Name="ismerte_cbx" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="2" FontSize="17" Padding="10,5" Margin="0,2.5">
+                <ComboBox.Resources>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner_square}"/>
+                </ComboBox.Resources>
+            </ComboBox>
             <TextBox x:Name="muszakok_tbx" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Style="{StaticResource Standard_Textbox}"  Margin="0,3" Background="White" PreviewTextInput="numericTextBox"/>
             <TextBox x:Name="utazas_tbx" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="6" Style="{StaticResource Standard_Textbox}"  Margin="0,3" Background="White"/>
         </Grid>
@@ -239,7 +244,7 @@
                     <RowDefinition Height="45" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="45" />
-                    <RowDefinition Height="45" />
+                    <RowDefinition Height="30" />
                     <RowDefinition Height="45" />
                     <RowDefinition Height="45" />
                     <RowDefinition Height="*" />
@@ -254,15 +259,20 @@
                 <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="14" CornerRadius="5" Margin="35,65,35,80" Background="{StaticResource SearchPanelColor}"/>
 
                 <TextBlock  Style="{StaticResource big_title_style}" Text="Interjú felvétele" Grid.ColumnSpan="2" Grid.Column="1"  Margin="0,20,0,0"/>
-
                 <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource Standard_Textblock}" Text="Interjú cím" />
-                <TextBox x:Name="inter_cim" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="2" Style="{StaticResource Standard_Textbox}" Margin="0,5" Background="White"/>
+                <ComboBox x:Name="inter_cim" Grid.Row="2" Grid.Column="1" FontSize="17" Padding="10,5" Grid.ColumnSpan="3" Margin="0,5">
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner_square}"/>
+                    </ComboBox.Resources>
+                </ComboBox>
                 <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource Standard_Textblock}" Text="Helyszín" />
                 <TextBox x:Name="inter_helyszin" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="4" Style="{StaticResource Standard_Textbox}" Margin="0,5" Background="White"/>
-                <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource Standard_Textblock}"  Text="Interjú dátuma" />
-                <DatePicker x:Name="inter_date" Grid.Column="1"  Grid.ColumnSpan="3" Margin="0,5" Style="{StaticResource Standard_DatePicker}" SelectedDateFormat="Short"  Grid.Row="6"/>
-                <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource Standard_Textblock}"  Text="Leírás" />
-                <TextBox x:Name="inter_leiras" Grid.Column="1"   Grid.ColumnSpan="3" Grid.Row="8" Grid.RowSpan="4" Style="{StaticResource BigText_style}" Margin="0,5" Background="White" />
+                <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource Standard_Textblock}"  Text="Dátum" />
+                <DatePicker x:Name="inter_date" Grid.Column="1" IsEnabled="True"  Grid.ColumnSpan="3" Margin="0,5" Style="{StaticResource Standard_DatePicker}" SelectedDateFormat="Short"  Grid.Row="6"/>
+                <TextBlock Grid.Column="1" Grid.Row="9" Style="{StaticResource Standard_Textblock}"  Text="Leírás" />
+                <TextBox x:Name="inter_leiras" Grid.Column="1"   Grid.ColumnSpan="3" Grid.Row="10" Grid.RowSpan="3" Style="{StaticResource BigText_style}" Margin="0,5,0,20" Background="White" />
+                <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource Standard_Textblock}" Text="Időpont" />
+                <TextBox x:Name="inter_idopont" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="8" Style="{StaticResource Standard_Textbox}" Margin="0,5" Background="White"/>
 
                 <Button x:Name="uj_interju_megsem_btn" Grid.Column="1" Grid.Row="13" Content="Mégsem"  Style="{StaticResource StandardButton}" Height="45" VerticalAlignment="Top" Click="uj_interju_megsem_btn_Click" />
                 <Button x:Name="uj_interju_mentes_btn" Grid.Column="3" Grid.Row="13" Content="Mentés"  Style="{StaticResource StandardButton}" Height="45" VerticalAlignment="Top" Click="uj_interju_mentes_btn_Click" />

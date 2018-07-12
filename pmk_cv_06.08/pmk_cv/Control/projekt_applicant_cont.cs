@@ -52,7 +52,7 @@ namespace HRCloud.Control
         }
         public List<interju_struct> Interju_DataSource()
         {
-            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin FROM interjuk_kapcs" +
+            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
                 " INNER JOIN projektek ON interjuk_kapcs.projekt_id = projektek.id" +
                 " INNER JOIN jeloltek ON interjuk_kapcs.jelolt_id = jeloltek.id" +
                 " WHERE jelolt_id = " + acontrol.ApplicantID+"" +
@@ -60,13 +60,23 @@ namespace HRCloud.Control
                 " ORDER BY felvitel_datum";
             return dbE.Interju_MySql_listQuery(query);
         }
+        public List<interju_struct> Interju_DataSource_ByID()
+        {
+            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
+                " INNER JOIN projektek ON interjuk_kapcs.projekt_id = projektek.id" +
+                " INNER JOIN jeloltek ON interjuk_kapcs.jelolt_id = jeloltek.id" +
+                " WHERE interjuk_kapcs.id = " + InterjuID + "" +
+                " ORDER BY felvitel_datum";
+            return dbE.Interju_MySql_listQuery(query);
+        }
 
-        public void Insert_interju(string interju_datum, string cim, string leiras, string helyszin)
+        public void Insert_interju(string interju_datum, string cim, string leiras, string helyszin, string idopont)
         {
 
-            DateTime dateTime = DateTime.Now;
-            string query = "INSERT INTO `interjuk_kapcs` (`projekt_id`, `jelolt_id`, `hr_id`, `felvitel_datum`, `interju_datum`, `interju_cim`, `interju_leiras`, `helyszin`) VALUES (" + pcontrol.ProjektID + ", " + acontrol.ApplicantID + ", "+sess.UserData[0].id+ ", '"+dateTime.ToString("yyyy.MM.dd.")+"', '"+interju_datum+"', '"+cim+"', '"+leiras+"', '"+helyszin+"');";
-            dbE.MysqlQueryExecute(query);
+                DateTime dateTime = DateTime.Now;
+                string query = "INSERT INTO `interjuk_kapcs` (`projekt_id`, `jelolt_id`, `hr_id`, `felvitel_datum`, `interju_datum`, `interju_cim`, `interju_leiras`, `helyszin`,  `idopont`) VALUES (" + pcontrol.ProjektID + ", " + acontrol.ApplicantID + ", " + sess.UserData[0].id + ", '" + dateTime.ToString("yyyy.MM.dd.") + "', '" + interju_datum + "', '" + cim + "', '" + leiras + "', '" + helyszin + "', '" + idopont + "');";
+                dbE.MysqlQueryExecute(query);
+       
 
         }
         public void interju_delete(int id)

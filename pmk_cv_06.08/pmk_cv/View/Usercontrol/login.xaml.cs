@@ -92,8 +92,8 @@ namespace HRCloud.View.Usercontrol
         {
 
 
-            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            {
+            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            //{
                 if (lcontrol.UserValider_MySql(Luser_tbx.Text))
                 {
                     UserRemember();
@@ -109,14 +109,14 @@ namespace HRCloud.View.Usercontrol
                 {
                     LoginSign.Text = "Hibás bejelentkezés!";
                 }
-            }
-            else
-            {
-                MessageBox.Show("Tartományi hitelesítés sikertelen!");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Tartományi hitelesítés sikertelen!");
 
-                //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            //    //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
 
-            }
+            //}
         }
 
         private void Registration_Click(object sender, MouseButtonEventArgs e)
@@ -130,8 +130,9 @@ namespace HRCloud.View.Usercontrol
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             email_template etemp = new email_template();
-            e_control.Mail_Send("fzbalu92@gmail.com", etemp.Udvozlo_Email("Németh Balázs"));
-            e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email());
+            e_control.Mail_Send("fzbalu92@gmail.com", etemp.Udvozlo_Email("Név"));
+            //e_control.Mail_Send("info@betapress.hu", etemp.Udvozlo_Email("Név"));
+            //e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email("Név"));
         }
     }
 }

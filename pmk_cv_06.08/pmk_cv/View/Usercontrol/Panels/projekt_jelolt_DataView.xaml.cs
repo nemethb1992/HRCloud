@@ -50,6 +50,13 @@ namespace HRCloud.View.Usercontrol.Panels
             jelolt_telefon.Text = "( " + a_li[0].telefon + " )";
             megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
             kapcs_jeloltek_listBox.ItemsSource = pa_control.Interju_DataSource();
+            inter_cim.Items.Add("HR interjú");
+            inter_cim.Items.Add("Szakmai + HR");
+            inter_cim.Items.Add("Szakmai Interjú 1.");
+            inter_cim.Items.Add("Szakmai Interjú 2.");
+            inter_cim.Items.Add("Szakmai Interjú 3.");
+            inter_cim.Items.Add("Szakmai Interjú 4.");
+            inter_cim.SelectedIndex = 0;
             Tamogatas_Writer();
             try
             {
@@ -206,11 +213,16 @@ namespace HRCloud.View.Usercontrol.Panels
 
         private void uj_interju_mentes_btn_Click(object sender, RoutedEventArgs e)
         {
+            string datum = "";
             string[] seged = inter_date.SelectedDate.ToString().Split(' ');
-            string datum = seged[0] + seged[1] + seged[2];
             try
             {
-                pa_control.Insert_interju(datum, inter_cim.Text, inter_leiras.Text, inter_helyszin.Text);
+                datum = seged[0] + seged[1] + seged[2];
+            }
+            catch{ }
+            try
+            {
+                pa_control.Insert_interju(datum, inter_cim.SelectedItem.ToString(), inter_leiras.Text, inter_helyszin.Text, inter_idopont.Text);
                 form_loadup();
                 Interju_panel_close();
             }

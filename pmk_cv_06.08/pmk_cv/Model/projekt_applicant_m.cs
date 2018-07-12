@@ -26,6 +26,7 @@ namespace HRCloud.Model
         public string interju_cim { get; set; }
         public string interju_leiras { get; set; }
         public string helyszin { get; set; }
+        public string idopont { get; set; }
     }
     //public class tamogatas_struct
     //{
