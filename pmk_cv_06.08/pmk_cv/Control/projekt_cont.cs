@@ -124,7 +124,7 @@ namespace HRCloud.Control
         //}
         public List<ertesitendok_struct> ErtesitendokDataSource_cbx(string ertesitendok_src)
         {
-            string query = "SELECT id, name FROM users WHERE name LIKE '%"+ertesitendok_src+"%' AND kategoria = 0";
+            string query = "SELECT id, name ,email FROM users WHERE name LIKE '%"+ertesitendok_src+"%' AND kategoria = 0";
             return dbE.Ertesitendok_MySql_listQuery(query);
         }
         public List<hr_struct> HrDataSource_cbx(string nev_src)
@@ -140,7 +140,7 @@ namespace HRCloud.Control
       
         public List<ertesitendok_struct> ErtesitendokDataSource_toProjektList()
         {
-            string query = "SELECT users.id, name FROM users INNER JOIN projekt_ertesitendok_kapcs ON users.id = projekt_ertesitendok_kapcs.ertesitendok_id  WHERE projekt_ertesitendok_kapcs.projekt_id =" + ProjektID+ " AND kategoria = 0 GROUP BY users.id";
+            string query = "SELECT users.id, name, email FROM users INNER JOIN projekt_ertesitendok_kapcs ON users.id = projekt_ertesitendok_kapcs.ertesitendok_id  WHERE projekt_ertesitendok_kapcs.projekt_id =" + ProjektID+ " AND kategoria = 0 GROUP BY users.id";
             return dbE.Ertesitendok_MySql_listQuery(query);
         }
         public List<SubJelolt> JeloltDataSource_cbx(string nevsrc)

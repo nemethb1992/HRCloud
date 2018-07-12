@@ -723,6 +723,7 @@ namespace HRCloud.Model
                     {
                         id = Convert.ToInt32(sdr["id"]),
                         name = sdr["name"].ToString(),
+                        email = sdr["email"].ToString(),
 
                     });
                 }
@@ -813,6 +814,7 @@ namespace HRCloud.Model
                         id = Convert.ToInt32(sdr["id"]),
                         projekt_megnevezes = sdr["megnevezes_projekt"].ToString(),
                         jelolt_megnevezes = sdr["nev"].ToString(),
+                        jelolt_email = sdr["email"].ToString(),
                         projekt_id = Convert.ToInt32(sdr["projekt_id"]),
                         jelolt_id = Convert.ToInt32(sdr["jelolt_id"]),
                         hr_id = Convert.ToInt32(sdr["hr_id"]),

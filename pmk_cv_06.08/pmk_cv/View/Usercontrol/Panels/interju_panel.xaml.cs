@@ -1,5 +1,6 @@
 ﻿using HRCloud.Control;
 using HRCloud.Model;
+using HRCloud.Public.templates;
 using HRCloud.View.Usercontrol.Panels.szakmai_panels;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace HRCloud.View.Usercontrol.Panels
         applicant_cont a_control = new applicant_cont();
         projekt_cont p_control = new projekt_cont();
         Session sess = new Session();
+        email_cont email = new email_cont();
+        email_template et = new email_template();
         projekt_applicant_cont pa_control = new projekt_applicant_cont();
         public interju_panel(Grid grid)
         {
@@ -39,6 +42,7 @@ namespace HRCloud.View.Usercontrol.Panels
             if (sess.UserData[0].kategoria == 0)
             {
                 add_meghivott.Visibility = Visibility.Hidden;
+                invite_meghívott.Visibility = Visibility.Hidden;
             }
         }
 
@@ -119,22 +123,14 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         private void add_meghivott_Click(object sender, RoutedEventArgs e)
         {
-            add_meghivott.Visibility = Visibility.Hidden;
-            megse_meghivott.Visibility = Visibility.Visible;
-            ertesitendok_editlist.Visibility = Visibility.Hidden;
-            choose_editlist.Visibility = Visibility.Visible;
+
+
+            resztvevo_felvetel_list.Visibility = Visibility.Visible;
+            Blur_Grid.Visibility = Visibility.Visible;
 
             choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
         }
-        private void megsem_meghivott_Click(object sender, RoutedEventArgs e)
-        {
-            add_meghivott.Visibility = Visibility.Visible;
-            megse_meghivott.Visibility = Visibility.Hidden;
-            ertesitendok_editlist.Visibility = Visibility.Visible;
-            choose_editlist.Visibility = Visibility.Hidden;
 
-            ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
-        }
 
         private void Add_Ertesitendo_to_interju_Click(object sender, RoutedEventArgs e)
         {
@@ -156,6 +152,33 @@ namespace HRCloud.View.Usercontrol.Panels
                 choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
                 ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
             }
+        }
+
+        private void resztvevo_megsem_btn_Click(object sender, RoutedEventArgs e)
+        {
+            resztvevo_felvetel_list.Visibility = Visibility.Hidden;
+            Blur_Grid.Visibility = Visibility.Hidden;
+        }
+
+        private void resztvevo_mentes_btn_Click(object sender, RoutedEventArgs e)
+        {
+            ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+        }
+
+        private void invite_meghívott_Click(object sender, RoutedEventArgs e)
+        {
+            List<ertesitendok_struct> szemelyek = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            List<interju_struct> interju = pa_control.Interju_DataSource_ByID();
+            string resztvevok = "";
+            foreach (var item in szemelyek)
+            {
+                resztvevok += item.name + "  ";
+            }
+            foreach (var item in szemelyek)
+            {
+                //email.Mail_Send(item.email, et.Szakmai_Meghivo_Email(item.name, interju[0].interju_cim, interju[0].interju_datum+" - " + interju[0].idopont, resztvevok));
+            }
+            //email.Mail_Send(interju[0].jelolt_email, et.Jelolt_Meghivo_Email(interju[0].jelolt_megnevezes, interju[0].interju_cim, interju[0].interju_datum + " - " + interju[0].idopont, resztvevok));
         }
     }
 }

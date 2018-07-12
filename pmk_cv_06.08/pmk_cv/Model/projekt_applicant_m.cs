@@ -18,6 +18,7 @@ namespace HRCloud.Model
         public int id { get; set; }
         public string projekt_megnevezes { get; set; }
         public string jelolt_megnevezes { get; set; }
+        public string jelolt_email { get; set; }
         public int projekt_id { get; set; }
         public int jelolt_id { get; set; }
         public int hr_id { get; set; }

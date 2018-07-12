@@ -115,6 +115,7 @@ namespace HRCloud.Model
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string email { get; set; }
     }
     public class hr_struct
     {

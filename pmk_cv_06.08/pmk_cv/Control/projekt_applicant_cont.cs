@@ -52,7 +52,7 @@ namespace HRCloud.Control
         }
         public List<interju_struct> Interju_DataSource()
         {
-            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
+            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,jeloltek.email,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
                 " INNER JOIN projektek ON interjuk_kapcs.projekt_id = projektek.id" +
                 " INNER JOIN jeloltek ON interjuk_kapcs.jelolt_id = jeloltek.id" +
                 " WHERE jelolt_id = " + acontrol.ApplicantID+"" +
@@ -62,7 +62,7 @@ namespace HRCloud.Control
         }
         public List<interju_struct> Interju_DataSource_ByID()
         {
-            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
+            string query = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,jeloltek.email,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
                 " INNER JOIN projektek ON interjuk_kapcs.projekt_id = projektek.id" +
                 " INNER JOIN jeloltek ON interjuk_kapcs.jelolt_id = jeloltek.id" +
                 " WHERE interjuk_kapcs.id = " + InterjuID + "" +
@@ -115,12 +115,12 @@ namespace HRCloud.Control
         }
         public List<ertesitendok_struct> bevon_ertesitendok_DataSource()
         {
-            string query = "SELECT users.id, name FROM users INNER JOIN projekt_ertesitendok_kapcs ON ertesitendok_id = users.id WHERE projekt_id = "+pcontrol.ProjektID+"";
+            string query = "SELECT users.id, name, email FROM users INNER JOIN projekt_ertesitendok_kapcs ON ertesitendok_id = users.id WHERE projekt_id = "+pcontrol.ProjektID+"";
             return dbE.Ertesitendok_MySql_listQuery(query);
         }
         public List<ertesitendok_struct> interjuhoz_adott_ertesitendok_DataSource()
         {
-            string query = "SELECT users.id, name FROM interju_resztvevo_kapcs left JOIN users ON user_id = users.id WHERE interju_id = " + InterjuID + " GROUP BY users.id";
+            string query = "SELECT users.id, name, email FROM interju_resztvevo_kapcs left JOIN users ON user_id = users.id WHERE interju_id = " + InterjuID + " GROUP BY users.id";
             return dbE.Ertesitendok_MySql_listQuery(query);
         }
         public void Write_User_To_Inerju(int id)

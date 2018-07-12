@@ -40,7 +40,7 @@ namespace HRCloud.Public.templates
                                             <p>Személyügyi Osztály</p>";
             return front + content + bottom;
         }
-        public string Jelolt_Meghivo_Email(string name, string projekt_name, string date, List<string> resztvevok)
+        public string Jelolt_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
         {
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
@@ -56,7 +56,7 @@ namespace HRCloud.Public.templates
                                             <p>Személyügyi Osztály</p>";
             return front + content + bottom;
         }
-        public string Szakmai_Meghivo_Email(string name)
+        public string Szakmai_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
         {
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
