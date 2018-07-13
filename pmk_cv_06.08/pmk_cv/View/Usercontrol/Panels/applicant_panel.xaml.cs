@@ -21,6 +21,10 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class applicant_panel : UserControl
     {
+        private static string HeaderSelecteds;
+        public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
+
+
         applicant_cont acontrol = new applicant_cont();
         private applicant_DataView applicant_DataView;
         private applicant_new_panel applicant_new_panel;
@@ -91,6 +95,9 @@ namespace HRCloud.View.Usercontrol.Panels
             string szabad = "";
             if (szabad_check.IsChecked == true)
                 szabad = "1";
+            string sorrend = " ASC";
+            if (sorrend_check.IsChecked == true)
+                sorrend = " DESC";
 
             list.Add(nev_srcinp.Text);
             list.Add(lakhely_srcinp.Text);
@@ -104,6 +111,8 @@ namespace HRCloud.View.Usercontrol.Panels
             list.Add(vegzettsegStr);
             list.Add(cimke_srcinp.Text);
             list.Add(szabad);
+            list.Add(HeaderSelected);
+            list.Add(sorrend);
 
 
 
@@ -232,6 +241,23 @@ namespace HRCloud.View.Usercontrol.Panels
             acontrol.ApplicantID = itemSource.id;
             sgrid.Children.Clear();
             sgrid.Children.Add(applicant_new_panel = new applicant_new_panel(sgrid));
+        }
+
+        private void Header_Click(object sender, MouseButtonEventArgs e)
+        {
+            Label item = sender as Label;
+            HeaderSelected = item.Tag.ToString();
+            Applicant_lister();
+        }
+
+        private void sorrend_check_Checked(object sender, RoutedEventArgs e)
+        {
+            Applicant_lister();
+        }
+
+        private void sorrend_check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Applicant_lister();
         }
     }
 

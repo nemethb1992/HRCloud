@@ -151,13 +151,15 @@
             <Button x:Name="jeloltek_addbtn" Tag="jelolt" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Visible" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Jelöltek hozzáadása" Click="jeloltek_addbtn_Click"/>
             <Button x:Name="ertesitendok_addbtn" Tag="ertesitendo" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Értesítendők hozzáadása" Click="ertesitendok_addbtn_Click"/>
             <Button x:Name="hr_addbtn" Tag="hr" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="HR hozzáadása" Click="hr_addbtn_Click"/>
-
-            <Button x:Name="jeloltek_tabbtn" Grid.Column="0" Grid.Row="1" Margin="0,0,5,5" Style="{StaticResource StandardButton}" Content="Jelöltek" Click="jeloltek_tabbtn_Click"/>
-            <Button x:Name="ertesitendok_tabbtn" Grid.Column="1" Grid.Row="1" Margin="5,0,5,5" Style="{StaticResource StandardButton}" Content="Értesítendők" Click="ertesitendok_tabbtn_Click"/>
-            <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1" Margin="5,0,0,5" Style="{StaticResource StandardButton}" Content="HR" Click="hr_tabbtn_Click"/>
+            <Border Grid.ColumnSpan="3" Grid.Row="1" Background="{StaticResource SD_Element_Background}" CornerRadius="15,15,0,0"/>
+            <Button x:Name="jeloltek_tabbtn" Grid.Column="0" Grid.Row="1"  Style="{StaticResource TabButton}" Content="Jelöltek" Click="jeloltek_tabbtn_Click"/>
+            <Button x:Name="ertesitendok_tabbtn" Grid.Column="1" Grid.Row="1" Style="{StaticResource TabButton}" Content="Értesítendők" Click="ertesitendok_tabbtn_Click"/>
+            <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1" Style="{StaticResource TabButton}" Content="HR" Click="hr_tabbtn_Click"/>
             <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
-                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
+                        <Setter Property="CornerRadius" Value="0,0,10,10"/>
+                    </Style>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>

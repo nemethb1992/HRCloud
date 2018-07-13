@@ -24,6 +24,10 @@ namespace HRCloud.View.Usercontrol.Panels
     public partial class project_panel : UserControl
     {
 
+        private static string HeaderSelecteds;
+        public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
+
+
         private Grid sgrid;
         projekt_cont pcontrol = new projekt_cont();
         pageControl pageCont = new pageControl();
@@ -63,6 +67,9 @@ namespace HRCloud.View.Usercontrol.Panels
             string publikalt = "";
             if (publikalt_check.IsChecked == true)
                 publikalt = "1";
+            string sorrend = " ASC";
+            if (sorrend_check.IsChecked == true)
+                sorrend = " DESC";
             List<string> list = new List<string>();
             list.Add(projektnev_srcinp.Text);
             list.Add(jeloltszam);
@@ -74,6 +81,9 @@ namespace HRCloud.View.Usercontrol.Panels
             list.Add(cimke_srcinp.Text);
             list.Add(jeloltnev_srcinp.Text);
             list.Add(publikalt);
+            list.Add(HeaderSelected);
+            list.Add(sorrend);
+
             return list;
         }
         void Project_lister()
@@ -245,6 +255,23 @@ namespace HRCloud.View.Usercontrol.Panels
             pcontrol.ProjektID = itemSource.id;
             sgrid.Children.Clear();
             sgrid.Children.Add(project_new_panel = new project_new_panel(sgrid));
+        }
+
+        private void Header_Click(object sender, MouseButtonEventArgs e)
+        {
+            Label item = sender as Label;
+            HeaderSelected = item.Tag.ToString();
+            Project_lister();
+        }
+
+        private void sorrend_check_Checked(object sender, RoutedEventArgs e)
+        {
+            Project_lister();
+        }
+
+        private void sorrend_check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Project_lister();
         }
     }
 }

@@ -23,64 +23,76 @@ namespace HRCloud.Control
         applicant_cont acontrol = new applicant_cont();
         public List<ProjectListItems> ProjektListSource(List<string> list)
         {
-            string query = "SELECT coalesce((SELECT count(jelolt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id),0) as jeloltek_db, coalesce((SELECT count(jelolt_id) FROM interjuk_kapcs WHERE projekt_id = projektek.id),0) as interjuk_db, projektek.id, projektek.publikalt, megnevezes_projekt, megnevezes_munka, fel_datum, statusz FROM projektek LEFT JOIN projekt_jelolt_kapcs ON projektek.id = projekt_jelolt_kapcs.projekt_id LEFT JOIN jeloltek ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id LEFT JOIN munkakor ON munkakor.id = projektek.munkakor LEFT JOIN pc ON pc.id = projektek.pc LEFT JOIN megjegyzesek ON projektek.id = megjegyzesek.projekt_id " +
-                " WHERE projektek.statusz = " + projekt_search_memory[0].statusz;
-
-       //     if (list[0] != "" || list[1] != "0" || list[2] != "" || list[3] != "0" || list[4] != "" || list[5] != "" || list[6] != "" || list[7] != "" || list[8] != "")
-       //     {
-       //         string search = " AND projektek.megnevezes_projekt LIKE '%" + list[0] + "%'" +
-       //" AND coalesce((SELECT count(projekt_id)  FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id),0) >=" + list[1] +
-       //" AND projektek.fel_datum LIKE '%" + list[2] + "%'" +
-       //" AND coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE projekt_id = projektek.id Group by jelolt_id),0) >=  " + list[3] +
-       //" AND pc.megnevezes_pc LIKE '%" + list[4] + "%'" +
-       //" AND projektek.nyelvtudas LIKE '%" + list[5] + "%'" +
-       //" AND projektek.vegzettseg LIKE '%" + list[6] + "%'";
-                if (list[0] != "")
-                {
-                    query += " AND projektek.megnevezes_projekt LIKE '%" + list[0] + "%' ";
-                }
-                if (list[1] != "0")
-                {
-                    query += " AND coalesce((SELECT count(projekt_id)  FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id),0) >=" + list[1] + " ";
-                }
-                if (list[2] != "")
-                {
-                    query += " AND projektek.fel_datum LIKE '%" + list[2] + "%' ";
-                }
-                if (list[3] != "0")
-                {
-                    query += " AND coalesce((SELECT count(jelolt_id) FROM interjuk_kapcs WHERE projekt_id = projektek.id Group by jelolt_id),0) >=" + list[3] + " ";
-                }
-                if (list[4] != "")
-                {
-                    query += " AND pc.megnevezes_pc LIKE '%" + list[4] + "%' ";
-                }
-                if (list[5] != "" && list[5] != "1")
-                {
-                    query += " AND projektek.nyelvtudas LIKE '%" + list[5] + "%' ";
-                }
-                if (list[6] != "" && list[6] != "1")
-                {
-                    query += " AND projektek.vegzettseg LIKE '%" + list[6] + "%' ";
-                }
-                if (list[7] != "")
-                {
-                    query += " AND megjegyzesek.megjegyzes LIKE '%" + list[7] + "%' ";
-                }
-                if (list[8] != "")
-                {
-                    query += " AND jeloltek.nev LIKE '%" + list[8] + "%' ";
-                }
+            string query = "SELECT coalesce((SELECT count(jelolt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id GROUP BY jeloltek.id),0) as jeloltek_db, coalesce((SELECT count(jelolt_id) FROM interjuk_kapcs WHERE projekt_id = projektek.id),0) as interjuk_db, projektek.id, projektek.publikalt, megnevezes_projekt, megnevezes_munka, fel_datum, statusz FROM projektek LEFT JOIN projekt_jelolt_kapcs ON projektek.id = projekt_jelolt_kapcs.projekt_id LEFT JOIN jeloltek ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id LEFT JOIN munkakor ON munkakor.id = projektek.munkakor LEFT JOIN pc ON pc.id = projektek.pc LEFT JOIN megjegyzesek ON projektek.id = megjegyzesek.projekt_id " +
+            " WHERE projektek.statusz = " + projekt_search_memory[0].statusz;
+            if (list[0] != "")
+            {
+                query += " AND projektek.megnevezes_projekt LIKE '%" + list[0] + "%' ";
+            }
+            if (list[1] != "0")
+            {
+                query += " AND coalesce((SELECT count(projekt_id)  FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id),0) >=" + list[1] + " ";
+            }
+            if (list[2] != "")
+            {
+                query += " AND projektek.fel_datum LIKE '%" + list[2] + "%' ";
+            }
+            if (list[3] != "0")
+            {
+                query += " AND coalesce((SELECT count(jelolt_id) FROM interjuk_kapcs WHERE projekt_id = projektek.id Group by jelolt_id),0) >=" + list[3] + " ";
+            }
+            if (list[4] != "")
+            {
+                query += " AND pc.megnevezes_pc LIKE '%" + list[4] + "%' ";
+            }
+            if (list[5] != "" && list[5] != "1")
+            {
+                query += " AND projektek.nyelvtudas LIKE '%" + list[5] + "%' ";
+            }
+            if (list[6] != "" && list[6] != "1")
+            {
+                query += " AND projektek.vegzettseg LIKE '%" + list[6] + "%' ";
+            }
+            if (list[7] != "")
+            {
+                query += " AND megjegyzesek.megjegyzes LIKE '%" + list[7] + "%' ";
+            }
+            if (list[8] != "")
+            {
+                query += " AND jeloltek.nev LIKE '%" + list[8] + "%' ";
+            }
             if (list[9] != "")
             {
                 query += " AND projektek.publikalt LIKE '%" + list[9] + "%' ";
             }
-            query += " GROUP BY projektek.id";
+            query += " GROUP BY projektek.id ";
+            switch (list[10])
+            {
+                case "1":
+                    query += " ORDER BY projektek.id" + list[11];
+                    break;
+                case "2":
+                    query += " ORDER BY projektek.megnevezes_projekt" + list[11];
+                    break;
+                case "3":
+                    query += " ORDER BY projektek.munkakor" + list[11];
+                    break;
+                case "4":
+                    query += " ORDER BY jeloltek_db" + list[11];
+                    break;
+                case "5":
+                    query += " ORDER BY projektek.fel_datum" + list[11];
+                    break;
+                default:
+                    query += " ORDER BY projektek.fel_datum DESC";
+                    break;
+            }
+
             return dbE.Projekt_MySql_listQuery(query);
         }
         public List<ProjectExtendedListItems> ProjektFullDataSource()
         {
-            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id Group by projekt_id) as jeloltek_db, " +
+            string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id GROUP BY projekt_id) as jeloltek_db, " +
                 "projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, elonyok, publikalt  " +
                 "FROM projektek " +
                 "LEFT JOIN munkakor on munkakor.id = projektek.munkakor " +
@@ -94,7 +106,7 @@ namespace HRCloud.Control
         }
         public List<JeloltListItems> JeloltListSourceForListBox()
         {
-            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5, jeloltek.munkakor, jeloltek.munkakor2, jeloltek.munkakor3, allapota, kolcsonzott FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
+            string query = "SELECT coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id AND projekt_id = " + ProjektID + " Group by projekt_id),0) as interjuk_db, jeloltek.id,nev,jeloltek.szuldatum,megnevezes_munka,reg_date,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5, jeloltek.munkakor, jeloltek.munkakor2, jeloltek.munkakor3, allapota, kolcsonzott FROM jeloltek INNER JOIN projekt_jelolt_kapcs ON jeloltek.id = projekt_jelolt_kapcs.jelolt_id INNER JOIN projektek ON projektek.id = projekt_jelolt_kapcs.projekt_id INNER JOIN munkakor ON jeloltek.munkakor = munkakor.id WHERE projektek.id =" + ProjektID + " GROUP BY jeloltek.id ";
             return dbE.Jelolt_MySql_listQuery(query);
         }
         public List<vegzettseg_struct> VegzettsegDataSource()
@@ -180,7 +192,9 @@ namespace HRCloud.Control
         public void Jelolt_list_delete(int id)
         {
             string query = "DELETE FROM projekt_jelolt_kapcs WHERE jelolt_id = "+id+" AND projekt_id = " + ProjektID + ";";
+            string query2 = "DELETE FROM interjuk_kapcs WHERE jelolt_id = " + id + " AND projekt_id = " + ProjektID + ";";
             dbE.MysqlQueryExecute(query);
+            dbE.MysqlQueryExecute(query2);
         }
         public void Jelolt_list_allpot_UPDATE(int id, int allapota)
         {

@@ -28,7 +28,7 @@ namespace HRCloud.Control
         {
 
             string query = "SELECT " +
-                "coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id Group by projekt_id),0) as interjuk_db, " +
+                "coalesce((SELECT count(projekt_id) FROM interjuk_kapcs WHERE jelolt_id = jeloltek.id GROUP BY jelolt_id),0) as interjuk_db, " +
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor) as munkakor, " +
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor2) as munkakor2, " +
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor3) as munkakor3, " +
@@ -87,7 +87,31 @@ namespace HRCloud.Control
             {
                 query += "  AND projekt_jelolt_kapcs.id IS NULL ";
             }
-            query += " GROUP BY jeloltek.id";
+            query += " GROUP BY jeloltek.email ";
+            switch (list[12])
+            {
+                case "1":
+                    query += " ORDER BY jeloltek.id" + list[13];
+                    break;
+                case "2":
+                    query += " ORDER BY jeloltek.nev" + list[13];
+                    break;
+                case "3":
+                    query += " ORDER BY jeloltek.munkakor" + list[13];
+                    break;
+                case "4":
+                    query += " ORDER BY interjuk_db" + list[13];
+                    break;
+                case "5":
+                    query += " ORDER BY jeloltek.szuldatum" + list[13];
+                    break;
+                case "6":
+                    query += " ORDER BY jeloltek.reg_date" + list[13];
+                    break;
+                default:
+                    query += " ORDER BY jeloltek.reg_date DESC";
+                    break;
+            }
             return dbE.Jelolt_MySql_listQuery(query);
         }
 

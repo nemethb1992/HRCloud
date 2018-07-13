@@ -114,11 +114,12 @@
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
-            <Label x:Name="project_label_1" VerticalAlignment="Bottom" Content="id" Grid.Column="0" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_2" VerticalAlignment="Bottom" Content="Projektnév" Grid.Column="1" Style="{StaticResource project_label_style}" Grid.ColumnSpan="2"/>
-            <Label x:Name="project_label_3" VerticalAlignment="Bottom" Content="Terület" Grid.Column="3" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_4" VerticalAlignment="Bottom" Content="Jelölt" Grid.Column="4" Style="{StaticResource project_label_style}"/>
-            <Label x:Name="project_label_5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}"/>
+            <Label x:Name="project_label_1" Tag="1" VerticalAlignment="Bottom" Content="id" Grid.Column="0" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
+            <Label x:Name="project_label_2" Tag="2" VerticalAlignment="Bottom" Content="Projektnév" Grid.Column="1" Style="{StaticResource project_label_style}" Grid.ColumnSpan="2" MouseDown="Header_Click"/>
+            <Label x:Name="project_label_3" Tag="3" VerticalAlignment="Bottom" Content="Terület" Grid.Column="3" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
+            <Label x:Name="project_label_4" Tag="4" VerticalAlignment="Bottom" Content="Jelölt" Grid.Column="4" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
+            <Label x:Name="project_label_5" Tag="5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
+            <CheckBox x:Name="sorrend_check" Style="{StaticResource Standard_Checkbox}" Content="Csökkenő sorrend" VerticalAlignment="Bottom" Margin="0,0,0,5" IsChecked="False" Grid.Column="6" Checked="sorrend_check_Checked" Unchecked="sorrend_check_Unchecked"/>
         </Grid>
         <ListBox x:Name="project_listBox" Style="{StaticResource listBox_style}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.Resources>
