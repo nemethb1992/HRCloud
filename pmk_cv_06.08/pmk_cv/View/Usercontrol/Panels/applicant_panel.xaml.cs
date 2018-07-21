@@ -96,8 +96,8 @@ namespace HRCloud.View.Usercontrol.Panels
             if (szabad_check.IsChecked == true)
                 szabad = "1";
             string sorrend = " ASC";
-            if (sorrend_check.IsChecked == true)
-                sorrend = " DESC";
+            //if (sorrend_check.IsChecked == true)
+            //    sorrend = " DESC";
 
             list.Add(nev_srcinp.Text);
             list.Add(lakhely_srcinp.Text);

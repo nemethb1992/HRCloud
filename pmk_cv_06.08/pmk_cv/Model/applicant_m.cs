@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace HRCloud.Model
 {
+
     public class JeloltListItems
     {
         public int id { get; set; }
@@ -22,7 +23,6 @@ namespace HRCloud.Model
         public string reg_datum { get; set; }
         public bool Checked { get; set; }
     }
-
     public class JeloltListBox
     {
         public int id { get; set; }
