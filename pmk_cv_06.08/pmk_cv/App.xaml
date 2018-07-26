@@ -1,4 +1,5 @@
-﻿<Application x:Class="pmk_cv.App"
+﻿
+    <Application x:Class="pmk_cv.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:pmk_cv"
