@@ -47,7 +47,11 @@ namespace HRCloud.Public.templates
                                                 <p>Személyügyi Osztály</p>";
             return front + content + bottom;
         }
-        public string Jelolt_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
+
+
+
+
+        public string Belsos_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
         {
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
@@ -63,17 +67,22 @@ namespace HRCloud.Public.templates
                                             <p>Személyügyi Osztály</p>";
             return front + content + bottom;
         }
-        public string Szakmai_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
+        public string Jelolt_Meghivo_Email(string name, string projekt_name, string date, List<string> resztvevok)
         {
+            string resztvevok_layout = "";
+            foreach (var item in resztvevok)
+            {
+                resztvevok_layout += item + ", ";
+            }
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
-                                            <p Style='margin-bottom: 30px;' class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
-                                            </p>
+                                            <p>Telefonos egyeztetésünkre hivatkozva szeretném megerősíteni a személyes találkozó időpontját ("+projekt_name+ @") pozícióra történő meghallgatás kapcsán.</p>
+                                            <p>Helyszín:</p><p>Phoenix Mecano Kecskemét Kft.</p><p>6000 Kecskemét, Szent István körút 24. </p>
+                                            <p>Időpont:</p><p>"+date+ @"</p>
+                                            <p>Résztvevők: </p><p>" + resztvevok_layout + @"</p>
+                                            <p>A portán személyi igazolvány bemutatása szükséges.</p>
+                                            <p>Az interjú időtartama kb. 1,5  órát vesz igénybe, kérjük hogy a beléptetésre tekintettel az interjú kezdete előtt 15 perccel szíveskedjék megjelenni.</p>
+                                            <p Style='margin-bottom: 30px;'>Várjuk a megbeszélt időpontban!</p>
                                             <p>Üdvözlettel,</p>
                                             <p>Phoenix Mecano Kecskemét Kft.</p>
                                             <p>Személyügyi Osztály</p>";

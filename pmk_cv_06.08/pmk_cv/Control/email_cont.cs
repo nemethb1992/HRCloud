@@ -93,12 +93,12 @@ namespace HRCloud.Control
 
                 System.Net.Mail.SmtpClient SmtpServer = new System.Net.Mail.SmtpClient(li[0].mailserver);
                 SmtpServer.Port = li[0].port;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(li[0].login, "3hgb8wy3hgb8wy");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(li[0].login, "pmhr2018");
                 SmtpServer.EnableSsl = true;
 
                 mail.From = new MailAddress(li[0].login);
                 mail.To.Add(to);
-                mail.Subject = "Phoenix Mecano Kecskemét kft (HR Cloud)";
+                mail.Subject = "HR Portal - Phoenix Mecano Kecskemét kft.";
                 mail.Body = email_body;
                 mail.IsBodyHtml = true;
 

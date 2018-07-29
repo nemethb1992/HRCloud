@@ -126,43 +126,47 @@
             <Label x:Name="project_label_6" Tag="6" VerticalAlignment="Bottom" Content="Regisztrált" Grid.Column="5" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
             <CheckBox x:Name="sorrend_check" Style="{StaticResource Standard_Checkbox}" Content="Csökkenő sorrend" VerticalAlignment="Bottom" Margin="0,0,0,5" IsChecked="False" Grid.Column="6" Checked="sorrend_check_Checked" Unchecked="sorrend_check_Unchecked"/>
         </Grid>
-        <ListBox x:Name="applicant_listBox"  Style="{StaticResource listBox_style}" BorderBrush="Transparent" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
-            <ListBox.Resources>
-                <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
-                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style_big}"/>
-            </ListBox.Resources>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="40">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="110" />
-                            <ColumnDefinition Width="140" />
-                        </Grid.ColumnDefinitions>
 
-                        <Grid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
-                                <MenuItem x:Name="asd" Header="Törlés" Click="applicant_delete_context_Click"/>
-                            </ContextMenu>
-                        </Grid.ContextMenu>
-                        <!--<Rectangle Panel.ZIndex="0" Grid.Column="0" Grid.ColumnSpan="7" Fill="#f8f8f8" Stroke="{StaticResource racs_color}"/>-->
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Text="{Binding id}" />
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="1" Text="{Binding nev}" />
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="2" Text="{Binding munkakor}" />
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="3" Text="{Binding interjuk_db}" />
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="4" Text="{Binding szuldatum}" />
-                        <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="5" Text="{Binding reg_datum}"/>
-                        <Button x:Name="applicant_open_btn" Style="{StaticResource StandardButton}" Grid.Column="6"  Content="Megtekint" Margin="3" Click="applicant_open_btn_Click"/>
-                        <!--<Button Style="{StaticResource panelBtn_style}" Grid.Column="6" Margin="10,0,10,0" Content="Módosít"/>-->
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="applicant_listBox"  Style="{StaticResource listBox_style}" BorderBrush="Transparent" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style_big}"/>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="140" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
+                                    <MenuItem x:Name="asd" Header="Törlés" Click="applicant_delete_context_Click"/>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                            <!--<Rectangle Panel.ZIndex="0" Grid.Column="0" Grid.ColumnSpan="7" Fill="#f8f8f8" Stroke="{StaticResource racs_color}"/>-->
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Text="{Binding id}" />
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="1" Text="{Binding nev}" />
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="2" Text="{Binding munkakor}" />
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="3" Text="{Binding interjuk_db}" />
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="4" Text="{Binding szuldatum}" />
+                            <TextBlock Style="{StaticResource panelTbl_style}" Padding="11" Grid.Column="5" Text="{Binding reg_datum}"/>
+                            <Button x:Name="applicant_open_btn" Style="{StaticResource StandardButton}" Grid.Column="6"  Content="Megtekint" Margin="3" Click="applicant_open_btn_Click"/>
+                            <!--<Button Style="{StaticResource panelBtn_style}" Grid.Column="6" Margin="10,0,10,0" Content="Módosít"/>-->
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </ScrollViewer>
+
 
     </Grid>
 </UserControl>

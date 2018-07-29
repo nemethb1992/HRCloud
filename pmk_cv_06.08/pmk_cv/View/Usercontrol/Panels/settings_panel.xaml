@@ -146,7 +146,7 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource StandardButton}" Click="Button_Click_3">
+            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource StandardButton}" Click="Button_Click_3" HorizontalAlignment="Left" Width="50">
                 <Image Source="/HRCloud;component/Public/imgs/add.png" Margin="5" Height="15"/>
             </Button>
             <ListBox x:Name="pc_editlist" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5,0,0" Height="165" Style="{StaticResource small_listBox_style}" HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">

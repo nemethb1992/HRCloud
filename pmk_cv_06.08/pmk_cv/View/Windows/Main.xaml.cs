@@ -90,15 +90,7 @@ namespace HRCloud.View.Windows
             sgrid.Children.Clear();
             sgrid.Children.Add(favourites_Panel = new favourites_panel(sgrid));
         }
-        private void exit_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-        private void minimize_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Window window = Window.GetWindow(this);
-            window.WindowState = WindowState.Minimized;
-        }
+
         private void profil_notiBtn_MouseEnter(object sender, MouseEventArgs e)
         {
             profil_notiRec.Fill = new SolidColorBrush(Colors.White);
@@ -114,6 +106,19 @@ namespace HRCloud.View.Windows
         private void profil_notiBtn_MouseLeave(object sender, MouseEventArgs e)
         {
             profil_notiRec.Fill = new SolidColorBrush(Colors.Transparent);
+        }
+        private void Maximize_Window_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            if (window.WindowState == WindowState.Normal)
+            {
+                window.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                window.WindowState = WindowState.Normal;
+            }
+
         }
 
     }

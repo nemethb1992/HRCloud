@@ -54,7 +54,9 @@ namespace HRCloud.View.Usercontrol.Surveys
         }
         private void Registration_Click_btn(object sender, RoutedEventArgs e)
         {
-            if (teljesnev.Text != "" && email.Text != "")
+            //TODO tartományi felhasználói azonosítás 
+
+            if (teljesnev.Text.Length > 0 && email.Text.Length > 0)
             {
                 ComboBox katcbx = kategoria_cbx as ComboBox;
                 Kategoria_struct kategoria_items = katcbx.SelectedItem as Kategoria_struct;
@@ -67,6 +69,18 @@ namespace HRCloud.View.Usercontrol.Surveys
             else
             {
                 InfoBlock.Text = "Kitöltetlen mező!";
+            }
+        }
+
+        private void Registration_input_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(tartomanyi.Text.Length > 0 && tartomanyi_pass.Text.Length > 0 && teljesnev.Text.Length > 0 && email.Text.Length > 0)
+            {
+                Registration_btn.IsEnabled = true;
+            }
+            else
+            {
+                Registration_btn.IsEnabled = false;
             }
         }
     }
