@@ -127,18 +127,18 @@ namespace HRCloud.View.Usercontrol
             window.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> li = new List<string>();
-            li.Add("Drozdik Szilvia");
-            li.Add("Béda Olga");
-            li.Add("Szakmai Felelős1");
-            li.Add("Szakmai Felelős2");
-            email_template temp = new email_template();
-            e_control.Mail_Send("fzbalu92@gmail.com", temp.Jelolt_Meghivo_Email("Németh Balázs", "Gyártósori összeszerelő","2018.08.20. - 14:30",li ));
-            //e_control.Mail_Send("info@betapress.hu", etemp.Udvozlo_Email("Név"));
-            //e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email("Név"));
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    List<string> li = new List<string>();
+        //    li.Add("Drozdik Szilvia");
+        //    li.Add("Béda Olga");
+        //    li.Add("Szakmai Felelős1");
+        //    li.Add("Szakmai Felelős2");
+        //    email_template temp = new email_template();
+        //    e_control.Mail_Send("fzbalu92@gmail.com", temp.Jelolt_Meghivo_Email("Németh Balázs", "Gyártósori összeszerelő","2018.08.20. - 14:30",li ));
+        //    //e_control.Mail_Send("info@betapress.hu", etemp.Udvozlo_Email("Név"));
+        //    //e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email("Név"));
+        //}
         
     }
 }
