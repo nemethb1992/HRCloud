@@ -51,7 +51,7 @@ namespace HRCloud.Public.templates
 
 
 
-        public string Belsos_Meghivo_Email(string name, string projekt_name, string date, string resztvevok)
+        public string Belsos_Meghivo_Email(string name, string projekt_name, string date, List<string> resztvevok)
         {
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>

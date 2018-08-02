@@ -30,7 +30,7 @@ namespace HRCloud.Model
         //Initialize values
         private void SetupDB()
         {
-            string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
+            string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
             conn = new MySqlConnection(connectionString);
         }
         public bool dbOpen()
@@ -494,6 +494,7 @@ namespace HRCloud.Model
                         munkakor = sdr["munkakor"].ToString(),
                         munkakor2 = sdr["munkakor2"].ToString(),
                         munkakor3 = sdr["munkakor3"].ToString(),
+                        email = sdr["email"].ToString(),
                         szuldatum = Convert.ToInt32(sdr["szuldatum"]),
                         interjuk_db = Convert.ToInt32(sdr["interjuk_db"]),
                         allapota = allapot,

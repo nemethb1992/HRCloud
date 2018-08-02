@@ -16,6 +16,7 @@ namespace HRCloud.Model
         public string munkakor2 { get; set; }
         public string munkakor3 { get; set; }
         public int szuldatum { get; set; }
+        public string email { get; set; }
         public int interjuk_db { get; set; }
         public int allapota { get; set; }
         public string kolcsonzott { get; set; }

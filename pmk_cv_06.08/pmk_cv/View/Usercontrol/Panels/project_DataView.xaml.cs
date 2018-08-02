@@ -1,5 +1,6 @@
 ﻿using HRCloud.Control;
 using HRCloud.Model;
+using HRCloud.Public.templates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace HRCloud.View.Usercontrol.Panels
         projekt_cont pcontrol = new projekt_cont();
         megjegyzes_cs comment = new megjegyzes_cs();
         applicant_cont acontrol = new applicant_cont();
+        email_template et = new email_template();
+        email_cont email = new email_cont();
         projekt_applicant_cont pa_control = new projekt_applicant_cont();
         Session sess = new Session();
         private Grid grid;
@@ -223,7 +226,19 @@ namespace HRCloud.View.Usercontrol.Panels
             JeloltListItems items = mitem.DataContext as JeloltListItems;
             if (mitem.Tag.ToString() == "delete")
             {
-                pcontrol.Jelolt_list_delete(items.id);
+                MessageBoxResult result = MessageBox.Show("Elutasító E-Mail kiküldésre kerüljön?", "My App", MessageBoxButton.YesNoCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        pcontrol.Jelolt_list_delete(items.id);
+                        email.Mail_Send(items.email, et.Elutasito_Email(items.nev));
+                        break;
+                    case MessageBoxResult.No:
+                        pcontrol.Jelolt_list_delete(items.id);
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
             }
             else
             {

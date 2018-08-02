@@ -169,16 +169,16 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             List<ertesitendok_struct> szemelyek = pa_control.interjuhoz_adott_ertesitendok_DataSource();
             List<interju_struct> interju = pa_control.Interju_DataSource_ByID();
-            string resztvevok = "";
+            List<String> resztvevok = new List<string>();
             foreach (var item in szemelyek)
             {
-                resztvevok += item.name + "  ";
+                resztvevok.Add(item.name);
             }
             foreach (var item in szemelyek)
             {
-                //email.Mail_Send(item.email, et.Szakmai_Meghivo_Email(item.name, interju[0].interju_cim, interju[0].interju_datum+" - " + interju[0].idopont, resztvevok));
+                email.Mail_Send(item.email, et.Belsos_Meghivo_Email(item.name, interju[0].interju_cim, interju[0].interju_datum+" - " + interju[0].idopont, resztvevok));
             }
-            //email.Mail_Send(interju[0].jelolt_email, et.Jelolt_Meghivo_Email(interju[0].jelolt_megnevezes, interju[0].interju_cim, interju[0].interju_datum + " - " + interju[0].idopont, resztvevok));
+            email.Mail_Send(interju[0].jelolt_email, et.Jelolt_Meghivo_Email(interju[0].jelolt_megnevezes, interju[0].interju_cim, interju[0].interju_datum + " - " + interju[0].idopont, resztvevok));
         }
     }
 }
