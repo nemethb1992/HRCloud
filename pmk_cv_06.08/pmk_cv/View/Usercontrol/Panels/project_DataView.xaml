@@ -149,14 +149,14 @@
 
 
 
-            <Button x:Name="jeloltek_addbtn" Tag="jelolt" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Visible" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Jelöltek hozzáadása" Click="jeloltek_addbtn_Click"/>
-            <Button x:Name="ertesitendok_addbtn" Tag="ertesitendo" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Értesítendők hozzáadása" Click="ertesitendok_addbtn_Click"/>
-            <Button x:Name="hr_addbtn" Tag="hr" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="HR hozzáadása" Click="hr_addbtn_Click"/>
+                <Button x:Name="jeloltek_addbtn" Tag="jelolt" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Visible" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Jelöltek hozzáadása" Click="Szemely_add_Event"/>
+                <Button x:Name="ertesitendok_addbtn" Tag="ertesitendo" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="Értesítendők hozzáadása" Click="Szemely_add_Event"/>
+                <Button x:Name="hr_addbtn" Tag="hr" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Visibility="Hidden" Margin="0,0,0,5" Style="{StaticResource StandardButton}" Content="HR hozzáadása" Click="Szemely_add_Event"/>
             <Border Grid.ColumnSpan="3" Grid.Row="1" Background="{StaticResource SD_Element_Background}" CornerRadius="15,15,0,0"/>
-            <Button x:Name="jeloltek_tabbtn" Grid.Column="0" Grid.Row="1"  Style="{StaticResource TabButton}" Content="Jelöltek" Click="jeloltek_tabbtn_Click"/>
-            <Button x:Name="ertesitendok_tabbtn" Grid.Column="1" Grid.Row="1" Style="{StaticResource TabButton}" Content="Értesítendők" Click="ertesitendok_tabbtn_Click"/>
-            <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1" Style="{StaticResource TabButton}" Content="HR" Click="hr_tabbtn_Click"/>
-            <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+            <Button x:Name="jeloltek_tabbtn" Grid.Column="0" Grid.Row="1" Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="Jelöltek" Click="jeloltek_tabbtn_Click"/>
+                <Button x:Name="ertesitendok_tabbtn" Grid.Column="1" Grid.Row="1"  Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="Értesítendők" Click="ertesitendok_tabbtn_Click"/>
+                <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1"  Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="HR" Click="hr_tabbtn_Click"/>
+                <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0"  Panel.ZIndex="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
                         <Setter Property="CornerRadius" Value="0,0,10,10"/>
@@ -550,6 +550,48 @@
                 <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource StandardButton}" Width="150" Height="40" Content="Mégsem" HorizontalAlignment="Left" Click="Koltse_megsem"/>
             </Grid>
         </Grid>
-    </Grid>
+            <Grid x:Name="Blur_Grid" Grid.ColumnSpan="5" Grid.RowSpan="7" Background="White" Opacity="0.5" Visibility="Hidden"></Grid>
+            <Grid x:Name="projekt_kapcsolodo_grid" Grid.ColumnSpan="5" Grid.RowSpan="4" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" Background="White" Style="{StaticResource gridShadow}"></Grid>
+                <TextBlock  Style="{StaticResource big_title_style}" Text="Személy hozzáadása" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="0,20,0,0"/>
+                <!--<Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="1" CornerRadius="5" Margin="30,10,30,10" Background="{StaticResource SearchPanelColor}"/>-->
+                <Button x:Name="resztvevo_megsem_btn" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Content="Vissza"  Style="{StaticResource StandardButton}" Margin="0,5,0,15" Click="resztvevo_megsem_btn_Click" />
+
+                <ListBox x:Name="projekt_kapcsolodo_list" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Panel.ZIndex="1" Margin="0,10,0,10" Visibility="Visible" Style="{StaticResource small_listBox_style}" HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox.Resources>
+                        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style}"/>
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MaxWidth="300" Height="35">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="80" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" FontSize="14" Padding="0,8" Style="{StaticResource panelTbl_style}" Text="{Binding name}"/>
+                                <TextBlock Grid.Column="0" FontSize="14" Padding="0,8" Style="{StaticResource panelTbl_style}" Text="{Binding nev}"/>
+                                <Button Grid.Column="1" Content="Hozzáad" Margin="0" Style="{StaticResource StandardButton}" Click="Ember_Add_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
     </ScrollViewer>
 </UserControl>

@@ -282,27 +282,39 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         private static int Kod;
         public int kod { get { return Kod; } set { Kod = value; } }
-        private void jeloltek_addbtn_Click(object sender, RoutedEventArgs e)
+        
+        private void Szemely_add_Event(object sender, RoutedEventArgs e)
         {
-            Ember_hozzaadas_Grid.Visibility = System.Windows.Visibility.Visible;
-            kod = 1;
-            Ember_Search_Listbox.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
+            Button btn = sender as Button;
+            Blur_Grid.Visibility = System.Windows.Visibility.Visible;
+            projekt_kapcsolodo_grid.Visibility = System.Windows.Visibility.Visible;
+            switch (btn.Tag)
+            {
+                case "jelolt":
+                    {
+                        kod = 1;
+                        projekt_kapcsolodo_list.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
+                        break;
+                    }
+                case "ertesitendo":
+                    {
+                        kod = 2;
+                        projekt_kapcsolodo_list.ItemsSource = pcontrol.ErtesitendokDataSource_cbx(Ember_Search_tbx.Text);
+                        break;
+                    }
+                case "hr":
+                    {
+                        kod = 3;
+                        projekt_kapcsolodo_list.ItemsSource = pcontrol.HrDataSource_cbx(Ember_Search_tbx.Text);
+                        break;
+                    }
+                default:
+                    break;
+            }
             FormLoader();
+
         }
 
-        private void ertesitendok_addbtn_Click(object sender, RoutedEventArgs e)
-        {
-            Ember_hozzaadas_Grid.Visibility = System.Windows.Visibility.Visible;
-            kod = 2;
-            Ember_Search_Listbox.ItemsSource = pcontrol.ErtesitendokDataSource_cbx(Ember_Search_tbx.Text);
-        }
-
-        private void hr_addbtn_Click(object sender, RoutedEventArgs e)
-        {
-            Ember_hozzaadas_Grid.Visibility = System.Windows.Visibility.Visible;
-            kod = 3;
-            Ember_Search_Listbox.ItemsSource = pcontrol.HrDataSource_cbx(Ember_Search_tbx.Text);
-        }
 
         private void Ember_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -312,21 +324,24 @@ namespace HRCloud.View.Usercontrol.Panels
                 SubJelolt items;
                 items = btn.DataContext as SubJelolt;
                 pcontrol.Jelolt_write_to_project(items.id, pcontrol.ProjektID);
-                Ember_Search_Listbox.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
+                projekt_kapcsolodo_list.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
+                kapcs_jeloltek_listBox.ItemsSource = pcontrol.JeloltListSourceForListBox();
             }
             if (kod == 2)
             {
                 ertesitendok_struct items;
                 items = btn.DataContext as ertesitendok_struct;
                 pcontrol.Ertesitendok_write_to_project(items.id);
-                Ember_Search_Listbox.ItemsSource = pcontrol.ErtesitendokDataSource_cbx(Ember_Search_tbx.Text);
+                projekt_kapcsolodo_list.ItemsSource = pcontrol.ErtesitendokDataSource_cbx(Ember_Search_tbx.Text);
+                kapcs_ertesitendo_listBox.ItemsSource = pcontrol.ErtesitendokDataSource_toProjektList();
             }
             if (kod == 3)
             {
                 hr_struct items;
                 items = btn.DataContext as hr_struct;
                 pcontrol.HR_write_to_project(items.id);
-                Ember_Search_Listbox.ItemsSource = pcontrol.HrDataSource_cbx(Ember_Search_tbx.Text);
+                projekt_kapcsolodo_list.ItemsSource = pcontrol.HrDataSource_cbx(Ember_Search_tbx.Text);
+                kapcs_hr_listBox.ItemsSource = pcontrol.HrDataSource_toProjektList();
             }
             
         }
@@ -410,6 +425,12 @@ namespace HRCloud.View.Usercontrol.Panels
                     item.Checked = false;
                 }
                 kapcs_jeloltek_listBox.Items.Refresh();
+        }
+
+        private void resztvevo_megsem_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Blur_Grid.Visibility = Visibility.Hidden;
+            projekt_kapcsolodo_grid.Visibility = Visibility.Hidden;
         }
     }
 }

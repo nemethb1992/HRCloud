@@ -32,7 +32,7 @@ namespace HRCloud.Control
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor) as munkakor, " +
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor2) as munkakor2, " +
                 "(SELECT megnevezes_munka FROM munkakor WHERE munkakor.id = jeloltek.munkakor3) as munkakor3, " +
-                "jeloltek.id,jeloltek.nev,szuldatum,reg_date,allapota,kolcsonzott " +
+                "jeloltek.id,jeloltek.nev,szuldatum,reg_date,allapota,kolcsonzott,email " +
                 "FROM jeloltek " +
                 "LEFT JOIN megjegyzesek ON jeloltek.id = megjegyzesek.jelolt_id " +
                 "LEFT JOIN munkakor on jeloltek.munkakor = munkakor.id " +
