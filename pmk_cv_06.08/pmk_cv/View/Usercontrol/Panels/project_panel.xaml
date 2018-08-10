@@ -83,7 +83,7 @@
                         </Button.Background>
                     </Button>
 
-                    <ComboBox x:Name="nyelv_srccbx"  Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="Combobox_selection" >
+                    <ComboBox x:Name="nyelv_srccbx"  Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="Combobox_selection" Height="24" Margin="5,0,5,4" VerticalAlignment="Bottom" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid >
