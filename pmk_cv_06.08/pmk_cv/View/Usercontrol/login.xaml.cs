@@ -48,7 +48,12 @@ namespace HRCloud.View.Usercontrol
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
             //e_control.ReadImap();
-            enterApplication();
+            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            {
+                MessageBox.Show("Valid");
+            }
+            MessageBox.Show("Invalid");
+            //enterApplication();
         }
 
         private void Luser_tbx_KeyUp(object sender, KeyEventArgs e)

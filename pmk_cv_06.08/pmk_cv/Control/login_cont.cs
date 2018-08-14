@@ -8,6 +8,7 @@ using System.DirectoryServices;
 using System.Net;
 using System.DirectoryServices.Protocols;
 using System.DirectoryServices.AccountManagement;
+using System.Windows;
 
 namespace HRCloud.Control
 {
@@ -15,10 +16,28 @@ namespace HRCloud.Control
     {
         Session session = new Session();
         dbEntities dbE = new dbEntities();
-        public bool ActiveDirectoryValidation(string name, string pass)
+        public bool ActiveDirectoryValidation(string username, string password)
         {
             bool authenticated = false;
+            LdapConnection connection;
+            var credentials = new NetworkCredential(username, password, "pmhu");
+            var serverId = new LdapDirectoryIdentifier("ldap://192.168.144.21:389");
 
+            connection = new LdapConnection(serverId, credentials);
+
+
+            try
+            {
+                connection.Bind();
+                authenticated = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                authenticated = false;
+            }
+
+            connection.Dispose();
             //try
             //{
             //    DirectoryEntry entry = new DirectoryEntry("ldap://192.168.144.21:389", name + "@pmhu.local", pass);
@@ -34,11 +53,10 @@ namespace HRCloud.Control
             //    //not authenticated due to some other exception [this is optional]
             //}
 
-            //return authenticated;
             //try
             //{
             //    LdapConnection connection = new LdapConnection("ldap://192.168.144.21:389");
-            //    NetworkCredential credential = new NetworkCredential(name + "@pmhu.local", pass);
+            //    NetworkCredential credential = new NetworkCredential(name, pass);
             //    connection.Credential = credential;
             //    connection.Bind();
             //    Console.WriteLine("logged in");
@@ -53,18 +71,18 @@ namespace HRCloud.Control
             //{
             //    Console.WriteLine(exc);
             //}
-            try
-            {
-                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "ldap://192.168.144.21:389"))
-                {
-                    // validate the credentials
-                    authenticated = pc.ValidateCredentials(name, pass);
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //try
+            //{
+            //    using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "ldap://192.168.144.21:389"))
+            //    {
+            //        // validate the credentials
+            //        authenticated = pc.ValidateCredentials(name + "@pmhu.local", pass);
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
             return authenticated;
         }
 
