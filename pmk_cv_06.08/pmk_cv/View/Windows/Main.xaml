@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0" />
-                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <!--<Button Width="200" Height="50" Grid.Column="2" Style="{StaticResource button_test}" VerticalAlignment="Top" Margin="0,20,0,0" >
@@ -40,7 +40,7 @@
             <Button Grid.Column="2" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" Click="Maximize_Window_Click" HorizontalAlignment="Right" Width="60">
                 <Image Source="/HRCloud;component/Public/imgs/maximize.png" Margin="5" Height="20"/>
             </Button>
-            <Grid x:Name="header_grid" Grid.Row="0" Grid.Column="1"  >
+            <Grid x:Name="header_grid" Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2">
 
                 <Label Content="HR Cloud" Style="{StaticResource title_header_label}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60"  Width="110" FontSize="23" Margin="65,0,0,0" />
                 <Image Height="28" HorizontalAlignment="Left"  Source="/HRCloud;component/Public/imgs/pm_logo_mini.png" Margin="20,0,0,0"/>
@@ -54,7 +54,7 @@
                         <GradientStop Color="#FFF99F7D" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>-->
-                <Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
                     <RowDefinition Height="220" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
@@ -68,7 +68,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="Profil_name_tbl" Padding="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" Height="50" Style="{StaticResource minor_title_style}" Foreground="{StaticResource NavFontColor}" TextAlignment="Center"  TextWrapping="Wrap" Text="" FontFamily="/HRCloud;component/Public/fonts/#Raleway Medium"/>
+                    --><!--<TextBlock x:Name="Profil_name_tbl" Padding="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" Height="50" Style="{StaticResource minor_title_style}" Foreground="{StaticResource NavFontColor}" TextAlignment="Center"  TextWrapping="Wrap" Text="" FontFamily="/HRCloud;component/Public/fonts/#Raleway Medium"/>
                     <Ellipse Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"  Height="110" Stroke="White" StrokeThickness="2" Width="110">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="/HRCloud;component/Public/imgs/profileDefault.png" Stretch="UniformToFill"/>
@@ -79,27 +79,36 @@
                     <Rectangle x:Name="profil_settRec" Grid.Row="2" Grid.Column="0" Panel.ZIndex="0" Fill="Transparent" />
                     <Button x:Name="profil_notiBtn" Grid.Row="2" Grid.Column="1"    Panel.ZIndex="2" Style="{StaticResource profilBtn}" MouseEnter="profil_notiBtn_MouseEnter" MouseLeave="profil_notiBtn_MouseLeave"/>
                     <Image Margin="8" Grid.Row="2" Grid.Column="1" Panel.ZIndex="1" Source="/HRCloud;component/Public/imgs/noti.png"/>
-                    <Rectangle x:Name="profil_notiRec" Grid.Row="2" Grid.Column="1" Panel.ZIndex="0" Fill="Transparent" />
+                    <Rectangle x:Name="profil_notiRec" Grid.Row="2" Grid.Column="1" Panel.ZIndex="0" Fill="Transparent" />--><!--
 
-                </Grid>
+                </Grid>-->
 
                 <!--HR Gombsor-->
 
                 <Grid x:Name="HR_navigation_Grid" Visibility="Visible" Grid.Row="1"  Panel.ZIndex="2"  >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="15" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
                         <RowDefinition Height="5*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" x:Name="mw_btn1" Content="Projektek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn1_Click"/>
-                    <Button Grid.Row="1" x:Name="mw_btn2" Content="Jelöltek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn2_Click"/>
-                    <Button Grid.Row="2" x:Name="mw_btn3" Content="Listák" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn3_Click"/>
-                    <Button Grid.Row="3" x:Name="mw_btn4" Content="Kedvencek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn4_Click"/>
-                    <Button Grid.Row="5" x:Name="logout_btn" Content="Kijelentkezés" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click"/>
+                    <Grid Grid.Row="0" Style="{StaticResource Standard_Grid_Shadow}" Background="{StaticResource ThemeColor}" Panel.ZIndex="2"/>
+                    <Button Grid.Row="1" x:Name="mw_btn1" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn1_Click">
+                        <Image Source="/HRCloud;component/Public/imgs/list.png"  Height="30"/>
+                    </Button>
+                    <Button Grid.Row="2" x:Name="mw_btn2" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn2_Click">
+                        <Image Source="/HRCloud;component/Public/imgs/employee.png" Height="30"/>
+                    </Button>
+                    <Button Grid.Row="3" x:Name="mw_btn3"  Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn3_Click">
+                        <Image Source="/HRCloud;component/Public/imgs/settings_white.png" Height="30"/>
+                    </Button>
+                    <Button Grid.Row="4" x:Name="mw_btn4" Visibility="Hidden" Content="Kedvencek" Style="{StaticResource mw_navbtn_stlye}" Click="mw_btn4_Click"/>
+                    <Button Grid.Row="5" x:Name="logout_btn" Style="{StaticResource mw_navbtn_stlye}" Click="logout_btn_Click">
+                        <Image Source="/HRCloud;component/Public/imgs/logout.png" Height="25"/>
+                    </Button>
                 </Grid>
 
                 <!--Szakmai Gombsor-->

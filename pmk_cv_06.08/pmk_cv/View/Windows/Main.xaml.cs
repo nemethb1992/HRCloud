@@ -48,7 +48,7 @@ namespace HRCloud.View.Windows
                 Szakmai_navigation_Grid.Visibility = Visibility.Visible;
                 HR_navigation_Grid.Visibility = Visibility.Hidden;
             }
-            Profil_name_tbl.Text = session.UserData[0].name;
+            //Profil_name_tbl.Text = session.UserData[0].name;
             //f_control.Applicant_Folder_Structure_Creator();
             //f_control.Projekt_Folder_Structure_Creator();
         }
@@ -91,22 +91,22 @@ namespace HRCloud.View.Windows
             sgrid.Children.Add(favourites_Panel = new favourites_panel(sgrid));
         }
 
-        private void profil_notiBtn_MouseEnter(object sender, MouseEventArgs e)
-        {
-            profil_notiRec.Fill = new SolidColorBrush(Colors.White);
-        }
-        private void profil_settBtn_MouseEnter(object sender, MouseEventArgs e)
-        {
-            profil_settRec.Fill = new SolidColorBrush(Colors.White);
-        }
-        private void profil_settBtn_MouseLeave(object sender, MouseEventArgs e)
-        {
-            profil_settRec.Fill = new SolidColorBrush(Colors.Transparent);
-        }
-        private void profil_notiBtn_MouseLeave(object sender, MouseEventArgs e)
-        {
-            profil_notiRec.Fill = new SolidColorBrush(Colors.Transparent);
-        }
+        //private void profil_notiBtn_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    profil_notiRec.Fill = new SolidColorBrush(Colors.White);
+        //}
+        //private void profil_settBtn_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    profil_settRec.Fill = new SolidColorBrush(Colors.White);
+        //}
+        //private void profil_settBtn_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    profil_settRec.Fill = new SolidColorBrush(Colors.Transparent);
+        //}
+        //private void profil_notiBtn_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    profil_notiRec.Fill = new SolidColorBrush(Colors.Transparent);
+        //}
         private void Maximize_Window_Click(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);
