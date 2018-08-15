@@ -51,16 +51,14 @@ namespace HRCloud.Public.templates
 
 
 
-        public string Belsos_Meghivo_Email(string name, string projekt_name, string date, List<string> resztvevok)
+        public string Belsos_Meghivo_Email(string name, string projekt_name, string date, string helyszin, string jeloltnev)
         {
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
                                             <p Style='margin-bottom: 30px;' class=''>
-                                                Köszönjük jelentkezését, kollegáink megkezdik pályázata feldolgozását.
-
-                                                Amennyiben megtaláljuk az Ön számára alkalmas pozíciót, felvesszük Önnel a kapcsolatot.
-
-                                                Felhívjuk figyelmét, hogy adatait 1 évig tároljuk adatbázisunkban. Amennyiben szeretné módosítani adatait vagy törölni jelentkezését, kérjük jelezze a privacy@phoenix-mecano.hu e-mail címen.
+                                                A következő interjúd időpontja <b>"+projekt_name+"</b> pozícióra:  <b>"+date+ @"</b>
+                                                Jelentkező neve: <b>" + jeloltnev + @"</b>
+                                                Helyszín: <b>" + helyszin + @"</b>
                                             </p>
                                             <p>Üdvözlettel,</p>
                                             <p>Phoenix Mecano Kecskemét Kft.</p>
@@ -76,12 +74,12 @@ namespace HRCloud.Public.templates
             }
             string content = @"
                                             <h2>Tisztelt " + name + @"!</h2>
-                                            <p>Telefonos egyeztetésünkre hivatkozva szeretném megerősíteni a személyes találkozó időpontját ("+projekt_name+ @") pozícióra történő meghallgatás kapcsán.</p>
-                                            <p>Helyszín:</p><p>Phoenix Mecano Kecskemét Kft.</p><p>6000 Kecskemét, Szent István körút 24. </p>
-                                            <p>Időpont:</p><p>"+date+ @"</p>
-                                            <p>Résztvevők: </p><p>" + resztvevok_layout + @"</p>
+                                            <p>Telefonos egyeztetésünkre hivatkozva szeretném megerősíteni a személyes találkozó időpontját (<b>" + projekt_name+ @"</b>) pozícióra történő meghallgatás kapcsán.</p>
+                                            <p>Helyszín: <b>Phoenix Mecano Kecskemét Kft. <br>6000 Kecskemét, Szent István körút 24. </b></p>
+                                            <p>Időpont: <b>" + date+ @"</b></p>
+                                            <p>Résztvevők: <br>" + resztvevok_layout + @"</p>
                                             <p>A portán személyi igazolvány bemutatása szükséges.</p>
-                                            <p>Az interjú időtartama kb. 1,5  órát vesz igénybe, kérjük hogy a beléptetésre tekintettel az interjú kezdete előtt 15 perccel szíveskedjék megjelenni.</p>
+                                            <p>Az interjú időtartama kb. <b>1,5  órát</b> vesz igénybe, kérjük hogy a beléptetésre tekintettel az interjú kezdete előtt 15 perccel szíveskedjék megjelenni.</p>
                                             <p Style='margin-bottom: 30px;'>Várjuk a megbeszélt időpontban!</p>
                                             <p>Üdvözlettel,</p>
                                             <p>Phoenix Mecano Kecskemét Kft.</p>
