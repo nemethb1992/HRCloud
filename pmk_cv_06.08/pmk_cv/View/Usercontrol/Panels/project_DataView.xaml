@@ -156,7 +156,7 @@
             <Button x:Name="jeloltek_tabbtn" Grid.Column="0" Grid.Row="1" Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="Jelöltek" Click="jeloltek_tabbtn_Click"/>
                 <Button x:Name="ertesitendok_tabbtn" Grid.Column="1" Grid.Row="1"  Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="Értesítendők" Click="ertesitendok_tabbtn_Click"/>
                 <Button x:Name="hr_tabbtn" Grid.Column="2" Grid.Row="1"  Panel.ZIndex="1" Style="{StaticResource TabButton}" Content="HR" Click="hr_tabbtn_Click"/>
-                <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0"  Panel.ZIndex="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+                <ListBox x:Name="kapcs_jeloltek_listBox" Grid.Column="0" Background="{StaticResource Listbox_light}" Panel.ZIndex="3" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="5" Visibility="Visible"  Style="{StaticResource small_listBox_style}"   HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                 <ListBox.Resources>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}">
                         <Setter Property="CornerRadius" Value="0,0,10,10"/>
