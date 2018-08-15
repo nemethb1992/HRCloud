@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using static HRCloud.Model.Email_m;
 
 namespace HRCloud.Control

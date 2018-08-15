@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static HRCloud.Model.Email_m;
 
 namespace HRCloud.View.Usercontrol.Panels
 {
@@ -125,7 +126,9 @@ namespace HRCloud.View.Usercontrol.Panels
 
         private void csatolmany_download_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(f_control.Applicant_FolderReadOut(acontrol.ApplicantID)[0].path);
+            Button btn = sender as Button;
+            Jelolt_File_Struct item = btn.DataContext as Jelolt_File_Struct;
+            Process.Start(item.path);
         }
 
         //private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
