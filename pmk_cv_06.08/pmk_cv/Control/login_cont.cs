@@ -19,70 +19,28 @@ namespace HRCloud.Control
         public bool ActiveDirectoryValidation(string username, string password)
         {
             bool authenticated = false;
-            LdapConnection connection;
-            var credentials = new NetworkCredential(username, password, "pmhu");
-            var serverId = new LdapDirectoryIdentifier("ldap://192.168.144.21:389");
-
-            connection = new LdapConnection(serverId, credentials);
-
-
             try
             {
-                connection.Bind();
+                LdapDirectoryIdentifier ldi = new LdapDirectoryIdentifier("192.168.144.21", 389);
+                LdapConnection ldapConnection = new LdapConnection(ldi);
+                ldapConnection.AuthType = AuthType.Basic;
+                ldapConnection.SessionOptions.ProtocolVersion = 3;
+                NetworkCredential nc = new NetworkCredential(username+"@pmhu.local", password);
+                ldapConnection.Bind(nc);
+                ldapConnection.Dispose();
                 authenticated = true;
+            }
+            catch (LdapException e)
+            {
+                Console.WriteLine("\r\nUnable to login:\r\n\t" + e.Message);
+                authenticated = false;
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                Console.WriteLine("\r\nUnexpected exception occured:\r\n\t" + e.GetType() + ":" + e.Message);
                 authenticated = false;
             }
 
-            connection.Dispose();
-            //try
-            //{
-            //    DirectoryEntry entry = new DirectoryEntry("ldap://192.168.144.21:389", name + "@pmhu.local", pass);
-            //    object nativeObject = entry.NativeObject;
-            //    authenticated = true;
-            //}
-            //catch (DirectoryServicesCOMException cex)
-            //{
-            //    //not authenticated; reason why is in cex
-            //}
-            //catch (Exception ex)
-            //{
-            //    //not authenticated due to some other exception [this is optional]
-            //}
-
-            //try
-            //{
-            //    LdapConnection connection = new LdapConnection("ldap://192.168.144.21:389");
-            //    NetworkCredential credential = new NetworkCredential(name, pass);
-            //    connection.Credential = credential;
-            //    connection.Bind();
-            //    Console.WriteLine("logged in");
-            //    authenticated = true;
-            //}
-            //catch (LdapException lexc)
-            //{
-            //    String error = lexc.ServerErrorMessage;
-            //    Console.WriteLine(lexc);
-            //}
-            //catch (Exception exc)
-            //{
-            //    Console.WriteLine(exc);
-            //}
-            //try
-            //{
-            //    using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "ldap://192.168.144.21:389"))
-            //    {
-            //        // validate the credentials
-            //        authenticated = pc.ValidateCredentials(name + "@pmhu.local", pass);
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
             return authenticated;
         }
 

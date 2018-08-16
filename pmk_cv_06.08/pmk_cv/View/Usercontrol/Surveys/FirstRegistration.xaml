@@ -34,7 +34,7 @@
         <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="Tartományi felhasználónév"/>
         <TextBox x:Name="tartomanyi" Style="{StaticResource Standard_Textbox}" Margin="30,5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" TextChanged="Registration_input_TextChanged"/>
         <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Tartományi Jelszó"/>
-        <TextBox x:Name="tartomanyi_pass" Style="{StaticResource Standard_Textbox}"  Margin="30,5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" TextChanged="Registration_input_TextChanged"/>
+        <PasswordBox x:Name="tartomanyi_pass"   Margin="30,5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" PasswordChanged="tartomanyi_pass_PasswordChanged"/>
         <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="Teljes név:"/>
         <TextBox x:Name="teljesnev" Style="{StaticResource Standard_Textbox}"  Margin="30,5" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"  TextChanged="Registration_input_TextChanged"/>
         <TextBlock Style="{StaticResource Standard_Textblock}" Margin="30,2" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="e-mail:"/>

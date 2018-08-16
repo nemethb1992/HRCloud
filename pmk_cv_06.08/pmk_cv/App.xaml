@@ -81,6 +81,13 @@
             <Setter Property="Padding" Value="0,4,0,0"></Setter>
             <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
         </Style>
+        <Style TargetType="PasswordBox" x:Key="Standard_PasswordBox">
+            <Setter Property="FontFamily" Value="/HRCloud;component/Public/fonts/#Montserrat"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="0,4,0,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource SD_Element_Foreground}"></Setter>
+        </Style>
 
         <Style TargetType="Grid" x:Key="Standard_Grid_Shadow">
 
