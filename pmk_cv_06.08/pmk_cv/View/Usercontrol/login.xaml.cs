@@ -47,12 +47,6 @@ namespace HRCloud.View.Usercontrol
         }
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            //e_control.ReadImap();
-            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            //{
-            //    MessageBox.Show("Valid");
-            //}
-            //MessageBox.Show("Invalid");
             enterApplication();
         }
 
@@ -97,8 +91,8 @@ namespace HRCloud.View.Usercontrol
         {
 
 
-            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            //{
+            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            {
                 if (lcontrol.UserValider_MySql(Luser_tbx.Text))
                 {
                     UserRemember();
@@ -112,16 +106,13 @@ namespace HRCloud.View.Usercontrol
 
                 else
                 {
-                    LoginSign.Text = "Hibás bejelentkezés!";
+                    LoginSign.Text = "Kérem regisztráljon!";
                 }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Tartományi hitelesítés sikertelen!");
-
-            //    //if (lcontrol.userValidation(Luser_tbx.Text, Lpass_pwd.Password))
-
-            //}
+            }
+            else
+            {
+                LoginSign.Text = "Sikertelen hitelesítés!";
+            }
         }
 
         private void Registration_Click(object sender, MouseButtonEventArgs e)

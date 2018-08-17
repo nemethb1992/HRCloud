@@ -121,5 +121,20 @@ namespace HRCloud.View.Windows
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            login_cont lcont = new login_cont();
+            string user = testtbx.Text;
+            string pass = testtbx2.Text;
+            bool valid = lcont.ActiveDirectoryValidation(user,pass);
+            if (valid == true)
+            {
+                info.Text = "Siker";
+            }
+            else
+            {
+                info.Text = "Nem";
+            }
+        }
     }
 }
