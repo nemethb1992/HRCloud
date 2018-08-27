@@ -19,28 +19,30 @@ namespace HRCloud.Control
         public bool ActiveDirectoryValidation(string username, string password)
         {
             bool authenticated = false;
-            try
+            if (password.Length > 0)
             {
-                LdapDirectoryIdentifier ldi = new LdapDirectoryIdentifier("192.168.144.21", 389);
-                LdapConnection ldapConnection = new LdapConnection(ldi);
-                ldapConnection.AuthType = AuthType.Basic;
-                ldapConnection.SessionOptions.ProtocolVersion = 3;
-                NetworkCredential nc = new NetworkCredential(username+"@pmhu.local", password);
-                ldapConnection.Bind(nc);
-                ldapConnection.Dispose();
-                authenticated = true;
+                try
+                {
+                    LdapDirectoryIdentifier ldi = new LdapDirectoryIdentifier("192.168.144.21", 389);
+                    LdapConnection ldapConnection = new LdapConnection(ldi);
+                    ldapConnection.AuthType = AuthType.Basic;
+                    ldapConnection.SessionOptions.ProtocolVersion = 3;
+                    NetworkCredential nc = new NetworkCredential(username + "@pmhu.local", password);
+                    ldapConnection.Bind(nc);
+                    ldapConnection.Dispose();
+                    authenticated = true;
+                }
+                catch (LdapException e)
+                {
+                    Console.WriteLine("\r\nUnable to login:\r\n\t" + e.Message);
+                    authenticated = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("\r\nUnexpected exception occured:\r\n\t" + e.GetType() + ":" + e.Message);
+                    authenticated = false;
+                }
             }
-            catch (LdapException e)
-            {
-                Console.WriteLine("\r\nUnable to login:\r\n\t" + e.Message);
-                authenticated = false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\r\nUnexpected exception occured:\r\n\t" + e.GetType() + ":" + e.Message);
-                authenticated = false;
-            }
-
             return authenticated;
         }
 
