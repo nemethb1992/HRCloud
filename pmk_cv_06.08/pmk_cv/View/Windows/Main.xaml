@@ -50,7 +50,7 @@
                 <Label Content="HR Cloud" Grid.Column="1" Style="{StaticResource title_header_label}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60"  Width="110" FontSize="23"/>
                     <Image Height="28" HorizontalAlignment="Right"  Source="/HRCloud;component/Public/imgs/pm_logo_mini.png"/>
                     <!--<TextBlock x:Name="testtbx" Text="proba" Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center"  Grid.Column="2" />-->
-                <Grid Grid.Column="2">
+                <!--<Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="160" />
                         <ColumnDefinition Width="160" />
@@ -62,7 +62,7 @@
                     <TextBox x:Name="testtbx2" FontSize="12" Text="hxx8ka3HgB8Wy" Style="{StaticResource Standard_Textbox}" VerticalAlignment="Center"  Grid.Column="1" />
                     <Button Grid.Column="2" Height="30" Content="test" Style="{StaticResource StandardButton}" Click="Button_Click"></Button>
                     <TextBlock x:Name="info" Text="first" Style="{StaticResource Standard_Textblock}" VerticalAlignment="Center"  Grid.Column="3" />
-                </Grid>
+                </Grid>-->
             </Grid>
 
             <Grid x:Name="Left_Navigation_Grid" Style="{StaticResource gridShadow}" Background="{StaticResource ThemeColor}" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2">
