@@ -91,8 +91,8 @@ namespace HRCloud.View.Usercontrol
         {
 
 
-            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            //{
+            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            {
                 if (lcontrol.UserValider_MySql(Luser_tbx.Text))
                 {
                     UserRemember();
@@ -104,16 +104,16 @@ namespace HRCloud.View.Usercontrol
                     window.Close();
                 }
 
-            //    else
-            //    {
-            //        LoginSign.Text = "Kérem regisztráljon!";
-            //    }
-            //}
-            //else
-            //{
-            //    LoginSign.Text = "Sikertelen hitelesítés!";
-            //}
+            else
+            {
+                LoginSign.Text = "Kérem regisztráljon!";
+            }
         }
+            else
+            {
+                LoginSign.Text = "Sikertelen hitelesítés!";
+            }
+}
 
         private void Registration_Click(object sender, MouseButtonEventArgs e)
         {
