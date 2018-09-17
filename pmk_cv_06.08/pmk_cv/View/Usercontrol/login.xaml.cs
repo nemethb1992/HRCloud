@@ -91,9 +91,9 @@ namespace HRCloud.View.Usercontrol
         }
         private void enter()
         {
-            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            //{
-            if (lcontrol.mySqlUserValidation(Luser_tbx.Text))
+            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            {
+                if (lcontrol.mySqlUserValidation(Luser_tbx.Text))
             {
                 Main mw = new Main();
                     var window = Window.GetWindow(this);
@@ -109,12 +109,12 @@ namespace HRCloud.View.Usercontrol
             {
                 LoginSign.Text = "Kérem regisztráljon!";
             }
-        //}
-        //    else
-        //    {
-        //        LoginSign.Text = "Sikertelen hitelesítés!";
-        //    }
-}
+            }
+            else
+            {
+                LoginSign.Text = "Sikertelen hitelesítés!";
+            }
+        }
         private void navigateToSurveyWindow(object sender, MouseButtonEventArgs e)
         {
             SurveyWindow popup = new SurveyWindow();
