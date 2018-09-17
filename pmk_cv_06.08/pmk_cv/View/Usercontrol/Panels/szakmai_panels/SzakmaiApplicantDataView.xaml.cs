@@ -35,7 +35,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
         }
         void FormLoader()
         {
-            List<JeloltExtendedList> li = acontrol.JeloltFullDataSource();
+            List<JeloltExtendedList> li = acontrol.Data_JeloltFull();
             applicant_profile_title.Text = li[0].nev;
             app_input_1.Text = li[0].email;
             app_input_2.Text = li[0].telefon.ToString();
@@ -51,13 +51,13 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
         }
         private void megjegyzes_listBox_loadUp(ListBox lb)
         {
-            lb.ItemsSource = acontrol.megjegyzes_datasource();
+            lb.ItemsSource = acontrol.Data_Comment();
         }
         private void Megjegyzes_Delete(object sender, RoutedEventArgs e)
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.megjegyzes_torles(items.id, sess.UserData[0].id, 0, acontrol.ApplicantID);
+            comment.delete(items.id, sess.UserData[0].id, 0, acontrol.ApplicantID);
             megjegyzes_listBox_loadUp(megjegyzes_listBox);
         }
 

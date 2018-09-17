@@ -17,22 +17,21 @@ namespace HRCloud.Model
         //string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
         //string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
         //string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
-        public static string innerDataSourceURL = "Data Source = innerDatabase.db";
+
+        private static string CONNECTION_URL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
 
         private MySqlConnection conn;
         private MySqlCommand cmd;
         private MySqlDataReader sdr;
         public MySql()
         {
-            SetupDB();
+            if (conn == null)
+            {
+                conn = new MySqlConnection(CONNECTION_URL);
+            }
         }
 
         //Initialize values
-        private void SetupDB()
-        {
-            string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmhrdemo; User ID=hr-admin; Password=pmhr2018";
-            conn = new MySqlConnection(connectionString);
-        }
         public bool dbOpen()
         {
             try
@@ -158,7 +157,7 @@ namespace HRCloud.Model
 
         //MySQL  Specific 
 
-        public List<UserSessData> setUserSession(string query)
+        public List<UserSessData> getUserSession(string query)
         {
 
             List<UserSessData> list = new List<UserSessData>();
@@ -1051,35 +1050,6 @@ namespace HRCloud.Model
             }
             dbClose();
             return items;
-        }
-        //SqLite entities
-
-        public void SqliteQueryExecute(string query)
-        {
-            SQLiteConnection connSqlite = new SQLiteConnection(innerDataSourceURL);
-            var command = connSqlite.CreateCommand();
-            connSqlite.Open();
-            //command.CommandText = "CREATE TABLE IF NOT EXISTS 'app' ('username' TEXT);";
-            //command.ExecuteNonQuery();
-            command.CommandText = query;
-            command.ExecuteNonQuery();
-            connSqlite.Close();
-        }
-        public string SqliteReaderExecute(string query)
-        {
-            SQLiteConnection connSqlite = new SQLiteConnection(innerDataSourceURL);
-            connSqlite.Open();
-            var command = connSqlite.CreateCommand();
-            command.CommandText = query;
-            SQLiteDataReader sdr = command.ExecuteReader();
-            string data = "";
-            while (sdr.Read())
-            {
-                data = sdr.GetValue(0).ToString();
-            }
-            sdr.Close();
-            connSqlite.Close();
-            return data;
         }
     }
 }

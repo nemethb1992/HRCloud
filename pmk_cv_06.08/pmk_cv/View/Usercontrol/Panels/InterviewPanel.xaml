@@ -139,9 +139,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Row="2" x:Name="add_meghivott" Style="{StaticResource StandardButton}" Content="Új meghívása" VerticalAlignment="Top" Height="40" Click="openColleaguePanelClick"/>
+            <Button Grid.Row="2" x:Name="addPerson" Style="{StaticResource StandardButton}" Content="Új meghívása" VerticalAlignment="Top" Height="40" Click="openColleaguePanelClick"/>
             
-            <Button Grid.Row="4" x:Name="invite_meghívott" Panel.ZIndex="1" Visibility="Visible" Style="{StaticResource StandardButton}" Content="Meghívók küldése" VerticalAlignment="Top" Height="40" Click="addColleague" />
+            <Button Grid.Row="4" x:Name="invitePerson" Panel.ZIndex="1" Visibility="Visible" Style="{StaticResource StandardButton}" Content="Meghívók küldése" VerticalAlignment="Top" Height="40" Click="addColleague" />
 
         </Grid>
         <Grid x:Name="Blur_Grid" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Opacity="0.5" Visibility="Hidden"></Grid>

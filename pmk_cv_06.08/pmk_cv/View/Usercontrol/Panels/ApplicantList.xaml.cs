@@ -23,12 +23,12 @@ namespace HRCloud.View.Usercontrol.Panels
     {
         private static string HeaderSelecteds;
         public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
-
-
+        
         ControlApplicant acontrol = new ControlApplicant();
-        private ApplicantDataSheet applicant_DataView;
-        private NewApplicantPanel applicant_new_panel;
         PageControl pageCont = new PageControl();
+
+        private ApplicantDataSheet applicantDataSheet;
+        private NewApplicantPanel newApplicantPanel;
         private Grid sgrid;
 
         public ApplicantList(Grid sgrid)
@@ -37,7 +37,7 @@ namespace HRCloud.View.Usercontrol.Panels
             InitializeComponent();
             startMethods();
         }
-        private void startMethods()
+        protected void startMethods()
         {
             checkBoxLoader();
             applicantListLoader();
@@ -119,8 +119,8 @@ namespace HRCloud.View.Usercontrol.Panels
 
             return list;
         }
-        
-        void applicantListLoader()
+
+        protected void applicantListLoader()
         {
                 List<JeloltListItems> list = acontrol.applicantList(searchValues());
                 applicant_listBox.ItemsSource = list;
@@ -128,22 +128,22 @@ namespace HRCloud.View.Usercontrol.Panels
             
         }
 
-        void checkBoxLoader()
+        protected void checkBoxLoader()
         {
-            vegzettseg_srccbx.ItemsSource = acontrol.VegzettsegDataSource();
-            munkakor_srccbx.ItemsSource = acontrol.MunkakorDataSource();
-            nemek_srccbx.ItemsSource = acontrol.NemekDatasource();
+            vegzettseg_srccbx.ItemsSource = acontrol.Data_Vegzettseg();
+            munkakor_srccbx.ItemsSource = acontrol.Data_Munkakor();
+            nemek_srccbx.ItemsSource = acontrol.Data_Nemek();
         }
 
-        private void applicantOpenClick(object sender, RoutedEventArgs e)
+        protected void applicantOpenClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             JeloltListItems items = button.DataContext as JeloltListItems;
             acontrol.ApplicantID = items.id;
             sgrid.Children.Clear();
-            sgrid.Children.Add(applicant_DataView = new ApplicantDataSheet(sgrid));
+            sgrid.Children.Add(applicantDataSheet = new ApplicantDataSheet(sgrid));
         }
-        private void applicantDeleteClick(object sender, RoutedEventArgs e)
+        protected void applicantDeleteClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -151,7 +151,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 case MessageBoxResult.Yes:
                     MenuItem menuItem = sender as MenuItem;
                     JeloltListItems items = menuItem.DataContext as JeloltListItems;
-                    acontrol.Jelolt_delete(items.id);
+                    acontrol.applicantFullDelete(items.id);
                     applicantListLoader();
                     break;
                 case MessageBoxResult.No:
@@ -161,56 +161,56 @@ namespace HRCloud.View.Usercontrol.Panels
             }
 
         }
-        private void navigateToNewApplicantPanel(object sender, RoutedEventArgs e)
+        protected void navigateToNewApplicantPanel(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(applicant_new_panel = new NewApplicantPanel(sgrid));
+            sgrid.Children.Add(newApplicantPanel = new NewApplicantPanel(sgrid));
 
         }
-        private void searchInputTextChanged(object sender, TextChangedEventArgs e)
+        protected void searchInputTextChanged(object sender, TextChangedEventArgs e)
         {
             applicantListLoader();
         }
 
-        private void numericPreviewTextInput(object sender, TextCompositionEventArgs e)
+        protected void numericPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void searchCbxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        protected void searchCbxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             applicantListLoader();
         }
-        private void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
+        protected void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            string Tbx_name = ((TextBox)sender).Tag.ToString();
-            var Tbx = (TextBox)this.FindName(Tbx_name);
+            TextBox textbox = sender as TextBox;
+            string textboxName = ((TextBox)sender).Tag.ToString();
+            var textboxElement = (TextBox)this.FindName(textboxName);
 
             if (((TextBox)sender).Text == "")
-                Tbx.Visibility = Visibility.Hidden;
+                textboxElement.Visibility = Visibility.Hidden;
         }
-        private void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
+        protected void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            string Tbx_name = ((TextBox)sender).Tag.ToString();
-            var Tbx = (TextBox)this.FindName(Tbx_name);
+            TextBox textbox = sender as TextBox;
+            string textboxName = ((TextBox)sender).Tag.ToString();
+            var Tbx = (TextBox)this.FindName(textboxName);
 
             if (((TextBox)sender).Text == "")
             {
                 Tbx.Visibility = Visibility.Visible;
-                textBox.BorderBrush = (SolidColorBrush)Application.Current.Resources["racs_light"];
+                textbox.BorderBrush = (SolidColorBrush)Application.Current.Resources["racs_light"];
             }
             else
             {
-                textBox.BorderBrush = (SolidColorBrush)Application.Current.Resources["ThemeColor"];
-                textBox.Foreground = Brushes.Black;
+                textbox.BorderBrush = (SolidColorBrush)Application.Current.Resources["ThemeColor"];
+                textbox.Foreground = Brushes.Black;
             }
         }
-        private void searchBarRefresh(object sender, RoutedEventArgs e)
+        protected void searchBarRefresh(object sender, RoutedEventArgs e)
         {
-            TextBox nev_tbx = nev_srcinp as TextBox;
+            TextBox nev_tbx = nev_srcinp as TextBox;  // TODO: <- ez kell?
             munkakor_srccbx.SelectedIndex = 0;
             vegzettseg_srccbx.SelectedIndex = 0;
             nemek_srccbx.SelectedIndex = 0;
@@ -223,38 +223,38 @@ namespace HRCloud.View.Usercontrol.Panels
             interju_srcinp.Text = "";
         }
 
-        private void szabadChecked(object sender, RoutedEventArgs e)
+        protected void szabadChecked(object sender, RoutedEventArgs e)
         {
             applicantListLoader();
         }
 
-        private void szabadUnchecked(object sender, RoutedEventArgs e)
+        protected void szabadUnchecked(object sender, RoutedEventArgs e)
         {
             applicantListLoader();
         }
-        private void modositasClick(object sender, RoutedEventArgs e)
+        protected void modositasClick(object sender, RoutedEventArgs e)
         {
-            acontrol.Change = true;
             MenuItem item = sender as MenuItem;
             JeloltListItems itemSource = item.DataContext as JeloltListItems;
+            acontrol.Change = true;
             acontrol.ApplicantID = itemSource.id;
             sgrid.Children.Clear();
-            sgrid.Children.Add(applicant_new_panel = new NewApplicantPanel(sgrid));
+            sgrid.Children.Add(newApplicantPanel = new NewApplicantPanel(sgrid));
         }
 
-        private void headerClick(object sender, MouseButtonEventArgs e)
+        protected void headerClick(object sender, MouseButtonEventArgs e)
         {
             Label item = sender as Label;
             HeaderSelected = item.Tag.ToString();
             applicantListLoader();
         }
 
-        private void sorrendChecked(object sender, RoutedEventArgs e)
+        protected void sorrendChecked(object sender, RoutedEventArgs e)
         {
             applicantListLoader();
         }
 
-        private void sorrendUnchecked(object sender, RoutedEventArgs e)
+        protected void sorrendUnchecked(object sender, RoutedEventArgs e)
         {
             applicantListLoader();
         }

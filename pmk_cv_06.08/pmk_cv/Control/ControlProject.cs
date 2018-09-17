@@ -90,7 +90,7 @@ namespace HRCloud.Control
 
             return MySql.Projekt_MySql_listQuery(query);
         }
-        public List<ProjectExtendedListItems> ProjektFullDataSource()
+        public List<ProjectExtendedListItems> Data_ProjectFull()
         {
             string query = "SELECT (SELECT count(projekt_id) FROM projekt_jelolt_kapcs WHERE projekt_id = projektek.id GROUP BY projekt_id) as jeloltek_db, " +
                 "projektek.id, projektek.hr_id, megnevezes_projekt, megnevezes_vegzettseg, megnevezes_nyelv,megnevezes_munka,megnevezes_pc,name,fel_datum,le_datum,pc,vegzettseg,tapasztalat_ev,allapot,nyelvtudas,munkakor,szuldatum,ber,kepesseg1,kepesseg2,kepesseg3,kepesseg4,kepesseg5,feladatok,elvarasok,kinalunk, elonyok, publikalt  " +

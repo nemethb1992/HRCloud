@@ -267,6 +267,7 @@
     <Compile Include="Model\ModelProjectApplicant.cs" />
     <Compile Include="Model\ModelProject.cs" />
     <Compile Include="Model\ModelSzakmai.cs" />
+    <Compile Include="Model\SqLite.cs" />
     <Compile Include="Public\templates\EmailTemplate.cs" />
     <Compile Include="View\Usercontrol\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

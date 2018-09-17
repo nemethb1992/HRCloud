@@ -32,9 +32,11 @@ namespace HRCloud.View.Usercontrol.Panels
         ControlEmail email = new ControlEmail();
         ControlApplicantProject pa_control = new ControlApplicantProject();
         Session sess = new Session();
+
         private Grid grid;
         private ProjektJeloltDataSheet projekt_jelolt_DataView;
         private ProjectList projekt_Panel;
+
         public ProjectDataSheet(Grid grid)
         {
             this.grid = grid;
@@ -49,9 +51,10 @@ namespace HRCloud.View.Usercontrol.Panels
                 grid.Children.Add(projekt_Panel = new ProjectList(grid));
             }
         }
-        void formLoader()
+
+        protected void formLoader()
         {
-            List<ProjectExtendedListItems> li = pcontrol.ProjektFullDataSource();
+            List<ProjectExtendedListItems> li = pcontrol.Data_ProjectFull();
             projekt_profile_title.Text = li[0].megnevezes_projekt;
             projekt_input_1.Text = li[0].statusz.ToString();
             projekt_input_2.Text = li[0].megnevezes_munka;
@@ -64,7 +67,7 @@ namespace HRCloud.View.Usercontrol.Panels
             projekt_input_9.Text = li[0].ber.ToString() + " Ft";
             projekt_input_10.Text = li[0].tapasztalat_ev.ToString();
 
-            List<kompetenciak> li_k = pa_control.kompetencia_DataSource();
+            List<kompetenciak> li_k = pa_control.Data_Kompetencia();
             foreach (var item in li_k)
             {
                 if(item.id == li[0].kepesseg1)
@@ -92,7 +95,7 @@ namespace HRCloud.View.Usercontrol.Panels
             listLoader();
         }
 
-        private void listLoader()
+        protected void listLoader()
         {
             megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource();
             kapcs_jeloltek_listBox.ItemsSource = pcontrol.JeloltListSourceForListBox();
@@ -101,7 +104,7 @@ namespace HRCloud.View.Usercontrol.Panels
             koltseg_listBox.ItemsSource = pcontrol.Projekt_Koltseg_Query();
         }
 
-        private void openApplicantClick(object sender, RoutedEventArgs e)
+        protected void openApplicantClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             JeloltListItems items = button.DataContext as JeloltListItems;
@@ -117,8 +120,8 @@ namespace HRCloud.View.Usercontrol.Panels
             grid.Children.Clear();
             grid.Children.Add(projekt_jelolt_DataView = new ProjektJeloltDataSheet(grid));
         }
-        
-        private void jeloltTabClick(object sender, RoutedEventArgs e)
+
+        protected void jeloltTabClick(object sender, RoutedEventArgs e)
         {
             kapcs_jeloltek_listBox.Visibility = System.Windows.Visibility.Visible;
             kapcs_ertesitendo_listBox.Visibility = System.Windows.Visibility.Hidden;
@@ -130,7 +133,7 @@ namespace HRCloud.View.Usercontrol.Panels
             
         }
 
-        private void ertesitendokTabClick(object sender, RoutedEventArgs e)
+        protected void ertesitendokTabClick(object sender, RoutedEventArgs e)
         {
             kapcs_jeloltek_listBox.Visibility = System.Windows.Visibility.Hidden;
             kapcs_ertesitendo_listBox.Visibility = System.Windows.Visibility.Visible;
@@ -142,7 +145,7 @@ namespace HRCloud.View.Usercontrol.Panels
             
         }
 
-        private void hrTabClick(object sender, RoutedEventArgs e)
+        protected void hrTabClick(object sender, RoutedEventArgs e)
         {
             kapcs_jeloltek_listBox.Visibility = System.Windows.Visibility.Hidden;
             kapcs_ertesitendo_listBox.Visibility = System.Windows.Visibility.Hidden;
@@ -178,7 +181,7 @@ namespace HRCloud.View.Usercontrol.Panels
         //    KisListaTolto(megjegyzes_listBox);
         //}
 
-        private void jeloltDeleteClick(object sender, MouseButtonEventArgs e)
+        protected void jeloltDeleteClick(object sender, MouseButtonEventArgs e)
         {
             Image delete = sender as Image;
             JeloltListItems items = delete.DataContext as JeloltListItems;
@@ -186,7 +189,7 @@ namespace HRCloud.View.Usercontrol.Panels
             kapcs_jeloltek_listBox.ItemsSource = pcontrol.JeloltListSourceForListBox();
         }
 
-        private void ertesitendoDeleteClick(object sender, RoutedEventArgs e)
+        protected void ertesitendoDeleteClick(object sender, RoutedEventArgs e)
         {
             Button delete = sender as Button;
             ertesitendok_struct items = delete.DataContext as ertesitendok_struct;
@@ -194,7 +197,7 @@ namespace HRCloud.View.Usercontrol.Panels
             kapcs_ertesitendo_listBox.ItemsSource = pcontrol.ErtesitendokDataSource_toProjektList();
         }
 
-        private void hrDeleteClick(object sender, RoutedEventArgs e)
+        protected void hrDeleteClick(object sender, RoutedEventArgs e)
         {
             Button delete = sender as Button;
             hr_struct items = delete.DataContext as hr_struct;
@@ -203,15 +206,15 @@ namespace HRCloud.View.Usercontrol.Panels
         }
 
 
-        private void commentDeleteClick(object sender, RoutedEventArgs e)
+        protected void commentDeleteClick(object sender, RoutedEventArgs e)
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.megjegyzes_torles(items.id, sess.UserData[0].id, pcontrol.ProjektID, 0);
+            comment.delete(items.id, sess.UserData[0].id, pcontrol.ProjektID, 0);
             listLoader();
         }
 
-        private void jeloltContextMenuClick(object sender, RoutedEventArgs e)
+        protected void jeloltContextMenuClick(object sender, RoutedEventArgs e)
         {
             MenuItem mitem = sender as MenuItem;
             JeloltListItems items = mitem.DataContext as JeloltListItems;
@@ -240,7 +243,7 @@ namespace HRCloud.View.Usercontrol.Panels
             formLoader();
         }
 
-        private void textBoxKeyUp(object sender, KeyEventArgs e)
+        protected void textBoxKeyUp(object sender, KeyEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (e.Key != System.Windows.Input.Key.Enter) return;
@@ -250,7 +253,7 @@ namespace HRCloud.View.Usercontrol.Panels
             tbx.Text = "";
         }
 
-        private void commentGotFocus(object sender, RoutedEventArgs e)
+        protected void commentGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "Új megjegyzés")
@@ -258,7 +261,8 @@ namespace HRCloud.View.Usercontrol.Panels
                 tbx.Text = "";
             }
         }
-        private void commentLostFocus(object sender, RoutedEventArgs e)
+
+        protected void commentLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "")
@@ -266,7 +270,8 @@ namespace HRCloud.View.Usercontrol.Panels
                 tbx.Text = "Új megjegyzés";
             }
         }
-        private void addPanelClose(object sender, RoutedEventArgs e)
+
+        protected void addPanelClose(object sender, RoutedEventArgs e)
         {
             Ember_hozzaadas_Grid.Visibility = System.Windows.Visibility.Hidden;
             formLoader();
@@ -274,8 +279,8 @@ namespace HRCloud.View.Usercontrol.Panels
 
         private static int Kod;
         public int kod { get { return Kod; } set { Kod = value; } }
-        
-        private void addPersonPanelOpenClick(object sender, RoutedEventArgs e)
+
+        protected void addPersonPanelOpenClick(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Blur_Grid.Visibility = System.Windows.Visibility.Visible;
@@ -304,16 +309,15 @@ namespace HRCloud.View.Usercontrol.Panels
                     break;
             }
             formLoader();
-
         }
 
-        private void personPanelClose(object sender, RoutedEventArgs e)
+        protected void personPanelClose(object sender, RoutedEventArgs e)
         {
             Blur_Grid.Visibility = Visibility.Hidden;
             projekt_kapcsolodo_grid.Visibility = Visibility.Hidden;
         }
 
-        private void addPerson(object sender, RoutedEventArgs e)
+        protected void addPerson(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             if(kod == 1)
@@ -340,22 +344,22 @@ namespace HRCloud.View.Usercontrol.Panels
                 projekt_kapcsolodo_list.ItemsSource = pcontrol.HrDataSource_cbx(Ember_Search_tbx.Text);
                 kapcs_hr_listBox.ItemsSource = pcontrol.HrDataSource_toProjektList();
             }
-            
         }
 
-        private void personSearchTextChanged(object sender, TextChangedEventArgs e)
+        protected void personSearchTextChanged(object sender, TextChangedEventArgs e)
         {
             Ember_Search_Listbox.ItemsSource = pcontrol.JeloltDataSource_cbx(Ember_Search_tbx.Text);
         }
 
-        private void descriptionLostFocus(object sender, RoutedEventArgs e)
+        protected void descriptionLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             string type = tbx.Tag.ToString();
             pcontrol.Projekt_Leiras_Update(type, tbx.Text);
             formLoader();
         }
-        private void projectCost()
+
+        protected void projectCost()
         {
             int sum = 0;
             List<koltsegek> list = pcontrol.Projekt_Koltseg_Query();
@@ -366,7 +370,7 @@ namespace HRCloud.View.Usercontrol.Panels
             ossz_koltseg.Text = sum.ToString()+" ft";
         }
 
-        private void addCost(object sender, RoutedEventArgs e)
+        protected void addCost(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_Koltseg_Insert(k_megnevezes_tbx.Text, k_osszeg_tbx.Text);
             koltseg_listBox.ItemsSource = pcontrol.Projekt_Koltseg_Query();
@@ -374,23 +378,25 @@ namespace HRCloud.View.Usercontrol.Panels
             Koltseg_insert_grid.Visibility = Visibility.Hidden;
         }
 
-        private void costPanelClose(object sender, RoutedEventArgs e)
+        protected void costPanelClose(object sender, RoutedEventArgs e)
         {
             Koltseg_insert_grid.Visibility = Visibility.Hidden;
             k_megnevezes_tbx.Text = "";
             k_osszeg_tbx.Text = "";
         }
-        private void numericTextBox(object sender, TextCompositionEventArgs e)
+
+        protected void numericTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private void costPanelOpen(object sender, RoutedEventArgs e)
+
+        protected void costPanelOpen(object sender, RoutedEventArgs e)
         {
             Koltseg_insert_grid.Visibility = Visibility.Visible;
         }
 
-        private void deleteCost(object sender, RoutedEventArgs e)
+        protected void deleteCost(object sender, RoutedEventArgs e)
         {
             MenuItem menu = sender as MenuItem;
             koltsegek item = menu.DataContext as koltsegek;
@@ -399,17 +405,17 @@ namespace HRCloud.View.Usercontrol.Panels
             projectCost();
         }
 
-        private void publishChecked(object sender, RoutedEventArgs e)
+        protected void publishChecked(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_publikal(1);
         }
 
-        private void publishUnchecked(object sender, RoutedEventArgs e)
+        protected void publishUnchecked(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_publikal(0);
         }
 
-        private void gridMouseDown(object sender, MouseButtonEventArgs e)
+        protected void gridMouseDown(object sender, MouseButtonEventArgs e)
         {
                 Grid grid = sender as Grid;
             JeloltListItems item = grid.DataContext as JeloltListItems;

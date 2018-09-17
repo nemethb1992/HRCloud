@@ -27,11 +27,13 @@ namespace HRCloud.View.Usercontrol.Panels
         private static string HeaderSelecteds;
         public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
 
-        private Grid sgrid;
         ControlProject pcontrol = new ControlProject();
         PageControl pageCont = new PageControl();
+
         private ProjectDataSheet project_DataView;
         private NewProjectPanel project_new_panel;
+        private Grid sgrid;
+
         public ProjectList(Grid sgrid)
         {
             this.sgrid = sgrid;
@@ -85,7 +87,7 @@ namespace HRCloud.View.Usercontrol.Panels
             return list;
         }
 
-        void projectListLoader(){
+        protected void projectListLoader(){
                 List<Projekt_Search_Memory> list = new List<Projekt_Search_Memory>();
                 list.Add(new Projekt_Search_Memory() { statusz = 1 });
                 pcontrol.projekt_search_memory = list;
@@ -101,7 +103,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void buttonColorChange()
+        protected void buttonColorChange()
         {
             var bc = new BrushConverter();
             if (pcontrol.projekt_search_memory[0].statusz == 1)
@@ -122,7 +124,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void projectOpenClick(object sender, RoutedEventArgs e)
+        protected void projectOpenClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             ProjectListItems items = button.DataContext as ProjectListItems;
@@ -131,14 +133,14 @@ namespace HRCloud.View.Usercontrol.Panels
             sgrid.Children.Add(project_DataView = new ProjectDataSheet(sgrid));
         }
 
-        private void New_projekt_btn_Click(object sender, RoutedEventArgs e)
+        protected void New_projekt_btn_Click(object sender, RoutedEventArgs e)
         {
 
             sgrid.Children.Clear();
             sgrid.Children.Add(project_new_panel = new NewProjectPanel(sgrid));
         }
 
-        private void projectDeleteClick(object sender, RoutedEventArgs e)
+        protected void projectDeleteClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -156,7 +158,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void projectArchivateClick(object sender, RoutedEventArgs e)
+        protected void projectArchivateClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan archiválni szeretnéd? \n\nArchiválás esetén, a kiválasztott projekt, passzív állapotba kerül\nés nem jelenik meg a weblapon.", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -174,21 +176,21 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void projectPassivateClick(object sender, RoutedEventArgs e)
+        protected void projectPassivateClick(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_allapot_valto(0);
             project_listBox.ItemsSource = pcontrol.ProjektListSource(searchbar_datalist());
             buttonColorChange();
         }
 
-        private void projectActivateClick(object sender, RoutedEventArgs e)
+        protected void projectActivateClick(object sender, RoutedEventArgs e)
         {
             pcontrol.Projekt_allapot_valto(1);
             project_listBox.ItemsSource = pcontrol.ProjektListSource(searchbar_datalist());
             buttonColorChange();
         }
 
-        private void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
+        protected void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
             string Tbx_name = ((TextBox)sender).Tag.ToString();
@@ -198,7 +200,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 Tbx.Visibility = Visibility.Hidden;
         }
 
-        private void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
+        protected void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
             string Tbx_name = ((TextBox)sender).Tag.ToString();
@@ -216,27 +218,27 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void searchInputTextChange(object sender, TextChangedEventArgs e)
+        protected void searchInputTextChange(object sender, TextChangedEventArgs e)
         {
             projectListLoader();
         }
 
-        private void comboboxSelection(object sender, SelectionChangedEventArgs e)
+        protected void comboboxSelection(object sender, SelectionChangedEventArgs e)
         {
             projectListLoader();
         }
 
-        private void publikaltChecked(object sender, RoutedEventArgs e)
+        protected void publikaltChecked(object sender, RoutedEventArgs e)
         {
             projectListLoader();
         }
 
-        private void publikaltUnchecked(object sender, RoutedEventArgs e)
+        protected void publikaltUnchecked(object sender, RoutedEventArgs e)
         {
             projectListLoader();
         }
-        
-        private void modositasClick(object sender, RoutedEventArgs e)
+
+        protected void modositasClick(object sender, RoutedEventArgs e)
         {
             pcontrol.Change = true;
             MenuItem item = sender as MenuItem;
@@ -246,19 +248,19 @@ namespace HRCloud.View.Usercontrol.Panels
             sgrid.Children.Add(project_new_panel = new NewProjectPanel(sgrid));
         }
 
-        private void headerClick(object sender, MouseButtonEventArgs e)
+        protected void headerClick(object sender, MouseButtonEventArgs e)
         {
             Label item = sender as Label;
             HeaderSelected = item.Tag.ToString();
             projectListLoader();
         }
 
-        private void sorrendChecked(object sender, RoutedEventArgs e)
+        protected void sorrendChecked(object sender, RoutedEventArgs e)
         {
             projectListLoader();
         }
 
-        private void sorrendUnchecked(object sender, RoutedEventArgs e)
+        protected void sorrendUnchecked(object sender, RoutedEventArgs e)
         {
             projectListLoader();
         }

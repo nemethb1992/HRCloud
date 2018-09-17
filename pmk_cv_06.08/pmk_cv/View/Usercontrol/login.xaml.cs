@@ -28,46 +28,46 @@ namespace HRCloud.View.Usercontrol
     {
         ControlLogin lcontrol = new ControlLogin();
         Session session = new Session();
-        Model.MySql dbE = new Model.MySql();
-        ControlEmail e_control = new ControlEmail();
         private Grid grid;
+
         public Login(Grid sgrid)
         {
             this.grid = sgrid;
             InitializeComponent();
-            BootMethods();
-            dbConnectionOpener();
 
+            setartUp();
+            dbConnectionOpener();
         }
         void dbConnectionOpener()
         {
+            Model.MySql dbE = new Model.MySql();
+
             if (!dbE.dbOpen())
             {
                 LoginSign.Text = "Nincs adatkapcsolat!";
             }
         }
-        private void btn_login_Click(object sender, RoutedEventArgs e)
+        private void loginEnterClick(object sender, RoutedEventArgs e)
         {
-            enterApplication();
+            enter();
         }
         
-        private void Luser_tbx_KeyUp(object sender, KeyEventArgs e)
+        private void usernameEnterKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter) return;
             e.Handled = true;
-            enterApplication();
+            enter();
         }
 
-        private void Lpass_pwd_KeyUp(object sender, KeyEventArgs e)
+        private void passwordEnterKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter) return;
             e.Handled = true;
-            enterApplication();
+            enter();
         }
-        private void BootMethods()
+        private void setartUp()
         {
-            
-            string user = lcontrol.GetRememberedUser();
+            string user = lcontrol.getRememberedUser();
             if (user != "")
             {
                 Luser_tbx.Text = user;
@@ -78,65 +78,50 @@ namespace HRCloud.View.Usercontrol
                 login_cbx.IsChecked = false;
             }
         }
-        private void UserRemember()
+        private void usernameRemember()
         {
             if (login_cbx.IsChecked == true)
             {
-                lcontrol.WriteRememberedUser(Luser_tbx.Text);
+                lcontrol.writeRememberedUser(Luser_tbx.Text);
             }
             else
             {
-                lcontrol.DeleteRememberedUser();
+                lcontrol.deleteRememberedUser();
             }
         }
-        private void enterApplication()
+        private void enter()
         {
-
-
-            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            //{
+            if (lcontrol.mySqlUserValidation(Luser_tbx.Text))
             {
-                if (lcontrol.UserValider_MySql(Luser_tbx.Text))
-                {
-                    UserRemember();
-                    session.UserData = lcontrol.UserSessionDataList(Luser_tbx.Text);
-                    session.tartomanyi = Luser_tbx.Text;
-                    Main mw = new Main();
-                    mw.Show();
+                Main mw = new Main();
                     var window = Window.GetWindow(this);
+                    session.UserData = lcontrol.Data_UserSession(Luser_tbx.Text);
+                    session.tartomanyi = Luser_tbx.Text;
+
+                    usernameRemember();
+                    mw.Show();
                     window.Close();
-                }
+            }
 
             else
             {
                 LoginSign.Text = "Kérem regisztráljon!";
             }
-        }
-            else
-            {
-                LoginSign.Text = "Sikertelen hitelesítés!";
-            }
+        //}
+        //    else
+        //    {
+        //        LoginSign.Text = "Sikertelen hitelesítés!";
+        //    }
 }
-
-        private void Registration_Click(object sender, MouseButtonEventArgs e)
+        private void navigateToSurveyWindow(object sender, MouseButtonEventArgs e)
         {
             SurveyWindow popup = new SurveyWindow();
-            popup.Show();
             var window = Window.GetWindow(this);
-            window.Close();
-        }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    List<string> li = new List<string>();
-        //    li.Add("Drozdik Szilvia");
-        //    li.Add("Béda Olga");
-        //    li.Add("Szakmai Felelős1");
-        //    li.Add("Szakmai Felelős2");
-        //    email_template temp = new email_template();
-        //    e_control.Mail_Send("fzbalu92@gmail.com", temp.Jelolt_Meghivo_Email("Németh Balázs", "Gyártósori összeszerelő","2018.08.20. - 14:30",li ));
-        //    //e_control.Mail_Send("info@betapress.hu", etemp.Udvozlo_Email("Név"));
-        //    //e_control.Mail_Send("fzbalu92@gmail.com", etemp.Elutasito_Email("Név"));
-        //}
-        
+            popup.Show();
+            window.Close();
+        }       
     }
 }

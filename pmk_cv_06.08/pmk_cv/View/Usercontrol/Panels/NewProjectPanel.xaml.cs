@@ -23,29 +23,32 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class NewProjectPanel : UserControl
     {
-        private Grid grid;
-        private ProjectDataSheet project_DataView;
         ControlProject pcontrol = new ControlProject();
         ControlApplicant acontrol = new ControlApplicant();
         ControlApplicantProject pacontrol = new ControlApplicantProject();
         Session sess = new Session();
+
+        private Grid grid;
+        private ProjectDataSheet project_DataView;
+
         public NewProjectPanel(Grid grid)
         {
             this.grid = grid;
             InitializeComponent();
             checkboxLoader();
         }
-        private void checkboxLoader()
+
+        protected void checkboxLoader()
         {
-            pc_cbx.ItemsSource = acontrol.PCataSource();
-            vegzettseg_cbx.ItemsSource = acontrol.VegzettsegDataSource();
-            nyelv_cbx.ItemsSource = acontrol.NyelvDataSource();
-            munkakor_cbx.ItemsSource = acontrol.MunkakorDataSource();
-            k1_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
-            k2_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
-            k3_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
-            k4_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
-            k5_cbx.ItemsSource = pacontrol.kompetencia_DataSource();
+            pc_cbx.ItemsSource = acontrol.Data_Pc();
+            vegzettseg_cbx.ItemsSource = acontrol.Data_Vegzettseg();
+            nyelv_cbx.ItemsSource = acontrol.Data_Nyelv();
+            munkakor_cbx.ItemsSource = acontrol.Data_Munkakor();
+            k1_cbx.ItemsSource = pacontrol.Data_Kompetencia();
+            k2_cbx.ItemsSource = pacontrol.Data_Kompetencia();
+            k3_cbx.ItemsSource = pacontrol.Data_Kompetencia();
+            k4_cbx.ItemsSource = pacontrol.Data_Kompetencia();
+            k5_cbx.ItemsSource = pacontrol.Data_Kompetencia();
             if (pcontrol.Change == true)
             {
                 uj_cim.Visibility = Visibility.Hidden;
@@ -55,21 +58,22 @@ namespace HRCloud.View.Usercontrol.Panels
                 modifyFormLoader();
             }
         }
-        public void modifyFormLoader()
+
+        protected void modifyFormLoader()
         {
-            List<ProjectExtendedListItems> li = pcontrol.ProjektFullDataSource();
+            List<ProjectExtendedListItems> li = pcontrol.Data_ProjectFull();
             nev_tbx.Text = li[0].megnevezes_projekt;
             tapasztalat_tbx.Text = li[0].tapasztalat_ev.ToString();
             ber_tbx.Text = li[0].ber.ToString();
-            pc_cbx.SelectedIndex = checkboxCounter(acontrol.PCataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.pc, }));
-            vegzettseg_cbx.SelectedIndex = checkboxCounter(acontrol.VegzettsegDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.vegzettseg, }));
-            nyelv_cbx.SelectedIndex = checkboxCounter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.nyelvtudas, }));
-            munkakor_cbx.SelectedIndex = checkboxCounter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.munkakor, }));
-            k1_cbx.SelectedIndex = checkboxCounter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg1, }));
-            k2_cbx.SelectedIndex = checkboxCounter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg2, }));
-            k3_cbx.SelectedIndex = checkboxCounter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg3, }));
-            k4_cbx.SelectedIndex = checkboxCounter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg4, }));
-            k5_cbx.SelectedIndex = checkboxCounter(pacontrol.kompetencia_DataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg5, }));
+            pc_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Pc().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.pc, }));
+            vegzettseg_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Vegzettseg().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.vegzettseg, }));
+            nyelv_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Nyelv().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.nyelvtudas, }));
+            munkakor_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.munkakor, }));
+            k1_cbx.SelectedIndex = checkboxCounter(pacontrol.Data_Kompetencia().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg1, }));
+            k2_cbx.SelectedIndex = checkboxCounter(pacontrol.Data_Kompetencia().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg2, }));
+            k3_cbx.SelectedIndex = checkboxCounter(pacontrol.Data_Kompetencia().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg3, }));
+            k4_cbx.SelectedIndex = checkboxCounter(pacontrol.Data_Kompetencia().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg4, }));
+            k5_cbx.SelectedIndex = checkboxCounter(pacontrol.Data_Kompetencia().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.kepesseg5, }));
 
         }
 
@@ -86,7 +90,8 @@ namespace HRCloud.View.Usercontrol.Panels
             }
             return i;
         }
-        private List<ProjectInsertListItems> getData()
+
+        protected List<ProjectInsertListItems> getData()
         {
             
             ComboBox munkakorCBX = munkakor_cbx as ComboBox;
@@ -136,7 +141,8 @@ namespace HRCloud.View.Usercontrol.Panels
             });
             return items;
         }
-        private void projektInsertClick(object sender, RoutedEventArgs e)
+
+        protected void projektInsertClick(object sender, RoutedEventArgs e)
         {
             pcontrol.Change = false;
             try
@@ -150,14 +156,16 @@ namespace HRCloud.View.Usercontrol.Panels
                 MessageBox.Show("Nem lehet kitöltetlen mező!");
             }
         }
-        private void projektUpdateClick(object sender, RoutedEventArgs e)
+
+        protected void projektUpdateClick(object sender, RoutedEventArgs e)
         {
             pcontrol.Change = false;
             pcontrol.Projekt_list_UPDATE(getData());
             grid.Children.Clear();
             grid.Children.Add(project_DataView = new ProjectDataSheet(grid));
         }
-        private void numericTextBox(object sender, TextCompositionEventArgs e)
+
+        protected void numericTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text);

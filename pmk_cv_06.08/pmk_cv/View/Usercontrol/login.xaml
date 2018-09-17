@@ -25,17 +25,17 @@
         <TextBlock x:Name="LoginSign" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource big_title_style}"   Text="Bejelentkezés" />
 
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Height="25"  Width="25" Source="/HRCloud;component/Public/imgs/user.png"/>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="Luser_tbx" Text=""  Style="{StaticResource Login_User_tbx}" KeyUp="Luser_tbx_KeyUp"/>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="Luser_tbx" Text=""  Style="{StaticResource Login_User_tbx}" KeyUp="usernameEnterKeyUp"/>
 
         <Image Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="25" Width="25" Source="/HRCloud;component/Public/imgs/key.png" />
-        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="Lpass_pwd" Password="3HgB8Wy3HgB8Wy" Style="{StaticResource Login_Pass_pwd}" KeyUp="Lpass_pwd_KeyUp"/>
+        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="Lpass_pwd" Password="3HgB8Wy3HgB8Wy" Style="{StaticResource Login_Pass_pwd}" KeyUp="passwordEnterKeyUp"/>
 
         <CheckBox Grid.Row="3" Grid.Column="2" x:Name="login_cbx" Content="Megjegyez" Style="{StaticResource login_check}" HorizontalAlignment="Left"/>
 
-        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="btn_login" VerticalAlignment="Bottom" Content="Belépés" Style="{StaticResource StandardButton}" Height="50" Click="btn_login_Click" />
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="btn_login" VerticalAlignment="Bottom" Content="Belépés" Style="{StaticResource StandardButton}" Height="50" Click="loginEnterClick" />
 
         <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Content="Phoenix Mecano Kecskemét kft" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFAEAEAE"/>
-        <TextBlock  Grid.Row="5" Grid.Column="1" Cursor="Hand" Grid.ColumnSpan="2" Text="Regisztráció" FontSize="14" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="{StaticResource SD_Element_Foreground}" MouseDown="Registration_Click"/>
+        <TextBlock  Grid.Row="5" Grid.Column="1" Cursor="Hand" Grid.ColumnSpan="2" Text="Regisztráció" FontSize="14" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="{StaticResource SD_Element_Foreground}" MouseDown="navigateToSurveyWindow"/>
        
         <!--<Button Content="Button" Grid.Column="3" HorizontalAlignment="Left" Margin="0,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>-->
 

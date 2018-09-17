@@ -30,10 +30,9 @@ namespace HRCloud.View.Usercontrol.Panels
 
         ControlApplicant a_control = new ControlApplicant();
         ControlProject p_control = new ControlProject();
-        Session sess = new Session();
-        ControlEmail email = new ControlEmail();
-        EmailTemplate et = new EmailTemplate();
         ControlApplicantProject pa_control = new ControlApplicantProject();
+        Session sess = new Session();
+    
         public InterviewPanel(Grid grid)
         {
             this.grid = grid;
@@ -41,12 +40,12 @@ namespace HRCloud.View.Usercontrol.Panels
             interviewLoader();
             if (sess.UserData[0].kategoria == 0)
             {
-                add_meghivott.Visibility = Visibility.Hidden;
-                invite_meghívott.Visibility = Visibility.Hidden;
+                addPerson.Visibility = Visibility.Hidden;
+                invitePerson.Visibility = Visibility.Hidden;
             }
         }
 
-        private void navigateBackFromInterview(object sender, RoutedEventArgs e)
+        protected void navigateBackFromInterview(object sender, RoutedEventArgs e)
         {
             if(sess.UserData[0].kategoria == 1)
             {
@@ -59,11 +58,12 @@ namespace HRCloud.View.Usercontrol.Panels
                 grid.Children.Add(szakmai_Interju_Lista = new SzakmaiInterviewList(grid));
             }
         }
-        private void interviewLoader()
+        protected void interviewLoader()
         {
             List<interju_struct> list = pa_control.Interju_DataSource_ByID();
-            List<ProjectExtendedListItems> li = p_control.ProjektFullDataSource();
-            List<kompetenciak> li_k = pa_control.kompetencia_DataSource();
+            List<ProjectExtendedListItems> li = p_control.Data_ProjectFull();
+            List<kompetenciak> li_k = pa_control.Data_Kompetencia();
+
             foreach (var item in li_k)
             {
                 if (item.id == li[0].kepesseg1)
@@ -77,6 +77,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 if (item.id == li[0].kepesseg5)
                 { kompetencia5.Text = item.kompetencia_megnevezes; }
             }
+
             interju_jelolt_tbl.Text = list[0].jelolt_megnevezes;
             interju_projekt_tbl.Text = list[0].projekt_megnevezes;
             interju_cim_tbl.Text = list[0].interju_cim;
@@ -84,8 +85,8 @@ namespace HRCloud.View.Usercontrol.Panels
             interju_idopont_tbl.Text = list[0].interju_datum +" - "+ list[0].idopont;
             interju_liras_tbl.Text = list[0].interju_leiras;
 
-            choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
-            ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            choose_editlist.ItemsSource = pa_control.Data_ProjektErtesitendokKapcsolt();
+            ertesitendok_editlist.ItemsSource = pa_control.Data_InterjuErtesitendokKapcsolt();
 
             if (pa_control.Kompetencia_valider())
             {
@@ -95,11 +96,11 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void kompetencia_send_btn(object sender, RoutedEventArgs e)
+        protected void kompetencia_send_btn(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            int type = Convert.ToInt32(btn.Tag);
-            List<ProjectExtendedListItems> li = p_control.ProjektFullDataSource();
+            Button button = sender as Button;
+            int type = Convert.ToInt32(button.Tag);
+            List<ProjectExtendedListItems> li = p_control.Data_ProjectFull();
 
             List<int> list = new List<int>() ;
             list.Add(li[0].kepesseg1);
@@ -113,61 +114,60 @@ namespace HRCloud.View.Usercontrol.Panels
             list.Add(li[0].kepesseg5);
             list.Add(Convert.ToInt32(k5_slider.Value));
             list.Add(type);
-            pa_control.Kopmetencia_ertekeles_INSERT(list);
 
+            pa_control.kompetenciaUpdate(list);
             Panel.SetZIndex(kompetencia_border,1);
             locked_title.Visibility = Visibility.Visible;
             teszt_nyitas_btn.Visibility = Visibility.Visible;
 
 
         }
-        private void openColleaguePanelClick(object sender, RoutedEventArgs e)
+        protected void openColleaguePanelClick(object sender, RoutedEventArgs e)
         {
-
-
             resztvevo_felvetel_list.Visibility = Visibility.Visible;
             Blur_Grid.Visibility = Visibility.Visible;
-
-            choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
+            choose_editlist.ItemsSource = pa_control.Data_ProjektErtesitendokKapcsolt();
         }
 
 
-        private void addColleagueToInterview(object sender, RoutedEventArgs e)
+        protected void addColleagueToInterview(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             ertesitendok_struct items = btn.DataContext as ertesitendok_struct;
             pa_control.Write_User_To_Inerju(items.id);
 
-            choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
-            ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            choose_editlist.ItemsSource = pa_control.Data_ProjektErtesitendokKapcsolt();
+            ertesitendok_editlist.ItemsSource = pa_control.Data_InterjuErtesitendokKapcsolt();
         }
 
-        private void removeColleague(object sender, RoutedEventArgs e)
+        protected void removeColleague(object sender, RoutedEventArgs e)
         {
             if(sess.UserData[0].kategoria == 1)
             {
                 MenuItem menu = sender as MenuItem;
                 ertesitendok_struct items = menu.DataContext as ertesitendok_struct;
                 pa_control.Delete_User_To_Inerju(items.id);
-                choose_editlist.ItemsSource = pa_control.bevon_ertesitendok_DataSource();
-                ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+                choose_editlist.ItemsSource = pa_control.Data_ProjektErtesitendokKapcsolt();
+                ertesitendok_editlist.ItemsSource = pa_control.Data_InterjuErtesitendokKapcsolt();
             }
         }
 
-        private void closeColleaguePanelClick(object sender, RoutedEventArgs e)
+        protected void closeColleaguePanelClick(object sender, RoutedEventArgs e)
         {
             resztvevo_felvetel_list.Visibility = Visibility.Hidden;
             Blur_Grid.Visibility = Visibility.Hidden;
         }
 
-        private void resztvevoSaveClick(object sender, RoutedEventArgs e)
+        protected void resztvevoSaveClick(object sender, RoutedEventArgs e)
         {
-            ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            ertesitendok_editlist.ItemsSource = pa_control.Data_InterjuErtesitendokKapcsolt();
         }
 
-        private void addColleague(object sender, RoutedEventArgs e)
+        protected void addColleague(object sender, RoutedEventArgs e)
         {
-            List<ertesitendok_struct> szemelyek = pa_control.interjuhoz_adott_ertesitendok_DataSource();
+            EmailTemplate et = new EmailTemplate();
+            ControlEmail email = new ControlEmail();
+            List<ertesitendok_struct> szemelyek = pa_control.Data_InterjuErtesitendokKapcsolt();
             List<interju_struct> interju = pa_control.Interju_DataSource_ByID();
             List<String> resztvevok = new List<string>();
             foreach (var item in szemelyek)

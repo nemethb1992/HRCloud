@@ -41,12 +41,12 @@ namespace HRCloud.View.Usercontrol.Panels
                 projectFormLoader();
         }
 
-        private void projectFormLoader()
+        protected void projectFormLoader()
         {
-            List<JeloltExtendedList> a_li = acontrol.JeloltFullDataSource();
-            List<ProjectExtendedListItems> p_li = pcontrol.ProjektFullDataSource();
-            List<kompetenciak> li_k = pa_control.kompetencia_DataSource();
-            List<kompetencia_summary_struct> li_kvalue = pa_control.kompetencia_jelolt_kapcs_DataSource();
+            List<JeloltExtendedList> a_li = acontrol.Data_JeloltFull();
+            List<ProjectExtendedListItems> p_li = pcontrol.Data_ProjectFull();
+            List<kompetenciak> li_k = pa_control.Data_Kompetencia();
+            List<kompetencia_summary_struct> li_kvalue = pa_control.Data_KompetenciaJeloltKapcs();
             projekt_jelolt_title_tbl.Text = p_li[0].megnevezes_projekt + " - " + a_li[0].nev;
             jelolt_telefon.Text = "( " + a_li[0].telefon + " )";
             megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
@@ -88,7 +88,7 @@ namespace HRCloud.View.Usercontrol.Panels
             telephoneInspectedLayout();
         }
 
-        private void telephoneInspectedLayout()
+        protected void telephoneInspectedLayout()
         {
             if (pa_control.TelefonSzurt == 1)
             {
@@ -97,13 +97,13 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void backToProjectDataSheet(object sender, RoutedEventArgs e)
+        protected void backToProjectDataSheet(object sender, RoutedEventArgs e)
         {
             grid.Children.Clear();
             grid.Children.Add(project_DataView = new ProjectDataSheet(grid));
         }
 
-        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        protected void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (e.Key != System.Windows.Input.Key.Enter) return;
@@ -113,7 +113,7 @@ namespace HRCloud.View.Usercontrol.Panels
             tbx.Text = "";
         }
 
-        private void commentGotFocus(object sender, RoutedEventArgs e)
+        protected void commentGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "Új megjegyzés")
@@ -122,7 +122,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void commentLostFocus(object sender, RoutedEventArgs e)
+        protected void commentLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "")
@@ -131,15 +131,15 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void commentDeleteMenuItemClick(object sender, RoutedEventArgs e)
+        protected void commentDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.megjegyzes_torles(items.id, sess.UserData[0].id, pcontrol.ProjektID, acontrol.ApplicantID);
+            comment.delete(items.id, sess.UserData[0].id, pcontrol.ProjektID, acontrol.ApplicantID);
             megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
         }
 
-        private void telephonePanelOpenClick(object sender, RoutedEventArgs e)
+        protected void telephonePanelOpenClick(object sender, RoutedEventArgs e)
         {
             ismerte_cbx.Items.Add("nem");
             ismerte_cbx.Items.Add("igen");
@@ -149,7 +149,7 @@ namespace HRCloud.View.Usercontrol.Panels
             telefonos_nem_btn.IsEnabled = false;
         }
 
-        private void telephonePanelCloseClick(object sender, RoutedEventArgs e)
+        protected void telephonePanelCloseClick(object sender, RoutedEventArgs e)
         {
             grid_telefonosszuro.Height = 100;
             ismerte_cbx.Items.Clear();
@@ -159,7 +159,7 @@ namespace HRCloud.View.Usercontrol.Panels
             telefonos_nem_btn.IsEnabled = true;
         }
 
-        private void telephoneAcceptClick(object sender, RoutedEventArgs e)
+        protected void telephoneAcceptClick(object sender, RoutedEventArgs e)
         {
             int ismerte = 0;
             if(ismerte_cbx.SelectedItem == "igen")
@@ -174,7 +174,7 @@ namespace HRCloud.View.Usercontrol.Panels
             telephoneInspectedLayout();
         }
 
-        private void telephoneDeclineClick(object sender, RoutedEventArgs e)
+        protected void telephoneDeclineClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan elutasítja? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -191,7 +191,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        void interviewPanelOpen()
+        protected void interviewPanelOpen()
         {
             var grid = (Grid)this.FindName("ui_bg");
             var grid2 = (Grid)this.FindName("uj_interju_panel");
@@ -199,7 +199,7 @@ namespace HRCloud.View.Usercontrol.Panels
             grid2.Visibility = Visibility.Visible;
         }
 
-        void interviewPanelClose()
+        protected void interviewPanelClose()
         {
             var grid = (Grid)this.FindName("ui_bg");
             var grid2 = (Grid)this.FindName("uj_interju_panel");
@@ -207,22 +207,22 @@ namespace HRCloud.View.Usercontrol.Panels
             grid2.Visibility = Visibility.Hidden;
         }
 
-        private void Uj_Interju_felvetele_Click(object sender, RoutedEventArgs e)
+        protected void Uj_Interju_felvetele_Click(object sender, RoutedEventArgs e)
         {
             interviewPanelOpen();
         }
 
-        private void uj_interju_megsem_btn_Click(object sender, RoutedEventArgs e)
+        protected void uj_interju_megsem_btn_Click(object sender, RoutedEventArgs e)
         {
             interviewPanelClose();
         }
 
-        private void ui_bg_MouseDown(object sender, MouseButtonEventArgs e)
+        protected void ui_bg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             interviewPanelClose();
         }
 
-        private void uj_interju_mentes_btn_Click(object sender, RoutedEventArgs e)
+        protected void uj_interju_mentes_btn_Click(object sender, RoutedEventArgs e)
         {
             string datum = "";
             string[] seged = inter_date.SelectedDate.ToString().Split(' ');
@@ -243,7 +243,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void navigateToInterviewPanel(object sender, RoutedEventArgs e)
+        protected void navigateToInterviewPanel(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             interju_struct items = btn.DataContext as interju_struct;
@@ -252,21 +252,21 @@ namespace HRCloud.View.Usercontrol.Panels
             grid.Children.Add(interju_Panel = new InterviewPanel(grid));
         }
 
-        private void deleteInterview(object sender, RoutedEventArgs e)
+        protected void deleteInterview(object sender, RoutedEventArgs e)
         {
             MenuItem menu = sender as MenuItem;
             interju_struct items = menu.DataContext as interju_struct;
-            pa_control.interju_delete(items.id);
+            pa_control.interviewDelete(items.id);
             projectFormLoader();
         }
 
-        private void numericTextBox(object sender, TextCompositionEventArgs e)
+        protected void numericTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void jeloltTamogatasa()
+        protected void jeloltTamogatasa()
         {
             List<kompetencia_tamogatas> list = new List<kompetencia_tamogatas>();
             list = pa_control.kompetencia_tamogatas_DataSource();

@@ -32,7 +32,7 @@ namespace HRCloud.View.Usercontrol.Panels
             list_loader();
             //scontrol.kompetenciaíró();
         }
-        private void list_loader()
+        protected void list_loader()
         {
             ertesitendok_editlist.ItemsSource = scontrol.Ertesitendok_DataSource();
             vegzettsegek_editlist.ItemsSource = scontrol.Vegzettseg_DataSource();
@@ -40,10 +40,10 @@ namespace HRCloud.View.Usercontrol.Panels
             pc_editlist.ItemsSource = scontrol.PC_DataSource();
             ertesules_editlist.ItemsSource = scontrol.Ertesulesek_DataSource();
             nyelv_editlist.ItemsSource = scontrol.Nyelv_DataSource();
-            kompetencia_editlist.ItemsSource = pa_control.kompetencia_DataSource();
+            kompetencia_editlist.ItemsSource = pa_control.Data_Kompetencia();
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        protected void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "Új hozzáadása")
@@ -52,7 +52,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        protected void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "")
@@ -62,7 +62,7 @@ namespace HRCloud.View.Usercontrol.Panels
         }
 
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        protected void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -81,7 +81,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        protected void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -100,7 +100,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        protected void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -119,7 +119,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        protected void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -138,7 +138,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        protected void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -156,7 +156,7 @@ namespace HRCloud.View.Usercontrol.Panels
                     break;
             }
         }
-        private void kompetencia_delete(object sender, RoutedEventArgs e)
+        protected void kompetencia_delete(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
             switch (result)
@@ -176,7 +176,7 @@ namespace HRCloud.View.Usercontrol.Panels
         }
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        protected void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (vegzettsegek_new_tbx.Text != "" && vegzettsegek_new_tbx.Text != "Új hozzáadása")
             {
@@ -186,7 +186,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        protected void Button_Click_2(object sender, RoutedEventArgs e)
         {
             if (munkakorok_new_tbx.Text != "" && munkakorok_new_tbx.Text != "Új hozzáadása")
             {
@@ -196,7 +196,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        protected void Button_Click_3(object sender, RoutedEventArgs e)
         {
             if (pc_new_tbx.Text != "" && pc_new_tbx.Text != "Új hozzáadása")
             {
@@ -206,7 +206,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        protected void Button_Click_4(object sender, RoutedEventArgs e)
         {
             if (ertesules_new_tbx.Text != "" && ertesules_new_tbx.Text != "Új hozzáadása")
             {
@@ -216,7 +216,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        protected void Button_Click_5(object sender, RoutedEventArgs e)
         {
             if (nyelv_new_tbx.Text != "" && nyelv_new_tbx.Text != "Új hozzáadása")
             {
@@ -228,7 +228,7 @@ namespace HRCloud.View.Usercontrol.Panels
         
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        protected void Button_Click_6(object sender, RoutedEventArgs e)
         {
             if (kompetencia_new_tbx.Text != "" && kompetencia_new_tbx.Text != "Új hozzáadása")
             {

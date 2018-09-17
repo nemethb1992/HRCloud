@@ -15,10 +15,10 @@ namespace HRCloud.Control
     class ControlLogin
     {
         Session session = new Session();
-        Model.MySql dbE = new Model.MySql();
+        Model.MySql mySql = new Model.MySql();
+        SqLite sqLite = new SqLite();
         public bool ActiveDirectoryValidation(string username, string password)
         {
-            bool authenticated = false;
             if (password.Length > 0)
             {
                 try
@@ -27,78 +27,68 @@ namespace HRCloud.Control
                     LdapConnection ldapConnection = new LdapConnection(ldi);
                     ldapConnection.AuthType = AuthType.Basic;
                     ldapConnection.SessionOptions.ProtocolVersion = 3;
-                    NetworkCredential nc = new NetworkCredential(username + "@pmhu.local", password);
-                    ldapConnection.Bind(nc);
+                    NetworkCredential networkCredential = new NetworkCredential(username + "@pmhu.local", password);
+                    ldapConnection.Bind(networkCredential);
                     ldapConnection.Dispose();
-                    authenticated = true;
+                    return true;
                 }
                 catch (LdapException e)
                 {
                     Console.WriteLine("\r\nUnable to login:\r\n\t" + e.Message);
-                    authenticated = false;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("\r\nUnexpected exception occured:\r\n\t" + e.GetType() + ":" + e.Message);
-                    authenticated = false;
                 }
             }
-            return authenticated;
+            return false;
         }
 
         public bool userValidation(string name, string pass)
         {
             DateTime dateTime = DateTime.Now;
-            bool valider = false;
-                int found = dbE.rowCount("SELECT count(id) FROM users WHERE username='" + name + "'");
-                if (found == 1)
-                {
-                    valider = true;
-                    dbE.SqliteQueryExecute("UPDATE users SET belepve = '" + dateTime.ToString("yyyy. MM. dd.") + "' WHERE username = '" + name + "';");
-                }
-
-            return valider;
+            if (mySql.rowCount("SELECT count(id) FROM users WHERE username='" + name + "'") == 1)
+            {
+                sqLite.update("UPDATE users SET belepve = '" + dateTime.ToString("yyyy. MM. dd.") + "' WHERE username = '" + name + "';");
+                return true;
+            }
+            return false;
         }
-        public string GetRememberedUser()
+        public string getRememberedUser()
         {
-            string user = "";
+            string user;
             try
             {
-                user = dbE.SqliteReaderExecute("select username from app");
+                user = sqLite.query("select username from app");
             }
             catch (Exception)
             {
-                dbE.SqliteQueryExecute("CREATE TABLE IF NOT EXISTS 'app' ('username' TEXT);");
-                user = dbE.SqliteReaderExecute("SELECT 'username' FROM 'app';");
+                sqLite.update("CREATE TABLE IF NOT EXISTS 'app' ('username' TEXT);");
+                user = sqLite.query("SELECT 'username' FROM 'app';");
             }
             return user;
         }
-        public void WriteRememberedUser(string username)
+        public void writeRememberedUser(string username) //javítva használja: login
         {
-            dbE.SqliteQueryExecute("DELETE FROM 'app';");
-            dbE.SqliteQueryExecute("INSERT INTO 'app' (username) VALUES ('" + username + "');");
+            sqLite.update("DELETE FROM 'app';");
+            sqLite.update("INSERT INTO 'app' (username) VALUES ('" + username + "');");
         }
-        public void DeleteRememberedUser()
+        public void deleteRememberedUser() //javítva használja: login
         {
-            dbE.SqliteQueryExecute("DELETE FROM 'app';");
+            sqLite.update("DELETE FROM 'app';");
         }
-        public bool UserValider_MySql(string user)
+        public bool mySqlUserValidation(string user) //javítva használja: login
         {
-            string query = "SELECT count(id) FROM users WHERE username='" + user + "'";
-            return dbE.bind(query);
+            return mySql.bind("SELECT count(id) FROM users WHERE username='" + user + "'");
         }
-        public List<UserSessData> UserSessionDataList(string username)
+        public List<UserSessData> Data_UserSession(string username)  //javítva használja: login
         {
-            string query = "SELECT * FROM users WHERE username='" + username + "'";
-
-            List<UserSessData> list = dbE.setUserSession(query);
-
-            return list;
+            return mySql.getUserSession("SELECT * FROM users WHERE username='" + username + "'");
         }
-        public void UserRegistration(string username, string name, string email, int kategoria)
+        public void userRegistration(string username, string name, string email, int kategoria)
         {
             DateTime dateTime = DateTime.Now;
-            dbE.update("INSERT INTO `users` (`id`, `username`, `name`, `email`, `kategoria`, `jogosultsag`, `validitas`, `belepve`, `reg_datum`) VALUES (NULL, '"+ username + "', '"+ name + "', '"+ email + "', '"+ kategoria + "', '1', '1', '" + dateTime.ToString("yyyy. MM. dd.") + "', '" + dateTime.ToString("yyyy. MM. dd.") + "');");
+            mySql.update("INSERT INTO `users` (`id`, `username`, `name`, `email`, `kategoria`, `jogosultsag`, `validitas`, `belepve`, `reg_datum`) VALUES (NULL, '"+ username + "', '"+ name + "', '"+ email + "', '"+ kategoria + "', '1', '1', '" + dateTime.ToString("yyyy. MM. dd.") + "', '" + dateTime.ToString("yyyy. MM. dd.") + "');");
         }
     }
 }

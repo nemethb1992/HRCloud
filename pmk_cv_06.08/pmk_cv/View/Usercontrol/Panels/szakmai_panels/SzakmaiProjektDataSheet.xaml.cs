@@ -46,7 +46,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
         }
         void FormLoader()
         {
-            List<ProjectExtendedListItems> li = p_control.ProjektFullDataSource();
+            List<ProjectExtendedListItems> li = p_control.Data_ProjectFull();
             projekt_profile_title.Text = li[0].megnevezes_projekt;
             projekt_input_1.Text = li[0].statusz.ToString();
             projekt_input_2.Text = li[0].megnevezes_munka;
@@ -59,7 +59,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
             projekt_input_9.Text = li[0].ber.ToString() + " Ft";
             projekt_input_10.Text = li[0].tapasztalat_ev.ToString();
 
-            List<kompetenciak> li_k = pa_control.kompetencia_DataSource();
+            List<kompetenciak> li_k = pa_control.Data_Kompetencia();
             foreach (var item in li_k)
             {
                 if (item.id == li[0].kepesseg1)
@@ -81,7 +81,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.megjegyzes_torles(items.id, sess.UserData[0].id, p_control.ProjektID, 0);
+            comment.delete(items.id, sess.UserData[0].id, p_control.ProjektID, 0);
             megjegyzes_listBox.ItemsSource = p_control.megjegyzes_datasource();
         }
         private void TextBox_KeyUp(object sender, KeyEventArgs e)

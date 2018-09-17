@@ -21,12 +21,14 @@ namespace HRCloud.View.Usercontrol.Panels
     public partial class FavouritesPanel : UserControl
     {
         private Grid grid;
+
         public FavouritesPanel(Grid grid)
         {
             this.grid = grid;
             InitializeComponent();
             startMethods();
         }
+
         private void startMethods()
         {
 

@@ -61,7 +61,7 @@ namespace HRCloud.View.Usercontrol.Surveys
                 {
                     ComboBox katcbx = kategoria_cbx as ComboBox;
                     Kategoria_struct kategoria_items = katcbx.SelectedItem as Kategoria_struct;
-                    l_control.UserRegistration(tartomanyi.Text, teljesnev.Text, email.Text, kategoria_items.id);
+                    l_control.userRegistration(tartomanyi.Text, teljesnev.Text, email.Text, kategoria_items.id);
                     MainWindow login = new MainWindow();
                     var window = Window.GetWindow(this);
                     window.Close();
