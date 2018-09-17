@@ -25,7 +25,7 @@
                    Style="{StaticResource big_title_style}"
                    Text="Interjú"
                    Margin="0,0,200,0"/>
-        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="Back_To_pj_button"/>
+        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="navigateBackFromInterview"/>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -130,7 +130,7 @@
                         <Grid >
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem x:Name="remove" Header="Eltávolítás" Click="remove_Click"/>
+                                    <MenuItem x:Name="remove" Header="Eltávolítás" Click="removeColleague"/>
                                 </ContextMenu>
                             </Grid.ContextMenu>
                             <TextBlock Grid.Column="0"  Style="{StaticResource panelTbl_style}" Text="{Binding name}"/>
@@ -139,9 +139,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Row="2" x:Name="add_meghivott" Style="{StaticResource StandardButton}" Content="Új meghívása" VerticalAlignment="Top" Height="40" Click="add_meghivott_Click"/>
+            <Button Grid.Row="2" x:Name="add_meghivott" Style="{StaticResource StandardButton}" Content="Új meghívása" VerticalAlignment="Top" Height="40" Click="openColleaguePanelClick"/>
             
-            <Button Grid.Row="4" x:Name="invite_meghívott" Panel.ZIndex="1" Visibility="Visible" Style="{StaticResource StandardButton}" Content="Meghívók küldése" VerticalAlignment="Top" Height="40" Click="invite_meghívott_Click" />
+            <Button Grid.Row="4" x:Name="invite_meghívott" Panel.ZIndex="1" Visibility="Visible" Style="{StaticResource StandardButton}" Content="Meghívók küldése" VerticalAlignment="Top" Height="40" Click="addColleague" />
 
         </Grid>
         <Grid x:Name="Blur_Grid" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Opacity="0.5" Visibility="Hidden"></Grid>
@@ -164,7 +164,7 @@
             <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" Background="White" Style="{StaticResource gridShadow}"></Grid>
             <TextBlock  Style="{StaticResource big_title_style}" Text="Résztvevő felvétele" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Margin="0,20,0,0"/>
             <!--<Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="1" CornerRadius="5" Margin="30,10,30,10" Background="{StaticResource SearchPanelColor}"/>-->
-            <Button x:Name="resztvevo_megsem_btn" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Content="Vissza"  Style="{StaticResource StandardButton}" Margin="0,5,0,15" Click="resztvevo_megsem_btn_Click" />
+            <Button x:Name="resztvevo_megsem_btn" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Content="Vissza"  Style="{StaticResource StandardButton}" Margin="0,5,0,15" Click="closeColleaguePanelClick" />
 
             <ListBox x:Name="choose_editlist" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Panel.ZIndex="1" Margin="0,10,0,10" Visibility="Visible" Style="{StaticResource small_listBox_style}" HorizontalContentAlignment="Stretch" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.Resources>
@@ -179,7 +179,7 @@
                                 <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" FontSize="14" Padding="0,8" Style="{StaticResource panelTbl_style}" Text="{Binding name}"/>
-                            <Button Grid.Column="1" Content="Hozzáad" Margin="0" Style="{StaticResource StandardButton}" Click="Add_Ertesitendo_to_interju_Click"/>
+                            <Button Grid.Column="1" Content="Hozzáad" Margin="0" Style="{StaticResource StandardButton}" Click="addColleagueToInterview"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

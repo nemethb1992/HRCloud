@@ -38,7 +38,7 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             this.grid = grid;
             InitializeComponent();
-            FormLoadUp();
+            interviewLoader();
             if (sess.UserData[0].kategoria == 0)
             {
                 add_meghivott.Visibility = Visibility.Hidden;
@@ -46,7 +46,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void Back_To_pj_button(object sender, RoutedEventArgs e)
+        private void navigateBackFromInterview(object sender, RoutedEventArgs e)
         {
             if(sess.UserData[0].kategoria == 1)
             {
@@ -59,7 +59,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 grid.Children.Add(szakmai_Interju_Lista = new SzakmaiInterviewList(grid));
             }
         }
-        private void FormLoadUp()
+        private void interviewLoader()
         {
             List<interju_struct> list = pa_control.Interju_DataSource_ByID();
             List<ProjectExtendedListItems> li = p_control.ProjektFullDataSource();
@@ -121,7 +121,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
 
         }
-        private void add_meghivott_Click(object sender, RoutedEventArgs e)
+        private void openColleaguePanelClick(object sender, RoutedEventArgs e)
         {
 
 
@@ -132,7 +132,7 @@ namespace HRCloud.View.Usercontrol.Panels
         }
 
 
-        private void Add_Ertesitendo_to_interju_Click(object sender, RoutedEventArgs e)
+        private void addColleagueToInterview(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             ertesitendok_struct items = btn.DataContext as ertesitendok_struct;
@@ -142,7 +142,7 @@ namespace HRCloud.View.Usercontrol.Panels
             ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
         }
 
-        private void remove_Click(object sender, RoutedEventArgs e)
+        private void removeColleague(object sender, RoutedEventArgs e)
         {
             if(sess.UserData[0].kategoria == 1)
             {
@@ -154,18 +154,18 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void resztvevo_megsem_btn_Click(object sender, RoutedEventArgs e)
+        private void closeColleaguePanelClick(object sender, RoutedEventArgs e)
         {
             resztvevo_felvetel_list.Visibility = Visibility.Hidden;
             Blur_Grid.Visibility = Visibility.Hidden;
         }
 
-        private void resztvevo_mentes_btn_Click(object sender, RoutedEventArgs e)
+        private void resztvevoSaveClick(object sender, RoutedEventArgs e)
         {
             ertesitendok_editlist.ItemsSource = pa_control.interjuhoz_adott_ertesitendok_DataSource();
         }
 
-        private void invite_meghívott_Click(object sender, RoutedEventArgs e)
+        private void addColleague(object sender, RoutedEventArgs e)
         {
             List<ertesitendok_struct> szemelyek = pa_control.interjuhoz_adott_ertesitendok_DataSource();
             List<interju_struct> interju = pa_control.Interju_DataSource_ByID();

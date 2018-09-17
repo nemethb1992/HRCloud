@@ -23,7 +23,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="projekt_jelolt_title_tbl" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource big_title_style}" Text="" ></TextBlock>
-        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="Back_To_projekt_btn"/>
+        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="backToProjectDataSheet"/>
 
         <Grid x:Name="grid_telefonosszuro" Style="{StaticResource gridShadow_down}" Height="100" Grid.Column="1" Grid.RowSpan="4" Grid.Row="1" Panel.ZIndex="1"  VerticalAlignment="Top">
             <Grid.Resources>
@@ -66,12 +66,12 @@
                 <Image Grid.Column="0" Source="/HRCloud;component/Public/imgs/phone_gray.png" Margin="10,10,0,0"/>
                 <TextBlock  x:Name="megjegyzeslabel" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource telefonos_form_tbl}" Text="Telefonos előszűrés" />
                 <TextBlock  x:Name="jelolt_telefon" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Right" Grid.Row="0" Margin="0,0,20,0" Style="{StaticResource telefonos_form_tbl}" Text="( 06305864196 )" />
-                <Button x:Name="telefonos_igen_btn" Grid.Column="1" Grid.Row="1" Content="Megkezdés" Style="{StaticResource StandardButton}" Margin="0,10,10,10" Click="Telefon_Megnyitas_btn_Click"/>
-                <Button x:Name="telefonos_nem_btn" Grid.Column="2" Grid.Row="1" Content="Elutasítás"  Style="{StaticResource StandardButton}" Margin="10,10,0,10" Click="Telefon_Szures_Elutasit"/>
+                <Button x:Name="telefonos_igen_btn" Grid.Column="1" Grid.Row="1" Content="Megkezdés" Style="{StaticResource StandardButton}" Margin="0,10,10,10" Click="telephonePanelOpenClick"/>
+                <Button x:Name="telefonos_nem_btn" Grid.Column="2" Grid.Row="1" Content="Elutasítás"  Style="{StaticResource StandardButton}" Margin="10,10,0,10" Click="telephoneDeclineClick"/>
                 <TextBlock  x:Name="szurt_tbl" Visibility="Hidden" Grid.Column="1" Grid.ColumnSpan="1" TextAlignment="Center" Grid.Row="1" Style="{StaticResource telefonos_form_tbl}" Text="Beadva" />
             </Grid>
-            <Button x:Name="telefon_back_btn" Grid.Column="1" Grid.Row="7" Content="Mégsem" Height="40" Style="{StaticResource StandardButton}" Margin="0,10,10,10" Click="Telefon_Osszecsukas_btn_Click"/>
-            <Button x:Name="telefon_save_btn" Grid.Column="2" Grid.Row="7" Content="Elfogadás"  Height="40" Style="{StaticResource StandardButton}" Margin="10,10,0,10" Click="Telefon_Elfogadas_btn_Click" />
+            <Button x:Name="telefon_back_btn" Grid.Column="1" Grid.Row="7" Content="Mégsem" Height="40" Style="{StaticResource StandardButton}" Margin="0,10,10,10" Click="telephonePanelCloseClick"/>
+            <Button x:Name="telefon_save_btn" Grid.Column="2" Grid.Row="7" Content="Elfogadás"  Height="40" Style="{StaticResource StandardButton}" Margin="10,10,0,10" Click="telephoneAcceptClick" />
 
             <ComboBox x:Name="ismerte_cbx" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="2" FontSize="17" Padding="10,5" Margin="0,2.5">
                 <ComboBox.Resources>
@@ -103,13 +103,13 @@
                             </Grid.ColumnDefinitions>
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Törlés" Click="Interju_Delete"/>
+                                    <MenuItem Header="Törlés" Click="deleteInterview"/>
                                 </ContextMenu>
                             </Grid.ContextMenu>
                             <Image Grid.Column="0" Height="30" HorizontalAlignment="Right" Source="/HRCloud;component/Public/imgs/appointment.png"/>
                             <TextBlock Panel.ZIndex="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" Style="{StaticResource panelTbl_style}"  Text="{Binding interju_cim}"/>
                             <TextBlock Panel.ZIndex="1" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource panelTbl_style}"  Text="{Binding interju_datum}"/>
-                            <Button x:Name="tovabb_interjura_btn" Grid.Column="3" FontSize="12" Height="50" Style="{StaticResource next_panelBtn_style}" Click="Interju_Datapanel_open">
+                            <Button x:Name="tovabb_interjura_btn" Grid.Column="3" FontSize="12" Height="50" Style="{StaticResource next_panelBtn_style}" Click="navigateToInterviewPanel">
                                 <Image Source="/HRCloud;component/Public/imgs/next.png" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
@@ -190,7 +190,7 @@
                             </Grid.RowDefinitions>
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Törlés" Click="MenuItem_Click" />
+                                    <MenuItem Header="Törlés" Click="commentDeleteMenuItemClick" />
                                 </ContextMenu>
                             </Grid.ContextMenu>
                             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Margin="10,5,0,0" Text="{Binding hr_nev}"/>
@@ -200,7 +200,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="comment_tartalom" Grid.Row="4" Grid.ColumnSpan="2"  BorderBrush="{StaticResource racs_light}" Background="White" Padding="13,13,0,0" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
+            <TextBox x:Name="comment_tartalom" Grid.Row="4" Grid.ColumnSpan="2"  BorderBrush="{StaticResource racs_light}" Background="White" Padding="13,13,0,0" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="commentGotFocus" LostFocus="commentLostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="0,0,5,5"/>

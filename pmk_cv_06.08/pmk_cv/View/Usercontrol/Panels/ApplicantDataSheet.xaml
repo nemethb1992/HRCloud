@@ -129,7 +129,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="Törlés" Click="Megjegyzes_Delete" />
+                                        <MenuItem Header="Törlés" Click="commentDelete" />
                                     </ContextMenu>
                                 </Grid.ContextMenu>
                                 <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="{Binding hr_nev}"/>
@@ -139,7 +139,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="5,7" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
+            <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="5,7" KeyUp="textBoxKeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="commentGotFocus" LostFocus="commentLostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="0,0,5,5"/>
@@ -181,11 +181,11 @@
                             </Grid.ColumnDefinitions>
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Törlés" Click="Projekt_Link_Delete" />
+                                    <MenuItem Header="Törlés" Click="projectDelete" />
                                 </ContextMenu>
                             </Grid.ContextMenu>
                             <TextBlock Grid.Column="0" Margin="10,2" Style="{StaticResource panelTbl_style}" Text="{Binding megnevezes_projekt}"/>
-                            <Button x:Name="tovabb_projektre_btn" Grid.Column="1" Margin="4,2" Style="{StaticResource StandardButton}" Content="Tovább" Click="tovabb_projektre_btn_Click" />
+                            <Button x:Name="tovabb_projektre_btn" Grid.Column="1" Margin="4,2" Style="{StaticResource StandardButton}" Content="Tovább" Click="navigateToProjectDataSheet" />
                             <!--<Image x:Name="projekt_delete" Grid.Column="3" Source="/HRCloud;component/Public/imgs/bin.png" HorizontalAlignment="Right" Height="20" MouseDown="projekt_delete_MouseDown"/>-->
                         </Grid>
                     </DataTemplate>
@@ -203,7 +203,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button x:Name="projekt_csat" Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardButton}" Content="Hozzáad" Click="projekt_csat_Click"/>
+            <Button x:Name="projekt_csat" Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardButton}" Content="Hozzáad" Click="projektClick"/>
         </Grid>
 
         <Grid x:Name="grid_2_3" Grid.Column="3"  Grid.Row="2">
@@ -238,7 +238,7 @@
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Height="20" Width="30" Source="{Binding kep}"/>
                             <TextBlock Grid.Column="1" Style="{StaticResource Standard_Textblock}" Text="{Binding fajlnev}"/>
-                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás" Click="csatolmany_download_Click"/>
+                            <Button x:Name="csatolmany_download" Grid.Column="2" Style="{StaticResource StandardButton}" Margin="4,2" Content="Megnyitás" Click="attachmentOpenClick"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

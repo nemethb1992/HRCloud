@@ -70,7 +70,7 @@ namespace HRCloud.Control
             return dbE.Interju_MySql_listQuery(query);
         }
 
-        public void Insert_interju(string interju_datum, string cim, string leiras, string helyszin, string idopont)
+        public void addInterview(string interju_datum, string cim, string leiras, string helyszin, string idopont)
         {
 
                 DateTime dateTime = DateTime.Now;

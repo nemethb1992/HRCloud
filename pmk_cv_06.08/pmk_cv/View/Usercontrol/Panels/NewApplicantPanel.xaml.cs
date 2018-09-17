@@ -31,9 +31,9 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             this.grid = grid;
             InitializeComponent();
-            checkbox_loader();
+            checkboxLoader();
         }
-        private void checkbox_loader()
+        private void checkboxLoader()
         {
             munkakor_cbx.ItemsSource = acontrol.MunkakorDataSource();
             munkakor2_cbx.ItemsSource = acontrol.MunkakorDataSource();
@@ -49,11 +49,11 @@ namespace HRCloud.View.Usercontrol.Panels
                 applicant_INSERT_btn.Visibility = Visibility.Hidden;
                 modositas_cim.Visibility = Visibility.Visible;
                 applicant_UPDATE_btn.Visibility = Visibility.Visible;
-                LoadUp();
+                modifyFormLoader();
             }
 
         }
-        public void LoadUp()
+        public void modifyFormLoader()
         {
             List<JeloltExtendedList> li = acontrol.JeloltFullDataSource();
             nev_tbx.Text = li[0].nev;
@@ -63,19 +63,19 @@ namespace HRCloud.View.Usercontrol.Panels
             eletkor_tbx.Text = li[0].szuldatum.ToString();
             tapasztalat_tbx.Text = li[0].tapasztalat_ev.ToString();
 
-            munkakor_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor, }));
-            munkakor2_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor2, }));
-            munkakor3_cbx.SelectedIndex = cbx_counter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor3, }));
-            nyelv_cbx.SelectedIndex = cbx_counter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas, }));
-            nyelv2_cbx.SelectedIndex = cbx_counter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas2, }));
-            ertesules_cbx.SelectedIndex = cbx_counter(acontrol.ErtesulesekDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_ertesult, }));
-            vegzettseg_cbx.SelectedIndex = cbx_counter(acontrol.VegzettsegDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_vegz_terulet, }));
-            neme_cbx.SelectedIndex = cbx_counter(acontrol.NemekDatasource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_neme, }));
+            munkakor_cbx.SelectedIndex = checkboxCounter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor, }));
+            munkakor2_cbx.SelectedIndex = checkboxCounter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor2, }));
+            munkakor3_cbx.SelectedIndex = checkboxCounter(acontrol.MunkakorDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor3, }));
+            nyelv_cbx.SelectedIndex = checkboxCounter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas, }));
+            nyelv2_cbx.SelectedIndex = checkboxCounter(acontrol.NyelvDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas2, }));
+            ertesules_cbx.SelectedIndex = checkboxCounter(acontrol.ErtesulesekDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_ertesult, }));
+            vegzettseg_cbx.SelectedIndex = checkboxCounter(acontrol.VegzettsegDataSource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_vegz_terulet, }));
+            neme_cbx.SelectedIndex = checkboxCounter(acontrol.NemekDatasource().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_neme, }));
 
 
         }
 
-        int cbx_counter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
+        int checkboxCounter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
         {
             int i = 0;
             foreach (var item in ossz_li)
@@ -88,7 +88,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
             return i;
         }
-        private List<JeloltExtendedList> get_data_from_form()
+        private List<JeloltExtendedList> getData()
         {
             ComboBox ertesulesCBX = ertesules_cbx as ComboBox;
             ertesulesek ertesules_items = ertesulesCBX.SelectedItem as ertesulesek;
@@ -132,15 +132,15 @@ namespace HRCloud.View.Usercontrol.Panels
             });
             return items;
         }
-        private void applicant_INSERT_btn_Click(object sender, RoutedEventArgs e)
+        private void applicantInsertClick(object sender, RoutedEventArgs e)
         {
-                acontrol.Jelolt_list_INSERT(get_data_from_form());
+                acontrol.Jelolt_list_INSERT(getData());
                 grid.Children.Clear();
                 grid.Children.Add(applicant_DataView = new ApplicantDataSheet(grid));
         }
-        private void applicant_UPDATE_btn_Click(object sender, RoutedEventArgs e)
+        private void applicantModifyClick(object sender, RoutedEventArgs e)
         {
-            acontrol.Jelolt_list_UPDATE(get_data_from_form());
+            acontrol.Jelolt_list_UPDATE(getData());
             grid.Children.Clear();
             grid.Children.Add(applicant_DataView = new ApplicantDataSheet(grid));
         }

@@ -24,7 +24,7 @@ namespace HRCloud.Control
         private static int ApplicantIDs;
         public int ApplicantID { get { return ApplicantIDs; } set { ApplicantIDs = value; } }
 
-        public List<JeloltListItems> JeloltListSource(List<string> list)
+        public List<JeloltListItems> applicantList(List<string> list)
         {
 
             string query = "SELECT " +
@@ -112,6 +112,7 @@ namespace HRCloud.Control
                     query += " ORDER BY jeloltek.reg_date DESC";
                     break;
             }
+            query += " LIMIT 25";
             return dbE.Jelolt_MySql_listQuery(query);
         }
 

@@ -37,9 +37,9 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             this.grid = grid;
             InitializeComponent();
-            FormLoader();
+            formLoader();
         }
-        void FormLoader()
+        void formLoader()
         {
             List<JeloltExtendedList> li = acontrol.JeloltFullDataSource();
             applicant_profile_title.Text = li[0].nev;
@@ -54,17 +54,17 @@ namespace HRCloud.View.Usercontrol.Panels
 
             projekt_cbx.ItemsSource = acontrol.Small_Projekt_list();
             csatolmany_listBox.ItemsSource = f_control.Applicant_FolderReadOut(acontrol.ApplicantID);
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
+            commentLoader(megjegyzes_listBox);
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
         }
 
 
-        private void megjegyzes_listBox_loadUp(ListBox lb)
+        private void commentLoader(ListBox lb)
         {
             lb.ItemsSource = acontrol.megjegyzes_datasource();
         }
 
-        private void tovabb_projektre_btn_Click(object sender, RoutedEventArgs e)
+        private void navigateToProjectDataSheet(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             SmallProjectListItems items = button.DataContext as SmallProjectListItems;
@@ -73,7 +73,7 @@ namespace HRCloud.View.Usercontrol.Panels
             grid.Children.Add(project_DataView = new ProjectDataSheet(grid));
         }
 
-        private void Projekt_Link_Delete(object sender, RoutedEventArgs e)
+        private void projectDelete(object sender, RoutedEventArgs e)
         {
             MenuItem delete = sender as MenuItem;
             SmallProjectListItems items = delete.DataContext as SmallProjectListItems;
@@ -81,25 +81,25 @@ namespace HRCloud.View.Usercontrol.Panels
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
         }
 
-        private void Megjegyzes_Delete(object sender, RoutedEventArgs e)
+        private void commentDelete(object sender, RoutedEventArgs e)
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
             comment.megjegyzes_torles(items.id, sess.UserData[0].id, 0, acontrol.ApplicantID);
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
+            commentLoader(megjegyzes_listBox);
         }
 
-        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        private void textBoxKeyUp(object sender, KeyEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (e.Key != System.Windows.Input.Key.Enter) return;
             e.Handled = true;
             comment.megjegyzes_feltoltes(comment_tartalom.Text, 0,acontrol.ApplicantID, 0);
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
+            commentLoader(megjegyzes_listBox);
             tbx.Text = "";
         }
 
-        private void comment_tartalom_GotFocus(object sender, RoutedEventArgs e)
+        private void commentGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if(tbx.Text == "Új megjegyzés")
@@ -107,7 +107,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 tbx.Text = "";
             }
         }
-        private void comment_tartalom_LostFocus(object sender, RoutedEventArgs e)
+        private void commentLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
             if (tbx.Text == "")
@@ -116,7 +116,7 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        private void projekt_csat_Click(object sender, RoutedEventArgs e)
+        private void projektClick(object sender, RoutedEventArgs e)
         {
             ComboBox cbx = projekt_cbx as ComboBox;
             SmallProjectListItems item = cbx.SelectedItem as SmallProjectListItems;
@@ -124,44 +124,11 @@ namespace HRCloud.View.Usercontrol.Panels
             kapcsolodo_projekt_list.ItemsSource = acontrol.ProjektListSourceForListBox();
         }
 
-        private void csatolmany_download_Click(object sender, RoutedEventArgs e)
+        private void attachmentOpenClick(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Jelolt_File_Struct item = btn.DataContext as Jelolt_File_Struct;
             Process.Start(item.path);
         }
-
-        //private void csatolmany_listBox_Drop(object sender, DragEventArgs e)
-        //{
-        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        //    {
-        //        string[] path = (string[])e.Data.GetData(DataFormats.FileDrop);
-        //        int i = 0;
-        //        foreach (var item in path)
-        //        {
-        //            acontrol.CvUpload(path[i]);
-        //            i++;
-        //        }
-        //        MessageBox.Show(path[0]);
-        //        csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
-        //        // docPath[0] tartalmazza az URL-t
-
-        //    }
-        //}
-        //private void projekt_upload_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string path = "";
-        //    OpenFileDialog ofd = new OpenFileDialog();
-        //    if (ofd.ShowDialog() == true)
-        //    {
-        //        path = ofd.FileName;
-        //    }
-        //    MessageBox.Show(path);
-        //    if (!acontrol.CvUpload(path))
-        //        MessageBox.Show("Feltöltés megszakadt!");
-        //    acti.Activity_write();
-        //    csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
-
-        //}
     }
 }

@@ -36,8 +36,8 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" x:Name="projekt_aktiv_btn" Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projekt_aktiv_btn_Click">Aktív</Button>
-                <Button Grid.Column="1" x:Name="projekt_passziv_btn"  Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projekt_passziv_btn_Click" >Archív</Button>
+                <Button Grid.Column="0" x:Name="projekt_aktiv_btn" Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projectActivateClick">Aktív</Button>
+                <Button Grid.Column="1" x:Name="projekt_passziv_btn"  Width="90" Height="30" Style="{StaticResource Switch_Button}" Click="projectPassivateClick" >Archív</Button>
             </Grid>
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource big_title_style}" Text="Projektek" ></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource minor_title_style}" Text="Kereső:" TextAlignment="Left" VerticalAlignment="Top" ></TextBlock>
@@ -59,23 +59,23 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="projektnev_srcinp" Tag="projektnev_label" Grid.Column="0" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="projektnev_srcinp" Tag="projektnev_label" Grid.Column="0" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="projektnev_label" Visibility="Visible" Grid.Column="0" Grid.Row="0" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Projektnév"/>
-                    <TextBox x:Name="jeloltszam_srcinp" Tag="jeloltszam_label" Grid.Column="1" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="jeloltszam_srcinp" Tag="jeloltszam_label" Grid.Column="1" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="jeloltszam_label" Visibility="Visible" Grid.Column="1" Grid.Row="0" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Jelöltek száma"/>
-                    <TextBox x:Name="jeloltnev_srcinp" Tag="jeloltnev_label" Grid.Column="2" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="jeloltnev_srcinp" Tag="jeloltnev_label" Grid.Column="2" Grid.Row="0" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="jeloltnev_label" Visibility="Visible" Grid.Column="2" Grid.Row="0" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Jelölt név"/>
-                    <TextBox x:Name="publikalva_srcinp" Tag="publikalva_label" Grid.Column="0" Grid.Row="2" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="publikalva_srcinp" Tag="publikalva_label" Grid.Column="0" Grid.Row="2" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="publikalva_label" Visibility="Visible" Grid.Column="0" Grid.Row="2" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Publikálva"/>
-                    <TextBox x:Name="pc_srcinp" Tag="pc_label" Grid.Column="0" Grid.Row="1" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="pc_srcinp" Tag="pc_label" Grid.Column="0" Grid.Row="1" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="pc_label" Visibility="Visible" Grid.Column="0" Grid.Row="1" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Profit Center"/>
-                    <TextBox x:Name="interju_srcinp" Tag="interju_label" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="interju_srcinp" Tag="interju_label" Grid.Column="1" Grid.Row="1" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="interju_label" Visibility="Visible" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Interjúk száma"/>
-                    <TextBox x:Name="cimke_srcinp" Tag="cimke_label" Grid.Column="1" Grid.Row="2" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="Search_Input_TextChanged" GotFocus="TextBox_PlaceHolder_GotFocus" LostFocus="TextBox_PlaceHolder_LostFocus" />
+                    <TextBox x:Name="cimke_srcinp" Tag="cimke_label" Grid.Column="1" Grid.Row="2" Panel.ZIndex="2"  Style="{StaticResource panelTbx_style}" TextChanged="searchInputTextChange" GotFocus="textBoxPlaceHolderGotFocus" LostFocus="textBoxPlaceHolderLostFocus" />
                     <TextBox x:Name="cimke_label" Visibility="Visible" Grid.Column="1" Grid.Row="2" Panel.ZIndex="1"  Style="{StaticResource panelTbx_style}" Text="Kulcsszavas keresés"/>
                     <Label x:Name="Nyelv_label" Grid.Column="3" Grid.Row="0" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Nyelvek:"/>
                     <Label x:Name="Vegzettsegek_label" Grid.Column="3" Grid.Row="1" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Végzettségek:"/>
-                    <CheckBox x:Name="publikalt_check" Grid.Column="2" Grid.Row="1" Content="Publikált" Style="{StaticResource login_check}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Checked="publikalt_check_Checked" Unchecked="publikalt_check_Unchecked"/>
+                    <CheckBox x:Name="publikalt_check" Grid.Column="2" Grid.Row="1" Content="Publikált" Style="{StaticResource login_check}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Checked="publikaltChecked" Unchecked="publikaltUnchecked"/>
                     <!--<Label x:Name="Nemek_label" Grid.Column="3" Grid.Row="2" Panel.ZIndex="1" HorizontalAlignment="Right" Style="{StaticResource search_placeholder_style}" Content="Nemek:"/>-->
                     <Button x:Name="search_refresh_btn" Grid.Column="5" Grid.Row="0" Visibility="Hidden"  Grid.RowSpan="3" Margin="3" Style="{StaticResource StandardButton}">
                         <Button.Background>
@@ -83,7 +83,7 @@
                         </Button.Background>
                     </Button>
 
-                    <ComboBox x:Name="nyelv_srccbx"  Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="Combobox_selection" Height="24" Margin="5,0,5,4" VerticalAlignment="Bottom" >
+                    <ComboBox x:Name="nyelv_srccbx"  Grid.Column="4" Grid.Row="0" Style="{StaticResource cbx_style}" SelectionChanged="comboboxSelection" Height="24" Margin="5,0,5,4" VerticalAlignment="Bottom" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid >
@@ -92,7 +92,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox x:Name="vegzettseg_srccbx" Grid.Column="4" Grid.Row="1" Style="{StaticResource cbx_style}" SelectionChanged="Combobox_selection"  >
+                    <ComboBox x:Name="vegzettseg_srccbx" Grid.Column="4" Grid.Row="1" Style="{StaticResource cbx_style}" SelectionChanged="comboboxSelection"  >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid >
@@ -114,12 +114,12 @@
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
-            <Label x:Name="project_label_1" Tag="1" VerticalAlignment="Bottom" Content="id" Grid.Column="0" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
-            <Label x:Name="project_label_2" Tag="2" VerticalAlignment="Bottom" Content="Projektnév" Grid.Column="1" Style="{StaticResource project_label_style}" Grid.ColumnSpan="2" MouseDown="Header_Click"/>
-            <Label x:Name="project_label_3" Tag="3" VerticalAlignment="Bottom" Content="Terület" Grid.Column="3" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
-            <Label x:Name="project_label_4" Tag="4" VerticalAlignment="Bottom" Content="Jelölt" Grid.Column="4" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
-            <Label x:Name="project_label_5" Tag="5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}" MouseDown="Header_Click"/>
-            <CheckBox x:Name="sorrend_check" Style="{StaticResource Standard_Checkbox}" Content="Csökkenő sorrend" VerticalAlignment="Bottom" Margin="0,0,0,5" IsChecked="False" Grid.Column="6" Checked="sorrend_check_Checked" Unchecked="sorrend_check_Unchecked"/>
+            <Label x:Name="project_label_1" Tag="1" VerticalAlignment="Bottom" Content="id" Grid.Column="0" Style="{StaticResource project_label_style}" MouseDown="headerClick"/>
+            <Label x:Name="project_label_2" Tag="2" VerticalAlignment="Bottom" Content="Projektnév" Grid.Column="1" Style="{StaticResource project_label_style}" Grid.ColumnSpan="2" MouseDown="headerClick"/>
+            <Label x:Name="project_label_3" Tag="3" VerticalAlignment="Bottom" Content="Terület" Grid.Column="3" Style="{StaticResource project_label_style}" MouseDown="headerClick"/>
+            <Label x:Name="project_label_4" Tag="4" VerticalAlignment="Bottom" Content="Jelölt" Grid.Column="4" Style="{StaticResource project_label_style}" MouseDown="headerClick"/>
+            <Label x:Name="project_label_5" Tag="5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}" MouseDown="headerClick"/>
+            <CheckBox x:Name="sorrend_check" Style="{StaticResource Standard_Checkbox}" Content="Csökkenő sorrend" VerticalAlignment="Bottom" Margin="0,0,0,5" IsChecked="False" Grid.Column="6" Checked="sorrendChecked" Unchecked="sorrendUnchecked"/>
         </Grid>
         <ListBox x:Name="project_listBox" Style="{StaticResource listBox_style}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.Resources>
@@ -139,9 +139,9 @@
                         </Grid.ColumnDefinitions>
                         <Grid.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositas_Click"/>
-                                <MenuItem x:Name="archivalas" Header="Archiválás / Aktiválás" Click="Projekt_Archivalas_Click"/>
-                                <MenuItem x:Name="torles" Header="Törlés" Click="Projekt_Torles_Click"/>
+                                <MenuItem x:Name="modositas" Header="Módosítás" Click="modositasClick"/>
+                                <MenuItem x:Name="archivalas" Header="Archiválás / Aktiválás" Click="projectArchivateClick"/>
+                                <MenuItem x:Name="torles" Header="Törlés" Click="projectDeleteClick"/>
                             </ContextMenu>
                         </Grid.ContextMenu>
                         <!--<Rectangle Panel.ZIndex="0" Grid.Column="0" Grid.ColumnSpan="6" Fill="#f8f8f8" Stroke="{StaticResource racs_color}"/>-->
@@ -150,7 +150,7 @@
                         <TextBlock  Panel.ZIndex="1" Padding="11" Style="{StaticResource panelTbl_style}" Grid.Column="2" Text="{Binding megnevezes_munka}" />
                         <TextBlock  Panel.ZIndex="1" Padding="11" Style="{StaticResource panelTbl_style}" Grid.Column="3" Text="{Binding jeloltek_db}" />
                         <TextBlock  Panel.ZIndex="1" Padding="11" Style="{StaticResource panelTbl_style}" Grid.Column="4" Text="{Binding fel_datum}" />
-                        <Button x:Name="projekt_open_btn" Style="{StaticResource StandardButton}" Grid.Column="5" Margin="3" Content="Megtekint" Click="Projekt_Open_btn"/>
+                        <Button x:Name="projekt_open_btn" Style="{StaticResource StandardButton}" Grid.Column="5" Margin="3" Content="Megtekint" Click="projectOpenClick"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
