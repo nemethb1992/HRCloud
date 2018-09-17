@@ -37,17 +37,17 @@ namespace HRCloud.View.Windows
         public Main()
         {
             InitializeComponent();
-            if(session.UserData[0].kategoria == 1)
-            {
+            //if(session.UserData[0].kategoria == 1)
+            //{
                 sgrid.Children.Add(project_p = new ProjectList(sgrid));
                 HR_navigation_Grid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
-                Szakmai_navigation_Grid.Visibility = Visibility.Visible;
-                HR_navigation_Grid.Visibility = Visibility.Hidden;
-            }
+            //}
+            //else
+            //{
+            //    sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
+            //    Szakmai_navigation_Grid.Visibility = Visibility.Visible;
+            //    HR_navigation_Grid.Visibility = Visibility.Hidden;
+            //}
             //Profil_name_tbl.Text = session.UserData[0].name;
             //f_control.Applicant_Folder_Structure_Creator();
             //f_control.Projekt_Folder_Structure_Creator();
