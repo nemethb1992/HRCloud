@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRCloud.View.Usercontrol.Surveys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,31 +11,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HRCloud.View.Usercontrol;
-using HRCloud.View.Windows;
 
-namespace HRCloud
+namespace HRCloud.View.Windows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Survey_Window.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SurveyWindow : Window
     {
-        private Login login;
-        public MainWindow()
+        private FirstRegistration firstRegistration;
+        public SurveyWindow()
         {
             InitializeComponent();
-            sgrid.Children.Add(login = new Login(sgrid));
+            SwitchGrid.Children.Add(firstRegistration = new FirstRegistration(SwitchGrid));
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-            this.DragMove();
+                this.DragMove();
         }
-
         private void exit_btn_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);

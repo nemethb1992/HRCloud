@@ -249,72 +249,72 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Control\activity_log.cs" />
-    <Compile Include="Control\applicant_cont.cs" />
-    <Compile Include="Control\email_cont.cs" />
-    <Compile Include="Control\file_cont.cs" />
+    <Compile Include="Control\ActivityLog.cs" />
+    <Compile Include="Control\ControlApplicant.cs" />
+    <Compile Include="Control\ControlEmail.cs" />
+    <Compile Include="Control\ControlFile.cs" />
     <Compile Include="Control\ftpEntities.cs" />
-    <Compile Include="Control\login_cont.cs" />
-    <Compile Include="Control\megjegyzes_cs.cs" />
-    <Compile Include="Control\pageControl.cs" />
-    <Compile Include="Control\projekt_applicant_cont.cs" />
-    <Compile Include="Control\projekt_cont.cs" />
+    <Compile Include="Control\ControlLogin.cs" />
+    <Compile Include="Control\Comment.cs" />
+    <Compile Include="Control\ControlPage.cs" />
+    <Compile Include="Control\ControlApplicantProject.cs" />
+    <Compile Include="Control\ControlProject.cs" />
     <Compile Include="Control\Session.cs" />
-    <Compile Include="Control\settings_cont.cs" />
-    <Compile Include="Control\szakmai_cont.cs" />
-    <Compile Include="Model\applicant_m.cs" />
-    <Compile Include="Model\Email_m.cs" />
-    <Compile Include="Model\projekt_applicant_m.cs" />
-    <Compile Include="Model\projekt_m.cs" />
-    <Compile Include="Model\szakmai_m.cs" />
-    <Compile Include="Public\templates\email_template.cs" />
-    <Compile Include="View\Usercontrol\login.xaml.cs">
-      <DependentUpon>login.xaml</DependentUpon>
+    <Compile Include="Control\ControlSettings.cs" />
+    <Compile Include="Control\ControlSzakmai.cs" />
+    <Compile Include="Model\ModelApplicant.cs" />
+    <Compile Include="Model\ModelEmail.cs" />
+    <Compile Include="Model\ModelProjectApplicant.cs" />
+    <Compile Include="Model\ModelProject.cs" />
+    <Compile Include="Model\ModelSzakmai.cs" />
+    <Compile Include="Public\templates\EmailTemplate.cs" />
+    <Compile Include="View\Usercontrol\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\applicant_DataView.xaml.cs">
-      <DependentUpon>applicant_DataView.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\ApplicantDataSheet.xaml.cs">
+      <DependentUpon>ApplicantDataSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\applicant_new_panel.xaml.cs">
-      <DependentUpon>applicant_new_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\NewApplicantPanel.xaml.cs">
+      <DependentUpon>NewApplicantPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\applicant_panel.xaml.cs">
-      <DependentUpon>applicant_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\ApplicantList.xaml.cs">
+      <DependentUpon>ApplicantList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\interju_panel.xaml.cs">
-      <DependentUpon>interju_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\InterviewPanel.xaml.cs">
+      <DependentUpon>InterviewPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\project_DataView.xaml.cs">
-      <DependentUpon>project_DataView.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\ProjectDataSheet.xaml.cs">
+      <DependentUpon>ProjectDataSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\project_new_panel.xaml.cs">
-      <DependentUpon>project_new_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\NewProjectPanel.xaml.cs">
+      <DependentUpon>NewProjectPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\project_panel.xaml.cs">
-      <DependentUpon>project_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\ProjectList.xaml.cs">
+      <DependentUpon>ProjectList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\projekt_jelolt_DataView.xaml.cs">
-      <DependentUpon>projekt_jelolt_DataView.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\ProjektJeloltDataSheet.xaml.cs">
+      <DependentUpon>ProjektJeloltDataSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\settings_panel.xaml.cs">
-      <DependentUpon>settings_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\SettingsPanel.xaml.cs">
+      <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\favourites_panel.xaml.cs">
-      <DependentUpon>favourites_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\FavouritesPanel.xaml.cs">
+      <DependentUpon>FavouritesPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjekt_DataView.xaml.cs">
-      <DependentUpon>SzakmaiProjekt_DataView.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjektDataSheet.xaml.cs">
+      <DependentUpon>SzakmaiProjektDataSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_applicant_DataView.xaml.cs">
-      <DependentUpon>Szakmai_applicant_DataView.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiApplicantDataView.xaml.cs">
+      <DependentUpon>SzakmaiApplicantDataView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_interju_lista.xaml.cs">
-      <DependentUpon>Szakmai_interju_lista.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiInterviewList.xaml.cs">
+      <DependentUpon>SzakmaiInterviewList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_Kezdolap.xaml.cs">
-      <DependentUpon>Szakmai_Kezdolap.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiKezdolap.xaml.cs">
+      <DependentUpon>SzakmaiKezdolap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_panel.xaml.cs">
-      <DependentUpon>Szakmai_panel.xaml</DependentUpon>
+    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiList.xaml.cs">
+      <DependentUpon>SzakmaiList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrol\Surveys\FirstRegistration.xaml.cs">
       <DependentUpon>FirstRegistration.xaml</DependentUpon>
@@ -322,8 +322,8 @@
     <Compile Include="View\Windows\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\Survey_Window.xaml.cs">
-      <DependentUpon>Survey_Window.xaml</DependentUpon>
+    <Compile Include="View\Windows\SurveyWindow.xaml.cs">
+      <DependentUpon>SurveyWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -337,67 +337,67 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Usercontrol\login.xaml">
+    <Page Include="View\Usercontrol\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\applicant_DataView.xaml">
+    <Page Include="View\Usercontrol\Panels\ApplicantDataSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\applicant_new_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\NewApplicantPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\applicant_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\ApplicantList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\interju_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\InterviewPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\project_DataView.xaml">
+    <Page Include="View\Usercontrol\Panels\ProjectDataSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\project_new_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\NewProjectPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\project_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\ProjectList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\projekt_jelolt_DataView.xaml">
+    <Page Include="View\Usercontrol\Panels\ProjektJeloltDataSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\settings_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\SettingsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\favourites_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\FavouritesPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjekt_DataView.xaml">
+    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjektDataSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_applicant_DataView.xaml">
+    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiApplicantDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_interju_lista.xaml">
+    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiInterviewList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_Kezdolap.xaml">
+    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiKezdolap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\Szakmai_panel.xaml">
+    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -409,14 +409,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\Survey_Window.xaml">
+    <Page Include="View\Windows\SurveyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\dbEntities.cs" />
-    <Compile Include="Model\login_m.cs" />
+    <Compile Include="Model\MySql.cs" />
+    <Compile Include="Model\ModelLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

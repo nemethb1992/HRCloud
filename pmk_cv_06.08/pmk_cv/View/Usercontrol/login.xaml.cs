@@ -17,20 +17,21 @@ using HRCloud.Model;
 using HRCloud.Public.templates;
 using HRCloud.View;
 using HRCloud.View.Windows;
+using pmk_cv.Control;
 
 namespace HRCloud.View.Usercontrol
 {
     /// <summary>
-    /// Interaction logic for login.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class login : UserControl
+    public partial class Login : UserControl
     {
-        login_cont lcontrol = new login_cont();
+        ControlLogin lcontrol = new ControlLogin();
         Session session = new Session();
-        dbEntities dbE = new dbEntities();
-        email_cont e_control = new email_cont();
+        Model.MySql dbE = new Model.MySql();
+        ControlEmail e_control = new ControlEmail();
         private Grid grid;
-        public login(Grid sgrid)
+        public Login(Grid sgrid)
         {
             this.grid = sgrid;
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace HRCloud.View.Usercontrol
         {
             enterApplication();
         }
-
+        
         private void Luser_tbx_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter) return;
@@ -65,6 +66,7 @@ namespace HRCloud.View.Usercontrol
         }
         private void BootMethods()
         {
+            
             string user = lcontrol.GetRememberedUser();
             if (user != "")
             {
@@ -117,7 +119,7 @@ namespace HRCloud.View.Usercontrol
 
         private void Registration_Click(object sender, MouseButtonEventArgs e)
         {
-            Survey_Window popup = new Survey_Window();
+            SurveyWindow popup = new SurveyWindow();
             popup.Show();
             var window = Window.GetWindow(this);
             window.Close();

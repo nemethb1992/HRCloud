@@ -23,7 +23,7 @@ namespace HRCloud.View.Usercontrol.Surveys
     public partial class FirstRegistration : UserControl
     {
         private Grid grid;
-        login_cont l_control = new login_cont();
+        ControlLogin l_control = new ControlLogin();
         Session session = new Session();
         public FirstRegistration(Grid grid)
         {

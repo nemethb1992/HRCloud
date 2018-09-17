@@ -25,12 +25,12 @@ namespace HRCloud.View.Windows
     /// </summary>
     public partial class Main : Window
     {
-        private applicant_panel applicant_p;
-        private project_panel project_p;
-        private settings_panel settings_p;
-        private Szakmai_Kezdolap szakmai_Kezdolap;
-        private favourites_panel favourites_Panel;
-        file_cont f_control = new file_cont();
+        private ApplicantList applicant_p;
+        private ProjectList project_p;
+        private SettingsPanel settings_p;
+        private SzakmaiKezdolap szakmai_Kezdolap;
+        private FavouritesPanel favourites_Panel;
+        ControlFile f_control = new ControlFile();
         Session session = new Session();
         //private applicant_DataView applicant_dv;
         //private project_DataView project_dv;
@@ -39,12 +39,12 @@ namespace HRCloud.View.Windows
             InitializeComponent();
             if(session.UserData[0].kategoria == 1)
             {
-                sgrid.Children.Add(project_p = new project_panel(sgrid));
+                sgrid.Children.Add(project_p = new ProjectList(sgrid));
                 HR_navigation_Grid.Visibility = Visibility.Visible;
             }
             else
             {
-                sgrid.Children.Add(szakmai_Kezdolap = new Szakmai_Kezdolap(sgrid));
+                sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
                 Szakmai_navigation_Grid.Visibility = Visibility.Visible;
                 HR_navigation_Grid.Visibility = Visibility.Hidden;
             }
@@ -67,28 +67,28 @@ namespace HRCloud.View.Windows
         private void mw_btn1_Click(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(project_p = new project_panel(sgrid));
+            sgrid.Children.Add(project_p = new ProjectList(sgrid));
         }
         private void mw_btn2_Click(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(applicant_p = new applicant_panel(sgrid));
+            sgrid.Children.Add(applicant_p = new ApplicantList(sgrid));
         }
         private void mw_btn3_Click(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(settings_p = new settings_panel(sgrid));
+            sgrid.Children.Add(settings_p = new SettingsPanel(sgrid));
         }
         private void szakmai_mainpage_btn_Click(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(szakmai_Kezdolap = new Szakmai_Kezdolap(sgrid));
+            sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
         }
 
         private void mw_btn4_Click(object sender, RoutedEventArgs e)
         {
             sgrid.Children.Clear();
-            sgrid.Children.Add(favourites_Panel = new favourites_panel(sgrid));
+            sgrid.Children.Add(favourites_Panel = new FavouritesPanel(sgrid));
         }
 
         //private void profil_notiBtn_MouseEnter(object sender, MouseEventArgs e)
