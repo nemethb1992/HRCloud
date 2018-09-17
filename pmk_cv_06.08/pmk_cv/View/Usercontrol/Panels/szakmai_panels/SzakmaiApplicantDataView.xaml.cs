@@ -22,75 +22,83 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
     /// </summary>
     public partial class SzakmaiApplicantDataView : UserControl
     {
-        private Grid grid;
         Comment comment = new Comment();
-        ControlApplicant acontrol = new ControlApplicant();
-        private SzakmaiProjektDataSheet szDataView;
-        Session sess = new Session();
+        Session session = new Session();
+        ControlApplicant aControl = new ControlApplicant();
+
+        private SzakmaiProjektDataSheet szakmaiProjektDataSheet;
+        private Grid grid;
+
         public SzakmaiApplicantDataView(Grid grid)
         {
             InitializeComponent();
             this.grid = grid;
-            FormLoader();
-        }
-        void FormLoader()
-        {
-            List<JeloltExtendedList> li = acontrol.Data_JeloltFull();
-            applicant_profile_title.Text = li[0].nev;
-            app_input_1.Text = li[0].email;
-            app_input_2.Text = li[0].telefon.ToString();
-            app_input_3.Text = li[0].lakhely;
-            app_input_5.Text = li[0].nyelvtudas.ToString();
-            //app_input_6.Text = li[0].nyelvtudas_szint.ToString();
-            //app_input_7.Text = li[0].berigeny.ToString();
-            app_input_8.Text = li[0].munkakor;
-            app_input_9.Text = li[0].ertesult.ToString();
-            app_input_10.Text = li[0].szuldatum.ToString();
-            //csatolmany_listBox.ItemsSource = acontrol.CsatolmanyDataSource();
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
-        }
-        private void megjegyzes_listBox_loadUp(ListBox lb)
-        {
-            lb.ItemsSource = acontrol.Data_Comment();
-        }
-        private void Megjegyzes_Delete(object sender, RoutedEventArgs e)
-        {
-            MenuItem delete = sender as MenuItem;
-            megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.delete(items.id, sess.UserData[0].id, 0, acontrol.ApplicantID);
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
+            formLoader();
         }
 
-        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        protected void formLoader()
         {
-            TextBox tbx = sender as TextBox;
+            List<JeloltExtendedList> list = aControl.Data_JeloltFull();
+            applicant_profile_title.Text = list[0].nev;
+            app_input_1.Text = list[0].email;
+            app_input_2.Text = list[0].telefon.ToString();
+            app_input_3.Text = list[0].lakhely;
+            app_input_5.Text = list[0].nyelvtudas.ToString();
+            app_input_8.Text = list[0].munkakor;
+            app_input_9.Text = list[0].ertesult.ToString();
+            app_input_10.Text = list[0].szuldatum.ToString();
+            commentLoader(megjegyzes_listBox);
+        }
+
+        protected void commentLoader(ListBox lb)
+        {
+            lb.ItemsSource = aControl.Data_Comment();
+        }
+
+        protected void commentDelete(object sender, RoutedEventArgs e)
+        {
+            MenuItem item = sender as MenuItem;
+            megjegyzes_struct items = item.DataContext as megjegyzes_struct;
+
+            comment.delete(items.id, session.UserData[0].id, 0, aControl.ApplicantID);
+            commentLoader(megjegyzes_listBox);
+        }
+
+        protected void addComment(object sender, KeyEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+
             if (e.Key != System.Windows.Input.Key.Enter) return;
             e.Handled = true;
-            comment.megjegyzes_feltoltes(comment_tartalom.Text, 0, acontrol.ApplicantID, 0);
-            megjegyzes_listBox_loadUp(megjegyzes_listBox);
-            tbx.Text = "";
+            comment.add(comment_tartalom.Text, 0, aControl.ApplicantID, 0);
+            commentLoader(megjegyzes_listBox);
+            textbox.Text = "";
         }
 
-        private void comment_tartalom_GotFocus(object sender, RoutedEventArgs e)
+        protected void commentGotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox tbx = sender as TextBox;
-            if (tbx.Text == "Új megjegyzés")
+            TextBox textbox = sender as TextBox;
+
+            if (textbox.Text == "Új megjegyzés")
             {
-                tbx.Text = "";
+                textbox.Text = "";
             }
         }
-        private void comment_tartalom_LostFocus(object sender, RoutedEventArgs e)
+
+        protected void commentLostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox tbx = sender as TextBox;
-            if (tbx.Text == "")
+            TextBox textbox = sender as TextBox;
+
+            if (textbox.Text == "")
             {
-                tbx.Text = "Új megjegyzés";
+                textbox.Text = "Új megjegyzés";
             }
         }
-        private void szakmai_applicant_btn_Click(object sender, RoutedEventArgs e)
+
+        protected void navigateToSzakmaiProjektDataSheet(object sender, RoutedEventArgs e)
         {
             grid.Children.Clear();
-            grid.Children.Add(szDataView = new SzakmaiProjektDataSheet(grid));
+            grid.Children.Add(szakmaiProjektDataSheet = new SzakmaiProjektDataSheet(grid));
         }
     }
 }

@@ -24,26 +24,26 @@ namespace HRCloud.View.Usercontrol.Panels
         private static string HeaderSelecteds;
         public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
         
-        ControlApplicant acontrol = new ControlApplicant();
-        PageControl pageCont = new PageControl();
+        ControlApplicant aControl = new ControlApplicant();
 
         private ApplicantDataSheet applicantDataSheet;
         private NewApplicantPanel newApplicantPanel;
-        private Grid sgrid;
+        private Grid grid;
 
-        public ApplicantList(Grid sgrid)
+        public ApplicantList(Grid grid)
         {
-            this.sgrid = sgrid;
+            this.grid = grid;
             InitializeComponent();
             startMethods();
         }
+
         protected void startMethods()
         {
             checkBoxLoader();
             applicantListLoader();
         }
 
-        List<string> searchValues() 
+        protected List<string> searchValues() 
         {
             List<string> list = new List<string>();
             ComboBox munkakor = munkakor_srccbx as ComboBox;
@@ -122,7 +122,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void applicantListLoader()
         {
-                List<JeloltListItems> list = acontrol.applicantList(searchValues());
+                List<JeloltListItems> list = aControl.applicantList(searchValues());
                 applicant_listBox.ItemsSource = list;
                 talalat_tbl.Text = "Találatok:  " + list.Count.ToString();
             
@@ -130,19 +130,20 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void checkBoxLoader()
         {
-            vegzettseg_srccbx.ItemsSource = acontrol.Data_Vegzettseg();
-            munkakor_srccbx.ItemsSource = acontrol.Data_Munkakor();
-            nemek_srccbx.ItemsSource = acontrol.Data_Nemek();
+            vegzettseg_srccbx.ItemsSource = aControl.Data_Vegzettseg();
+            munkakor_srccbx.ItemsSource = aControl.Data_Munkakor();
+            nemek_srccbx.ItemsSource = aControl.Data_Nemek();
         }
 
         protected void applicantOpenClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             JeloltListItems items = button.DataContext as JeloltListItems;
-            acontrol.ApplicantID = items.id;
-            sgrid.Children.Clear();
-            sgrid.Children.Add(applicantDataSheet = new ApplicantDataSheet(sgrid));
+            aControl.ApplicantID = items.id;
+            grid.Children.Clear();
+            grid.Children.Add(applicantDataSheet = new ApplicantDataSheet(grid));
         }
+
         protected void applicantDeleteClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretnéd? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
@@ -151,7 +152,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 case MessageBoxResult.Yes:
                     MenuItem menuItem = sender as MenuItem;
                     JeloltListItems items = menuItem.DataContext as JeloltListItems;
-                    acontrol.applicantFullDelete(items.id);
+                    aControl.applicantFullDelete(items.id);
                     applicantListLoader();
                     break;
                 case MessageBoxResult.No:
@@ -161,12 +162,14 @@ namespace HRCloud.View.Usercontrol.Panels
             }
 
         }
+
         protected void navigateToNewApplicantPanel(object sender, RoutedEventArgs e)
         {
-            sgrid.Children.Clear();
-            sgrid.Children.Add(newApplicantPanel = new NewApplicantPanel(sgrid));
+            grid.Children.Clear();
+            grid.Children.Add(newApplicantPanel = new NewApplicantPanel(grid));
 
         }
+
         protected void searchInputTextChanged(object sender, TextChangedEventArgs e)
         {
             applicantListLoader();
@@ -182,6 +185,7 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             applicantListLoader();
         }
+
         protected void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
@@ -191,6 +195,7 @@ namespace HRCloud.View.Usercontrol.Panels
             if (((TextBox)sender).Text == "")
                 textboxElement.Visibility = Visibility.Hidden;
         }
+
         protected void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
@@ -208,6 +213,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 textbox.Foreground = Brushes.Black;
             }
         }
+
         protected void searchBarRefresh(object sender, RoutedEventArgs e)
         {
             TextBox nev_tbx = nev_srcinp as TextBox;  // TODO: <- ez kell?
@@ -232,14 +238,15 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             applicantListLoader();
         }
+
         protected void modositasClick(object sender, RoutedEventArgs e)
         {
             MenuItem item = sender as MenuItem;
             JeloltListItems itemSource = item.DataContext as JeloltListItems;
-            acontrol.Change = true;
-            acontrol.ApplicantID = itemSource.id;
-            sgrid.Children.Clear();
-            sgrid.Children.Add(newApplicantPanel = new NewApplicantPanel(sgrid));
+            aControl.Change = true;
+            aControl.ApplicantID = itemSource.id;
+            grid.Children.Clear();
+            grid.Children.Add(newApplicantPanel = new NewApplicantPanel(grid));
         }
 
         protected void headerClick(object sender, MouseButtonEventArgs e)

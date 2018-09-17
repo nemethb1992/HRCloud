@@ -23,43 +23,43 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class ProjectList : UserControl
     {
-
         private static string HeaderSelecteds;
-        public string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
+        protected string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
 
-        ControlProject pcontrol = new ControlProject();
-        PageControl pageCont = new PageControl();
+        ControlProject pControl = new ControlProject();
+        PageControl pageControl = new PageControl();
 
-        private ProjectDataSheet project_DataView;
-        private NewProjectPanel project_new_panel;
-        private Grid sgrid;
+        private ProjectDataSheet projectDataSheet;
+        private NewProjectPanel newProjectPanel;
+        private Grid grid;
 
-        public ProjectList(Grid sgrid)
+        public ProjectList(Grid grid)
         {
-            this.sgrid = sgrid;
+            this.grid = grid;
             InitializeComponent();
             checkBoxLoader();
             projectListLoader();
         }
 
-        private void checkBoxLoader()
+        protected void checkBoxLoader()
         {
-            nyelv_srccbx.ItemsSource = pcontrol.NyelvDataSource();
-            vegzettseg_srccbx.ItemsSource = pcontrol.VegzettsegDataSource();
+            nyelv_srccbx.ItemsSource = pControl.Data_Nyelv();
+            vegzettseg_srccbx.ItemsSource = pControl.Data_Vegzettseg();
         }
 
-        List<string> searchbar_datalist()
+        protected List<string> getSearchData()
         {
-            ComboBox nyelv_cbx = nyelv_srccbx as ComboBox;
-            ComboBox vegzettseg_cbx = vegzettseg_srccbx as ComboBox;
-            nyelv_struct nyelv_item = nyelv_cbx.SelectedItem as nyelv_struct;
-            vegzettseg_struct vegzettseg_item = vegzettseg_cbx.SelectedItem as vegzettseg_struct;
+            ComboBox nyelv = nyelv_srccbx as ComboBox;
+            ComboBox vegzettseg = vegzettseg_srccbx as ComboBox;
+            nyelv_struct nyelvItem = nyelv.SelectedItem as nyelv_struct;
+            vegzettseg_struct vegzettsegItem = vegzettseg.SelectedItem as vegzettseg_struct;
             List<string> list = new List<string>();
 
             string nyelvkStr = "";
             string vegzettsegStr = "";
-            try  { if(vegzettseg_item.id !=0) vegzettsegStr = vegzettseg_item.id.ToString(); } catch (Exception) { }
-            try  { if (nyelv_item.id != 0) nyelvkStr = nyelv_item.id.ToString(); } catch (Exception)  {}
+
+            try  { if(vegzettsegItem.id !=0) vegzettsegStr = vegzettsegItem.id.ToString(); } catch (Exception) { }
+            try  { if (nyelvItem.id != 0) nyelvkStr = nyelvItem.id.ToString(); } catch (Exception)  {}
             string jeloltszam = jeloltszam_srcinp.Text;
             if (jeloltszam_srcinp.Text == "")
                 jeloltszam = "0";
@@ -87,13 +87,16 @@ namespace HRCloud.View.Usercontrol.Panels
             return list;
         }
 
-        protected void projectListLoader(){
-                List<Projekt_Search_Memory> list = new List<Projekt_Search_Memory>();
-                list.Add(new Projekt_Search_Memory() { statusz = 1 });
-                pcontrol.projekt_search_memory = list;
-                buttonColorChange();
+        protected void projectListLoader()
+        {
+            List<Projekt_Search_Memory> list = new List<Projekt_Search_Memory>();
+            
+            list.Add(new Projekt_Search_Memory() { statusz = 1 });
+            pControl.projectSearchMemory = list;
+            buttonColorChange();
+
             try{
-                List<ProjectListItems> lista = pcontrol.ProjektListSource(searchbar_datalist());
+                List<ProjectListItems> lista = pControl.Data_ProjectFull(getSearchData());
                 project_listBox.ItemsSource = lista;
                 talalat_tbl.Text = "Találatok:  " + lista.Count.ToString();
             }
@@ -106,7 +109,7 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void buttonColorChange()
         {
             var bc = new BrushConverter();
-            if (pcontrol.projekt_search_memory[0].statusz == 1)
+            if (pControl.projectSearchMemory[0].statusz == 1)
             {
                 projekt_aktiv_btn.Background = (Brush)bc.ConvertFrom("#bfbfbf");
                 projekt_aktiv_btn.BorderBrush = (Brush)bc.ConvertFrom("#bfbfbf");
@@ -128,16 +131,16 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             Button button = sender as Button;
             ProjectListItems items = button.DataContext as ProjectListItems;
-            pcontrol.ProjektID = items.id;
-            sgrid.Children.Clear();
-            sgrid.Children.Add(project_DataView = new ProjectDataSheet(sgrid));
+            pControl.ProjektID = items.id;
+            grid.Children.Clear();
+            grid.Children.Add(projectDataSheet = new ProjectDataSheet(grid));
         }
 
         protected void New_projekt_btn_Click(object sender, RoutedEventArgs e)
         {
 
-            sgrid.Children.Clear();
-            sgrid.Children.Add(project_new_panel = new NewProjectPanel(sgrid));
+            grid.Children.Clear();
+            grid.Children.Add(newProjectPanel = new NewProjectPanel(grid));
         }
 
         protected void projectDeleteClick(object sender, RoutedEventArgs e)
@@ -148,7 +151,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 case MessageBoxResult.Yes:
                     MenuItem menuItem = sender as MenuItem;
                     ProjectListItems items = menuItem.DataContext as ProjectListItems;
-                    pcontrol.Projekt_delete(items.id);
+                    pControl.projectDelete(items.id);
                     projectListLoader();
                     break;
                 case MessageBoxResult.No:
@@ -166,7 +169,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 case MessageBoxResult.Yes:
                     MenuItem menuItem = sender as MenuItem;
                     ProjectListItems items = menuItem.DataContext as ProjectListItems;
-                    pcontrol.Projekt_Archiver(items.id, items.statusz);
+                    pControl.projectArchiver(items.id, items.statusz);
                     projectListLoader();
                     break;
                 case MessageBoxResult.No:
@@ -178,15 +181,15 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void projectPassivateClick(object sender, RoutedEventArgs e)
         {
-            pcontrol.Projekt_allapot_valto(0);
-            project_listBox.ItemsSource = pcontrol.ProjektListSource(searchbar_datalist());
+            pControl.statusChange(0);
+            project_listBox.ItemsSource = pControl.Data_ProjectFull(getSearchData());
             buttonColorChange();
         }
 
         protected void projectActivateClick(object sender, RoutedEventArgs e)
         {
-            pcontrol.Projekt_allapot_valto(1);
-            project_listBox.ItemsSource = pcontrol.ProjektListSource(searchbar_datalist());
+            pControl.statusChange(1);
+            project_listBox.ItemsSource = pControl.Data_ProjectFull(getSearchData());
             buttonColorChange();
         }
 
@@ -202,19 +205,19 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            string Tbx_name = ((TextBox)sender).Tag.ToString();
-            var Tbx = (TextBox)this.FindName(Tbx_name);
+            TextBox textbox = sender as TextBox;
+            string textboxName = ((TextBox)sender).Tag.ToString();
+            var textboxOther = (TextBox)this.FindName(textboxName);
 
             if (((TextBox)sender).Text == "")
             {
-                Tbx.Visibility = Visibility.Visible;
-                textBox.BorderBrush = (SolidColorBrush)Application.Current.Resources["racs_light"];
+                textboxOther.Visibility = Visibility.Visible;
+                textbox.BorderBrush = (SolidColorBrush)Application.Current.Resources["racs_light"];
             }
             else
             {
-                textBox.BorderBrush = (SolidColorBrush)Application.Current.Resources["ThemeColor"];
-                textBox.Foreground = Brushes.Black;
+                textbox.BorderBrush = (SolidColorBrush)Application.Current.Resources["ThemeColor"];
+                textbox.Foreground = Brushes.Black;
             }
         }
 
@@ -240,17 +243,19 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void modositasClick(object sender, RoutedEventArgs e)
         {
-            pcontrol.Change = true;
+            pControl.Change = true;
             MenuItem item = sender as MenuItem;
             ProjectListItems itemSource = item.DataContext as ProjectListItems;
-            pcontrol.ProjektID = itemSource.id;
-            sgrid.Children.Clear();
-            sgrid.Children.Add(project_new_panel = new NewProjectPanel(sgrid));
+
+            pControl.ProjektID = itemSource.id;
+            grid.Children.Clear();
+            grid.Children.Add(newProjectPanel = new NewProjectPanel(grid));
         }
 
         protected void headerClick(object sender, MouseButtonEventArgs e)
         {
             Label item = sender as Label;
+
             HeaderSelected = item.Tag.ToString();
             projectListLoader();
         }

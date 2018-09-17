@@ -14,7 +14,7 @@ namespace HRCloud.Control
         public List<ertesitendok_struct> Ertesitendok_DataSource()
         {
             string query = "SELECT * FROM users WHERE kategoria = 0";
-            return dbE.Ertesitendok_MySql_listQuery(query);
+            return dbE.getErtesitendok(query);
         }
         public List<nyelv_struct> Nyelv_DataSource()
         {
@@ -41,12 +41,12 @@ namespace HRCloud.Control
             string query = "SELECT * FROM ertesulesek";
             return dbE.Ertesulesek_MySql_listQuery(query);
         }
-        public void item_delete(int id, string table)
+        public void settingDelete(int id, string table)
         {
             string query = "DELETE FROM "+table+" WHERE id="+id+"";
             dbE.update(query);
         }
-        public void item_insert(string content, string table)
+        public void settingInsert(string content, string table)
         {
             string query = "";
 

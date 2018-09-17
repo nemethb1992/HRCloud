@@ -23,8 +23,8 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class NewApplicantPanel : UserControl
     {
-        ControlApplicant acontrol = new ControlApplicant();
-        ControlProject pcontrol = new ControlProject();
+        ControlApplicant aControl = new ControlApplicant();
+        ControlProject pControl = new ControlProject();
 
         private Grid grid;
         private ApplicantDataSheet applicantDataSheet;
@@ -38,15 +38,16 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void checkboxLoader()
         {
-            munkakor_cbx.ItemsSource = acontrol.Data_Munkakor();
-            munkakor2_cbx.ItemsSource = acontrol.Data_Munkakor();
-            munkakor3_cbx.ItemsSource = acontrol.Data_Munkakor();
-            vegzettseg_cbx.ItemsSource = acontrol.Data_Vegzettseg();
-            nyelv_cbx.ItemsSource = acontrol.Data_Nyelv();
-            nyelv2_cbx.ItemsSource = acontrol.Data_Nyelv();
-            ertesules_cbx.ItemsSource = acontrol.Data_Ertesulesek();
-            neme_cbx.ItemsSource = acontrol.Data_Nemek();
-            if (acontrol.Change == true)
+            munkakor_cbx.ItemsSource = aControl.Data_Munkakor();
+            munkakor2_cbx.ItemsSource = aControl.Data_Munkakor();
+            munkakor3_cbx.ItemsSource = aControl.Data_Munkakor();
+            vegzettseg_cbx.ItemsSource = aControl.Data_Vegzettseg();
+            nyelv_cbx.ItemsSource = aControl.Data_Nyelv();
+            nyelv2_cbx.ItemsSource = aControl.Data_Nyelv();
+            ertesules_cbx.ItemsSource = aControl.Data_Ertesulesek();
+            neme_cbx.ItemsSource = aControl.Data_Nemek();
+
+            if (aControl.Change == true)
             {
                 uj_cim.Visibility = Visibility.Hidden;
                 applicant_INSERT_btn.Visibility = Visibility.Hidden;
@@ -58,7 +59,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void modifyFormLoader()
         {
-            List<JeloltExtendedList> li = acontrol.Data_JeloltFull();
+            List<JeloltExtendedList> li = aControl.Data_JeloltFull();
             nev_tbx.Text = li[0].nev;
             email_tbx.Text = li[0].email;
             lakhely_tbx.Text = li[0].lakhely;
@@ -66,17 +67,17 @@ namespace HRCloud.View.Usercontrol.Panels
             eletkor_tbx.Text = li[0].szuldatum.ToString();
             tapasztalat_tbx.Text = li[0].tapasztalat_ev.ToString();
 
-            munkakor_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor, }));
-            munkakor2_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor2, }));
-            munkakor3_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor3, }));
-            nyelv_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Nyelv().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas, }));
-            nyelv2_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Nyelv().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas2, }));
-            ertesules_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Ertesulesek().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_ertesult, }));
-            vegzettseg_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Vegzettseg().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_vegz_terulet, }));
-            neme_cbx.SelectedIndex = checkboxCounter(acontrol.Data_Nemek().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_neme, }));
+            munkakor_cbx.SelectedIndex = checkboxCounter(aControl.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor, }));
+            munkakor2_cbx.SelectedIndex = checkboxCounter(aControl.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor2, }));
+            munkakor3_cbx.SelectedIndex = checkboxCounter(aControl.Data_Munkakor().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_munkakor3, }));
+            nyelv_cbx.SelectedIndex = checkboxCounter(aControl.Data_Nyelv().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas, }));
+            nyelv2_cbx.SelectedIndex = checkboxCounter(aControl.Data_Nyelv().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_nyelvtudas2, }));
+            ertesules_cbx.SelectedIndex = checkboxCounter(aControl.Data_Ertesulesek().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_ertesult, }));
+            vegzettseg_cbx.SelectedIndex = checkboxCounter(aControl.Data_Vegzettseg().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_vegz_terulet, }));
+            neme_cbx.SelectedIndex = checkboxCounter(aControl.Data_Nemek().ConvertAll(x => new ComboBox_Seged_Struct { id = x.id, }), li.ConvertAll(x => new ComboBox_Seged_Struct { id = x.id_neme, }));
         }
 
-        int checkboxCounter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
+        protected int checkboxCounter(List<ComboBox_Seged_Struct> ossz_li, List<ComboBox_Seged_Struct> projekt_li)
         {
             int i = 0;
             foreach (var item in ossz_li)
@@ -136,14 +137,14 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void applicantInsertClick(object sender, RoutedEventArgs e)
         {
-                acontrol.applicantInsert(getFormData());
-                grid.Children.Clear();
-                grid.Children.Add(applicantDataSheet = new ApplicantDataSheet(grid));
+            aControl.applicantInsert(getFormData());
+            grid.Children.Clear();
+            grid.Children.Add(applicantDataSheet = new ApplicantDataSheet(grid));
         }
 
         protected void applicantModifyClick(object sender, RoutedEventArgs e)
         {
-            acontrol.applicantUpdate(getFormData());
+            aControl.applicantUpdate(getFormData());
             grid.Children.Clear();
             grid.Children.Add(applicantDataSheet = new ApplicantDataSheet(grid));
         }

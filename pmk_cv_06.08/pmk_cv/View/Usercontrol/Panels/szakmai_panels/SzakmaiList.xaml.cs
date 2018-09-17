@@ -24,33 +24,39 @@ namespace HRCloud.View.Usercontrol.Panels
     /// </summary>
     public partial class SzakmaiList : UserControl
     {
+        ControlProject pControl = new ControlProject();
+        ControlSzakmai szControl = new ControlSzakmai();
+
+        private SzakmaiProjektDataSheet szakmaiProjektDataSheet;
+        private SzakmaiKezdolap szakmaiKezdolap;
         private Grid grid;
-        ControlProject p_control = new ControlProject();
-        ControlSzakmai sz_control = new ControlSzakmai();
-        private SzakmaiProjektDataSheet szDataView;
-        private SzakmaiKezdolap szakmai_Kezdolap;
+
         public SzakmaiList(Grid grid)
         {
             InitializeComponent();
             this.grid = grid;
-            SettingUp();
+            settingUp();
         }
-        private void Projekt_Open_btn(object sender, RoutedEventArgs e)
+
+        protected void openProject(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Projekt_Bevont_struct items = button.DataContext as Projekt_Bevont_struct;
-            p_control.ProjektID = items.id;
+
+            pControl.ProjektID = items.id;
             grid.Children.Clear();
-            grid.Children.Add(szDataView = new SzakmaiProjektDataSheet(grid));
+            grid.Children.Add(szakmaiProjektDataSheet = new SzakmaiProjektDataSheet(grid));
         }
-        void SettingUp()
+
+        protected void settingUp()
         {
-            bevont_projekt_lista.ItemsSource = sz_control.bevont_projekt_DataSource();
+            bevont_projekt_lista.ItemsSource = szControl.Data_SzakmaiProject();
         }
-        private void szakmai_mainpage_btn_Click(object sender, RoutedEventArgs e)
+
+        protected void navigateToSzakmaiKezdolap(object sender, RoutedEventArgs e)
         {
             grid.Children.Clear();
-            grid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(grid));
+            grid.Children.Add(szakmaiKezdolap = new SzakmaiKezdolap(grid));
         }
     }
 }

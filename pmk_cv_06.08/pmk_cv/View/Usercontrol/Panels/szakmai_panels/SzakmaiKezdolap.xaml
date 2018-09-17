@@ -37,8 +37,8 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
-            <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource StandardButton_Interju}" Panel.ZIndex="1" Click="Szakmai_panel_Button" />
-            <Button Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource StandardButton_Interju}" Panel.ZIndex="1" Click="Szakmai_interjuk_Button" />
+            <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource StandardButton_Interju}" Panel.ZIndex="1" Click="navigateToSzakmaiList" />
+            <Button Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource StandardButton_Interju}" Panel.ZIndex="1" Click="navigateToSzakmaiInterviewList" />
             <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource big_title_style}" Panel.ZIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bevont projektek"/>
             <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource big_title_style}" Panel.ZIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Interjúk"/>
             <TextBlock x:Name="projekt_no" Grid.Column="1" Grid.Row="1" Style="{StaticResource Standard_Textblock}" Panel.ZIndex="0" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="6 db"/>

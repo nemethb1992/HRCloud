@@ -25,7 +25,7 @@
                    Style="{StaticResource big_title_style}"
                    Text=""
                    Margin="0,0,200,0"/>
-        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="szakmai_mainpage_btn_Click"/>
+        <Button Grid.Column="3" Grid.Row="0" Content="Vissza" HorizontalAlignment="Right" Width="200" Style="{StaticResource StandardButton}" Click="navigateToSzakmaiList"/>
         <Grid x:Name="Alap_Adatok_Grid" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -131,7 +131,7 @@
                             </Grid.RowDefinitions>
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Törlés" Click="MenuItem_Click" />
+                                    <MenuItem Header="Törlés" Click="commentDelete" />
                                 </ContextMenu>
                             </Grid.ContextMenu>
                             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Standard_Textblock}" Text="{Binding hr_nev}"/>
@@ -141,7 +141,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="5,7" KeyUp="TextBox_KeyUp" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="comment_tartalom_GotFocus" LostFocus="comment_tartalom_LostFocus">
+            <TextBox x:Name="comment_tartalom" Grid.Row="4" BorderBrush="{StaticResource racs_light}" Background="White" Padding="5,7" KeyUp="addComment" Text="Új megjegyzés" Style="{StaticResource Standard_Textbox}" GotFocus="commentGotFocus" LostFocus="commentLostFocus">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="0,0,5,5"/>
@@ -178,7 +178,7 @@
                                 <!--<ColumnDefinition Width="18" />-->
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Margin="15,10,0,0" Style="{StaticResource panelTbl_style}" Text="{Binding nev}"/>
-                            <Button x:Name="tovabb_jeloltre_btn" Grid.Column="4" Grid.RowSpan="2" FontSize="12"  Style="{StaticResource next_panelBtn_style}" Click="tovabb_jeloltre_btn_Click">
+                            <Button x:Name="tovabb_jeloltre_btn" Grid.Column="4" Grid.RowSpan="2" FontSize="12"  Style="{StaticResource next_panelBtn_style}" Click="openApplicant">
                                 <Image Source="/HRCloud;component/Public/imgs/next.png" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
                         </Grid>

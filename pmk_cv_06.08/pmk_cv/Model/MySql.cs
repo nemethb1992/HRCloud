@@ -710,7 +710,7 @@ namespace HRCloud.Model
             dbClose();
             return items;
         }
-        public List<ertesitendok_struct> Ertesitendok_MySql_listQuery(string query)
+        public List<ertesitendok_struct> getErtesitendok(string query)
         {
             List<ertesitendok_struct> items = new List<ertesitendok_struct>();
             if (this.dbOpen() == true)
@@ -733,7 +733,7 @@ namespace HRCloud.Model
             return items;
         }
         
-        public List<hr_struct> HR_rovid_MySql_listQuery(string query)
+        public List<hr_struct> getHrShort(string query)
         {
             List<hr_struct> items = new List<hr_struct>();
             if (this.dbOpen() == true)
@@ -831,7 +831,7 @@ namespace HRCloud.Model
             dbClose();
             return items;
         }
-        public List<interju_struct> Szakmai_Interju_MySql_listQuery(string query)
+        public List<interju_struct> getSzakmaiInterview(string query)
         {
             List<interju_struct> items = new List<interju_struct>();
             if (this.dbOpen() == true)
@@ -887,7 +887,7 @@ namespace HRCloud.Model
             return items;
         }
 
-        public List<Projekt_Bevont_struct> Bevont_Projekt_MySql_listQuery(string query)
+        public List<Projekt_Bevont_struct> getSzakmaiProject(string query)
         {
             List<Projekt_Bevont_struct> items = new List<Projekt_Bevont_struct>();
             if (this.dbOpen() == true)

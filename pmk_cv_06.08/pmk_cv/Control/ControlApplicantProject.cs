@@ -33,7 +33,7 @@ namespace HRCloud.Control
             mysql.update(command);
         }
 
-        public void Telefon_Szures_Elfogad(int ismerte,int muszakok,string utazas)
+        public void telephoneFilterInsert(int ismerte,int muszakok,string utazas) //javított
         {
             string command1 = "UPDATE projekt_jelolt_kapcs SET allapota = 1 WHERE projekt_id = " + pcontrol.ProjektID + " AND jelolt_id = " + acontrol.ApplicantID + "";
             string command2 = "UPDATE jeloltek SET pmk_ismerte = "+ismerte+"  WHERE id = " + acontrol.ApplicantID + "";
@@ -56,7 +56,7 @@ namespace HRCloud.Control
             mysql.update(command4);
         }
 
-        public List<interju_struct> Interju_DataSource()
+        public List<interju_struct> Data_Interview() //javított
         {
             string command = "SELECT interjuk_kapcs.id,megnevezes_projekt,jeloltek.nev,interjuk_kapcs.projekt_id,interjuk_kapcs.jelolt_id,jeloltek.email,interjuk_kapcs.hr_id,felvitel_datum,interju_datum,interju_cim,interju_leiras,helyszin ,idopont FROM interjuk_kapcs" +
                 " INNER JOIN projektek ON interjuk_kapcs.projekt_id = projektek.id" +
@@ -101,7 +101,7 @@ namespace HRCloud.Control
             return mysql.Kompetencia_summary_MySql_listQuery(command);
         }
         
-        public List<kompetencia_tamogatas> kompetencia_tamogatas_DataSource()
+        public List<kompetencia_tamogatas> Data_KompetenciaTamogatas() // javítva
         {
             string command = "SELECT tamogatom FROM kompetencia_jelolt_kapcs WHERE jelolt_id = " + acontrol.ApplicantID + " AND projekt_id = " + pcontrol.ProjektID + "";
             return mysql.Kompetencia_tamogatas_MySql_listQuery(command);
@@ -122,13 +122,13 @@ namespace HRCloud.Control
         public List<ertesitendok_struct> Data_ProjektErtesitendokKapcsolt() // javítva használja: interviewpanel
         {
             string command = "SELECT users.id, name, email FROM users INNER JOIN projekt_ertesitendok_kapcs ON ertesitendok_id = users.id WHERE projekt_id = "+pcontrol.ProjektID+"";
-            return mysql.Ertesitendok_MySql_listQuery(command);
+            return mysql.getErtesitendok(command);
         }
 
         public List<ertesitendok_struct> Data_InterjuErtesitendokKapcsolt() // javítva használja: interviewpanel
         {
             string command = "SELECT users.id, name, email FROM interju_resztvevo_kapcs left JOIN users ON user_id = users.id WHERE interju_id = " + InterjuID + " GROUP BY users.id";
-            return mysql.Ertesitendok_MySql_listQuery(command);
+            return mysql.getErtesitendok(command);
         }
 
         public void Write_User_To_Inerju(int id)

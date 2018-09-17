@@ -25,14 +25,15 @@ namespace HRCloud.View.Usercontrol.Panels
     /// 
     public partial class ProjektJeloltDataSheet : UserControl
     {
-        private Grid grid;
+        ControlApplicant aControl = new ControlApplicant();
+        ControlProject pControl = new ControlProject();
+        ControlApplicantProject paControl = new ControlApplicantProject();
         Comment comment = new Comment();
-        private ProjectDataSheet project_DataView;
-        private InterviewPanel interju_Panel;
-        ControlApplicant acontrol = new ControlApplicant();
-        Session sess = new Session();
-        ControlProject pcontrol = new ControlProject();
-        ControlApplicantProject pa_control = new ControlApplicantProject();
+        Session session = new Session();
+
+        private ProjectDataSheet projectDataSheet;
+        private InterviewPanel interviewPanel;
+        private Grid grid;
 
         public ProjektJeloltDataSheet(Grid grid)
         {
@@ -43,14 +44,15 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void projectFormLoader()
         {
-            List<JeloltExtendedList> a_li = acontrol.Data_JeloltFull();
-            List<ProjectExtendedListItems> p_li = pcontrol.Data_ProjectFull();
-            List<kompetenciak> li_k = pa_control.Data_Kompetencia();
-            List<kompetencia_summary_struct> li_kvalue = pa_control.Data_KompetenciaJeloltKapcs();
+            List<JeloltExtendedList> a_li = aControl.Data_JeloltFull();
+            List<ProjectExtendedListItems> p_li = pControl.Data_ProjectFull();
+            List<kompetenciak> li_k = paControl.Data_Kompetencia();
+            List<kompetencia_summary_struct> li_kvalue = paControl.Data_KompetenciaJeloltKapcs();
+
             projekt_jelolt_title_tbl.Text = p_li[0].megnevezes_projekt + " - " + a_li[0].nev;
             jelolt_telefon.Text = "( " + a_li[0].telefon + " )";
-            megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
-            kapcs_jeloltek_listBox.ItemsSource = pa_control.Interju_DataSource();
+            megjegyzes_listBox.ItemsSource = pControl.Data_CommentKapcs();
+            kapcs_jeloltek_listBox.ItemsSource = paControl.Data_Interview();
             inter_cim.Items.Add("HR interjú");
             inter_cim.Items.Add("Szakmai + HR");
             inter_cim.Items.Add("Szakmai Interjú 1.");
@@ -83,14 +85,12 @@ namespace HRCloud.View.Usercontrol.Panels
                 if (item.id == p_li[0].kepesseg5)
                 { kompetencia_5.Text = item.kompetencia_megnevezes; }
             }
-
-
             telephoneInspectedLayout();
         }
 
         protected void telephoneInspectedLayout()
         {
-            if (pa_control.TelefonSzurt == 1)
+            if (paControl.TelefonSzurt == 1)
             {
                 telefonos_igen_btn.Visibility = Visibility.Hidden;
                 szurt_tbl.Visibility = Visibility.Visible;
@@ -100,22 +100,24 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void backToProjectDataSheet(object sender, RoutedEventArgs e)
         {
             grid.Children.Clear();
-            grid.Children.Add(project_DataView = new ProjectDataSheet(grid));
+            grid.Children.Add(projectDataSheet = new ProjectDataSheet(grid));
         }
 
         protected void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox tbx = sender as TextBox;
+
             if (e.Key != System.Windows.Input.Key.Enter) return;
             e.Handled = true;
-            comment.megjegyzes_feltoltes(comment_tartalom.Text, pcontrol.ProjektID, acontrol.ApplicantID, 0);
-            megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
+            comment.add(comment_tartalom.Text, pControl.ProjektID, aControl.ApplicantID, 0);
+            megjegyzes_listBox.ItemsSource = pControl.Data_CommentKapcs();
             tbx.Text = "";
         }
 
         protected void commentGotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
+
             if (tbx.Text == "Új megjegyzés")
             {
                 tbx.Text = "";
@@ -125,6 +127,7 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void commentLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox tbx = sender as TextBox;
+
             if (tbx.Text == "")
             {
                 tbx.Text = "Új megjegyzés";
@@ -135,8 +138,9 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             MenuItem delete = sender as MenuItem;
             megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
-            comment.delete(items.id, sess.UserData[0].id, pcontrol.ProjektID, acontrol.ApplicantID);
-            megjegyzes_listBox.ItemsSource = pcontrol.megjegyzes_datasource_kapcsolati();
+
+            comment.delete(items.id, session.UserData[0].id, pControl.ProjektID, aControl.ApplicantID);
+            megjegyzes_listBox.ItemsSource = pControl.Data_CommentKapcs();
         }
 
         protected void telephonePanelOpenClick(object sender, RoutedEventArgs e)
@@ -162,12 +166,13 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void telephoneAcceptClick(object sender, RoutedEventArgs e)
         {
             int ismerte = 0;
+
             if(ismerte_cbx.SelectedItem == "igen")
             {
                 ismerte = 1;
             }
-            pa_control.Telefon_Szures_Elfogad(ismerte,Convert.ToInt32(muszakok_tbx.Text),utazas_tbx.Text);
-            pa_control.TelefonSzurt = 1;
+            paControl.telephoneFilterInsert(ismerte,Convert.ToInt32(muszakok_tbx.Text),utazas_tbx.Text);
+            paControl.TelefonSzurt = 1;
             grid_telefonosszuro.Height = 100;
             telefonos_igen_btn.IsEnabled = true;
             telefonos_nem_btn.IsEnabled = true;
@@ -177,12 +182,13 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void telephoneDeclineClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Biztosan elutasítja? \n", "HR Cloud", MessageBoxButton.YesNoCancel);
+
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    pcontrol.Jelolt_list_allpot_UPDATE(acontrol.ApplicantID, 3);
+                    pControl.jeloltKapcsUpdate(aControl.ApplicantID, 3);
                     grid.Children.Clear();
-                    grid.Children.Add(project_DataView = new ProjectDataSheet(grid));
+                    grid.Children.Add(projectDataSheet = new ProjectDataSheet(grid));
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -195,6 +201,7 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             var grid = (Grid)this.FindName("ui_bg");
             var grid2 = (Grid)this.FindName("uj_interju_panel");
+
             grid.Visibility = Visibility.Visible;
             grid2.Visibility = Visibility.Visible;
         }
@@ -203,6 +210,7 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             var grid = (Grid)this.FindName("ui_bg");
             var grid2 = (Grid)this.FindName("uj_interju_panel");
+
             grid.Visibility = Visibility.Hidden;
             grid2.Visibility = Visibility.Hidden;
         }
@@ -233,7 +241,7 @@ namespace HRCloud.View.Usercontrol.Panels
             catch{ }
             try
             {
-                pa_control.addInterview(datum, inter_cim.SelectedItem.ToString(), inter_leiras.Text, inter_helyszin.Text, inter_idopont.Text);
+                paControl.addInterview(datum, inter_cim.SelectedItem.ToString(), inter_leiras.Text, inter_helyszin.Text, inter_idopont.Text);
                 projectFormLoader();
                 interviewPanelClose();
             }
@@ -247,16 +255,18 @@ namespace HRCloud.View.Usercontrol.Panels
         {
             Button btn = sender as Button;
             interju_struct items = btn.DataContext as interju_struct;
-            pa_control.InterjuID = items.id;
+
+            paControl.InterjuID = items.id;
             grid.Children.Clear();
-            grid.Children.Add(interju_Panel = new InterviewPanel(grid));
+            grid.Children.Add(interviewPanel = new InterviewPanel(grid));
         }
 
         protected void deleteInterview(object sender, RoutedEventArgs e)
         {
             MenuItem menu = sender as MenuItem;
             interju_struct items = menu.DataContext as interju_struct;
-            pa_control.interviewDelete(items.id);
+
+            paControl.interviewDelete(items.id);
             projectFormLoader();
         }
 
@@ -269,7 +279,8 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void jeloltTamogatasa()
         {
             List<kompetencia_tamogatas> list = new List<kompetencia_tamogatas>();
-            list = pa_control.kompetencia_tamogatas_DataSource();
+
+            list = paControl.Data_KompetenciaTamogatas();
             int igen = 0, ossz = 0 ;
             foreach (var item in list)
             {

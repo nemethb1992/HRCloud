@@ -29,7 +29,7 @@ namespace HRCloud.View.Usercontrol.Panels
             startMethods();
         }
 
-        private void startMethods()
+        protected void startMethods()
         {
 
         }
