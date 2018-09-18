@@ -13,7 +13,7 @@ namespace HRCloud.Model
         //string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
         //string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
 
-        private static string CONNECTION_URL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
+        private const string CONNECTION_URL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
 
         private MySqlConnection conn;
         private MySqlCommand cmd;
@@ -57,6 +57,7 @@ namespace HRCloud.Model
                 return false;
             }
         }
+
         public void commit()
         {
             try
@@ -67,6 +68,7 @@ namespace HRCloud.Model
             {
             }
         }
+
         public bool close()
         {
             try
@@ -91,6 +93,7 @@ namespace HRCloud.Model
                 cmd.ExecuteNonQuery();
             }
         }
+
         public int rowCount(string command)
         {
             int[] rows = new int[1];
@@ -107,6 +110,7 @@ namespace HRCloud.Model
             
             return rows[0];
         }
+
         public List<string> listQuery(string command, string table, int b)
         {
             List<string> dataSource = new List<string>();
@@ -149,6 +153,7 @@ namespace HRCloud.Model
         //    }
         //    return dataSource;
         //}
+
         public bool bind(string query)
         {
             bool valid = false;
@@ -225,6 +230,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<SubProjekt> Sub_Projekt_MySql_listQuery(string query)
         {
             List<SubProjekt> items = new List<SubProjekt>();
@@ -246,6 +252,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<ProjectListItems> Projekt_MySql_listQuery  (string query)
         {
         List<ProjectListItems> items = new List<ProjectListItems>();
@@ -282,6 +289,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<ertesulesek> Ertesulesek_MySql_listQuery(string query)
         {
             List<ertesulesek> items = new List<ertesulesek>();
@@ -301,6 +309,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<file_url> file_url_ROOT_MySql_listQuery(string query)
         {
             List<file_url> items = new List<file_url>();
@@ -319,6 +328,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<pc_struct> getPc(string query)
         {
             List<pc_struct> items = new List<pc_struct>();
@@ -338,6 +348,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<vegzettseg_struct> Vegzettseg_MySql_listQuery(string query)
         {
             List<vegzettseg_struct> items = new List<vegzettseg_struct>();
@@ -357,6 +368,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<statusz_struct> Statusz_MySql_listQuery(string query)
         {
             List<statusz_struct> items = new List<statusz_struct>();
@@ -376,6 +388,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<ProjectExtendedListItems> Projekt_Extended_MySql_listQuery(string query)
         {
             List<ProjectExtendedListItems> items = new List<ProjectExtendedListItems>();
@@ -432,6 +445,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<SubJelolt> Jelolt_Short_MySql_listQuery(string query)
         {
             List<SubJelolt> items = new List<SubJelolt>();
@@ -509,6 +523,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<SubJelolt> getApplicantShort(string query)
         {
             List<SubJelolt> items = new List<SubJelolt>();
@@ -529,6 +544,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<JeloltExtendedList> JeloltExtended_MySql_listQuery(string query)
         {
             List<JeloltExtendedList> items = new List<JeloltExtendedList>();
@@ -572,6 +588,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<JeloltListBox> JeloltekDatasourceListbox_MySql_listQuery(string query)
         {
             List<JeloltListBox> items = new List<JeloltListBox>();
@@ -593,6 +610,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<nyelv_struct> getNyelv(string query)
         {
             List<nyelv_struct> items = new List<nyelv_struct>();
@@ -634,6 +652,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<neme_struct> Nem_MySql_listQuery(string query)
         {
             List<neme_struct> items = new List<neme_struct>();
@@ -678,6 +697,7 @@ namespace HRCloud.Model
         //    }
         //    return items;
         //}
+
         public List<megjegyzes_struct> Megjegyzesek_MySql_listQuery(string query)
         {
             List<megjegyzes_struct> items = new List<megjegyzes_struct>();
@@ -704,6 +724,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<ertesitendok_struct> getErtesitendok(string query)
         {
             List<ertesitendok_struct> items = new List<ertesitendok_struct>();
@@ -748,6 +769,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<koltsegek> Koltsegek_MySql_listQuery(string query)
         {
             List<koltsegek> items = new List<koltsegek>();
@@ -769,6 +791,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<projekt_jelolt_kapcs> getPojectApplicantRelation(string query)
         {
             List<projekt_jelolt_kapcs> items = new List<projekt_jelolt_kapcs>();
@@ -790,6 +813,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<interju_struct> Interju_MySql_listQuery(string query)
         {
             List<interju_struct> items = new List<interju_struct>();
@@ -820,6 +844,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<interju_struct> getSzakmaiInterview(string query)
         {
             List<interju_struct> items = new List<interju_struct>();
@@ -950,6 +975,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<kompetencia_summary_struct> Kompetencia_summary_MySql_listQuery(string query)
         {
             List<kompetencia_summary_struct> items = new List<kompetencia_summary_struct>();
@@ -980,6 +1006,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<kompetencia_tamogatas> Kompetencia_tamogatas_MySql_listQuery(string query)
         {
             List<kompetencia_tamogatas> items = new List<kompetencia_tamogatas>();
@@ -1005,6 +1032,7 @@ namespace HRCloud.Model
             }
             return items;
         }
+
         public List<MailServer_m> ConnectionSMTP_DataSource(string query)
         {
             List<MailServer_m> items = new List<MailServer_m>();

@@ -39,15 +39,15 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected List<string> getSearchData()
         {
+            List<string> list = new List<string>();
             nyelv_struct nyelvItem = (nyelv_srccbx as ComboBox).SelectedItem as nyelv_struct;
             vegzettseg_struct vegzettsegItem = (vegzettseg_srccbx as ComboBox).SelectedItem as vegzettseg_struct;
-            List<string> list = new List<string>();
 
             string nyelvkStr = "";
             string vegzettsegStr = "";
 
-            try  { if(vegzettsegItem.id !=0) vegzettsegStr = vegzettsegItem.id.ToString(); } catch (Exception) { }
-            try  { if (nyelvItem.id != 0) nyelvkStr = nyelvItem.id.ToString(); } catch (Exception)  {}
+            try  { if(vegzettsegItem.id !=-1) vegzettsegStr = vegzettsegItem.id.ToString(); } catch (Exception) { }
+            try  { if (nyelvItem.id != -1) nyelvkStr = nyelvItem.id.ToString(); } catch (Exception)  {}
             string jeloltszam = jeloltszam_srcinp.Text;
             if (jeloltszam_srcinp.Text == "")
                 jeloltszam = "0";
@@ -117,8 +117,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void projectOpenClick(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            ProjectListItems items = button.DataContext as ProjectListItems;
+            ProjectListItems items = (sender as Button).DataContext as ProjectListItems;
             pControl.ProjektID = items.id;
             grid.Children.Clear();
             grid.Children.Add(projectDataSheet = new ProjectDataSheet(grid));
@@ -136,8 +135,7 @@ namespace HRCloud.View.Usercontrol.Panels
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    MenuItem menuItem = sender as MenuItem;
-                    ProjectListItems items = menuItem.DataContext as ProjectListItems;
+                    ProjectListItems items = (sender as MenuItem).DataContext as ProjectListItems;
                     pControl.projectDelete(items.id);
                     projectListLoader();
                     break;
@@ -154,8 +152,7 @@ namespace HRCloud.View.Usercontrol.Panels
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    MenuItem menuItem = sender as MenuItem;
-                    ProjectListItems items = menuItem.DataContext as ProjectListItems;
+                    ProjectListItems items = (sender as MenuItem).DataContext as ProjectListItems;
                     pControl.projectArchiver(items.id, items.statusz);
                     projectListLoader();
                     break;
@@ -182,7 +179,6 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void textBoxPlaceHolderGotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
             string Tbx_name = ((TextBox)sender).Tag.ToString();
             var Tbx = (TextBox)this.FindName(Tbx_name);
 

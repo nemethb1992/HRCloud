@@ -39,6 +39,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         public ApplicantList()
         {
+
         }
 
         protected void startMethods()
@@ -58,6 +59,7 @@ namespace HRCloud.View.Usercontrol.Panels
             string munkakorStr = "";
             string vegzettsegStr = "";
             string nemekStr = "";
+
             if (munkakor_srccbx.SelectedIndex != -1)
             {
                 munkakorStr = munkakor_item.id.ToString();
@@ -152,12 +154,24 @@ namespace HRCloud.View.Usercontrol.Panels
             grid.Children.Add(newApplicantPanel = new NewApplicantPanel(grid));
 
         }
-
-        protected void searchInputTextChanged(object sender, TextChangedEventArgs e)
+        bool isBusyProcessing = false;
+        protected async void searchInputTextChanged(object sender, TextChangedEventArgs e)
         {
-            ThreadTest thread = new ThreadTest();
-            applicantListLoader();
-            //thread.ASYNC_applicantListLoader();
+            while (isBusyProcessing)
+                await Task.Delay(50);
+            try
+            {
+                isBusyProcessing = true;
+                await Task.Run(() =>
+                {
+                    applicantListLoader();
+                });
+
+            }
+            finally
+            {
+                isBusyProcessing = false;
+            }
         }
 
         protected void numericPreviewTextInput(object sender, TextCompositionEventArgs e)

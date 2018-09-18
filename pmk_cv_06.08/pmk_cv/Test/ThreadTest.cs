@@ -11,30 +11,36 @@ namespace HRCloud.Test
 {
     public class ThreadTest
     {
-        public Thread thread;
-        ApplicantList applicantList = new ApplicantList();
+        //Thread thread;
+        //ApplicantList applicantList;
         public ThreadTest()
         {
+            //applicantList = new ApplicantList();
+            //thread = new Thread(applicantList.applicantListLoader);
 
         }
 
-        int asd = 1;
+        //public void ASYNC_applicantListLoader()
+        //{
+        //    try
+        //    {
+        //        if(!thread.IsAlive)
+        //        {
 
-        public void ASYNC_applicantListLoader()
-        {
-            thread = new Thread(applicantList.applicantListLoader);
-            try
-            {
-                if(!thread.IsAlive)
-                {
-                    thread.Start();
-                }
-            }
-            catch
-            {
+        //            thread.Start();
+        //        }
+        //        else
+        //        {
+        //            thread.Interrupt();
 
-            }
-        }
+        //            thread.Start();
+        //        }
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
 
     }
 }

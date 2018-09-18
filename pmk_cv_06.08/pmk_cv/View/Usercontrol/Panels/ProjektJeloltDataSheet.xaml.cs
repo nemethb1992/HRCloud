@@ -126,18 +126,17 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void commentLostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox tbx = sender as TextBox;
+            TextBox textbox = sender as TextBox;
 
-            if (tbx.Text == "")
+            if (textbox.Text == "")
             {
-                tbx.Text = "Új megjegyzés";
+                textbox.Text = "Új megjegyzés";
             }
         }
 
         protected void commentDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
-            MenuItem delete = sender as MenuItem;
-            megjegyzes_struct items = delete.DataContext as megjegyzes_struct;
+            megjegyzes_struct items = (sender as MenuItem).DataContext as megjegyzes_struct;
 
             comment.delete(items.id, session.UserData[0].id, pControl.ProjektID, aControl.ApplicantID);
             megjegyzes_listBox.ItemsSource = pControl.Data_CommentKapcs();

@@ -9,7 +9,7 @@ namespace HRCloud.Model
 {
     public class SqLite
     {
-        private static string CONNECTION_URL = "Data Source = innerDatabase.db";
+        private const string CONNECTION_URL = "Data Source = innerDatabase.db";
         protected SQLiteConnection conn;
         public SqLite()
         {

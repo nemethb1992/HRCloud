@@ -24,17 +24,20 @@ namespace HRCloud.Model
         public string reg_datum { get; set; }
         public bool Checked { get; set; }
     }
+
     public class JeloltListBox
     {
         public int id { get; set; }
         public string nev { get; set; }
         public int interjuk_db { get; set; }
     }
+
     public class SubJelolt
     {
         public int id { get; set; }
         public string nev { get; set; }
     }
+
     public class JeloltExtendedList
     {
         public int id { get; set; }
@@ -64,6 +67,7 @@ namespace HRCloud.Model
         public string megjegyzes { get; set; }
         public string folderUrl { get; set; }
     }
+
     public class JeloltSearchItems
     {
         public string nev { get; set; }
@@ -77,47 +81,56 @@ namespace HRCloud.Model
         public string munkakor { get; set; }
         public string vegztettseg { get; set; }
     }
+
     public class nyelv_struct
     {
         public int id { get; set; }
         public string nyelv { get; set; }
     }
+
     public class ertesulesek
     {
         public int id { get; set; }
         public string ertesules_megnevezes { get; set; }
     }
+
     public class neme_struct
     {
         public int id { get; set; }
         public string nem { get; set; }
     }
+
     public class munkakor_struct
     {
         public int id { get; set; }
         public string munkakor { get; set; }
     }
+
     public class statusz_struct
     {
         public int id { get; set; }
         public string allapot { get; set; }
     }
+
     public class pc_struct
     {
         public int id { get; set; }
         public string megnevezes_pc { get; set; }
     }
+
     public class vegzettseg_struct
     {
         public int id { get; set; }
         public string megnevezes_vegzettseg { get; set; }
     }
+
     public class ertesitendok_struct
     {
         public int id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
     }
+
     public class hr_struct
     {
         public int id { get; set; }
@@ -126,8 +139,7 @@ namespace HRCloud.Model
         public int jogosultsag { get; set; }
         public int validitas { get; set; }
     }
-
-
+    
     public class megjegyzes_struct
     {
         public int id { get; set; }
@@ -154,6 +166,7 @@ namespace HRCloud.Model
         public string kiterjesztes { get; set; }
         public string kep { get; set; }
     }
+
     public class Jelolt_File_Struct
     {
         public string fajlnev { get; set; }

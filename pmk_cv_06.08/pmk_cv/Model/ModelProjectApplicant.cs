@@ -13,6 +13,7 @@ namespace HRCloud.Model
         public int hr_id { get; set; }
         public string datum { get; set; }
     }
+
     public class interju_struct
     {
         public int id { get; set; }
@@ -29,6 +30,7 @@ namespace HRCloud.Model
         public string helyszin { get; set; }
         public string idopont { get; set; }
     }
+
     //public class tamogatas_struct
     //{
     //    public int id { get; set; }
@@ -37,6 +39,7 @@ namespace HRCloud.Model
     //    public int ertekeles { get; set; }
     //    public int tamogatja { get; set; }
     //}
+
     public class kompetencia_jelolt_kapcs_struct
     {
         public int id { get; set; }
@@ -68,6 +71,7 @@ namespace HRCloud.Model
         public int tamogatom { get; set; }
 
     }
+
     public class kompetencia_tamogatas
     {
         public int tamogatom { get; set; }
