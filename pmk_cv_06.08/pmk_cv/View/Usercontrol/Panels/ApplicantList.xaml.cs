@@ -154,24 +154,15 @@ namespace HRCloud.View.Usercontrol.Panels
             grid.Children.Add(newApplicantPanel = new NewApplicantPanel(grid));
 
         }
-        bool isBusyProcessing = false;
+
         protected async void searchInputTextChanged(object sender, TextChangedEventArgs e)
         {
-            while (isBusyProcessing)
-                await Task.Delay(50);
-            try
-            {
-                isBusyProcessing = true;
-                await Task.Run(() =>
-                {
-                    applicantListLoader();
-                });
+            TextBox textbox = (TextBox)sender;
+            int fisrtLength = textbox.Text.Length;
 
-            }
-            finally
-            {
-                isBusyProcessing = false;
-            }
+            await Task.Delay(500);
+            if (fisrtLength == textbox.Text.Length)
+                applicantListLoader();
         }
 
         protected void numericPreviewTextInput(object sender, TextCompositionEventArgs e)

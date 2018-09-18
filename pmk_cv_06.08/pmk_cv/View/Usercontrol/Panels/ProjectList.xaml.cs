@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -203,9 +204,14 @@ namespace HRCloud.View.Usercontrol.Panels
             }
         }
 
-        protected void searchInputTextChange(object sender, TextChangedEventArgs e)
+        protected async void searchInputTextChange(object sender, TextChangedEventArgs e)
         {
-            projectListLoader();
+            TextBox textbox = (TextBox)sender;
+            int fisrtLength = textbox.Text.Length;
+
+            await Task.Delay(500);
+            if (fisrtLength == textbox.Text.Length)
+                projectListLoader();
         }
 
         protected void comboboxSelection(object sender, SelectionChangedEventArgs e)
