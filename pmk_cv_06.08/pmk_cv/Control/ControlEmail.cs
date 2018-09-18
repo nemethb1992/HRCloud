@@ -16,8 +16,9 @@ namespace HRCloud.Control
 {
     class ControlEmail
     {
-        Model.MySql dbE = new Model.MySql();
-        EmailTemplate e_temp = new EmailTemplate();
+        Model.MySql mySql = new Model.MySql();
+        EmailTemplate emailTemplate = new EmailTemplate();
+
         public class MailRepository
         {
             private Imap4Client client;
@@ -55,13 +56,17 @@ namespace HRCloud.Control
         }
         public List<MailServer_m> IMAP_List()
         {
-            string query = "SELECT * FROM ConnectionSMTP WHERE type = 'imap'";
-            return dbE.ConnectionSMTP_DataSource(query);
+            string command = "SELECT * FROM ConnectionSMTP WHERE type = 'imap'";
+            List<MailServer_m> list = mySql.ConnectionSMTP_DataSource(command);
+            mySql.close();
+            return list;
         }
         public List<MailServer_m> SMTP_List()
         {
-            string query = "SELECT * FROM ConnectionSMTP WHERE type = 'smtp'";
-            return dbE.ConnectionSMTP_DataSource(query);
+            string command = "SELECT * FROM ConnectionSMTP WHERE type = 'smtp'";
+            List<MailServer_m> list = mySql.ConnectionSMTP_DataSource(command);
+            mySql.close();
+            return list;
         }
         //public void ReadImap()
         //{
@@ -84,7 +89,7 @@ namespace HRCloud.Control
         //    }
         //}
 
-        public void Mail_Send(string to, string email_body)
+        public void sendMail(string to, string email_body)
         {
             List<MailServer_m> li = SMTP_List();
             try

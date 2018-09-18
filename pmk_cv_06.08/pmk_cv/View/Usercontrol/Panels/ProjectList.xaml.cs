@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HRCloud.Control;
 using HRCloud.Model;
-using pmk_cv.Control;
 
 namespace HRCloud.View.Usercontrol.Panels
 {
@@ -27,7 +18,6 @@ namespace HRCloud.View.Usercontrol.Panels
         protected string HeaderSelected { get { return HeaderSelecteds; } set { HeaderSelecteds = value; } }
 
         ControlProject pControl = new ControlProject();
-        PageControl pageControl = new PageControl();
 
         private ProjectDataSheet projectDataSheet;
         private NewProjectPanel newProjectPanel;
@@ -49,10 +39,8 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected List<string> getSearchData()
         {
-            ComboBox nyelv = nyelv_srccbx as ComboBox;
-            ComboBox vegzettseg = vegzettseg_srccbx as ComboBox;
-            nyelv_struct nyelvItem = nyelv.SelectedItem as nyelv_struct;
-            vegzettseg_struct vegzettsegItem = vegzettseg.SelectedItem as vegzettseg_struct;
+            nyelv_struct nyelvItem = (nyelv_srccbx as ComboBox).SelectedItem as nyelv_struct;
+            vegzettseg_struct vegzettsegItem = (vegzettseg_srccbx as ComboBox).SelectedItem as vegzettseg_struct;
             List<string> list = new List<string>();
 
             string nyelvkStr = "";
@@ -138,7 +126,6 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void New_projekt_btn_Click(object sender, RoutedEventArgs e)
         {
-
             grid.Children.Clear();
             grid.Children.Add(newProjectPanel = new NewProjectPanel(grid));
         }
@@ -206,8 +193,7 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void textBoxPlaceHolderLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
-            string textboxName = ((TextBox)sender).Tag.ToString();
-            var textboxOther = (TextBox)this.FindName(textboxName);
+            TextBox textboxOther = (TextBox)this.FindName(textbox.Tag.ToString());
 
             if (((TextBox)sender).Text == "")
             {
@@ -244,8 +230,7 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void modositasClick(object sender, RoutedEventArgs e)
         {
             pControl.Change = true;
-            MenuItem item = sender as MenuItem;
-            ProjectListItems itemSource = item.DataContext as ProjectListItems;
+            ProjectListItems itemSource = (sender as MenuItem).DataContext as ProjectListItems;
 
             pControl.ProjektID = itemSource.id;
             grid.Children.Clear();
@@ -254,9 +239,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void headerClick(object sender, MouseButtonEventArgs e)
         {
-            Label item = sender as Label;
-
-            HeaderSelected = item.Tag.ToString();
+            HeaderSelected = (sender as Label).Tag.ToString();
             projectListLoader();
         }
 

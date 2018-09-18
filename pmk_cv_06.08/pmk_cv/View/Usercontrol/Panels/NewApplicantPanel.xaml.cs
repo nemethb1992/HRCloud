@@ -2,19 +2,10 @@
 using HRCloud.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HRCloud.View.Usercontrol.Panels
 {
@@ -96,22 +87,14 @@ namespace HRCloud.View.Usercontrol.Panels
             DateTime localDate = DateTime.Now;
             List<JeloltExtendedList> items = new List<JeloltExtendedList>();
 
-            ComboBox ertesulesCBX = ertesules_cbx as ComboBox;
-            ertesulesek ertesules_items = ertesulesCBX.SelectedItem as ertesulesek;
-            ComboBox munkakorCBX = munkakor_cbx as ComboBox;
-            munkakor_struct munkakor_items = munkakorCBX.SelectedItem as munkakor_struct;
-            ComboBox munkakorCBX2 = munkakor2_cbx as ComboBox;
-            munkakor_struct munkakor2_items = munkakorCBX2.SelectedItem as munkakor_struct;
-            ComboBox munkakorCBX3 = munkakor3_cbx as ComboBox;
-            munkakor_struct munkakor3_items = munkakorCBX3.SelectedItem as munkakor_struct;
-            ComboBox nyelvCBX = nyelv_cbx as ComboBox;
-            nyelv_struct nyelv_items = nyelvCBX.SelectedItem as nyelv_struct;
-            ComboBox nyelvCBX2 = nyelv2_cbx as ComboBox;
-            nyelv_struct nyelv2_items = nyelvCBX2.SelectedItem as nyelv_struct;
-            ComboBox vegzettsegCBX = vegzettseg_cbx as ComboBox;
-            vegzettseg_struct vegzettseg_items = vegzettsegCBX.SelectedItem as vegzettseg_struct;
-            ComboBox nemeCBX = neme_cbx as ComboBox;
-            neme_struct neme_items = neme_cbx.SelectedItem as neme_struct;
+            neme_struct nemeComboBoxItem = (neme_cbx as ComboBox).SelectedItem as neme_struct;
+            nyelv_struct nyelvComboBoxItem = (nyelv_cbx as ComboBox).SelectedItem as nyelv_struct;
+            nyelv_struct nyelv2ComboBoxItem = (nyelv2_cbx as ComboBox).SelectedItem as nyelv_struct;
+            ertesulesek ertesulesComboBoxItem = (ertesules_cbx as ComboBox).SelectedItem as ertesulesek;
+            munkakor_struct munkakorComboBoxItem = (munkakor_cbx as ComboBox).SelectedItem as munkakor_struct;
+            munkakor_struct munkakor2ComboBoxItem = (munkakor2_cbx as ComboBox).SelectedItem as munkakor_struct;
+            munkakor_struct munkakor3ComboBoxItem = (munkakor3_cbx as ComboBox).SelectedItem as munkakor_struct;
+            vegzettseg_struct vegzettsegComboBoxItem = (vegzettseg_cbx as ComboBox).SelectedItem as vegzettseg_struct;
             
             items.Add(new JeloltExtendedList
             {
@@ -120,16 +103,16 @@ namespace HRCloud.View.Usercontrol.Panels
                 email = email_tbx.Text,
                 telefon = telefon_tbx.Text,
                 lakhely = lakhely_tbx.Text,
-                ertesult = ertesules_items.id.ToString(),
+                ertesult = ertesulesComboBoxItem.id.ToString(),
                 szuldatum = Convert.ToInt32(eletkor_tbx.Text),
-                neme = neme_items.id.ToString(),
+                neme = nemeComboBoxItem.id.ToString(),
                 tapasztalat_ev = Convert.ToInt32(tapasztalat_tbx.Text),
-                munkakor = munkakor_items.id.ToString(),
-                munkakor2 = munkakor2_items.id.ToString(),
-                munkakor3 = munkakor3_items.id.ToString(),
-                vegz_terulet = vegzettseg_items.id.ToString(),
-                nyelvtudas = nyelv_items.id.ToString(),
-                nyelvtudas2 = nyelv2_items.id.ToString(),
+                munkakor = munkakorComboBoxItem.id.ToString(),
+                munkakor2 = munkakor2ComboBoxItem.id.ToString(),
+                munkakor3 = munkakor3ComboBoxItem.id.ToString(),
+                vegz_terulet = vegzettsegComboBoxItem.id.ToString(),
+                nyelvtudas = nyelvComboBoxItem.id.ToString(),
+                nyelvtudas2 = nyelv2ComboBoxItem.id.ToString(),
                 reg_date = localDate.ToString("yyyy.MM.dd."),
             });
             return items;
@@ -156,3 +139,20 @@ namespace HRCloud.View.Usercontrol.Panels
         }
     }
 }
+
+//combobox = neme_cbx as ComboBox;
+//            neme_struct nemeComboBoxItem = combobox.SelectedItem as neme_struct;
+//combobox = nyelv_cbx as ComboBox;
+//            nyelv_struct nyelvComboBoxItem = combobox.SelectedItem as nyelv_struct;
+//combobox = nyelv2_cbx as ComboBox;
+//            nyelv_struct nyelv2ComboBoxItem = combobox.SelectedItem as nyelv_struct;
+//combobox = ertesules_cbx as ComboBox;
+//            ertesulesek ertesulesComboBoxItem = combobox.SelectedItem as ertesulesek;
+//combobox = munkakor_cbx as ComboBox;
+//            munkakor_struct munkakorComboBoxItem = combobox.SelectedItem as munkakor_struct;
+//combobox = munkakor2_cbx as ComboBox;
+//            munkakor_struct munkakor2ComboBoxItem = combobox.SelectedItem as munkakor_struct;
+//combobox = munkakor3_cbx as ComboBox;
+//            munkakor_struct munkakor3ComboBoxItem = combobox.SelectedItem as munkakor_struct;
+//combobox = vegzettseg_cbx as ComboBox;
+//            vegzettseg_struct vegzettsegComboBoxItem = combobox.SelectedItem as vegzettseg_struct;

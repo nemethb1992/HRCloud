@@ -97,7 +97,7 @@ namespace HRCloud.View.Usercontrol.Panels
         protected void listLoader()
         {
             megjegyzes_listBox.ItemsSource = pControl.Data_CommentProject();
-            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_jeloltKapcs();
+            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_JeloltKapcs();
             kapcs_ertesitendo_listBox.ItemsSource = pControl.Data_ErtesitendokKapcs();
             kapcs_hr_listBox.ItemsSource = pControl.Data_HrProject();
             koltseg_listBox.ItemsSource = pControl.Data_ProjectCost();
@@ -186,7 +186,7 @@ namespace HRCloud.View.Usercontrol.Panels
             JeloltListItems items = delete.DataContext as JeloltListItems;
 
             pControl.jeloltKapcsDelete(items.id);
-            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_jeloltKapcs();
+            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_JeloltKapcs();
         }
 
         protected void ertesitendoDeleteClick(object sender, RoutedEventArgs e)
@@ -229,7 +229,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 {
                     case MessageBoxResult.Yes:
                         pControl.jeloltKapcsDelete(items.id);
-                        email.Mail_Send(items.email, emailTemplate.Elutasito_Email(items.nev));
+                        email.sendMail(items.email, emailTemplate.Elutasito_Email(items.nev));
                         break;
                     case MessageBoxResult.No:
                         pControl.jeloltKapcsDelete(items.id);
@@ -332,7 +332,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 SubJelolt items = btn.DataContext as SubJelolt;
                 pControl.addJeloltInsert(items.id, pControl.ProjektID);
                 projekt_kapcsolodo_list.ItemsSource = pControl.Data_JeloltForCheckbox(Ember_Search_tbx.Text);
-                kapcs_jeloltek_listBox.ItemsSource = pControl.Data_jeloltKapcs();
+                kapcs_jeloltek_listBox.ItemsSource = pControl.Data_JeloltKapcs();
             }
             if (selectedTabCode == 2)
             {

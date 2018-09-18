@@ -35,12 +35,12 @@ namespace HRCloud.View.Usercontrol.Panels
         }
         protected void listLoader()
         {
-            ertesitendok_editlist.ItemsSource = sControl.Ertesitendok_DataSource();
-            vegzettsegek_editlist.ItemsSource = sControl.Vegzettseg_DataSource();
-            munkakorok_editlist.ItemsSource = sControl.Munkakor_DataSource();
-            pc_editlist.ItemsSource = sControl.PC_DataSource();
-            ertesules_editlist.ItemsSource = sControl.Ertesulesek_DataSource();
-            nyelv_editlist.ItemsSource = sControl.Nyelv_DataSource();
+            ertesitendok_editlist.ItemsSource = sControl.Data_Ertesitendok();
+            vegzettsegek_editlist.ItemsSource = sControl.Data_Vegzettseg();
+            munkakorok_editlist.ItemsSource = sControl.Data_Munkakorok();
+            pc_editlist.ItemsSource = sControl.Data_Pc();
+            ertesules_editlist.ItemsSource = sControl.Data_Ertesulesek();
+            nyelv_editlist.ItemsSource = sControl.Data_Nyelv();
             kompetencia_editlist.ItemsSource = paControl.Data_Kompetencia();
         }
 

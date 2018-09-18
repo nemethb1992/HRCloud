@@ -1,23 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HRCloud.Control;
-using HRCloud.Model;
-using HRCloud.Public.templates;
-using HRCloud.View;
 using HRCloud.View.Windows;
-using pmk_cv.Control;
 
 namespace HRCloud.View.Usercontrol
 {
@@ -28,6 +13,7 @@ namespace HRCloud.View.Usercontrol
     {
         ControlLogin lcontrol = new ControlLogin();
         Session session = new Session();
+
         private Grid grid;
 
         public Login(Grid sgrid)
@@ -38,15 +24,17 @@ namespace HRCloud.View.Usercontrol
             setartUp();
             dbConnectionOpener();
         }
-        void dbConnectionOpener()
-        {
-            Model.MySql dbE = new Model.MySql();
 
-            if (!dbE.dbOpen())
+        private void dbConnectionOpener()
+        {
+            Model.MySql mySql = new Model.MySql();
+
+            if (!mySql.isConnected())
             {
                 LoginSign.Text = "Nincs adatkapcsolat!";
             }
         }
+
         private void loginEnterClick(object sender, RoutedEventArgs e)
         {
             enter();
@@ -91,8 +79,8 @@ namespace HRCloud.View.Usercontrol
         }
         private void enter()
         {
-            if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
-            {
+            //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
+            //{
                 if (lcontrol.mySqlUserValidation(Luser_tbx.Text))
             {
                 Main mw = new Main();
@@ -109,11 +97,11 @@ namespace HRCloud.View.Usercontrol
             {
                 LoginSign.Text = "Kérem regisztráljon!";
             }
-            }
-            else
-            {
-                LoginSign.Text = "Sikertelen hitelesítés!";
-            }
+            //}
+            //else
+            //{
+            //    LoginSign.Text = "Sikertelen hitelesítés!";
+            //}
         }
         private void navigateToSurveyWindow(object sender, MouseButtonEventArgs e)
         {

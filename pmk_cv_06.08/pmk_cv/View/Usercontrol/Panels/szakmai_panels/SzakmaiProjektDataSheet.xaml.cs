@@ -77,7 +77,7 @@ namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
             }
 
             megjegyzes_listBox.ItemsSource = pControl.Data_CommentProject();
-            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_jeloltKapcs();
+            kapcs_jeloltek_listBox.ItemsSource = pControl.Data_JeloltKapcs();
         }
 
         protected void commentDelete(object sender, RoutedEventArgs e)

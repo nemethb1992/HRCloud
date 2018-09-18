@@ -1,7 +1,5 @@
 ﻿using HRCloud.Control;
 using HRCloud.View.Usercontrol.Panels;
-using pmk_cv;
-using pmk_cv.Control;
 using HRCloud.View.Usercontrol;
 using System;
 using System.Collections.Generic;

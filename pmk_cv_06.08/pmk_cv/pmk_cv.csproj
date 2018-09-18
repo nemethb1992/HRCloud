@@ -253,10 +253,9 @@
     <Compile Include="Control\ControlApplicant.cs" />
     <Compile Include="Control\ControlEmail.cs" />
     <Compile Include="Control\ControlFile.cs" />
-    <Compile Include="Control\ftpEntities.cs" />
+    <Compile Include="Test\ftpEntities.cs" />
     <Compile Include="Control\ControlLogin.cs" />
     <Compile Include="Control\Comment.cs" />
-    <Compile Include="Control\ControlPage.cs" />
     <Compile Include="Control\ControlApplicantProject.cs" />
     <Compile Include="Control\ControlProject.cs" />
     <Compile Include="Control\Session.cs" />
@@ -269,6 +268,7 @@
     <Compile Include="Model\ModelSzakmai.cs" />
     <Compile Include="Model\SqLite.cs" />
     <Compile Include="Public\templates\EmailTemplate.cs" />
+    <Compile Include="Test\ThreadTest.cs" />
     <Compile Include="View\Usercontrol\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

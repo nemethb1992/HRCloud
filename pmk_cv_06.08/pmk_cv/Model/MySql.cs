@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HRCloud.Control;
-using HRCloud.Model;
 using MySql.Data.MySqlClient;
 using static HRCloud.Model.ModelEmail;
 using static HRCloud.Model.ModelSzakmai;
@@ -18,7 +13,7 @@ namespace HRCloud.Model
         //string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
         //string connectionString = "Data Source = vpn.phoenix-mecano.hu; Port=29920; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";
 
-        private static string CONNECTION_URL = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmhrdemo; User ID=hr-admin; Password=pmhr2018";
+        private static string CONNECTION_URL = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
 
         private MySqlConnection conn;
         private MySqlCommand cmd;
@@ -32,7 +27,25 @@ namespace HRCloud.Model
         }
 
         //Initialize values
-        public bool dbOpen()
+        public bool isConnected()
+        {
+            try
+            {
+                conn.Open();
+            }
+            catch
+            {
+                return false;
+            }
+            if(conn.State == System.Data.ConnectionState.Open)
+            {
+                conn.Close();
+                return true;
+            }
+            return false;
+        }
+
+        protected bool open()
         {
             try
             {
@@ -44,7 +57,17 @@ namespace HRCloud.Model
                 return false;
             }
         }
-        private bool dbClose()
+        public void commit()
+        {
+            try
+            {
+                conn.BeginTransaction();
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public bool close()
         {
             try
             {
@@ -62,19 +85,18 @@ namespace HRCloud.Model
 
         public void update(string query)
         {
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
             }
-            dbClose();
         }
-        public int rowCount(string query)
+        public int rowCount(string command)
         {
             int[] rows = new int[1];
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
-                cmd = new MySqlCommand(query, conn);
+                cmd = new MySqlCommand(command, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
@@ -82,15 +104,15 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
+            
             return rows[0];
         }
-        public List<string> MysqlReaderExecute_List(string query, string table, int b)
+        public List<string> listQuery(string command, string table, int b)
         {
             List<string> dataSource = new List<string>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
-                cmd = new MySqlCommand(query, conn);
+                cmd = new MySqlCommand(command, conn);
                 sdr = cmd.ExecuteReader();
                 int i;
                 while (sdr.Read())
@@ -102,37 +124,35 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return dataSource;
         }
 
-        public object[,] MysqlReaderExecute(string query, string table, int b)
-        {
-            int a = rowCount("SELECT count(id) FROM " + table + "");
-            object[,] dataSource = new object[a, b];
-            if (this.dbOpen() == true)
-            {
+        //public object[,] MysqlReaderExecute(string command, string table, int b)
+        //{
+        //    int a = rowCount("SELECT count(id) FROM " + table + "");
+        //    object[,] dataSource = new object[a, b];
+        //    if (this.open() == true)
+        //    {
 
-                cmd = new MySqlCommand(query, conn);
-                sdr = cmd.ExecuteReader();
-                int i, j = 0;
-                while (sdr.Read())
-                {
-                    for (i = 0; i < b; i++)
-                    {
-                        dataSource[j, i] = sdr[i];
-                    }
-                    j++;
-                }
-                sdr.Close();
-            }
-            dbClose();
-            return dataSource;
-        }
+        //        cmd = new MySqlCommand(command, conn);
+        //        sdr = cmd.ExecuteReader();
+        //        int i, j = 0;
+        //        while (sdr.Read())
+        //        {
+        //            for (i = 0; i < b; i++)
+        //            {
+        //                dataSource[j, i] = sdr[i];
+        //            }
+        //            j++;
+        //        }
+        //        sdr.Close();
+        //    }
+        //    return dataSource;
+        //}
         public bool bind(string query)
         {
             bool valid = false;
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 int seged = 0;
                 cmd = new MySqlCommand(query, conn);
@@ -142,7 +162,6 @@ namespace HRCloud.Model
                     seged = Convert.ToInt32(sdr[0]);
                 }
                 sdr.Close();
-                dbClose();
                 if (seged != 0)
                 {
                     valid = true;
@@ -159,9 +178,8 @@ namespace HRCloud.Model
 
         public List<UserSessData> getUserSession(string query)
         {
-
             List<UserSessData> list = new List<UserSessData>();
-            if(this.dbOpen() == true)
+            if(this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -182,19 +200,15 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
-
-
-            //conn.Close();
             return list;
         }
 
-        public List<SmallProjectListItems> Small_Projekt_MySql_listQuery(string query)
+        public List<SmallProjectListItems> Small_Projekt_MySql_listQuery(string command)
         {
             List<SmallProjectListItems> items = new List<SmallProjectListItems>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
-                cmd = new MySqlCommand(query, conn);
+                cmd = new MySqlCommand(command, conn);
                 sdr = cmd.ExecuteReader();
                 int j = 0;
                 while (sdr.Read())
@@ -209,13 +223,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<SubProjekt> Sub_Projekt_MySql_listQuery(string query)
         {
             List<SubProjekt> items = new List<SubProjekt>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -231,13 +244,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<ProjectListItems> Projekt_MySql_listQuery  (string query)
         {
         List<ProjectListItems> items = new List<ProjectListItems>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -268,13 +280,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<ertesulesek> Ertesulesek_MySql_listQuery(string query)
         {
             List<ertesulesek> items = new List<ertesulesek>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -288,13 +299,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<file_url> file_url_ROOT_MySql_listQuery(string query)
         {
             List<file_url> items = new List<file_url>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -307,13 +317,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
-        public List<pc_struct> PC_MySql_listQuery(string query)
+        public List<pc_struct> getPc(string query)
         {
             List<pc_struct> items = new List<pc_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -327,13 +336,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<vegzettseg_struct> Vegzettseg_MySql_listQuery(string query)
         {
             List<vegzettseg_struct> items = new List<vegzettseg_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -347,13 +355,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<statusz_struct> Statusz_MySql_listQuery(string query)
         {
             List<statusz_struct> items = new List<statusz_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -367,13 +374,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<ProjectExtendedListItems> Projekt_Extended_MySql_listQuery(string query)
         {
             List<ProjectExtendedListItems> items = new List<ProjectExtendedListItems>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -424,13 +430,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<SubJelolt> Jelolt_Short_MySql_listQuery(string query)
         {
             List<SubJelolt> items = new List<SubJelolt>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -444,14 +449,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
-        public List<JeloltListItems> Jelolt_MySql_listQuery(string query)
+        public List<JeloltListItems> getApplicantList(string query)
         {
             List<JeloltListItems> items = new List<JeloltListItems>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -466,7 +470,6 @@ namespace HRCloud.Model
                     catch (Exception)
                     {
                     }
-
                     switch (allapot)
                     {
                         case 1:
@@ -504,13 +507,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
-        public List<SubJelolt> Jelolt_Short_DataSource(string query)
+        public List<SubJelolt> getApplicantShort(string query)
         {
             List<SubJelolt> items = new List<SubJelolt>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -525,13 +527,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<JeloltExtendedList> JeloltExtended_MySql_listQuery(string query)
         {
             List<JeloltExtendedList> items = new List<JeloltExtendedList>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -569,13 +570,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<JeloltListBox> JeloltekDatasourceListbox_MySql_listQuery(string query)
         {
             List<JeloltListBox> items = new List<JeloltListBox>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -591,13 +591,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
-        public List<nyelv_struct> Nyelv_MySql_listQuery(string query)
+        public List<nyelv_struct> getNyelv(string query)
         {
             List<nyelv_struct> items = new List<nyelv_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -612,14 +611,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
-        public List<munkakor_struct> Munkakor_MySql_listQuery(string query)
+        public List<munkakor_struct> getMunkakorok(string query)
         {
             List<munkakor_struct> items = new List<munkakor_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader sdr = cmd.ExecuteReader();
@@ -634,13 +632,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<neme_struct> Nem_MySql_listQuery(string query)
         {
             List<neme_struct> items = new List<neme_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader sdr = cmd.ExecuteReader();
@@ -655,7 +652,6 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
@@ -680,13 +676,12 @@ namespace HRCloud.Model
         //        }
         //        sdr.Close();
         //    }
-        //    dbClose();
         //    return items;
         //}
         public List<megjegyzes_struct> Megjegyzesek_MySql_listQuery(string query)
         {
             List<megjegyzes_struct> items = new List<megjegyzes_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -707,13 +702,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<ertesitendok_struct> getErtesitendok(string query)
         {
             List<ertesitendok_struct> items = new List<ertesitendok_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -729,14 +723,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         
         public List<hr_struct> getHrShort(string query)
         {
             List<hr_struct> items = new List<hr_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -753,13 +746,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<koltsegek> Koltsegek_MySql_listQuery(string query)
         {
             List<koltsegek> items = new List<koltsegek>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -775,13 +767,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
-        public List<projekt_jelolt_kapcs> Jelolt_Projekt_kapcs_MySql_listQuery(string query)
+        public List<projekt_jelolt_kapcs> getPojectApplicantRelation(string query)
         {
             List<projekt_jelolt_kapcs> items = new List<projekt_jelolt_kapcs>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -797,13 +788,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<interju_struct> Interju_MySql_listQuery(string query)
         {
             List<interju_struct> items = new List<interju_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -828,13 +818,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<interju_struct> getSzakmaiInterview(string query)
         {
             List<interju_struct> items = new List<interju_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -854,14 +843,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
         public List<JeloltSearchItems> Jelolt_Search_MySql_listQuery(string query)
         {
             List<JeloltSearchItems> items = new List<JeloltSearchItems>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -883,14 +871,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
         public List<Projekt_Bevont_struct> getSzakmaiProject(string query)
         {
             List<Projekt_Bevont_struct> items = new List<Projekt_Bevont_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -907,14 +894,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
         public List<kompetenciak> Kompetenciak_MySql_listQuery(string query)
         {
             List<kompetenciak> items = new List<kompetenciak>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -928,14 +914,13 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
 
         public List<kompetencia_jelolt_kapcs_struct> Kompetenciak_jelolt_kapcs_MySql_listQuery(string query)
         {
             List<kompetencia_jelolt_kapcs_struct> items = new List<kompetencia_jelolt_kapcs_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -963,13 +948,12 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<kompetencia_summary_struct> Kompetencia_summary_MySql_listQuery(string query)
         {
             List<kompetencia_summary_struct> items = new List<kompetencia_summary_struct>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 try
                 {
@@ -994,13 +978,12 @@ namespace HRCloud.Model
 
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<kompetencia_tamogatas> Kompetencia_tamogatas_MySql_listQuery(string query)
         {
             List<kompetencia_tamogatas> items = new List<kompetencia_tamogatas>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 try
                 {
@@ -1020,13 +1003,12 @@ namespace HRCloud.Model
 
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
         public List<MailServer_m> ConnectionSMTP_DataSource(string query)
         {
             List<MailServer_m> items = new List<MailServer_m>();
-            if (this.dbOpen() == true)
+            if (this.open() == true)
             {
                 cmd = new MySqlCommand(query, conn);
                 sdr = cmd.ExecuteReader();
@@ -1048,7 +1030,6 @@ namespace HRCloud.Model
                 }
                 sdr.Close();
             }
-            dbClose();
             return items;
         }
     }

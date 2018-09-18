@@ -62,7 +62,7 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void interviewLoader()
         {
-            List<interju_struct> list = paControl.Interju_DataSource_ByID();
+            List<interju_struct> list = paControl.Data_InterviewById();
             List<ProjectExtendedListItems> li = pControl.Data_ProjectFull();
             List<kompetenciak> li_k = paControl.Data_Kompetencia();
 
@@ -90,7 +90,7 @@ namespace HRCloud.View.Usercontrol.Panels
             choose_editlist.ItemsSource = paControl.Data_ProjektErtesitendokKapcsolt();
             ertesitendok_editlist.ItemsSource = paControl.Data_InterjuErtesitendokKapcsolt();
 
-            if (paControl.Kompetencia_valider())
+            if (paControl.hasKompetencia())
             {
                 Panel.SetZIndex(kompetencia_border, 1);
                 locked_title.Visibility = Visibility.Visible;
@@ -137,7 +137,7 @@ namespace HRCloud.View.Usercontrol.Panels
             Button btn = sender as Button;
             ertesitendok_struct items = btn.DataContext as ertesitendok_struct;
 
-            paControl.Write_User_To_Inerju(items.id);
+            paControl.insertInterviewInvited(items.id);
             choose_editlist.ItemsSource = paControl.Data_ProjektErtesitendokKapcsolt();
             ertesitendok_editlist.ItemsSource = paControl.Data_InterjuErtesitendokKapcsolt();
         }
@@ -149,7 +149,7 @@ namespace HRCloud.View.Usercontrol.Panels
                 MenuItem menu = sender as MenuItem;
                 ertesitendok_struct items = menu.DataContext as ertesitendok_struct;
 
-                paControl.Delete_User_To_Inerju(items.id);
+                paControl.deleteInterviewInvited(items.id);
                 choose_editlist.ItemsSource = paControl.Data_ProjektErtesitendokKapcsolt();
                 ertesitendok_editlist.ItemsSource = paControl.Data_InterjuErtesitendokKapcsolt();
             }
@@ -171,7 +171,7 @@ namespace HRCloud.View.Usercontrol.Panels
             EmailTemplate et = new EmailTemplate();
             ControlEmail email = new ControlEmail();
             List<ertesitendok_struct> szemelyek = paControl.Data_InterjuErtesitendokKapcsolt();
-            List<interju_struct> interju = paControl.Interju_DataSource_ByID();
+            List<interju_struct> interju = paControl.Data_InterviewById();
             List<String> resztvevok = new List<string>();
 
             foreach (var item in szemelyek)
@@ -180,9 +180,9 @@ namespace HRCloud.View.Usercontrol.Panels
             }
             foreach (var item in szemelyek)
             {
-                email.Mail_Send(item.email, et.Belsos_Meghivo_Email(item.name, interju[0].interju_cim, interju[0].interju_datum+" - " + interju[0].idopont, interju[0].helyszin, interju[0].jelolt_megnevezes));
+                email.sendMail(item.email, et.Belsos_Meghivo_Email(item.name, interju[0].interju_cim, interju[0].interju_datum+" - " + interju[0].idopont, interju[0].helyszin, interju[0].jelolt_megnevezes));
             }
-            email.Mail_Send(interju[0].jelolt_email, et.Jelolt_Meghivo_Email(interju[0].jelolt_megnevezes, interju[0].projekt_megnevezes, interju[0].interju_datum + " - " + interju[0].idopont, resztvevok));
+            email.sendMail(interju[0].jelolt_email, et.Jelolt_Meghivo_Email(interju[0].jelolt_megnevezes, interju[0].projekt_megnevezes, interju[0].interju_datum + " - " + interju[0].idopont, resztvevok));
       }
     }
 }

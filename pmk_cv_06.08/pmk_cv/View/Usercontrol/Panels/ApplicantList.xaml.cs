@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HRCloud.Control;
 using HRCloud.Model;
-using pmk_cv.Control;
+using HRCloud.Test;
 
 namespace HRCloud.View.Usercontrol.Panels
 {
@@ -37,55 +37,38 @@ namespace HRCloud.View.Usercontrol.Panels
             startMethods();
         }
 
+        public ApplicantList()
+        {
+        }
+
         protected void startMethods()
         {
             checkBoxLoader();
             applicantListLoader();
         }
 
-        protected List<string> searchValues() 
+        protected List<string> searchValues()
         {
             List<string> list = new List<string>();
-            ComboBox munkakor = munkakor_srccbx as ComboBox;
-            ComboBox vegzettseg = vegzettseg_srccbx as ComboBox;
-            ComboBox nemek = nemek_srccbx as ComboBox;
-
-            munkakor_struct munkakor_item = munkakor.SelectedItem as munkakor_struct;
-            vegzettseg_struct vegzettseg_item = vegzettseg.SelectedItem as vegzettseg_struct;
-            neme_struct nemek_item = nemek.SelectedItem as neme_struct;
+            
+            munkakor_struct munkakor_item = (munkakor_srccbx as ComboBox).SelectedItem as munkakor_struct;
+            vegzettseg_struct vegzettseg_item = (vegzettseg_srccbx as ComboBox).SelectedItem as vegzettseg_struct;
+            neme_struct nemek_item = (nemek_srccbx as ComboBox).SelectedItem as neme_struct;
 
             string munkakorStr = "";
-            if (munkakor.SelectedIndex != 0)
-            {
-                try
-                {
-                    munkakorStr = munkakor_item.id.ToString();
-                }
-                catch (Exception)
-                {
-                }
-            }
             string vegzettsegStr = "";
-            if (vegzettseg.SelectedIndex != 0)
-            {
-                try
-                {
-                    vegzettsegStr = vegzettseg_item.id.ToString();
-                }
-                catch (Exception)
-                {
-                }
-            }
             string nemekStr = "";
-            if (nemek.SelectedIndex != 0)
+            if (munkakor_srccbx.SelectedIndex != -1)
             {
-                try
-                {
-                    nemekStr = nemek_item.id.ToString();
-                }
-                catch (Exception)
-                {
-                }
+                munkakorStr = munkakor_item.id.ToString();
+            }
+            if (vegzettseg_srccbx.SelectedIndex != -1)
+            {
+                vegzettsegStr = vegzettseg_item.id.ToString();
+            }
+            if (nemek_srccbx.SelectedIndex != -1)
+            {
+                nemekStr = nemek_item.id.ToString();
             }
 
             string tapasztalat = tapsztalat_srcinp.Text;
@@ -120,7 +103,7 @@ namespace HRCloud.View.Usercontrol.Panels
             return list;
         }
 
-        protected void applicantListLoader()
+        public void applicantListLoader()
         {
                 List<JeloltListItems> list = aControl.applicantList(searchValues());
                 applicant_listBox.ItemsSource = list;
@@ -172,7 +155,9 @@ namespace HRCloud.View.Usercontrol.Panels
 
         protected void searchInputTextChanged(object sender, TextChangedEventArgs e)
         {
+            ThreadTest thread = new ThreadTest();
             applicantListLoader();
+            //thread.ASYNC_applicantListLoader();
         }
 
         protected void numericPreviewTextInput(object sender, TextCompositionEventArgs e)

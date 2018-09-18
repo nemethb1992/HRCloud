@@ -12,7 +12,7 @@ namespace pmk_cv.Control
 {
     class PageControl
     {
-        public void Search_Placeholder_LF(TextBox tbx, Label label )
+        public void searchInputPlaceholder2(TextBox tbx, Label label )
         {
             if (tbx.Text == "")
             {
