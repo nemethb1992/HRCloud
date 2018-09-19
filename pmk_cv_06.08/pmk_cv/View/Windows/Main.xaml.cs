@@ -1,20 +1,9 @@
 ﻿using HRCloud.Control;
 using HRCloud.View.Usercontrol.Panels;
-using HRCloud.View.Usercontrol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using HRCloud.View.Usercontrol.Panels.szakmai_panels;
+using HRCloud.View.Usercontrol.Panels.SzakmaiLayouts;
+using HRCloud.Source;
 
 namespace HRCloud.View.Windows
 {
@@ -35,18 +24,17 @@ namespace HRCloud.View.Windows
         public Main()
         {
             InitializeComponent();
-            //if(session.UserData[0].kategoria == 1)
-            //{
+            if (session.UserData[0].kategoria == 1)
+            {
                 sgrid.Children.Add(project_p = new ProjectList(sgrid));
                 HR_navigation_Grid.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
-            //    Szakmai_navigation_Grid.Visibility = Visibility.Visible;
-            //    HR_navigation_Grid.Visibility = Visibility.Hidden;
-            //}
-            //Profil_name_tbl.Text = session.UserData[0].name;
+            }
+            else
+            {
+                sgrid.Children.Add(szakmai_Kezdolap = new SzakmaiKezdolap(sgrid));
+                Szakmai_navigation_Grid.Visibility = Visibility.Visible;
+                HR_navigation_Grid.Visibility = Visibility.Hidden;
+            }
             //f_control.Applicant_Folder_Structure_Creator();
             //f_control.Projekt_Folder_Structure_Creator();
         }

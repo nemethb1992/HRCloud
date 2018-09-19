@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRCloud.Model
 {
-    class ModelSzakmai
+    public class ModelSzakmai
     {
         public class Projekt_Bevont_struct
         {

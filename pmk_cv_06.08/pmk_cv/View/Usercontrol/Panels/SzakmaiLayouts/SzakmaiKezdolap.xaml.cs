@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HRCloud.View.Usercontrol.Panels.szakmai_panels
+namespace HRCloud.View.Usercontrol.Panels.SzakmaiLayouts
 {
     /// <summary>
     /// Interaction logic for Szakmai_Kezdolap.xaml

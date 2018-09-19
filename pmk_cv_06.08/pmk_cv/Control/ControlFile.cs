@@ -39,25 +39,25 @@ namespace HRCloud.Control
             string query = "SELECT * FROM ROOTurl";
             return mySql.file_url_ROOT_MySql_listQuery(query);
         }
-        public void Applicant_Folder_Structure_Creator()
-        {
-            string query = "SELECT * FROM `jeloltek` GROUP BY email";
-            List<SubJelolt> list = mySql.Jelolt_Short_MySql_listQuery(query);
-            foreach (var item in list)
-            {
-                Directory.CreateDirectory(ROOTurl()[0].url + item.id);
-            }
+        //public void Applicant_Folder_Structure_Creator()
+        //{
+        //    string query = "SELECT * FROM `jeloltek` GROUP BY email";
+        //    List<SubJelolt> list = mySql.Jelolt_Short_MySql_listQuery(query);
+        //    foreach (var item in list)
+        //    {
+        //        Directory.CreateDirectory(ROOTurl()[0].url + item.id);
+        //    }
             
-        }
-        public void Projekt_Folder_Structure_Creator()
-        {
-            string query = "SELECT * FROM `projektek`";
-            List<SubProjekt> list = mySql.Sub_Projekt_MySql_listQuery(query);
-            foreach (var item in list)
-            {
-                Directory.CreateDirectory(ROOTurl()[0].url + item.id);
-            }
+        //}
+        //public void Projekt_Folder_Structure_Creator()
+        //{
+        //    string query = "SELECT * FROM `projektek`";
+        //    List<SubProjekt> list = mySql.Sub_Projekt_MySql_listQuery(query);
+        //    foreach (var item in list)
+        //    {
+        //        Directory.CreateDirectory(ROOTurl()[0].url + item.id);
+        //    }
 
-        }
+        //}
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HRCloud.Model;
 using System.Collections.Generic;
 using static HRCloud.Model.ModelSzakmai;
+using HRCloud.Source;
 
 namespace HRCloud.Control
 {

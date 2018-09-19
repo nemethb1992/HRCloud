@@ -27,9 +27,11 @@ namespace HRCloud.View.Usercontrol.Panels
         public ProjectList(Grid grid)
         {
             this.grid = grid;
+            this.DataContext = projectListLoader2();
             InitializeComponent();
+            //project_listBox.Items.Refresh();
             checkBoxLoader();
-            projectListLoader();
+            //projectListLoader();
         }
 
         protected void checkBoxLoader()
@@ -41,26 +43,39 @@ namespace HRCloud.View.Usercontrol.Panels
         protected List<string> getSearchData()
         {
             List<string> list = new List<string>();
-            nyelv_struct nyelvItem = (nyelv_srccbx as ComboBox).SelectedItem as nyelv_struct;
-            vegzettseg_struct vegzettsegItem = (vegzettseg_srccbx as ComboBox).SelectedItem as vegzettseg_struct;
-
+            nyelv_struct nyelvItem = null;
+            vegzettseg_struct vegzettsegItem = null;
             string nyelvkStr = "";
             string vegzettsegStr = "";
 
+            try
+            {
+                nyelvItem = (nyelv_srccbx as ComboBox).SelectedItem as nyelv_struct;
+                vegzettsegItem = (vegzettseg_srccbx as ComboBox).SelectedItem as vegzettseg_struct;
+            }
+            catch (Exception){
+            }
+
             try  { if(vegzettsegItem.id !=-1) vegzettsegStr = vegzettsegItem.id.ToString(); } catch (Exception) { }
+
             try  { if (nyelvItem.id != -1) nyelvkStr = nyelvItem.id.ToString(); } catch (Exception)  {}
+
             string jeloltszam = jeloltszam_srcinp.Text;
             if (jeloltszam_srcinp.Text == "")
                 jeloltszam = "0";
+
             string interjuk = interju_srcinp.Text;
             if (interju_srcinp.Text == "")
                 interjuk = "0";
+
             string publikalt = "";
             if (publikalt_check.IsChecked == true)
                 publikalt = "1";
+
             string sorrend = " ASC";
             if (sorrend_check.IsChecked == true)
                 sorrend = " DESC";
+
             list.Add(projektnev_srcinp.Text);
             list.Add(jeloltszam);
             list.Add(publikalva_srcinp.Text);
@@ -73,6 +88,7 @@ namespace HRCloud.View.Usercontrol.Panels
             list.Add(publikalt);
             list.Add(HeaderSelected);
             list.Add(sorrend);
+
             return list;
         }
 
@@ -86,13 +102,24 @@ namespace HRCloud.View.Usercontrol.Panels
 
             try{
                 List<ProjectListItems> lista = pControl.Data_ProjectFull(getSearchData());
-                project_listBox.ItemsSource = lista;
                 talalat_tbl.Text = "Találatok:  " + lista.Count.ToString();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
+        }
+
+        protected List<ProjectListItems> projectListLoader2()
+        {
+            List<Projekt_Search_Memory> list = new List<Projekt_Search_Memory>();
+            List<ProjectListItems> lista = new List<ProjectListItems>();
+
+            list.Add(new Projekt_Search_Memory() { statusz = 1 });
+            pControl.projectSearchMemory = list;
+            //buttonColorChange();
+            lista = pControl.Data_ProjectFull(getSearchData());
+            return lista;
         }
 
         protected void buttonColorChange()

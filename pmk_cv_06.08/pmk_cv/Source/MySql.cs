@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using HRCloud.Control;
 using MySql.Data.MySqlClient;
 using static HRCloud.Model.ModelEmail;
 using static HRCloud.Model.ModelSzakmai;
+using HRCloud.Source;
 
 namespace HRCloud.Model
 {
-    class MySql
+    public class MySql
     {
         //string connectionString = "Data Source = s7.nethely.hu; Initial Catalog = pmkcvtest; User ID=pmkcvtest; Password=pmkcvtest2018";
         //string connectionString = "Data Source = 192.168.144.189; Port=3306; Initial Catalog = pmkcvtest; User ID=hr-admin; Password=pmhr2018";

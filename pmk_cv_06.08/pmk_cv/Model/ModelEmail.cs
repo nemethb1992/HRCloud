@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRCloud.Model
 {
-    class ModelEmail
+    public class ModelEmail
     {
         public class MailServer_m
         {

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using HRCloud.Control;
+using HRCloud.Source;
 using HRCloud.View.Windows;
 
 namespace HRCloud.View.Usercontrol
@@ -82,16 +83,15 @@ namespace HRCloud.View.Usercontrol
             //if (lcontrol.ActiveDirectoryValidation(Luser_tbx.Text, Lpass_pwd.Password))
             //{
                 if (lcontrol.mySqlUserValidation(Luser_tbx.Text))
-            {
-                Main mw = new Main();
-                    var window = Window.GetWindow(this);
+                {
                     session.UserData = lcontrol.Data_UserSession(Luser_tbx.Text);
                     session.tartomanyi = Luser_tbx.Text;
-
+                    Main mw = new Main();
+                    var window = Window.GetWindow(this);
                     usernameRemember();
                     mw.Show();
                     window.Close();
-            }
+                }
 
             else
             {

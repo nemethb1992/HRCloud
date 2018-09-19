@@ -249,7 +249,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Control\ActivityLog.cs" />
+    <Compile Include="Source\ActivityLog.cs" />
     <Compile Include="Control\ControlApplicant.cs" />
     <Compile Include="Control\ControlEmail.cs" />
     <Compile Include="Control\ControlFile.cs" />
@@ -258,7 +258,7 @@
     <Compile Include="Control\Comment.cs" />
     <Compile Include="Control\ControlApplicantProject.cs" />
     <Compile Include="Control\ControlProject.cs" />
-    <Compile Include="Control\Session.cs" />
+    <Compile Include="Source\Session.cs" />
     <Compile Include="Control\ControlSettings.cs" />
     <Compile Include="Control\ControlSzakmai.cs" />
     <Compile Include="Model\ModelApplicant.cs" />
@@ -266,7 +266,7 @@
     <Compile Include="Model\ModelProjectApplicant.cs" />
     <Compile Include="Model\ModelProject.cs" />
     <Compile Include="Model\ModelSzakmai.cs" />
-    <Compile Include="Model\SqLite.cs" />
+    <Compile Include="Source\SqLite.cs" />
     <Compile Include="Public\templates\EmailTemplate.cs" />
     <Compile Include="Test\ThreadTest.cs" />
     <Compile Include="View\Usercontrol\Login.xaml.cs">
@@ -302,19 +302,19 @@
     <Compile Include="View\Usercontrol\Panels\FavouritesPanel.xaml.cs">
       <DependentUpon>FavouritesPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjektDataSheet.xaml.cs">
+    <Compile Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiProjektDataSheet.xaml.cs">
       <DependentUpon>SzakmaiProjektDataSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiApplicantDataView.xaml.cs">
+    <Compile Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiApplicantDataView.xaml.cs">
       <DependentUpon>SzakmaiApplicantDataView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiInterviewList.xaml.cs">
+    <Compile Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiInterviewList.xaml.cs">
       <DependentUpon>SzakmaiInterviewList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiKezdolap.xaml.cs">
+    <Compile Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiKezdolap.xaml.cs">
       <DependentUpon>SzakmaiKezdolap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiList.xaml.cs">
+    <Compile Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiList.xaml.cs">
       <DependentUpon>SzakmaiList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrol\Surveys\FirstRegistration.xaml.cs">
@@ -382,23 +382,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiProjektDataSheet.xaml">
+    <Page Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiProjektDataSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiApplicantDataView.xaml">
+    <Page Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiApplicantDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiInterviewList.xaml">
+    <Page Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiInterviewList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiKezdolap.xaml">
+    <Page Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiKezdolap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Usercontrol\Panels\szakmai_panels\SzakmaiList.xaml">
+    <Page Include="View\Usercontrol\Panels\SzakmaiLayouts\SzakmaiList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,7 +416,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\MySql.cs" />
+    <Compile Include="Source\MySql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

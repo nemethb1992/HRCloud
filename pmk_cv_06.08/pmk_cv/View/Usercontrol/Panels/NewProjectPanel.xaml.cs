@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HRCloud.Source;
 
 namespace HRCloud.View.Usercontrol.Panels
 {

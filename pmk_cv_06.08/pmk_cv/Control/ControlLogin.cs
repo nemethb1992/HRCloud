@@ -1,14 +1,9 @@
 ﻿using HRCloud.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.DirectoryServices;
 using System.Net;
 using System.DirectoryServices.Protocols;
-using System.DirectoryServices.AccountManagement;
-using System.Windows;
+using HRCloud.Source;
 
 namespace HRCloud.Control
 {

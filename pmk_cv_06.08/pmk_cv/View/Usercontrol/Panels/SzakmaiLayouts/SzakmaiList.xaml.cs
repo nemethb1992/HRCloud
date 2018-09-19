@@ -1,6 +1,6 @@
 ﻿using HRCloud.Control;
 using HRCloud.Model;
-using HRCloud.View.Usercontrol.Panels.szakmai_panels;
+using HRCloud.View.Usercontrol.Panels.SzakmaiLayouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

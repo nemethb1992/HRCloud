@@ -121,7 +121,7 @@
             <Label x:Name="project_label_5" Tag="5" VerticalAlignment="Bottom" Content="Létrehozva" Grid.Column="5" Style="{StaticResource project_label_style}" MouseDown="headerClick"/>
             <CheckBox x:Name="sorrend_check" Style="{StaticResource Standard_Checkbox}" Content="Csökkenő sorrend" VerticalAlignment="Bottom" Margin="0,0,0,5" IsChecked="False" Grid.Column="6" Checked="sorrendChecked" Unchecked="sorrendUnchecked"/>
         </Grid>
-        <ListBox x:Name="project_listBox" Style="{StaticResource listBox_style}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+        <ListBox x:Name="project_listBox" Style="{StaticResource listBox_style}" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding ProjectListItems}" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.Resources>
                 <Style TargetType="{x:Type Border}" BasedOn="{StaticResource listCorner}"/>
                 <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource listBoxItem_style_big}"/>
